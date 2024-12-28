@@ -27,23 +27,23 @@
     else throw "Error. For this scheme a maximum of 6 disks can be passed to disko.";
   nvme0 = builtins.elemAt disks 0;
   nvme1 =
-    if (number_of_disks >= 1)
+    if (number_of_disks > 1)
     then builtins.elemAt disks 1
     else "";
   nvme2 =
-    if (number_of_disks >= 2)
+    if (number_of_disks > 2)
     then builtins.elemAt disks 2
     else "";
   nvme3 =
-    if (number_of_disks >= 3)
+    if (number_of_disks > 3)
     then builtins.elemAt disks 3
     else "";
   nvme4 =
-    if (number_of_disks >= 4)
+    if (number_of_disks > 4)
     then builtins.elemAt disks 4
     else "";
   nvme5 =
-    if (number_of_disks >= 5)
+    if (number_of_disks > 5)
     then builtins.elemAt disks 5
     else "";
   nvme6 =
@@ -51,6 +51,14 @@
     then builtins.elemAt disks 6
     else "";
 in {
+  inherit number_of_disks;
+  inherit nvme0;
+  inherit nvme1;
+  inherit nvme2;
+  inherit nvme3;
+  inherit nvme4;
+  inherit nvme5;
+  inherit nvme6;
   disko.devices = {
     disk = {
       nixos = {
@@ -74,7 +82,7 @@ in {
             swap = {
               name = "swap";
               start = "1G";
-              end = "65G";
+              end = "33G";
               content = {
                 type = "swap";
                 randomEncryption = true;
