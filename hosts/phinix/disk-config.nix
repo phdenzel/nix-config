@@ -23,8 +23,8 @@
 }: let
   number_of_disks =
     if (builtins.length disks > 6)
-    then builtins.length disks
-    else throw "Error. For this scheme a maximum of 6 disks can be passed to disko.";
+    then throw "Error. For this scheme a maximum of 6 disks can be passed to disko."
+    else builtins.length disks;
   nvme0 = builtins.elemAt disks 0;
   nvme1 =
     if (number_of_disks > 1)
@@ -50,17 +50,7 @@
     if (number_of_disks == 6)
     then builtins.elemAt disks 6
     else "";
-  my_disks = disks;
 in {
-  inherit my_disks;
-  inherit number_of_disks;
-  inherit nvme0;
-  inherit nvme1;
-  inherit nvme2;
-  inherit nvme3;
-  inherit nvme4;
-  inherit nvme5;
-  inherit nvme6;
   disko.devices = {
     disk = {
       nixos = {
