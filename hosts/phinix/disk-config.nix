@@ -123,12 +123,14 @@ in {
               };
               scratch = {
                 name = "scratch";
-                type = "btrfs";
                 size = "100%";
-                subvolumes = {
-                  "@scratch" = {
-                    mountpoint = "/scratch";
-                    mountOptions = ["compress=zstd" "noatime"];
+                content = {
+                  type = "btrfs";
+                  subvolumes = {
+                    "@scratch" = {
+                      mountpoint = "/scratch";
+                      mountOptions = ["compress=zstd" "noatime"];
+                    };
                   };
                 };
               };
