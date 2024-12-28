@@ -50,7 +50,9 @@
     if (number_of_disks == 6)
     then builtins.elemAt disks 6
     else "";
+  my_disks = disks;
 in {
+  inherit my_disks;
   inherit number_of_disks;
   inherit nvme0;
   inherit nvme1;
