@@ -57,7 +57,7 @@ in {
           partitions = {
             ESP = {
               priority = 1;
-              name = "ESP";
+              label = "EFI";
               type = "EF00";
               start = "64M"; # A small mod8 offset, just because...
               end = "1G";
@@ -68,16 +68,15 @@ in {
               };
             };
             swap = {
-              name = "swap";
-              start = "1G";
-              end = "33G";
+              label = "swap";
+              size = "32G";
               content = {
                 type = "swap";
                 randomEncryption = true;
               };
             };
             root = {
-              name = "root";
+              label = "root";
               size = "100%";
               content = {
                 type = "btrfs";
@@ -122,7 +121,7 @@ in {
                 size = "4G";
               };
               scratch = {
-                name = "scratch";
+                label = "scratch";
                 size = "100%";
                 content = {
                   type = "btrfs";
@@ -148,7 +147,7 @@ in {
             type = "gpt";
             partitions = {
               raid = {
-                name = "raid";
+                label = "raid";
                 size = "100%";
                 content = {
                   type = "btrfs";
