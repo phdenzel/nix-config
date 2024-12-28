@@ -46,10 +46,6 @@
     if (number_of_disks > 5)
     then builtins.elemAt disks 5
     else "";
-  nvme6 =
-    if (number_of_disks == 6)
-    then builtins.elemAt disks 6
-    else "";
 in {
   disko.devices = {
     disk = {
@@ -159,7 +155,6 @@ in {
                   "${nvme3}"
                   "${nvme4}"
                   "${nvme5}"
-                  "${nvme6}"
                 ];
                 subvolumes = {
                   "@raid" = {
