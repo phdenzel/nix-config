@@ -147,19 +147,21 @@ in {
             partitions = {
               raid = {
                 name = "raid";
-                type = "btrfs";
                 size = "100%";
-                extraArgs = [
-                  "-d raid0"
-                  "-m raid1"
-                  "${nvme3}"
-                  "${nvme4}"
-                  "${nvme5}"
-                ];
-                subvolumes = {
-                  "@raid" = {
-                    mountpoint = "/raid";
-                    mountOptions = ["compress=zstd" "noatime"];
+                content = {
+                  type = "btrfs";
+                  extraArgs = [
+                    "-d raid0"
+                    "-m raid1"
+                    "${nvme3}"
+                    "${nvme4}"
+                    "${nvme5}"
+                  ];
+                  subvolumes = {
+                    "@raid" = {
+                      mountpoint = "/raid";
+                      mountOptions = ["compress=zstd" "noatime"];
+                    };
                   };
                 };
               };
