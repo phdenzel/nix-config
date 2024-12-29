@@ -15,9 +15,9 @@
     "/dev/disk/by-id/nvme-CT4000T700SSD3_2341E87F4711"
     "/dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_23322S800994"
     "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135359K"
+    "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNU0X405324H"
     "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135355N"
     "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135331M"
-    "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNU0X405324H"
   ],
   ...
 }: let
@@ -117,6 +117,9 @@ in {
           content = {
             type = "gpt";
             partitions = {
+              empty = {
+                size = "4G";
+              };
               scratch = {
                 label = "scratch";
                 size = "100%";
@@ -134,31 +137,7 @@ in {
           };
         };
 
-      p4 =
-        if (number_of_disks < 6)
-        then {}
-        else {
-          type = "disk";
-          device = "${nvme5}";
-        };
-
-      p3 =
-        if (number_of_disks < 5)
-        then {}
-        else {
-          type = "disk";
-          device = "${nvme4}";
-        };
-
-      p2 =
-        if (number_of_disks < 4)
-        then {}
-        else {
-          type = "disk";
-          device = "${nvme3}";
-        };
-
-      p1 =
+      raid =
         if (number_of_disks < 3)
         then {}
         else {
