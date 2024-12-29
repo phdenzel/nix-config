@@ -119,7 +119,6 @@ in {
             partitions = {
               scratch = {
                 label = "scratch";
-                start = "4G";
                 size = "100%";
                 content = {
                   type = "btrfs";
