@@ -117,12 +117,10 @@ in {
           content = {
             type = "gpt";
             partitions = {
-              empty = {
-                size = "4G";
-              };
               scratch = {
                 label = "scratch";
-                size = "100%";
+                start = "4G";
+                end = "-0G";
                 content = {
                   type = "btrfs";
                   subvolumes = {
