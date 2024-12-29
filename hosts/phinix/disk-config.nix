@@ -125,7 +125,7 @@ in {
                   subvolumes = {
                     "@scratch" = {
                       mountpoint = "/scratch";
-                      mountOptions = ["compress=zstd" "noatime"];
+                      mountOptions = ["subvol=@scratch" "compress=zstd" "noatime"];
                     };
                   };
                 };
@@ -134,7 +134,31 @@ in {
           };
         };
 
-      raid =
+      p4 =
+        if (number_of_disks < 6)
+        then {}
+        else {
+          type = "disk";
+          device = "${nvme5}";
+        };
+
+      p3 =
+        if (number_of_disks < 5)
+        then {}
+        else {
+          type = "disk";
+          device = "${nvme4}";
+        };
+
+      p2 =
+        if (number_of_disks < 4)
+        then {}
+        else {
+          type = "disk";
+          device = "${nvme3}";
+        };
+
+      p1 =
         if (number_of_disks < 3)
         then {}
         else {
@@ -149,16 +173,18 @@ in {
                 content = {
                   type = "btrfs";
                   extraArgs = [
+                    "-f"
                     "-d raid0"
                     "-m raid1"
+                    "${nvme2}"
                     "${nvme3}"
                     "${nvme4}"
                     "${nvme5}"
                   ];
                   subvolumes = {
                     "@raid" = {
-                      mountpoint = "/raid";
                       mountOptions = ["compress=zstd" "noatime"];
+                      mountpoint = "/raid";
                     };
                   };
                 };
