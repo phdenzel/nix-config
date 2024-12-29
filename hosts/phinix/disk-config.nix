@@ -120,7 +120,7 @@ in {
               scratch = {
                 label = "scratch";
                 start = "4G";
-                end = "-0G";
+                size = "100%";
                 content = {
                   type = "btrfs";
                   subvolumes = {
