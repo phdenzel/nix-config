@@ -95,7 +95,7 @@ in {
               end = "1G";
               content = {
                 type = "filesystem";
-                extraArgs = ["-L BOOT"];
+                extraArgs = ["-n BOOT"];
                 format = "vfat";
                 mountpoint = "/boot";
               };
