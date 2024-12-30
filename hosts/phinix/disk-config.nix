@@ -95,6 +95,7 @@ in {
               end = "1G";
               content = {
                 type = "filesystem";
+                extraArgs = ["-L BOOT"];
                 format = "vfat";
                 mountpoint = "/boot";
               };
@@ -105,6 +106,7 @@ in {
               size = "32G";
               content = {
                 type = "swap";
+                extraArgs = ["-L SWAP"];
                 randomEncryption = true;
               };
             };
