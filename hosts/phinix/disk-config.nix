@@ -27,45 +27,58 @@
     else builtins.length disks;
   nvme = rec {
     a = builtins.elemAt disks 0;
-    b = if (numberOfDisks > 1)
-          then builtins.elemAt disks 1
-          else "";
-    c = if (numberOfDisks > 2)
-          then builtins.elemAt disks 2
-          else "";
-    d = if (numberOfDisks > 3)
-          then builtins.elemAt disks 3
-          else "";
-    e = if (numberOfDisks > 4)
-          then builtins.elemAt disks 4
-          else "";
-    f = if (numberOfDisks > 5)
-          then builtins.elemAt disks 5
-        else "";
-    a1 = if (builtins.substring 0 9 a == "/dev/nvme")
-         then "${a}p1"
-         else "${a}-part1";
-    a2 = if (builtins.substring 0 9 a == "/dev/nvme")
-         then "${a}p2"
-         else "${a}-part2";
-    a3 = if (builtins.substring 0 9 a == "/dev/nvme")
-         then "${a}p3"
-         else "${a}-part3";
-    b1 = if (builtins.substring 0 9 b == "/dev/nvme")
-         then "${b}p1"
-         else "${b}-part1";
-    c1 = if (builtins.substring 0 9 c == "/dev/nvme")
-         then "${c}p1"
-         else "${c}-part1";
-    d1 = if (builtins.substring 0 9 d == "/dev/nvme")
-         then "${d}p1"
-         else "${d}-part1";
-    e1 = if (builtins.substring 0 9 e == "/dev/nvme")
-         then "${e}p1"
-         else "${e}-part1";
-    f1 = if (builtins.substring 0 9 f == "/dev/nvme")
-         then "${f}p1"
-         else "${f}-part1";
+    b =
+      if (numberOfDisks > 1)
+      then builtins.elemAt disks 1
+      else "";
+    c =
+      if (numberOfDisks > 2)
+      then builtins.elemAt disks 2
+      else "";
+    d =
+      if (numberOfDisks > 3)
+      then builtins.elemAt disks 3
+      else "";
+    e =
+      if (numberOfDisks > 4)
+      then builtins.elemAt disks 4
+      else "";
+    f =
+      if (numberOfDisks > 5)
+      then builtins.elemAt disks 5
+      else "";
+    a1 =
+      if (builtins.substring 0 9 a == "/dev/nvme")
+      then "${a}p1"
+      else "${a}-part1";
+    a2 =
+      if (builtins.substring 0 9 a == "/dev/nvme")
+      then "${a}p2"
+      else "${a}-part2";
+    a3 =
+      if (builtins.substring 0 9 a == "/dev/nvme")
+      then "${a}p3"
+      else "${a}-part3";
+    b1 =
+      if (builtins.substring 0 9 b == "/dev/nvme")
+      then "${b}p1"
+      else "${b}-part1";
+    c1 =
+      if (builtins.substring 0 9 c == "/dev/nvme")
+      then "${c}p1"
+      else "${c}-part1";
+    d1 =
+      if (builtins.substring 0 9 d == "/dev/nvme")
+      then "${d}p1"
+      else "${d}-part1";
+    e1 =
+      if (builtins.substring 0 9 e == "/dev/nvme")
+      then "${e}p1"
+      else "${e}-part1";
+    f1 =
+      if (builtins.substring 0 9 f == "/dev/nvme")
+      then "${f}p1"
+      else "${f}-part1";
   };
   raidPartitions =
     {
@@ -208,7 +221,7 @@ in {
                       "${raidPartitions}"
                     ];
                     mountpoint = "/raid";
-                    mountOptions = ["compress=zstd" "noatime" ];
+                    mountOptions = ["compress=zstd" "noatime"];
                   }
                   else {
                     type = "btrfs";
@@ -244,7 +257,7 @@ in {
                       "${raidPartitions}"
                     ];
                     mountpoint = "/raid";
-                    mountOptions = ["compress=zstd" "noatime" ];
+                    mountOptions = ["compress=zstd" "noatime"];
                   }
                   else {
                     type = "btrfs";
