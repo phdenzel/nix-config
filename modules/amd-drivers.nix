@@ -42,6 +42,13 @@ in {
     hardware.amdgpu.amdvlk.enable = cfg.useVlk;
     hardware.amdgpu.amdvlk.support32Bit.enable = cfg.useVlk;
     hardware.amdgpu.amdvlk.supportExperimental.enable = cfg.useVlk && cfg.experimentalSupport;
+    # hardware.amdgpu.amdvlk.settings = {
+    #   AllowVkPipelineCachingToDisk = 1; # ~/.cache/AMD/VkCache
+    #   ShaderCacheMode = 1;
+    #   IFH = 0;
+    #   EnableVmAlwaysValid = 1;
+    #   IdleAfterSubmitGpuMask = 1;
+    # };
     # environment.variables.AMD_VULKAN_ICD = mkIf forceVlk "RADV";
     # GPU utils
     environment.systemPackages = with pkgs;
