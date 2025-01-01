@@ -12,7 +12,7 @@ in {
     experimentalSupport = mkOption {
       description = "Whether to enable Experimental features support.";
       type = types.bool;
-      default = true;
+      default = false;
     };
     useVlk = mkOption {
       description = "Use AMD's open source Vulkan driver.";
