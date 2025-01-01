@@ -1,5 +1,6 @@
 {
-  drivers.amdgpu = import ./amd-derivers.nix;
-  # drivers.nvidia = import ./nvidia-derivers.nix;
+  drivers.amdgpu = import ./amd-drivers.nix;
+  drivers.nvidia = import ./nvidia-drivers.nix;
+  drivers.nvidia-prime = import ./nvidia-primedrivers.nix;
   intnl = import ./intnl.nix;
 }
