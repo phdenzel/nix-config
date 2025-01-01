@@ -1,15 +1,15 @@
 # This is the disko configuration for my workstation
-# It creates a
-# - "nixos" volume with an ESP, swap, and a btrfs partition (subvol @, @home, @nix, @var, @snapshots)
-# - "scratch" btrfs volume where miscellaneous games, containers, and VMs are stored (subvol @scratch, @games, @virt)
-# - "raid1" volume (btrfs raid with data as raid0 and metadata as raid1 profile) where datasets are stored
-# Device IDs in phinix:
+# From a set of 1-6 NVME drives, it creates a
+# 1) "nixos" volume with an ESP, swap, and a btrfs partition (subvol @, @home, @nix, @var, @snapshots)
+# 2) "scratch" btrfs volume where miscellaneous games, containers, and VMs are stored (subvol @scratch, @games, @virt)
+# 3-6) "raid1" volume (btrfs raid with data as raid0 and metadata as raid1 profile) where datasets are stored
+# Devices in phinix:
 # - nixos:   nvme0n1 (/dev/disk/by-id/nvme-CT4000T700SSD3_2341E87F4711)
 # - scratch: nvme5n1 (/dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_23322S800994)
-# - raid1:   nvme1n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135359K -> eui.0025384141430d8c)
-# - raid1:   nvme2n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNU0X405324H -> eui.0025384441a17c56)
-# - raid1:   nvme3n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135355N -> eui.0025384141430d88)
-# - raid1:   nvme4n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135331M -> eui.0025384141430d07)
+# - raid1:   nvme1n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135359K -> /dev/disk/by-id/eui.0025384141430d8c)
+# - raid1:   nvme2n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNU0X405324H -> /dev/disk/by-id/eui.0025384441a17c56)
+# - raid1:   nvme3n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135355N -> /dev/disk/by-id/eui.0025384141430d88)
+# - raid1:   nvme4n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135331M -> /dev/disk/by-id/eui.0025384141430d07)
 {
   disks ? [
     "/dev/nvme0n1"
@@ -82,12 +82,12 @@
   };
   raidPartitions =
     {
-      "1" = "";
-      "2" = "";
-      "3" = "";
-      "4" = "${nvme.c1}";
-      "5" = "${nvme.c1} ${nvme.d1}";
-      "6" = "${nvme.c1} ${nvme.d1} ${nvme.e1}";
+      "1" = "";  # not enough disks for raid setup
+      "2" = "";  # not enough disks for raid setup
+      "3" = "";  # not enough disks for raid setup
+      "4" = "${nvme.c1}";  # ${nvme.d1} is the disk where the raid is initialized
+      "5" = "${nvme.c1} ${nvme.d1}";  # ${nvme.e1} is the disk where the raid is initialized
+      "6" = "${nvme.c1} ${nvme.d1} ${nvme.e1}";  # ${nvme.f1} is the disk where the raid is initialized
     }
     ."${builtins.toString numberOfDisks}";
 in {
@@ -119,7 +119,7 @@ in {
               size = "32G";
               content = {
                 type = "swap";
-                extraArgs = ["-L SWAP"];
+                extraArgs = ["-L swap"];
                 randomEncryption = true;
               };
             };
