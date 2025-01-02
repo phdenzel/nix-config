@@ -5,11 +5,17 @@ default:
     @just --list
 
 # Dry-run the disko configuration (formatting and mounting) for specified machine.
-disko-test MACHINE:
+test-disko MACHINE:
     sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode format,mount --dry-run ./hosts/{{MACHINE}}/disk-config.nix
 
 # Run the disko configuration (formatting and mounting) for specified machine.
 disko MACHINE:
     sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode format,mount ./hosts/{{MACHINE}}/disk-config.nix
 
+# Print a new hardware-configuration.nix file
+show-hardware-config:
+    [ -d /iso ] && nixos-generate-config --root /mnt --show-hardware-config || nixos-generate-config --show-hardware-config
 
+# Generate a new hardware-configuration.nix file
+hardware-config:
+    [ -d /iso ] && nixos-generate-config --root /mnt --show-hardware-config || nixos-generate-config --show-hardware-config
