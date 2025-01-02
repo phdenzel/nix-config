@@ -120,7 +120,7 @@ in {
               content = {
                 type = "swap";
                 extraArgs = ["-L swap"];
-                randomEncryption = true;
+                # randomEncryption = true;
               };
             };
             root = {
@@ -131,9 +131,9 @@ in {
                 type = "btrfs";
                 extraArgs = ["-L root"];
                 subvolumes = {
-                  "@" = {
+                  "@rootfs" = {
                     mountpoint = "/";
-                    mountOptions = ["subvol=@" "compress=zstd" "noatime"];
+                    mountOptions = ["subvol=@rootfs" "compress=zstd" "noatime"];
                   };
                   "@nix" = {
                     mountpoint = "/nix";
