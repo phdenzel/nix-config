@@ -14,8 +14,8 @@ disko MACHINE:
 
 # Print a new hardware-configuration.nix file
 show-hardware-config:
-    [ -d /iso ] && nixos-generate-config --root /mnt --show-hardware-config || nixos-generate-config --show-hardware-config
+    [ -d /iso ] && sudo nixos-generate-config --root /mnt --show-hardware-config || sudo nixos-generate-config --show-hardware-config
 
 # Generate a new hardware-configuration.nix file
 hardware-config:
-    [ -d /iso ] && nixos-generate-config --root /mnt --show-hardware-config || nixos-generate-config --show-hardware-config
+    [ -d /iso ] && sudo nixos-generate-config --root /mnt --show-hardware-config || sudo nixos-generate-config --show-hardware-config
