@@ -28,20 +28,21 @@ in {
 
   config = mkIf cfg.enable {
     # Load driver into kernel
-    hardware.amdgpu.initrd.enable = true;
+    hardware.amdgpu.initrd.enable = mkDefault true;
     # Load driver for Xorg and wayland
-    services.xserver.videoDrivers = ["amdgpu"];
+    services.xserver.videoDrivers = mkDefault ["amdgpu"];
     # HIP libraries
-    systemd.tmpfiles.rules = with pkgs; [
-      "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"
-    ];
+    systemd.tmpfiles.rules = with pkgs;
+      mkDefault [
+        "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"
+      ];
     # Mesa drivers
-    hardware.graphics.enable = true;
-    hardware.graphics.enable32Bit = true;
+    hardware.graphics.enable = mkDefault true;
+    hardware.graphics.enable32Bit = mkDefault true;
     # Vulkan
-    hardware.amdgpu.amdvlk.enable = cfg.useVlk;
-    hardware.amdgpu.amdvlk.support32Bit.enable = cfg.useVlk;
-    hardware.amdgpu.amdvlk.supportExperimental.enable = cfg.useVlk && cfg.experimentalSupport;
+    hardware.amdgpu.amdvlk.enable = mkDefault cfg.useVlk;
+    hardware.amdgpu.amdvlk.support32Bit.enable = mkDefault cfg.useVlk;
+    hardware.amdgpu.amdvlk.supportExperimental.enable = mkDefault cfg.useVlk && cfg.experimentalSupport;
     # hardware.amdgpu.amdvlk.settings = {
     #   AllowVkPipelineCachingToDisk = 1; # ~/.cache/AMD/VkCache
     #   ShaderCacheMode = 1;
