@@ -18,9 +18,9 @@
   vdisk = builtins.elemAt disks 0;
   partitions =
     {
-      "1" = "/dev/vda1";
-      "2" = "/dev/vda2";
-      "3" = "/dev/vda3";
+      esp = "/dev/vda1";
+      swap = "/dev/vda2";
+      root = "/dev/vda3";
     };
 in {
   disko.devices = {
@@ -34,7 +34,7 @@ in {
             ESP = {
               priority = 1;
               label = "EFI";
-              device = "${partitions.1}";
+              device = "${partitions.esp}";
               type = "EF00";
               start = "64M"; # A small mod8 offset, just because...
               end = "1G";
@@ -47,7 +47,7 @@ in {
             };
             swap = {
               label = "swap";
-              device = "${partitions.2}";
+              device = "${partitions.swap}";
               size = "4G";
               content = {
                 type = "swap";
@@ -57,7 +57,7 @@ in {
             };
             root = {
               label = "root";
-              device = "${partitions.3}";
+              device = "${partitions.root}";
               size = "100%";
               content = {
                 type = "btrfs";
