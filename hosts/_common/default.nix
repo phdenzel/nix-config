@@ -38,6 +38,7 @@ in {
     };
   };
 
+  users.mutableUsers = false;
   home-manager.useGlobalPkgs = true;
   # home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = {
