@@ -5,6 +5,12 @@
 }:
 with lib; let
   cfg = config.intl;
+  locationsMap = {
+    "de_CH" = "Europe/Zurich";
+    "de_DE" = "Europe/Berlin";
+    "en_US" = "America/New_York";
+    "en_GB" = "Europe/London";
+  };
 in {
   options.intl = {
     defaultLocale = mkOption {
@@ -21,15 +27,11 @@ in {
 
   config = {
     # Time zone settings
+
     time.timeZone =
-      mkDefault
-      {
-        "de_CH" = "Europe/Zurich";
-        "de_DE" = "Europe/Berlin";
-        "en_US" = "America/New_York";
-        "en_GB" = "Europe/London";
-      }
-      ."${cfg.extraLocale}";
+      if hasAttr "${cfg.extraLocale}" locationsMap
+      then mkDefault locationsMap."${cfg.extraLocale}"
+      else mkDefault "Europe/London";
 
     # Internationalisation/Language settings
     i18n.defaultLocale = mkDefault cfg.defaultLocale;
