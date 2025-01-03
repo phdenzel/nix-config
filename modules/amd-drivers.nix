@@ -14,11 +14,7 @@ in {
       type = types.bool;
       default = false;
     };
-    vlk.enable = mkOption {
-      description = "Use AMD's open source Vulkan driver.";
-      type = types.bool;
-      default = true;
-    };
+    vlk.enable = mkEnableOption "Use AMD's open source Vulkan driver.";
     utils.install = mkOption {
       description = "Install AMD graphics utilities.";
       type = types.bool;
