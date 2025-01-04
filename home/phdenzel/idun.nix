@@ -13,13 +13,6 @@ in {
     ../_common/sops.nix
   ];
 
-  # User settings
-  home-manager.useGlobalPkgs = true;
-  # home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = {
-    inherit inputs outputs;
-  };
-
   users.users.phdenzel = {
     isNormalUser = true;
     shell = pkgs.zsh;
