@@ -18,5 +18,5 @@ show-hardware-config:
 
 # Generate a new hardware-configuration.nix file
 hardware-config:
-    [ -d /iso ] && sudo nixos-generate-config --root /mnt --show-hardware-config --no-filesystems || sudo nixos-generate-config --show-hardware-config --no-filesystems
+    [ -d /iso ] && sudo nixos-generate-config --root /mnt --no-filesystems || sudo nixos-generate-config --no-filesystems
 
