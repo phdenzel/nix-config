@@ -5,6 +5,9 @@
 }:
 with lib; let
   cfg = config.intl;
+  localeMap = {
+    
+  };
   locationsMap = {
     "de_CH" = "Europe/Zurich";
     "de_DE" = "Europe/Berlin";
@@ -34,7 +37,7 @@ in {
       else mkDefault "Europe/London";
 
     # Internationalisation/Language settings
-    i18n.defaultLocale = mkDefault cfg.defaultLocale;
+    i18n.defaultLocale = mkDefault "${cfg.defaultLocale}.UTF-8";
     i18n.extraLocaleSettings = {
       LC_ADDRESS = mkDefault "${cfg.extraLocale}.UTF-8";
       LC_COLLATE = mkDefault "C.UTF-8";
