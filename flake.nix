@@ -46,10 +46,11 @@
   outputs = {
     self,
     nixpkgs,
-    systems,
     home-manager,
+    systems,
     disko,
     sops-nix,
+    ...
   } @ inputs: let
     inherit (self) outputs;
     lib = nixpkgs.lib // home-manager.lib;
@@ -68,13 +69,13 @@
     overlays = import ./overlays {inherit inputs outputs;};
 
     nixosConfigurations = {
-      phinix = lib.nixosSystem {
-        specialArgs = {inherit self inputs outputs;};
-        modules = [
-          ./hosts/phinix
-          inputs.disko.nixosModules.disko
-        ];
-      };
+      # phinix = lib.nixosSystem {
+      #   specialArgs = {inherit self inputs outputs;};
+      #   modules = [
+      #     ./hosts/phinix
+      #     inputs.disko.nixosModules.disko
+      #   ];
+      # };
       idun = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;};
         modules = [
@@ -86,13 +87,13 @@
 
     homeConfigurations = {
       # Main workstation
-      "phdenzel@phinix" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = pkgsFor.x86_64-linux;
-        modules = [
-          ./home/phdenzel/phinix.nix
-        ];
-      };
+      # "phdenzel@phinix" = lib.homeManagerConfiguration {
+      #   extraSpecialArgs = {inherit inputs outputs;};
+      #   pkgs = pkgsFor.x86_64-linux;
+      #   modules = [
+      #     ./home/phdenzel/phinix.nix
+      #   ];
+      # };
       # VM
       "phdenzel@idun" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};
