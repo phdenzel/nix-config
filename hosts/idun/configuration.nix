@@ -114,7 +114,7 @@ with lib; {
   };
 
   # Window manager
-  programs.hyperland = {
+  programs.hyprland = {
     enable = mkDefault true;
     xwayland.enable = mkDefault true;
   };
