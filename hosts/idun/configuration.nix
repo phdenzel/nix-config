@@ -38,6 +38,11 @@ with lib; {
   intl.defaultLocale = "en_US";
   intl.extraLocale = "de_CH";
 
+  # Root configuration
+  users.users.root = {
+    hashedPasswordFile = config.sops.secrets."passwd/idun".path;
+  };
+
   # Networking
   networking.hostName = "idun";
   # networking.wireless.enable = true;  # Enable wireless support via wpa_supplicant.
