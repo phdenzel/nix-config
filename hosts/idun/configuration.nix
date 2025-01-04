@@ -2,7 +2,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
 with lib; {
@@ -20,10 +19,8 @@ with lib; {
     # kernelPackages = pkgs.linuxPackages_zen;
 
     # Bootloader
-    loader.grub = {
-      enable = true;
-      useOSProber = true;
-    };
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
 
     # /tmp as tmpfs
     tmp = {
