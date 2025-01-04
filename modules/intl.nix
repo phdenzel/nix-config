@@ -59,12 +59,8 @@ in {
     );
     services.xserver.xkb.variant = mkDefault (
       strings.concatStringsSep "," [
-        strings.optionalString
-        (cfg.defaultLocale == "en_US")
-        "intl"
-        strings.optionalString
-        (cfg.extraLocale == "en_US")
-        "intl"
+        (strings.optionalString (cfg.defaultLocale == "en_US") "intl")
+        (strings.optionalString (cfg.extraLocale == "en_US") "intl")
       ]
     );
   };
