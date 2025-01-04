@@ -51,17 +51,21 @@ in {
     };
 
     # Keymap
-    services.xserver.xkb.layout = mkDefault strings.intersperse "," [
-      "${substring 3 5 (strings.toLower cfg.defaultLocale)}"
-      "${substring 3 5 (strings.toLower cfg.extraLocale)}"
-    ];
-    services.xserver.xkb.variant = mkDefault strings.intersperse "," [
-      strings.optionalString
-      (cfg.defaultLocale == "en_US")
-      "intl"
-      strings.optionalString
-      (cfg.extraLocale == "en_US")
-      "intl"
-    ];
+    services.xserver.xkb.layout = mkDefault (
+      strings.concatStringsSep "," [
+        "${substring 3 5 (strings.toLower cfg.defaultLocale)}"
+        "${substring 3 5 (strings.toLower cfg.extraLocale)}"
+      ]
+    );
+    services.xserver.xkb.variant = mkDefault (
+      strings.concatStringsSep "," [
+        strings.optionalString
+        (cfg.defaultLocale == "en_US")
+        "intl"
+        strings.optionalString
+        (cfg.extraLocale == "en_US")
+        "intl"
+      ]
+    );
   };
 }
