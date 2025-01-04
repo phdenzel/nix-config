@@ -56,6 +56,7 @@ with lib; {
     bat
     eza
     fzf
+    gh
     kdePackages.sddm-astronaut
     rsync
     strace
@@ -66,7 +67,6 @@ with lib; {
     foot.enable = mkDefault true;
     foot.enableBashIntegration = mkDefault true;
     foot.enableZshIntegration = mkDefault true;
-    gh.enable = mkDefault true;
     git.enable = mkDefault true;
     gnupg.agent = {
       enable = mkDefault true;
