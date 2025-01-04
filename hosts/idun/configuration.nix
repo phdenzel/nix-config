@@ -1,4 +1,4 @@
-# NixOS configuration file for phinix
+# NixOS configuration file for idun
 {
   pkgs,
   lib,
