@@ -7,6 +7,7 @@
 in {
   imports = [
     ./home.nix
+    ../_common/sops.nix
   ];
 
   users.users.phdenzel = {
@@ -29,7 +30,7 @@ in {
         "podman"
         "storage"
       ];
-    # hashedPasswordFile = config.sops.secrets.passwd-phdenzel-idun.path;
-    # openssh.authorizedKeys.keys = [(builtins.readFile ./ssh.pub)];
+    hashedPasswordFile = config.sops.secrets."passwd/idun".path;
+    # openssh.authorizedKeys.keys = [];
   };
 }

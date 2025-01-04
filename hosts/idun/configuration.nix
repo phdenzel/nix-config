@@ -135,7 +135,15 @@ with lib; {
   # SSH setup
   services.openssh = {
     enable = mkDefault true;
-    # settings.PermitRootLogin = mkDefault "no";
+    # disable RSA keys
+    hostKeys = [
+      {
+        path = "/etc/ssh/ssh_host_ed25519_key";
+        rounds = 64;
+        type = "ed25519";
+      }
+    ];
+    settings.PermitRootLogin = mkDefault "no";
     allowSFTP = mkDefault true;
   };
 

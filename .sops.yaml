@@ -1,0 +1,11 @@
+keys:
+  - &users:
+      - &phdenzel age10eyh3zd3kusensxuy6j0g82x3qdjguju9r7ryk35zyl67j8w9gxqgx0aqp
+  - &hosts:
+      - &idun age1n0pyxxl4nvxgmdyxcpy6hffagn9aadxzcvfqe2n8ahnlsnqyr4wqrsun5z
+creation_rules:      
+  - path_regex: home/phdenzel/secrets.ya?ml$
+    key_groups:
+      - age:
+          - *phdenzel
+          - *idun
