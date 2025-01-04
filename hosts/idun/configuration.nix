@@ -2,6 +2,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
 with lib; {
@@ -39,10 +40,6 @@ with lib; {
   drivers.amdgpu.utils.install = false;
   intl.defaultLocale = "en_US";
   intl.extraLocale = "de_CH";
-
-  # # User settings
-  home-manager.users.phdenzel =
-    import ../../home/phdenzel/${config.networking.hostName}.nix;
 
   # Networking
   networking.hostName = "idun";

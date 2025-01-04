@@ -1,4 +1,6 @@
 {
+  inputs,
+  outputs,
   pkgs,
   config,
   ...
@@ -6,9 +8,17 @@
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
   imports = [
+    inputs.home-manager.nixosModules.home-manager
     ./home.nix
     ../_common/sops.nix
   ];
+
+  # User settings
+  home-manager.useGlobalPkgs = true;
+  # home-manager.useUserPackages = true;
+  home-manager.extraSpecialArgs = {
+    inherit inputs outputs;
+  };
 
   users.users.phdenzel = {
     isNormalUser = true;

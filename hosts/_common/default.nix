@@ -40,11 +40,5 @@ in {
   };
 
   users.mutableUsers = false;
-  home-manager.useGlobalPkgs = true;
-  # home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = {
-    inherit inputs outputs;
-  };
-
   users.defaultUserShell = pkgs.bash;
 }
