@@ -30,7 +30,7 @@ with lib; {
     };
 
     # Boot screen
-    plymouth.enable = mkDefault true;
+    # plymouth.enable = mkDefault true;
   };
 
   # Custom modules (see ../../modules)
@@ -57,7 +57,6 @@ with lib; {
     eza
     fzf
     gh
-    kdePackages.sddm-astronaut
     rsync
     strace
   ];
