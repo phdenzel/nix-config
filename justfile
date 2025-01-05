@@ -37,8 +37,8 @@ hardware-config:
     [ -d "/iso" ] && sudo nixos-generate-config --root /mnt || sudo nixos-generate-config
 
 # Install from iso
-iso-install:
-    [ -d "/mnt/boot" ] || just disko
+iso-install MACHINE:
+    [ -d "/mnt/boot" ] || just disko {{MACHINE}}
     [ -f "/mnt/etc/nixos/configuration.nix" ] || just iso-config
     [ -f "/mnt/etc/nixos/hardware-configuration.nix" ] || just hardware-config
     [ -d "/iso" ] && sudo nixos-install
