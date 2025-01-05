@@ -2,15 +2,16 @@
 #
 # home-manager init ./
 {
-  config,
   lib,
   pkgs,
   ...
-}: {
+}: let
+  userName = "phdenzel";
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = lib.mkDefault "phdenzel";
-  home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
+  home.username = lib.mkDefault "${userName}";
+  home.homeDirectory = lib.mkDefault "/home/${userName}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -87,8 +88,8 @@
 
   programs.git = {
     enable = true;
-    userName = "${config.home.username}";
-    userEmail = "${config.home.username}@gmail.com";
+    userName = "${userName}";
+    userEmail = "${userName}@gmail.com";
   };
 
 }

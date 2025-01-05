@@ -4,7 +4,7 @@
   config,
   ...
 }: with lib; let
-  sopsUser = "${home.username}";
+  sopsUser = "phdenzel";
   sopsHost = "${config.networking.hostName}";
   secretsFile = "../${user.name}/secrets.yaml";
 in {
