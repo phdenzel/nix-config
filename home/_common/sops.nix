@@ -55,7 +55,16 @@ in {
           "passwd/${cfg.user}/${cfg.host}".neededForUsers = true;
         }
         // attrsets.mergeAttrsList (
-          lists.map (name: {}) cfg.sshKeys
+          lists.map (name: {
+            "ssh_keys/${cfg.user}/${cfg.host}/${name}" = {
+              path = "/home/${cfg.user}/.ssh/${name}";
+              owner = "${cfg.user}";
+            };
+            "ssh_keys/${cfg.user}/${cfg.host}/${name}.pub" = {
+              path = "/home/${cfg.user}/.ssh/${name}.pub";
+              owner = "${cfg.user}";
+            };
+          }) cfg.sshKeys
         );
     };
   };
