@@ -41,12 +41,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # sops-nix.nixosModules.sops-nix import is handled in hosts/_common/sops.nix
-
-    additionalSecrets = attrsets.mergeAttrsList (
-      lists.map (name: {}) cfg.sshKeys
-    );
-
     sops = {
       defaultSopsFile = cfg.secretsFileRoot + "/${cfg.user}/secrets.yaml";
 
@@ -60,7 +54,9 @@ in {
         {
           "passwd/${cfg.user}/${cfg.host}".neededForUsers = true;
         }
-        // additionalSecrets;
+        // attrsets.mergeAttrsList (
+          lists.map (name: {}) cfg.sshKeys
+        );
     };
   };
 }
