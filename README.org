@@ -1,0 +1,61 @@
+#+AUTHOR: phdenzel
+#+TITLE: nix-config
+#+DATE: 2025-01-05 Sun
+#+OPTIONS: author:nil title:t date:nil timestamp:nil toc:nil num:nil \n:nil
+
+
+** Install from ISO
+
+The install of these configurations is best done from a fresh, minimal NixOS install.
+For this, download and flash the ISO onto a USB stick and boot from it.
+
+The ~nix-config~ contains a few helpful commands that aid in the CLI-based installation.
+Thus, clone the repository with
+#+begin_src bash
+  git clone https://github.com/phdenzel/nix-config.git
+#+end_src
+
+Then, you can inspect the ~justfile~ for the commands necessary for a proper installation.
+#+begin_src bash
+  cd nix-config
+  nix-shell -p just
+  just iso-install <my-machine>
+#+end_src
+where ~<my-machine>~ has to be replaced with the name of an implemented host. So far,
+- ~idun~
+- ~phinix~
+are implemented.
+
+This will install and build a minimal fresh version of NixOS.
+
+
+** Install on NixOS
+
+Log in to a NixOS installation as root and clone the repository once more:
+#+begin_src bash
+  git clone https://github.com/phdenzel/nix-config.git
+  cd nix-config
+#+end_src
+
+Then, make sure you have copied an authorized AGE key onto the machine to
+#+begin_src bash
+  ~/.config/sops/age/keys.txt
+#+end_src
+
+To derive and register a new authorized key from the host SSH key
+#+begin_src bash
+  just host-age-key
+#+end_src
+
+Once all preparations are done, run
+#+begin_src bash
+  sudo nixos-rebuild switch --flake .#<my-machine>
+#+end_src
+where ~<my-machine>~ has to be replaced with the name of an implemented host.
+
+Alternatively, you can run the shorthand
+#+begin_src bash
+  just rbs <my-machine>
+#+end_src
+
+Modify and adapt further configuration as needed.
