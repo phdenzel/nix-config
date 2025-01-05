@@ -8,9 +8,7 @@
   sopsHost = "${config.networking.hostName}";
   secretsFile = "../${user.name}/secrets.yaml";
 in {
-  imports = [
-    inputs.sops-nix.homeManagerModules.sops
-  ];
+  # sops.nixosModules.sops import is handled in hosts/_common/sops.nix
 
   sops = {
     defaultSopsFile = builtins.toPath "${secretsFile}";
