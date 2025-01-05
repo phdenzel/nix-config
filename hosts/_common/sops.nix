@@ -23,6 +23,7 @@ in {
     secrets = {
       "passwd/${sopsHost}" = {
         neededForUsers = mkDefault true;
+        sopsFile = ../secrets.yaml;
       };
     };
   };

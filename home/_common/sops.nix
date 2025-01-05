@@ -44,7 +44,6 @@ in {
     # sops-nix.nixosModules.sops-nix import is handled in hosts/_common/sops.nix
     sops = {
       defaultSopsFile = cfg.secretsFileRoot + "/${cfg.user}/secrets.yaml";
-      validateSopsFiles = false;
 
       age = {
         sshKeyPaths = mkDefault ["${cfg.keyFile}"];
@@ -53,10 +52,10 @@ in {
       };
 
       secrets = mkDefault {
-        "passwd/${cfg.user}" = {
+        "passwd/${cfg.user}/${cfg.host}" = {
           neededForUsers = true;
         };
-        "ssh_keys/${cfg.host}" = {
+        "ssh_keys/${cfg.user}/${cfg.host}" = {
           path = "/home/${cfg.user}/.ssh/";
           owner = "${cfg.user}";
         };

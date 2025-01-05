@@ -37,7 +37,7 @@ in {
         "podman"
         "storage"
       ];
-    hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
+    hashedPasswordFile = config.sops.secrets."passwd/${userName}/${hostName}".path;
     # openssh.authorizedKeys.keys = [];
     packages = with pkgs; [home-manager];
   };
