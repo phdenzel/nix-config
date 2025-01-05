@@ -13,16 +13,11 @@ in {
   sops = {
     defaultSopsFile = mkDefault ../secrets.yaml;
     validateSopsFiles = mkDefault false;
-
-    age = {
-      sshKeyPaths = mkDefault [ "/etc/ssh/ssh_host_ed25519_key" ];
-      # keyFile = "/var/lib/sops-nix/key.txt";
-      # generateKey = true;
-    };
+    age.sshKeyPaths = mkDefault [ "/etc/ssh/ssh_host_ed25519_key" ];
 
     secrets = {
       "passwd/${sopsHost}" = {
-        neededForUsers = mkDefault true;
+        neededForUsers = true;
         sopsFile = ../secrets.yaml;
       };
     };
