@@ -34,4 +34,8 @@ in {
     # openssh.authorizedKeys.keys = [];
     packages = with pkgs; [home-manager];
   };
+
+  home-manager.users.phdenzel =
+    import ./${config.networking.hostName}.nix;
+
 }

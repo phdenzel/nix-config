@@ -3,13 +3,14 @@
 # home-manager init ./
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "phdenzel";
-  home.homeDirectory = "/home/${config.home.username}";
+  home.username = lib.mkDefault "phdenzel";
+  home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
