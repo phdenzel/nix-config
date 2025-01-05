@@ -5,6 +5,7 @@
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
   userName = "phdenzel";
+  hostName = "idun";
 in {
   imports = [
     ../_common/sops.nix
@@ -13,6 +14,7 @@ in {
   sops-user = {
     enable = true;
     user = "${userName}";
+    host = "${hostName}";
   };
 
   users.users."${userName}" = {
@@ -35,12 +37,12 @@ in {
         "podman"
         "storage"
       ];
-    hashedPasswordFile = config.sops.secrets."passwd/idun".path;
+    hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
     # openssh.authorizedKeys.keys = [];
     packages = with pkgs; [home-manager];
   };
 
   home-manager.users."${userName}" =
-    import ./${config.networking.hostName}.nix;
+    import ./${hostName}.nix;
 
 }

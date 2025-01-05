@@ -16,7 +16,7 @@ in {
     host = mkOption {
       description = "Hostname for which sops-nix extracts secrets.";
       type = types.str;
-      default = "${config.networking.hostName}";
+      default = "phinix";
     };
     secretsFileRoot = mkOption {
       description = "Root path of the secrets file from which sops-nix extracts secrets.";
