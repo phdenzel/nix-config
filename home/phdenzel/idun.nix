@@ -4,13 +4,18 @@
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  userName = "phdenzel";
 in {
   imports = [
-    ./home.nix
     ../_common/sops.nix
   ];
 
-  users.users.phdenzel = {
+  sops-config = {
+    enable = true;
+    name = "${userName}";
+  };
+
+  users.users."${userName}" = {
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups =
@@ -35,7 +40,7 @@ in {
     packages = with pkgs; [home-manager];
   };
 
-  home-manager.users.phdenzel =
+  home-manager.users."${userName}" =
     import ./${config.networking.hostName}.nix;
 
 }
