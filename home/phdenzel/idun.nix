@@ -10,7 +10,7 @@ in {
     ../_common/sops.nix
   ];
 
-  sops-config = {
+  sops-user = {
     enable = true;
     user = "${userName}";
   };
