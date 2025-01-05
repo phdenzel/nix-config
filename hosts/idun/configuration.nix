@@ -59,6 +59,7 @@ with lib; {
     fzf
     gh
     just
+    kitty
     rsync
     sops
     strace

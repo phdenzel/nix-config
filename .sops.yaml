@@ -2,7 +2,7 @@ keys:
   - &users '':
       - &phdenzel age10eyh3zd3kusensxuy6j0g82x3qdjguju9r7ryk35zyl67j8w9gxqgx0aqp
   - &hosts '':
-      - &idun age10eyh3zd3kusensxuy6j0g82x3qdjguju9r7ryk35zyl67j8w9gxqgx0aqp
+      - &idun age12u6xktpluyn93hnc42p8e775mr8xrxq8x7683u53pv6qtaepfq0q9r2hjc
 creation_rules:
   - path_regex: hosts/secrets.ya?ml$
     key_groups:
