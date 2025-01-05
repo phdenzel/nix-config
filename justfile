@@ -43,16 +43,14 @@ iso-install MACHINE:
     [ -f "/mnt/etc/nixos/hardware-configuration.nix" ] || just hardware-config
     [ -d "/iso" ] && sudo nixos-install
 
-
 # Append a host age key to the .sops.yaml file
 host-age-key HOST KEYFILE="/etc/ssh/ssh_host_ed25519_key.pub":
     AGE_KEY="$(cat {{KEYFILE}} | ssh-to-age)" && yq -i ".keys[1][]+=[\"$AGE_KEY\"] | .keys[1][][-1] anchor = \"{{HOST}}\"" .sops.yaml
     @just update-secrets
 
+# Update secrets.yaml files with new authorized keys
 update-secrets:
     [ -f "${HOME}/.config/sops/age/keys.txt" ] && sops updatekeys hosts/secrets.yaml && sops updatekeys home/phdenzel/secrets.yaml  || echo "Install authorized AGE keys and run `just update-secrets` again."
-
-
 
 # Rebuild switch shorthand
 rbs MACHINE:
