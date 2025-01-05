@@ -86,7 +86,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.uses.phdenzel = import ./home/phdenzel/home.nix;
+            home-manager.users.phdenzel = import ./home/phdenzel/home.nix;
           }
         ];
       };
