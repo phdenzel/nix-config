@@ -12,7 +12,7 @@ in {
 
   sops-config = {
     enable = true;
-    name = "${userName}";
+    user = "${userName}";
   };
 
   users.users."${userName}" = {
