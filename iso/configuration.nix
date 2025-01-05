@@ -39,7 +39,7 @@
     tree
     vim
     wget
-    yg-go
+    yq-go
   ];
 
   # Enable the OpenSSH daemon.
