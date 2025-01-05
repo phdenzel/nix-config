@@ -44,8 +44,10 @@ iso-install:
     [ -f "/mnt/etc/nixos/hardware-configuration.nix" ] || just hardware-config
     [ -d "/iso" ] || nixos-install
 
-ssh-to-age KEY="/etc/ssh/ssh_host_ed25519_key.pub":
-    nix-shell -p ssh-to-age --run "cat {{KEY}} | ssh-to-age"
+
+ssh-to-age KEYFILE="/etc/ssh/ssh_host_ed25519_key.pub" MACHINE:
+    # nix-shell -p ssh-to-age --run 'cat {{KEYFILE}} | ssh-to-age'
+    AGE_KEY="$(nix-shell -p ssh-to-age --run 'cat {{KEYFILE}} | ssh-to-age')" && nix-shell -p yq-go --run "yq .keys[1][]+=[$AGE_KEY] | .keys[1][][-1] anchor = $MACHINE .sops.yaml"
 
 # Rebuild switch shorthand
 rbs MACHINE:
