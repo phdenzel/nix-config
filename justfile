@@ -44,6 +44,9 @@ iso-install:
     [ -f "/mnt/etc/nixos/hardware-configuration.nix" ] || just hardware-config
     [ -d "/iso" ] || nixos-install
 
+ssh-to-age KEY="/etc/ssh/ssh_host_ed25519_key.pub":
+    nix-shell -p ssh-to-age --run "cat {{KEY}} | ssh-to-age"
+
 # Rebuild switch shorthand
 rbs MACHINE:
     sudo nixos-rebuild switch --flake .\#{{MACHINE}}
