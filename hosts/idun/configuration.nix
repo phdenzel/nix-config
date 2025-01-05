@@ -11,7 +11,6 @@ with lib; {
     ./hardware-configuration.nix
     ../_common
     ../../modules
-    ../../home/phdenzel/idun.nix
   ];
 
   boot = {

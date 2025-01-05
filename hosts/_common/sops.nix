@@ -1,8 +1,9 @@
 {
-  inputs,
   config,
+  lib,
+  inputs,
   ...
-}: let
+}: with lib; let
   sopsHost = "${config.networking.hostName}";
 in {
   imports = [
@@ -10,18 +11,18 @@ in {
   ];
 
   sops = {
-    defaultSopsFile = ../secrets.yaml;
-    validateSopsFiles = false;
+    defaultSopsFile = mkDefault ../secrets.yaml;
+    validateSopsFiles = mkDefault false;
 
     age = {
-      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      sshKeyPaths = mkDefault [ "/etc/ssh/ssh_host_ed25519_key" ];
       # keyFile = "/var/lib/sops-nix/key.txt";
       # generateKey = true;
     };
 
     secrets = {
       "passwd/${sopsHost}" = {
-        neededForUsers = true;
+        neededForUsers = mkDefault true;
       };
     };
   };

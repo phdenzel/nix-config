@@ -79,9 +79,15 @@
       idun = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;};
         modules = [
+          disko.nixosModules.disko
           ./hosts/idun
-          inputs.disko.nixosModules.disko
-          inputs.home-manager.nixosModules.home-manager
+          ./home/phdenzel/idun.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.uses.phdenzel = import ./home/phdenzel/home.nix;
+          }
         ];
       };
     };

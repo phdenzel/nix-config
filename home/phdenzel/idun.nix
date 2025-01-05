@@ -1,8 +1,6 @@
 {
   pkgs,
   config,
-  inputs,
-  outputs,
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
@@ -11,7 +9,6 @@
 in {
   imports = [
     ../_common/sops.nix
-    inputs.home-manager.nixosModules.home-manager
   ];
 
   sops-user = {
@@ -44,13 +41,4 @@ in {
     # openssh.authorizedKeys.keys = [];
     packages = with pkgs; [home-manager];
   };
-
-  home-manager.useGlobalPkgs = true;
-  # home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = {
-    inherit inputs outputs;
-  };
-  home-manager.users.${userName} =
-    import ./${hostName}.nix;
-
 }

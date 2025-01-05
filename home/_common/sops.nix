@@ -1,10 +1,13 @@
 {
   lib,
   config,
+  inputs,
   ...
-}: with lib; let
+}:
+with lib; let
   cfg = config.sops-user;
 in {
+  imports = [inputs.sops-nix.nixosModules.sops];
 
   options.sops-user = {
     enable = mkEnableOption "Enable sops-nix secrets extraction for user.";
@@ -20,9 +23,9 @@ in {
     };
     secretsFileRoot = mkOption {
       description = "Root path of the secrets file from which sops-nix extracts secrets.";
-      type = types.str;
+      type = types.path;
       # full file path will be ../${cfg.user}/secrets.yaml
-      default = "..";
+      default = ../.;
     };
     keyFile = mkOption {
       description = "SSH keyfile used by sops-nix to decrypt secrets.";
@@ -30,21 +33,26 @@ in {
       # full file path will be ../${cfg.user}/secrets.yaml
       default = "/etc/ssh/ssh_host_ed25519_key";
     };
+    sshKeys = mkOption {
+      description = "Additional SSH keys to decrypt.";
+      type = types.listOf types.str;
+      default = [];
+    };
   };
 
   config = mkIf cfg.enable {
     # sops-nix.nixosModules.sops-nix import is handled in hosts/_common/sops.nix
     sops = {
-      defaultSopsFile = builtins.toPath "${cfg.secretsFileRoot}/${cfg.user}/${cfg.secretsFilename}";
+      defaultSopsFile = cfg.secretsFileRoot + "/${cfg.user}/secrets.yaml";
       validateSopsFiles = false;
 
       age = {
-        sshKeyPaths = [ "${cfg.keyFile}" ];
+        sshKeyPaths = mkDefault ["${cfg.keyFile}"];
         # keyFile = "/var/lib/sops-nix/key.txt";
         # generateKey = true;
       };
 
-      secrets = {
+      secrets = mkDefault {
         "passwd/${cfg.user}" = {
           neededForUsers = true;
         };
