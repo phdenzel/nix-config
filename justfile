@@ -6,14 +6,13 @@ default:
 
 # Show install commands
 show-iso-cmds MACHINE="idun":
-    echo "just disko "{{MACHINE}}
-    echo "just iso-config"
-    echo "just hardware-config"
-    echo "just iso-install"
+    @echo "just disko {{MACHINE}}"
+    @echo "just iso-config"
+    @echo "just iso-install"
 
 # Show install commands (extensive info)
 show-iso-longcmds:
-    for s in "disko" "iso-config" "hardware-config" "iso-install"; do just -s "$s"; done
+    for s in "disko" "iso-config" "iso-install"; do just -s "$s"; done
 
 # Dry-run the disko configuration (formatting and mounting) for specified machine.
 test-disko MACHINE="idun":
@@ -42,12 +41,12 @@ iso-install:
     [ -d "/mnt/boot" ] || just disko
     [ -f "/mnt/etc/nixos/configuration.nix" ] || just iso-config
     [ -f "/mnt/etc/nixos/hardware-configuration.nix" ] || just hardware-config
-    [ -d "/iso" ] || nixos-install
+    [ -d "/iso" ] && sudo nixos-install
 
 
 # Append a host age key to the .sops.yaml file
 host-age-key HOST KEYFILE="/etc/ssh/ssh_host_ed25519_key.pub":
-    AGE_KEY="$(nix-shell -p ssh-to-age yq-go --run 'cat {{KEYFILE}} | ssh-to-age')" && yq -i ".keys[1][]+=[\"$AGE_KEY\"] | .keys[1][][-1] anchor = \"{{HOST}}\"" .sops.yaml
+    AGE_KEY="$(cat {{KEYFILE}} | ssh-to-age)" && yq -i ".keys[1][]+=[\"$AGE_KEY\"] | .keys[1][][-1] anchor = \"{{HOST}}\"" .sops.yaml
 
 # Rebuild switch shorthand
 rbs MACHINE:

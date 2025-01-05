@@ -34,10 +34,12 @@
     gh
     git
     just
+    ssh-to-age
     sops
     tree
     vim
     wget
+    yg-go
   ];
 
   # Enable the OpenSSH daemon.
