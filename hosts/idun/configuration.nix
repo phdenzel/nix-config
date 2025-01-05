@@ -53,11 +53,14 @@ with lib; {
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
+    age
     bat
     eza
     fzf
     gh
+    just
     rsync
+    sops
     strace
   ];
 
