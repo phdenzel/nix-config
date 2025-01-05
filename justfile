@@ -54,4 +54,4 @@ update-secrets:
 
 # Rebuild switch shorthand
 rbs MACHINE:
-    sudo nixos-rebuild switch --flake .\#{{MACHINE}}
+    sudo nixos-rebuild switch --flake .#{{MACHINE}}
