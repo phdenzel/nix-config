@@ -7,8 +7,6 @@
 }:
 with lib; {
   imports = [
-    ./disk-config.nix
-    ./hardware-configuration.nix
     ../_common
     ../../modules
   ];
@@ -68,21 +66,26 @@ with lib; {
 
   # System-wide programs
   programs = {
-    foot.enable = mkDefault true;
-    foot.enableBashIntegration = mkDefault true;
-    foot.enableZshIntegration = mkDefault true;
+    dconf.enable = true; # for GNOME
+    foot = {
+      enable = mkDefault true;
+      enableBashIntegration = mkDefault true;
+      enableZshIntegration = mkDefault true;
+    };
     git.enable = mkDefault true;
     gnupg.agent = {
       enable = mkDefault true;
       enableSSHSupport = mkDefault true;
     };
     less.enable = mkDefault true;
-    thunar.enable = mkDefault true;
-    thunar.plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-media-tags-plugin
-      thunar-volman
-    ];
+    thunar = {
+      enable = mkDefault true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-media-tags-plugin
+        thunar-volman
+      ];
+    };
     tmux.enable = mkDefault true;
     vim.enable = mkDefault true;
     xfconf.enable = mkDefault true; # for thunar
@@ -111,13 +114,13 @@ with lib; {
   # VM specifics
   services.spice-vdagentd.enable = true;
 
-  services.displayManager.enable = true;
+  # Display manager
   services.displayManager.sddm = {
     enable = true;
     package = pkgs.kdePackages.sddm;
     wayland.enable = true;
-    # extraPackages = with pkgs; [sddm-astronaut];
     theme = "sddm-astronaut-theme";
+    extraPackages = [pkgs.sddm-astronaut];
   };
 
   # Window manager
@@ -129,15 +132,18 @@ with lib; {
   programs.hyprlock.enable = mkDefault true;
   services.hypridle.enable = mkDefault true;
 
-  # # Desktop environment
-  # services.xserver.desktopManager.gnome.enable = mkDefault true;
-  # services.gnome = {
-  #   core-utilities.enable = mkDefault false;
-  #   localsearch.enable = mkDefault false;
-  #   tinysparql.enable = mkDefault false;
-  #   games.enable = mkDefault false;
-  #   core-developer-tools.enable = mkDefault true;
-  # };
+  # Desktop environment as backup (if Hyprland is bricked)
+  services.xserver.desktopManager.gnome.enable = mkDefault true;
+  services.gnome = {
+    core-utilities.enable = mkDefault false;
+    localsearch.enable = mkDefault false;
+    tinysparql.enable = mkDefault false;
+    games.enable = mkDefault false;
+    core-developer-tools.enable = mkDefault true;
+  };
+  services.displayManager.sessionPackages = with pkgs; [
+    gnome-session.sessions
+  ];
 
   # SSH setup
   services.openssh = {

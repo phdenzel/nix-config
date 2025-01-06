@@ -81,7 +81,6 @@
         modules = [
           disko.nixosModules.disko
           ./hosts/idun
-          ./home/phdenzel/idun.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -107,6 +106,7 @@
         pkgs = pkgsFor.x86_64-linux;
         modules = [
           ./home/phdenzel/idun.nix
+          ./home/phdenzel/home.nix
         ];
       };
     };
