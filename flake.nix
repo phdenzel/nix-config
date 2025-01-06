@@ -69,13 +69,20 @@
     overlays = import ./overlays {inherit inputs outputs;};
 
     nixosConfigurations = {
-      # phinix = lib.nixosSystem {
-      #   specialArgs = {inherit self inputs outputs;};
-      #   modules = [
-      #     ./hosts/phinix
-      #     inputs.disko.nixosModules.disko
-      #   ];
-      # };
+      phinix = lib.nixosSystem {
+        specialArgs = {inherit self inputs outputs;};
+        modules = [
+          disko.nixosModules.disko
+          ./hosts/phinix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.phdenzel = import ./home/phdenzel/home.nix;
+          }
+        ];
+      };
+
       idun = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;};
         modules = [
