@@ -133,17 +133,19 @@ with lib; {
   services.hypridle.enable = true;
 
   # Desktop environment as backup (if Hyprland is bricked)
+  # TODO: as soon as COSMIC is ready this get's scrapped
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome = {
     core-utilities.enable = false;
     localsearch.enable = false;
     tinysparql.enable = false;
     games.enable = false;
-    core-developer-tools.enable = true;
+    core-developer-tools.enable = false;
   };
-  services.displayManager.sessionPackages = with pkgs; [
-    gnome-session.sessions
-  ];
+  environment.gnome.excludePackages = with pkgs; [gnome-tour];
+  # services.displayManager.sessionPackages = with pkgs; [
+  #   gnome-session.sessions
+  # ];
 
   # SSH setup
   services.openssh = {
