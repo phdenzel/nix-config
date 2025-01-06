@@ -15,6 +15,7 @@ in {
     ../_common/openssh.nix # OpenSSH
     ../_common/crypt-utils.nix # Cryptographic tool compilation
     ../_common/cli-utils.nix # CLI tool compilation
+    ../_common/emacs.nix # Editor and god tool
     ../../modules # AMD/Nvidia, Internationalization configs
   ];
 
