@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
@@ -8,6 +9,7 @@
   hostName = "idun";
 in {
   imports = [
+    inputs.sops-nix.nixosModules.sops
     ../_common/sops.nix
   ];
 

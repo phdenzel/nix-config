@@ -1,14 +1,11 @@
 {
   lib,
   config,
-  inputs,
   ...
 }:
 with lib; let
   cfg = config.sops-user;
 in {
-  imports = [inputs.sops-nix.nixosModules.sops];
-
   options.sops-user = {
     enable = mkEnableOption "Enable sops-nix secrets extraction for user.";
     user = mkOption {
