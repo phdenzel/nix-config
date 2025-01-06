@@ -72,7 +72,6 @@ in {
   services.spice-vdagentd.enable = true;
 
   # Security
-  security.rtkit.enable = true; # recommended for pipewire
   security.polkit.enable = true;
 
   system.stateVersion = "24.11";

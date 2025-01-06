@@ -16,8 +16,11 @@ with lib; {
     enable = true;
     wireplumber.enable = true;
   };
+  security.rtkit.enable = true; # recommended for pipewire
   environment.systemPackages = with pkgs; [
     kitty
+    hyprpicker
+    hyprshade
   ];
   programs.foot = {
     enable = mkDefault true;
