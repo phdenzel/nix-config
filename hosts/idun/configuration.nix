@@ -61,6 +61,7 @@ with lib; {
     just
     kitty
     rsync
+    sddm-astronaut
     sops
     strace
   ];
@@ -107,13 +108,16 @@ with lib; {
     tumbler.enable = mkDefault true;
   };
 
-  services.displayManager.enable = mkDefault true;
+  # VM specifics
+  services.spice-vdagentd.enable = true;
+
+  services.displayManager.enable = true;
   services.displayManager.sddm = {
-    enable = mkDefault true;
+    enable = true;
     package = pkgs.kdePackages.sddm;
-    wayland.enable = mkDefault true;
-    extraPackages = with pkgs; mkDefault [sddm-astronaut];
-    theme = mkDefault "sddm-astronaut-theme";
+    wayland.enable = true;
+    # extraPackages = with pkgs; [sddm-astronaut];
+    theme = "sddm-astronaut-theme";
   };
 
   # Window manager
