@@ -95,18 +95,18 @@ with lib; {
   # System-wide services
   services = {
     avahi = {
-      enable = mkDefault true;
-      nssmdns4 = mkDefault true;
-      openFirewall = mkDefault true;
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
     };
-    btrfs.autoScrub.enable = mkDefault true;
+    btrfs.autoScrub.enable = true;
     emacs.enable = mkDefault true;
     pipewire = {
-      enable = mkDefault true;
+      enable = true;
       # alsa.enable = mkDefault true;
       # alsa.support32Bit = mkDefault true;
       # audio.enable = mkDefault true;
-      wireplumber.enable = mkDefault true;
+      wireplumber.enable = true;
     };
     tumbler.enable = mkDefault true;
   };
@@ -125,21 +125,21 @@ with lib; {
 
   # Window manager
   programs.hyprland = {
-    enable = mkDefault true;
-    xwayland.enable = mkDefault true;
+    enable = true;
+    xwayland.enable = true;
   };
-  programs.waybar.enable = mkDefault true;
-  programs.hyprlock.enable = mkDefault true;
-  services.hypridle.enable = mkDefault true;
+  programs.waybar.enable = true;
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
 
   # Desktop environment as backup (if Hyprland is bricked)
-  services.xserver.desktopManager.gnome.enable = mkDefault true;
+  services.xserver.desktopManager.gnome.enable = true;
   services.gnome = {
-    core-utilities.enable = mkDefault false;
-    localsearch.enable = mkDefault false;
-    tinysparql.enable = mkDefault false;
-    games.enable = mkDefault false;
-    core-developer-tools.enable = mkDefault true;
+    core-utilities.enable = false;
+    localsearch.enable = false;
+    tinysparql.enable = false;
+    games.enable = false;
+    core-developer-tools.enable = true;
   };
   services.displayManager.sessionPackages = with pkgs; [
     gnome-session.sessions
@@ -147,7 +147,7 @@ with lib; {
 
   # SSH setup
   services.openssh = {
-    enable = mkDefault true;
+    enable = true;
     # disable RSA keys
     hostKeys = [
       {
@@ -161,8 +161,8 @@ with lib; {
   };
 
   # Security
-  security.rtkit.enable = mkDefault true; # recommended for pipewire
-  security.polkit.enable = mkDefault true;
+  security.rtkit.enable = true; # recommended for pipewire
+  security.polkit.enable = true;
 
   system.stateVersion = "24.11";
 }
