@@ -20,27 +20,31 @@ in {
 
   boot = {
     # Kernel
-    kernelPackages = pkgs.linuxPackages;
-    # kernelPackages = pkgs.linuxPackages_latest;
-    # kernelPackages = pkgs.linuxPackages_zen;
-
+    kernelPackages = pkgs.linuxPackages; # linuxPackages_latest or linuxPackages_zen;
     # Bootloader
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-
     # /tmp as tmpfs
     tmp = {
       useTmpfs = true;
       tmpfsSize = "5%";
     };
-
     # Boot screen
     # plymouth.enable = mkDefault true;
   };
 
-  # Custom modules (see ../../modules)
+  # File system configuration
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+    fileSystems = ["/"];
+  };
+
+  # Hardware customization (see ../../modules)
   drivers.amdgpu.enable = false;
   drivers.amdgpu.utils.install = false;
+
+  # Language customization (see ../../modules)
   intl.defaultLocale = "en_US";
   intl.extraLocale = "de_CH";
 
@@ -51,22 +55,18 @@ in {
 
   # Networking
   networking.hostName = "${hostName}";
-  # networking.wireless.enable = true;  # wireless via wpa_supplicant.
+  #networking.wireless.enable = true;  # wireless via wpa_supplicant.
   networking.networkmanager.enable = true;
-  # systemd.services.NetworkManager-wait-online.enable = false;
-
-  # System-wide packages
-  environment.defaultPackages = [];
-
-  # System-wide services
-  services = {
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
-    btrfs.autoScrub.enable = true;
+  #systemd.services.NetworkManager-wait-online.enable = false;
+  # Local networking
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
   };
+
+  # No default packages, install all explicitly
+  environment.defaultPackages = [];
 
   # VM specifics
   services.spice-vdagentd.enable = true;
