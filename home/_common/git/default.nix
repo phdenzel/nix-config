@@ -6,8 +6,8 @@
   
   programs.git = {
     enable = true;
-    userName = "${config.userName}";
-    userEmail = "${config.userName}@gmail.com";
+    userName = "${config.home.username}";
+    userEmail = "${config.home.username}@gmail.com";
     delta.enable = true;
     # delta.options = {};
     extraConfig = {
