@@ -16,6 +16,7 @@ in {
     ../_common/crypt-utils.nix # Cryptographic tool compilation
     ../_common/cli-utils.nix # CLI tool compilation
     ../_common/emacs.nix # Editor and god tool
+    # ../_common/texlive.nix # Full TeXLive package
     ../../modules # AMD/Nvidia, Internationalization configs
   ];
 

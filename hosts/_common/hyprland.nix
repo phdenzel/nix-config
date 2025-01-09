@@ -18,9 +18,20 @@ with lib; {
   };
   security.rtkit.enable = true; # recommended for pipewire
   environment.systemPackages = with pkgs; [
-    kitty
+    clipse
+    grim
+    hyprpaper
     hyprpicker
-    hyprshade
+    hyprsunset
+    kitty
+    nwg-displays
+    nwg-look
+    rofi-wayland
+    slurp
+    swaynotificationcenter
+    swayosd
+    wlogout
+    wlr-randr
   ];
   programs.foot = {
     enable = mkDefault true;

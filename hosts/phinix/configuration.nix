@@ -8,7 +8,7 @@
   hostName = "phinix";
 in {
   imports = [
-    ../_common
+    ../_common # Default nix (and sops-nix) configuration
     ../_common/sddm.nix # Display manager
     ../_common/hyprland.nix # Window manager
     ../_common/gnome.nix # Desktop as backup when Hyprland is bricked
@@ -17,6 +17,7 @@ in {
     ../_common/crypt-utils.nix # Cryptographic tool compilation
     ../_common/cli-utils.nix # CLI tool compilation
     ../_common/emacs.nix # Editor and god tool
+    ../_common/texlive.nix # Full TeXLive package
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
@@ -73,21 +74,20 @@ in {
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
-    dunst
     gimp
     imv
+    inkscape
     mpv
     pavucontrol
+    udiskie
+    zathura
   ];
 
   # System-wide programs
   programs = {
-    # browserpass.enable = true; #TODO: move to home-manager config
     firefox.enable = true;
-    # firefox.nativeMessagingHosts.browserpass = true;
     java.enable = true;
     java.binfmt = true;
-    # neovim.enable = true;
     thunderbird.enable = true;
     winbox.enable = true;
   };
@@ -99,17 +99,15 @@ in {
     fwupd.enable = true;
     hardware.openrgb.enable = true;
     # jupyter.enable = mkDefault true;  #TODO: move to home-manager config
-    # mpd.enable = mkDefault true;  #TODO: move to home-manager config
     # onedrive.enable = mkDefault true;  #TODO: move to home-manager config
     # ollama.enable = mkDefault true;  #TODO: move to home-manager config
-    # passSecretService.enable = mkDefault true;  #TODO: move to home-manager config
+    playerctl.enable = true;
     printing.enable = true;
     printing.cups-pdf.enable = true;
     printing.drivers = with pkgs; [
       hplip
     ];
     # protonmail-bridge.enable  #TODO: move to home-manager config
-    # redshift.enable = true;  #TODO: move to home-manager config
     # samba.enable = true;
     # tabby.enable = true;  #TODO: move to home-manager config
     # tailscale.enable = true;  #TODO: move to home-manager config

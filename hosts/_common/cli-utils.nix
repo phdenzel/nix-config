@@ -7,6 +7,9 @@
     just
     rsync
     strace
+    tealdeer
+    yazi
+    zoxide
   ];
   programs.git.enable = mkDefault true;
   programs.less.enable = mkDefault true;
