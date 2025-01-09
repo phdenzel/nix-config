@@ -31,7 +31,7 @@
     markdown-mode # markdown support
     yaml-mode # yaml support
     lsp-mode # Language Server Protocol support
-    pyvenv-mode # select virtual environments
+    pyvenv # select virtual environments
     ein # jupyer notebooks
     # editorconfig # needed for copilot
     # copilot # GitHub copilot
