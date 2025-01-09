@@ -53,7 +53,6 @@ in {
   #
   home.sessionVariables = {
     BROWSER = "firefox";
-    EDITOR = "emacsclient";
     PAGER = "less";
     TERMINAL = "ghostty";
     VISUAL = "emacs";
