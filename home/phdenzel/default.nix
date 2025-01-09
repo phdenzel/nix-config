@@ -1,6 +1,14 @@
 {
   imports = [
     ./home.nix
+    # ../_common/alacritty
+    # ../_common/bash
+    # ../_common/bat
+    # ../_common/btop
+    # ../_common/bun
+    # ../_common/dconf
+    # ../_common/dircolors
+    # ../_common/editorconfig
     ../_common/emacs
     # ../_common/eza
     # ../_common/firefox
@@ -20,7 +28,7 @@
     # ./_configs/newsboat
     # ./_configs/password-store
     # ../_common/rofi
-    # ../_common/
+    ../_common/ruff
     # ../_common/
   ];
 }

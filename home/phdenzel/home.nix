@@ -14,7 +14,6 @@ in {
   programs = {
     home-manager.enable = true; # let home manager install and manage itself.
     mu.enable = true; # mail indexing
-    ruff.enable = true; # python linting
   };
 
   # The home.packages option allows you to install Nix packages into your
