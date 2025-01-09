@@ -41,7 +41,7 @@
     rainbow-delimiters # color parentheses
     rainbow-mode # colorize color strings
     yasnippet # template system
-    yasnippet.yasnippet-snippets # collection of snippets
+    yasnippet-snippets # collection of snippets
     magit # git magick
     forge # git forges for magit
     projectile # project management
