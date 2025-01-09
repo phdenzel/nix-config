@@ -3,5 +3,8 @@
     emacsclient-commands
   ];
   # technically not a CLI tool
-  services.emacs.enable = mkDefault true;
+  services.emacs = {
+    enable = mkDefault true;
+    defaultEditor = mkDefault true;
+  };
 }

@@ -2,51 +2,24 @@
 #
 # home-manager init ./
 {
-  lib,
   pkgs,
   ...
 }: let
   userName = "phdenzel";
 in {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = lib.mkDefault "${userName}";
-  home.homeDirectory = lib.mkDefault "/home/${userName}";
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See the Home Manager
-  # release notes for a list of state version changes in each release.
+  home.username = "${userName}";
+  home.homeDirectory = "/home/${userName}";
   home.stateVersion = "24.11";
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true; # let home manager install and manage itself.
+    mu.enable = true; # mail indexing
+    ruff.enable = true; # python linting
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
-    ghostty
-    rofi
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # You can also import packages
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+  # home.packages = with pkgs; [];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -84,11 +57,5 @@ in {
     PAGER = "less";
     TERMINAL = "ghostty";
     VISUAL = "emacs";
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "${userName}";
-    userEmail = "${userName}@gmail.com";
   };
 }

@@ -78,7 +78,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.phdenzel = import ./home/phdenzel/home.nix;
+            home-manager.users.phdenzel = import ./home/phdenzel;
           }
         ];
       };
@@ -92,7 +92,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.phdenzel = import ./home/phdenzel/home.nix;
+            home-manager.users.phdenzel = import ./home/phdenzel;
           }
         ];
       };
@@ -100,20 +100,19 @@
 
     homeConfigurations = {
       # Main workstation
-      # "phdenzel@phinix" = lib.homeManagerConfiguration {
-      #   extraSpecialArgs = {inherit inputs outputs;};
-      #   pkgs = pkgsFor.x86_64-linux;
-      #   modules = [
-      #     ./home/phdenzel/phinix.nix
-      #   ];
-      # };
+      "phdenzel@phinix" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [
+          ./home/phdenzel/phinix.nix ./home/phdenzel
+        ];
+      };
       # VM
       "phdenzel@idun" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [
-          ./home/phdenzel/idun.nix
-          ./home/phdenzel/home.nix
+          ./home/phdenzel/idun.nix ./home/phdenzel
         ];
       };
     };
