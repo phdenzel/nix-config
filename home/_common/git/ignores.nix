@@ -148,6 +148,7 @@
     "*.css.map"
     "*.sass.map"
     "*.scss.map"
+    ""
 
     "# LaTeX"
     "*.aux"
@@ -218,8 +219,8 @@
     ""
 
     "# Emacs"
-    "\#*\#"
-    ".\#*"
+    "\\#*\\#"
+    ".\\#*"
     "*.elc"
     "auto-save-list"
     "*.~undo-tree"
@@ -319,6 +320,7 @@
     ".TemporaryItems"
     ".Trashes"
     ".VolumeIcon.icns"
+    ""
 
     "# Windows weirdness"
     "Thumbs.db"
