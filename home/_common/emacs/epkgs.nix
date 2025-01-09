@@ -50,7 +50,6 @@
     treemacs-magit # magit plugin for treemacs
     treemacs-projectile # projectile plugin for treemacs
     treemacs-all-the-icons # icon plugin for treemacs
-    tab-line # tabs
     dashboard # dashboard for startup
     htmlize # buffer style to html
     org # org-mode
