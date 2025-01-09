@@ -1,5 +1,5 @@
-{pkgs, ...}: let
-  epkgs = with pkgs.emacsPackages; [
+{...}: let
+  epkgsFn = epkgs: with epkgs; [
     s # elisp string methods
     f # file system module
     dash # modern elisp lists (requirement of many other packages)
@@ -78,5 +78,5 @@
     all-the-icons-dired # icons set for dired
   ];
 in {
-  programs.emacs.extraPackages = epkgs;
+  programs.emacs.extraPackages = epkgsFn;
 }
