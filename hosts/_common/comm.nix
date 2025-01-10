@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [
     signal-desktop
     slack
-    teams
+    teams-for-linux
     whatsapp-for-linux
     zoom-us
   ];
