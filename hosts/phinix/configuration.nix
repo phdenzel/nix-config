@@ -14,10 +14,11 @@ in {
     ../_common/gnome.nix # Desktop as backup when Hyprland is bricked
     ../_common/thunar.nix # File manager
     ../_common/openssh.nix # OpenSSH
-    ../_common/crypt-utils.nix # Cryptographic tool compilation
-    ../_common/cli-utils.nix # CLI tool compilation
-    ../_common/dev-utils.nix # Dev tool compilation
+    ../_common/crypt-utils.nix # Cryptographic tool collection
+    ../_common/cli-utils.nix # CLI tool collection
+    ../_common/dev-utils.nix # Dev tool collection
     ../_common/emacs.nix # Editor and god tool
+    ../_common/fonts.nix # Font packages
     ../_common/texlive.nix # Full TeXLive package
     ../_common/comm.nix # Communication apps
     ../../modules # AMD/Nvidia, Internationalization configs
