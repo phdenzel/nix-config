@@ -1,14 +1,20 @@
 {pkgs, lib, ...}: with lib; {
   environment.systemPackages = with pkgs; [
     bat
+    coreutils-full
     eza
     fzf
     gh
+    gnutls
+    gzip
     just
+    psmisc
+    ripgrep
     rsync
     strace
     tealdeer
     yazi
+    xdg-utils
     zoxide
   ];
   programs.git.enable = mkDefault true;

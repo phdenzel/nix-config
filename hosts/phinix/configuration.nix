@@ -16,8 +16,10 @@ in {
     ../_common/openssh.nix # OpenSSH
     ../_common/crypt-utils.nix # Cryptographic tool compilation
     ../_common/cli-utils.nix # CLI tool compilation
+    ../_common/dev-utils.nix # Dev tool compilation
     ../_common/emacs.nix # Editor and god tool
     ../_common/texlive.nix # Full TeXLive package
+    ../_common/comm.nix # Communication apps
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
@@ -74,11 +76,17 @@ in {
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
+    filezilla
     gimp
-    imv
     inkscape
+    lact
+    imv
+    libreoffice-fresh
     mpv
     pavucontrol
+    podman-desktop
+    protonmail-desktop
+    rgp
     udiskie
     zathura
   ];
@@ -98,6 +106,7 @@ in {
     gvfs.enable = true;
     fwupd.enable = true;
     hardware.openrgb.enable = true;
+    hardware.openrgb.package = pkgs.openrgb-with-all-plugins;
     # jupyter.enable = mkDefault true;  #TODO: move to home-manager config
     # onedrive.enable = mkDefault true;  #TODO: move to home-manager config
     # ollama.enable = mkDefault true;  #TODO: move to home-manager config
