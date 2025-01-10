@@ -52,6 +52,7 @@
     systems,
     disko,
     sops-nix,
+    stylix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -74,7 +75,6 @@
       phinix = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;};
         modules = [
-          disko.nixosModules.disko
           ./hosts/phinix
           home-manager.nixosModules.home-manager
           {
@@ -88,7 +88,6 @@
       idun = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;};
         modules = [
-          disko.nixosModules.disko
           ./hosts/idun
           home-manager.nixosModules.home-manager
           {
