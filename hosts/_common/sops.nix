@@ -3,7 +3,8 @@
   lib,
   inputs,
   ...
-}: with lib; let
+}:
+with lib; let
   sopsHost = "${config.networking.hostName}";
 in {
   imports = [
@@ -13,7 +14,7 @@ in {
   sops = {
     defaultSopsFile = mkDefault ../secrets.yaml;
     validateSopsFiles = mkDefault false;
-    age.sshKeyPaths = mkDefault [ "/etc/ssh/ssh_host_ed25519_key" ];
+    age.sshKeyPaths = mkDefault ["/etc/ssh/ssh_host_ed25519_key"];
 
     secrets = {
       "passwd/${sopsHost}" = {

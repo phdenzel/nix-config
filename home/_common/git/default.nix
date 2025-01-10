@@ -3,7 +3,7 @@
     ./aliases.nix
     ./ignores.nix
   ];
-  
+
   programs.git = {
     enable = true;
     userName = "${config.home.username}";

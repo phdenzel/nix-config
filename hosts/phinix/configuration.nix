@@ -41,7 +41,7 @@ in {
     # Boot screen
     # plymouth.enable = mkDefault true;
   };
-  
+
   # File system configuration
   services.btrfs.autoScrub = {
     enable = true;

@@ -61,7 +61,8 @@ in {
               path = "/home/${cfg.user}/.ssh/${name}.pub";
               owner = "${cfg.user}";
             };
-          }) cfg.sshKeys
+          })
+          cfg.sshKeys
         );
     };
   };

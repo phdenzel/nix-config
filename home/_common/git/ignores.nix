@@ -127,7 +127,7 @@
     "cabal.project.local~"
     ".ghc.environment.*"
     ""
-    
+
     "# Lua"
     "luac.out"
     "*.src.rock"

@@ -82,12 +82,12 @@
   };
   raidPartitions =
     {
-      "1" = "";  # not enough disks for raid setup
-      "2" = "";  # not enough disks for raid setup
-      "3" = "";  # not enough disks for raid setup
-      "4" = "${nvme.c1}";  # ${nvme.d1} is the disk where the raid is initialized
-      "5" = "${nvme.c1} ${nvme.d1}";  # ${nvme.e1} is the disk where the raid is initialized
-      "6" = "${nvme.c1} ${nvme.d1} ${nvme.e1}";  # ${nvme.f1} is the disk where the raid is initialized
+      "1" = ""; # not enough disks for raid setup
+      "2" = ""; # not enough disks for raid setup
+      "3" = ""; # not enough disks for raid setup
+      "4" = "${nvme.c1}"; # ${nvme.d1} is the disk where the raid is initialized
+      "5" = "${nvme.c1} ${nvme.d1}"; # ${nvme.e1} is the disk where the raid is initialized
+      "6" = "${nvme.c1} ${nvme.d1} ${nvme.e1}"; # ${nvme.f1} is the disk where the raid is initialized
     }
     ."${builtins.toString numberOfDisks}";
 in {

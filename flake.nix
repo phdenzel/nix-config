@@ -41,6 +41,8 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = {
@@ -104,7 +106,8 @@
         extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [
-          ./home/phdenzel/phinix.nix ./home/phdenzel
+          ./home/phdenzel/phinix.nix
+          ./home/phdenzel
         ];
       };
       # VM
@@ -112,7 +115,8 @@
         extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [
-          ./home/phdenzel/idun.nix ./home/phdenzel
+          ./home/phdenzel/idun.nix
+          ./home/phdenzel
         ];
       };
     };

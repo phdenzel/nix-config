@@ -16,12 +16,11 @@
     then throw "Error. For this scheme a maximum of 1 disk(s) can be passed to disko."
     else builtins.length disks;
   vdisk = builtins.elemAt disks 0;
-  partitions =
-    {
-      esp = "/dev/vda1";
-      swap = "/dev/vda2";
-      root = "/dev/vda3";
-    };
+  partitions = {
+    esp = "/dev/vda1";
+    swap = "/dev/vda2";
+    root = "/dev/vda3";
+  };
 in {
   disko.devices = {
     disk = {
