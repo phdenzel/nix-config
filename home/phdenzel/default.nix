@@ -1,6 +1,7 @@
 {
   imports = [
     ./home.nix
+    ../_common/stylix
     # ../_common/alacritty
     # ../_common/bash
     # ../_common/bat
