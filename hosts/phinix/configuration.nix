@@ -114,7 +114,7 @@ in {
     fwupd.enable = true;
     hardware.openrgb.enable = true;
     hardware.openrgb.package = pkgs.openrgb-with-all-plugins;
-    playerctl.enable = true;
+    playerctld.enable = true;
     printing.enable = true;
     printing.cups-pdf.enable = true;
     printing.drivers = with pkgs; [
