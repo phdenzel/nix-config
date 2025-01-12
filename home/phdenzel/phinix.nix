@@ -17,6 +17,7 @@ in {
     enable = true;
     user = "${userName}";
     host = "${hostName}";
+    sshKeys = ["id_ed25519" "gh_id_ed25519" "gl_id_ed25519" "dgx_id_ed25519" "ghzhaw_id_ed25519"];
   };
 
   users.users.${userName} = {
