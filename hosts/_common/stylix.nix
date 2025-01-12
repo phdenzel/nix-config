@@ -6,7 +6,7 @@
 with lib; {
   imports = [
     inputs.stylix.nixosModules.stylix
-    ../../_common/stylix/iridis.nix
+    ../../home/_common/stylix/iridis.nix
   ];
   # Stylix host defaults (required settings only)
   stylix.enable = mkDefault true;
