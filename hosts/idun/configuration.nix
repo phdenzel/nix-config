@@ -39,7 +39,7 @@ in {
   };
   console = {
     earlySetup = true;
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-x22b.psf.gz";
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
     packages = with pkgs; [ terminus_font ];
   };
 
