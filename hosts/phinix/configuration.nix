@@ -23,6 +23,7 @@ in {
     ../_common/comm.nix # Communication apps
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-cpu-amd-pstate
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
   ];
@@ -113,20 +114,19 @@ in {
     fwupd.enable = true;
     hardware.openrgb.enable = true;
     hardware.openrgb.package = pkgs.openrgb-with-all-plugins;
-    # jupyter.enable = mkDefault true;  #TODO: move to home-manager config
-    # onedrive.enable = mkDefault true;  #TODO: move to home-manager config
-    # ollama.enable = mkDefault true;  #TODO: move to home-manager config
     playerctl.enable = true;
     printing.enable = true;
     printing.cups-pdf.enable = true;
     printing.drivers = with pkgs; [
       hplip
     ];
+    udisks2.enable = true;
+    # jupyter.enable = mkDefault true;  #TODO: move to home-manager config
+    # onedrive.enable = mkDefault true;  #TODO: move to home-manager config
+    # ollama.enable = mkDefault true;  #TODO: move to home-manager config
     # protonmail-bridge.enable  #TODO: move to home-manager config
-    # samba.enable = true;
     # tabby.enable = true;  #TODO: move to home-manager config
     # tailscale.enable = true;  #TODO: move to home-manager config
-    udisks2.enable = true;
   };
 
   # Security
