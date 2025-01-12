@@ -24,8 +24,8 @@ in {
       description = "List of utility packages.";
       type = with types; listOf package;
       default = with pkgs; [
-        rocmPackages.rocm-smi
-        btop-rocm
+        stable.rocmPackages.rocm-smi
+        stable.btop-rocm
         clinfo
         libva-utils
         vdpauinfo
