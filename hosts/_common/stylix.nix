@@ -1,6 +1,7 @@
-{inputs, ...}: {
+{inputs, lib, ...}: with lib; {
   imports = [inputs.stylix.nixosModules.stylix];
   # Stylix host defaults (required settings only)
-  stylix.enable = true;
-  stylix.image = ../../home/_common/stylix/nixos-default-wallpaper.png;
+  stylix.enable = mkDefault rue;
+  stylix.image = mkDefault ../../home/_common/stylix/nixos-default-wallpaper.png;
+  stylix.polarity = mkDefault "dark";
 }
