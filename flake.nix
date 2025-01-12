@@ -42,7 +42,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+      home-manager.follows = "home-manager";
+    };
   };
 
   outputs = {
@@ -52,6 +56,7 @@
     systems,
     disko,
     sops-nix,
+    stylix,
     ...
   } @ inputs: let
     inherit (self) outputs;

@@ -41,43 +41,38 @@ in {
   stylix = {
     enable = true;
     autoEnable = false;
-    image = ./nixos-default-wallpaper.png;
+    image = "./nixos-default-wallpaper.png";
     polarity = "dark";
     base16Scheme = {
-      name = "PhDArk Iridis";
+      system = "base16";
+      name = "phd-ark-iridis";
       author = "phdenzel";
-      description = ''
-        My default PhDArk color scheme with
-        a bright color palette.
-      '';
-      slug = "phd-ark-iridis";
-      # variant = "iridis";
-      # system = "base24";
+      variant = "dark";
       palette = {
-        base00 = "${theme.base}"; # default background
-        base01 = "${theme.surface0}"; # alternate background
-        base02 = "${theme.overlay1}"; # selection background
-        base03 = "${theme.overlay2}"; # comments
-        base04 = "${theme.teal}"; # alternate foreground
-        base05 = "${theme.text}"; # default foreground
-        base06 = "${theme.subtext0}"; # lighter foreground
-        base07 = "${theme.surface2}"; # lighter background
-        base08 = "${theme.ruby}"; # red
-        base09 = "${theme.sand}"; # orange
-        base0A = "${theme.yellow}"; # yellow
-        base0B = "${theme.green}"; # green
-        base0C = "${theme.cyan}"; # cyan
-        base0D = "${theme.blue}"; # blue
-        base0E = "${theme.purple}"; # purple
-        base0F = "${theme.crimson}"; # dark red
-        # base10 = "${theme.mantle}"; # darker background
-        # base11 = "${theme.crust}"; # darkest background
-        # base12 = "${theme.pink}"; # bright red
-        # base13 = "${theme.orange}"; # bright orange
-        # base14 = "${theme.viridis}"; # bright green
-        # base15 = "${theme.teal}"; # bright cyan
-        # base16 = "${theme.indigo}"; # bright blue
-        # base17 = "${theme.violet}"; # bright purple
+        base00 = theme.base; # default background
+        base01 = theme.surface0; # alternate background
+        base02 = theme.overlay1; # selection background
+        base03 = theme.overlay2; # comments
+        base04 = theme.teal; # alternate foreground
+        base05 = theme.text; # default foreground
+        base06 = theme.subtext0; # lighter foreground
+        base07 = theme.surface2; # lighter background
+        base08 = theme.ruby; # red
+        base09 = theme.sand; # orange
+        base0A = theme.yellow; # yellow
+        base0B = theme.green; # green
+        base0C = theme.cyan; # cyan
+        base0D = theme.blue; # blue
+        base0E = theme.purple; # purple
+        base0F = theme.crimson; # dark red
+        # base10 = theme.mantle; # darker background
+        # base11 = theme.crust; # darkest background
+        # base12 = theme.pink; # bright red
+        # base13 = theme.orange; # bright orange
+        # base14 = theme.viridis; # bright green
+        # base15 = theme.teal; # bright cyan
+        # base16 = theme.indigo; # bright blue
+        # base17 = theme.violet; # bright purple
       };
     };
   };
