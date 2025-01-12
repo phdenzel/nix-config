@@ -39,9 +39,6 @@
   };
 in {
   stylix = {
-    enable = true;
-    autoEnable = false;
-    polarity = "dark";
     base16Scheme = {
       system = "base16";
       name = "phd-ark-iridis";
