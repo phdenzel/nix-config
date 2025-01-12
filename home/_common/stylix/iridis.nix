@@ -1,4 +1,4 @@
-{inputs, ...}: let
+{...}: let
   theme = {
     magenta = "FF0087";
     pink = "E83A82";
@@ -41,7 +41,6 @@ in {
   stylix = {
     enable = true;
     autoEnable = false;
-    image = "./nixos-default-wallpaper.png";
     polarity = "dark";
     base16Scheme = {
       system = "base16";

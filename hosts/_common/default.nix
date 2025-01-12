@@ -3,5 +3,6 @@
   imports = [
     ./nix.nix
     ./sops.nix
+    ./stylix.nix
   ];
 }
