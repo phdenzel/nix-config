@@ -41,7 +41,7 @@ in {
   stylix = {
     enable = true;
     autoEnable = false;
-    image = inputs.nixos-artwork + "/wallpapers/nixos-wallpaper-catppuccin-mocha.png";
+    image = ./nixos-default-wallpaper.png;
     polarity = "dark";
     base16Scheme = {
       name = "PhDArk Iridis";

@@ -43,11 +43,6 @@
     };
 
     stylix.url = "github:danth/stylix";
-
-    nixos-artwork = {
-      url = "github:NixOS/nixos-artwork";
-      flake = false;
-    };
   };
 
   outputs = {
