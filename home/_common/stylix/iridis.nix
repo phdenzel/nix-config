@@ -1,5 +1,4 @@
-{inputs, ...}:
-let
+{inputs, ...}: let
   theme = {
     magenta = "FF0087";
     pink = "E83A82";
@@ -9,15 +8,15 @@ let
     tiger = "FF5F00";
     orange = "F69927";
     sand = "FDB760";
-    yellow = "FFD787";  
-    green = "44BC84";   
-    grass = "3DAA77";   
-    emerald = "00AF5F"; 
-    viridis = "00AF87"; 
-    teal = "4DB5BD";    
-    ocean = "1F5582";   
+    yellow = "FFD787";
+    green = "44BC84";
+    grass = "3DAA77";
+    emerald = "00AF5F";
+    viridis = "00AF87";
+    teal = "4DB5BD";
+    ocean = "1F5582";
     turquoise = "1AE6CC";
-    cyan = "46D9FF";    
+    cyan = "46D9FF";
     blue = "5F8AF7";
     indigo = "5F5FFF";
     amethyst = "3723B7";
@@ -39,45 +38,47 @@ let
     crust = "181E26";
   };
 in {
-  imports = [inputs.stylix.nixosModules.stylix];
-
   stylix = {
     enable = true;
+    autoEnable = false;
+    image = inputs.nixos-artwork + "/wallpapers/nixos-wallpaper-catppuccin-mocha.png";
     polarity = "dark";
     base16Scheme = {
-      scheme = "PhDArk Iridis";
+      name = "PhDArk Iridis";
       author = "phdenzel";
       description = ''
         My default PhDArk color scheme with
         a bright color palette.
       '';
       slug = "phd-ark-iridis";
-      variant = "iridis";
-      system = "base24";
-      base00 = "${theme.base}"; # default background
-      base01 = "${theme.surface0}"; # alternate background
-      base02 = "${theme.overlay1}"; # selection background
-      base03 = "${theme.overlay2}"; # comments
-      base04 = "${theme.teal}"; # alternate foreground
-      base05 = "${theme.text}"; # default foreground
-      base06 = "${theme.subtext0}"; # lighter foreground
-      base07 = "${theme.surface2}"; # lighter background
-      base08 = "${theme.ruby}"; # red
-      base09 = "${theme.sand}"; # orange
-      base0A = "${theme.yellow}"; # yellow
-      base0B = "${theme.green}"; # green
-      base0C = "${theme.cyan}"; # cyan
-      base0D = "${theme.blue}"; # blue
-      base0E = "${theme.purple}"; # purple
-      base0F = "${theme.crimson}"; # dark red
-      base10 = "${theme.mantle}"; # darker background
-      base11 = "${theme.crust}"; # darkest background
-      base12 = "${theme.pink}"; # bright red
-      base13 = "${theme.orange}"; # bright orange
-      base14 = "${theme.viridis}"; # bright green
-      base15 = "${theme.teal}"; # bright cyan
-      base16 = "${theme.indigo}"; # bright blue
-      base17 = "${theme.violet}"; # bright purple
+      # variant = "iridis";
+      # system = "base24";
+      palette = {
+        base00 = "${theme.base}"; # default background
+        base01 = "${theme.surface0}"; # alternate background
+        base02 = "${theme.overlay1}"; # selection background
+        base03 = "${theme.overlay2}"; # comments
+        base04 = "${theme.teal}"; # alternate foreground
+        base05 = "${theme.text}"; # default foreground
+        base06 = "${theme.subtext0}"; # lighter foreground
+        base07 = "${theme.surface2}"; # lighter background
+        base08 = "${theme.ruby}"; # red
+        base09 = "${theme.sand}"; # orange
+        base0A = "${theme.yellow}"; # yellow
+        base0B = "${theme.green}"; # green
+        base0C = "${theme.cyan}"; # cyan
+        base0D = "${theme.blue}"; # blue
+        base0E = "${theme.purple}"; # purple
+        base0F = "${theme.crimson}"; # dark red
+        # base10 = "${theme.mantle}"; # darker background
+        # base11 = "${theme.crust}"; # darkest background
+        # base12 = "${theme.pink}"; # bright red
+        # base13 = "${theme.orange}"; # bright orange
+        # base14 = "${theme.viridis}"; # bright green
+        # base15 = "${theme.teal}"; # bright cyan
+        # base16 = "${theme.indigo}"; # bright blue
+        # base17 = "${theme.violet}"; # bright purple
+      };
     };
   };
 }

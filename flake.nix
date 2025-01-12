@@ -43,6 +43,11 @@
     };
 
     stylix.url = "github:danth/stylix";
+
+    nixos-artwork = {
+      url = "github:NixOS/nixos-artwork";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -52,7 +57,6 @@
     systems,
     disko,
     sops-nix,
-    stylix,
     ...
   } @ inputs: let
     inherit (self) outputs;
