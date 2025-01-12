@@ -10,17 +10,15 @@
 # - raid1:   nvme2n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNU0X405324H -> /dev/disk/by-id/eui.0025384441a17c56)
 # - raid1:   nvme3n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135355N -> /dev/disk/by-id/eui.0025384141430d88)
 # - raid1:   nvme4n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135331M -> /dev/disk/by-id/eui.0025384141430d07)
-{
-  disks ? [
+{...}: let
+  disks = [
     "/dev/nvme0n1"
     "/dev/nvme5n1"
     "/dev/nvme1n1"
     "/dev/nvme2n1"
     "/dev/nvme3n1"
     "/dev/nvme4n1"
-  ],
-  ...
-}: let
+  ];
   numberOfDisks =
     if (builtins.length disks > 6)
     then throw "Error. For this scheme a maximum of 6 disks can be passed to disko."
