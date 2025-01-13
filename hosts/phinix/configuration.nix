@@ -33,7 +33,7 @@ in {
     kernelPackages = pkgs.linuxPackages_latest;
     # Bootloader
     #loader.systemd-boot.enable = true;
-    #loader.efi.canTouchEfiVariables = true;
+    loader.efi.canTouchEfiVariables = true;
     loader.grub.enable = true;
     loader.grub.efiSupport = true;
     loader.grub.devices = ["nodev"];
