@@ -10,8 +10,10 @@ creation_rules:
       - age:
           - *phdenzel
           - *idun
+          - *phinix
   - path_regex: home/phdenzel/secrets.ya?ml$
     key_groups:
       - age:
           - *phdenzel
           - *idun
+          - *phinix
