@@ -87,12 +87,14 @@ in {
     lact
     imv
     libreoffice-fresh
+    lm_sensors
     mpv
     pavucontrol
     podman-desktop
     protonmail-desktop
     rgp
     udiskie
+    usbutils
     zathura
   ];
 
@@ -126,6 +128,12 @@ in {
     # tabby.enable = true;  #TODO: move to home-manager config
     # tailscale.enable = true;  #TODO: move to home-manager config
   };
+
+  # Hardware
+  # hardware = {
+  #   fancontrol.enable = true;
+  #   fancontrol.config = {};
+  # };
 
   # Security
   security.polkit.enable = true;
