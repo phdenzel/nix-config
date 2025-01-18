@@ -37,11 +37,6 @@ in {
     # Boot screen
     # plymouth.enable = mkDefault true;
   };
-  console = {
-    earlySetup = true;
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-v16b.psf.gz";
-    packages = with pkgs; [ terminus_font ];
-  };
 
   # File system configuration
   services.btrfs.autoScrub = {
