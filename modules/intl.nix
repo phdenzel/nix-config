@@ -60,11 +60,11 @@ in {
         "${substring 3 5 (strings.toLower cfg.extraLocale)}"
       ]
     );
-    services.xserver.xkb.variant = mkDefault (
-      strings.concatStringsSep "," [
-        (strings.optionalString (cfg.defaultLocale == "en_US") "intl")
-        (strings.optionalString (cfg.extraLocale == "en_US") "intl")
-      ]
-    );
+    # services.xserver.xkb.variant = mkDefault (
+    #   strings.concatStringsSep "," [
+    #     (strings.optionalString (cfg.defaultLocale == "en_US") "")
+    #     (strings.optionalString (cfg.extraLocale == "en_US") "")
+    #   ]
+    # );
   };
 }
