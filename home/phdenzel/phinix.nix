@@ -41,7 +41,9 @@ in {
         "storage"
       ];
     hashedPasswordFile = config.sops.secrets."passwd/${userName}/${hostName}".path;
-    # openssh.authorizedKeys.keys = [];
     packages = with pkgs; [home-manager];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGZofJltIURsWCGEc+H5wyp4WJ3GGkcjPR5THptcR1dg phdenzel@asahi"
+    ];
   };
 }

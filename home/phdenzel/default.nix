@@ -30,6 +30,6 @@
     # ./_configs/password-store
     # ../_common/rofi
     ../_common/ruff
-    # ../_common/
+    ./_configs/ssh
   ];
 }
