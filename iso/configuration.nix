@@ -20,9 +20,6 @@
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   time.timeZone = "Europe/Zurich";
   i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.phdenzel = {
