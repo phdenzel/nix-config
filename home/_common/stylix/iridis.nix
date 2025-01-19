@@ -8,7 +8,7 @@ in {
   ];
   colorScheme = {
     slug = "phd-ark-iridis";
-    palette = {
+    palette = rec {
       magenta = "FF0087";
       pink = "E83A82";
       ruby = "D7005F";
@@ -45,6 +45,24 @@ in {
       base = "303033";
       mantle = "2B2B2F";
       crust = "181E26";
+      overlay256 = "000";
+      red256 = "001";
+      green256 = "002";
+      yellow256 = "003";
+      blue256 = "004";
+      pink256 = "005";
+      teal256 = "006";
+      subtext256 = "007";
+      purple256 = "105";
+      surface256 = "008";
+      ruby256 = "009";
+      viridis256 = "010";
+      sand256 = "011";
+      indigo256 = "012";
+      magenta256 = "013";
+      cyan256 = "014";
+      white256 = "015";
+      lilac256 = "099";
     };
   };
   stylix = {

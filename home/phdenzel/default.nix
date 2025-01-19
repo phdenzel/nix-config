@@ -10,7 +10,7 @@
     ../_common/btop
     # ../_common/bun
     # ../_common/dconf
-    # ../_common/dircolors
+    ../_common/dircolors
     # ../_common/editorconfig
     ../_common/emacs
     # ../_common/eza
