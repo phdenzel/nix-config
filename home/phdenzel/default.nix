@@ -1,11 +1,13 @@
 {
   imports = [
     ./home.nix
+    ./_configs/ssh
+    # ./_configs/gpg
     ../_common/stylix
-    # ../_common/alacritty
+    ../_common/alacritty
     # ../_common/bash
-    # ../_common/bat
-    # ../_common/btop
+    ../_common/bat
+    ../_common/btop
     # ../_common/bun
     # ../_common/dconf
     # ../_common/dircolors
@@ -17,7 +19,6 @@
     # ../_common/gh
     # ../_common/ghostty
     ../_common/git
-    # ./_configs/gpg
     # ../_common/hyprland
     # ../_common/imv
     # ../_common/joshuto
@@ -30,6 +31,5 @@
     # ./_configs/password-store
     # ../_common/rofi
     ../_common/ruff
-    ./_configs/ssh
   ];
 }

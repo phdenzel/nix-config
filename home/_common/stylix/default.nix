@@ -1,3 +1,6 @@
-{
-  imports = [./iridis.nix];
+{inputs, ...}: {
+  imports = [
+    ./iridis.nix
+    ./targets.nix
+  ];
 }

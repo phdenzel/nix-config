@@ -13,4 +13,8 @@ with lib; {
   stylix.autoEnable = mkDefault false;
   stylix.image = mkDefault ../../home/_common/stylix/nixos-default-wallpaper.png;
   stylix.polarity = mkDefault "dark";
+  stylix.targets = {
+    console.enable = true;
+    grub.enable = true;
+  };
 }
