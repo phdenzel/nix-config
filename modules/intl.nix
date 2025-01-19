@@ -30,7 +30,6 @@ in {
 
   config = {
     # Time zone settings
-
     time.timeZone =
       if hasAttr "${cfg.extraLocale}" locationsMap
       then mkDefault locationsMap."${cfg.extraLocale}"
@@ -60,11 +59,11 @@ in {
         "${substring 3 5 (strings.toLower cfg.extraLocale)}"
       ]
     );
-    # services.xserver.xkb.variant = mkDefault (
-    #   strings.concatStringsSep "," [
-    #     (strings.optionalString (cfg.defaultLocale == "en_US") "")
-    #     (strings.optionalString (cfg.extraLocale == "en_US") "")
-    #   ]
-    # );
+    services.xserver.xkb.variant = mkDefault (
+      strings.concatStringsSep "," [
+        (strings.optionalString (cfg.defaultLocale == "en_US") "altgr-intl")
+        (strings.optionalString (cfg.extraLocale == "en_US") "altgr-intl")
+      ]
+    );
   };
 }
