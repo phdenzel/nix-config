@@ -18,6 +18,7 @@ with lib; {
     rsync
     strace
     tealdeer
+    tree
     yazi
     xdg-utils
     zoxide
