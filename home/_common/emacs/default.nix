@@ -6,7 +6,8 @@
 
   imports = [
     ./epkgs.nix
-    # ./configs.nix
     # ./overrides.nix
+    ./configs
+    ./theme.nix
   ];
 }
