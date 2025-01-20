@@ -18,6 +18,11 @@ in {
       type = types.str;
       default = "phinix";
     };
+    usersRoot = mkOption {
+      description = "Home root, i.e. /home for linux or /Users for macOS.";
+      type = types.str;
+      default = "/home";
+    };
     secretsFileRoot = mkOption {
       description = "Root path of the secrets file from which sops-nix extracts secrets.";
       type = types.path;
@@ -32,6 +37,11 @@ in {
     };
     sshKeys = mkOption {
       description = "Additional SSH keys to decrypt.";
+      type = types.listOf types.str;
+      default = [];
+    };
+    gpgKeys = mkOption {
+      description = "Additional GPG keys to decrypt.";
       type = types.listOf types.str;
       default = [];
     };
@@ -54,16 +64,33 @@ in {
         // attrsets.mergeAttrsList (
           lists.map (name: {
             "ssh_keys/${cfg.user}/${cfg.host}/${name}" = {
-              path = "/home/${cfg.user}/.ssh/${name}";
+              path = "${cfg.usersRoot}/${cfg.user}/.ssh/${name}";
               owner = "${cfg.user}";
+              mode = "0400";
             };
             "ssh_keys/${cfg.user}/${cfg.host}/${name}.pub" = {
-              path = "/home/${cfg.user}/.ssh/${name}.pub";
+              path = "${cfg.usersRoot}/${cfg.user}/.ssh/${name}.pub";
               owner = "${cfg.user}";
+              mode = "0400";
             };
           })
           cfg.sshKeys
-        );
+        )
+        // attrsets.mergeAttrsList (
+          lists.map (name: {
+            "gpg_keys/${cfg.user}/${cfg.host}/${name}.asc" = {
+              path = "${cfg.usersRoot}/${cfg.user}/.gnupg/${name}.asc";
+              owner = "${cfg.user}";
+              mode = "0400";
+            };
+            "gpg_keys/${cfg.user}/${cfg.host}/${name}.public.asc" = {
+              path = "${cfg.usersRoot}/${cfg.user}/.gnupg/${name}.public.asc";
+              owner = "${cfg.user}";
+              mode = "0400";
+            };
+          })
+          cfg.gpgKeys
+        ); 
     };
   };
 }

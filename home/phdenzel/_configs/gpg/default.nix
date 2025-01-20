@@ -1,0 +1,26 @@
+{config, pkgs, ...}: {
+  programs.gpg = {
+    enable = true;
+    settings = {
+      default-key = "629FC7317EFB4935";
+    };
+    publicKeys = [
+      {
+        source = "${config.home.homeDirectory}/.gnupg/pwds.public.asc";
+        trust = "ultimate";
+      }
+    ];
+  };
+  
+  services.gpg-agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-gtk2;
+    defaultCacheTtl = 64800;
+    maxCacheTtl = 64800;
+    extraConfig = ''
+      no-allow-external-cache
+      allow-emacs-pinentry
+      allow-loopback-pinentry
+    '';
+  };
+}
