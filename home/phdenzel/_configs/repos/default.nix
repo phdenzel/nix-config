@@ -64,20 +64,28 @@
         checkout = "git clone git@github.com:phdenzel/fibonacci-flower.git";
       };
 
+      zmk-config = {
+        checkout = "git clone git@github.com:phdenzel/zmk-config.git";
+      };
+      nix-config = {
+        checkout = "git clone git@github.com:phdenzel/nix-config.git";
+      };
+      ".password-store" = {
+        checkout = "git clone git@github.com:phdenzel/.password-store.git";
+      };
+
       "phdenzel.github.io" = {
         checkout = "git clone git@github.com:phdenzel/phdenzel.github.io.git";
       };
       slides = {
         checkout = "git clone git@github.com:phdenzel/slides.git";
       };
-      zmk-config = {
-        checkout = "git clone git@github.com:phdenzel/zmk-config.git";
+
+      chuchichaestli = {
+        checkout = "git clone git@github.com:CAIIVS/chuchichaestli.git";
       };
-      ".password-store" = {
-        checkout = "git clone git@github.com:phdenzel/.password-store.git";
-      };
-      nix-config = {
-        checkout = "git clone git@github.com:phdenzel/nix-config.git";
+      skais = {
+        checkout = "git clone git@github.com:phdenzel/skais.git";
       };
     };
   };
