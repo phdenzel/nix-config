@@ -450,7 +450,7 @@ in {
       ".opus" = mkColor {color = cyan256;};
       ".spx" = mkColor {color = cyan256;};
       ".xspf" = mkColor {color = cyan256;};
-      # Scripts and codes
+      # Programming and scripting
       ".sh" = mkColor {color = pink256;};
       ".csh" = mkColor {color = pink256;};
       ".zsh" = mkColor {color = pink256;};
