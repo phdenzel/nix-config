@@ -1,9 +1,14 @@
 {
   imports = [
+    # Home setup
     ./home.nix
     ./_configs/ssh
     # ./_configs/gpg
+    ../_common/xdg
+    ./_configs/repos
     ../_common/stylix
+
+    # Program configs
     ../_common/alacritty
     # ../_common/bash
     ../_common/bat

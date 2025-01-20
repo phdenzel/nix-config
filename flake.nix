@@ -47,6 +47,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    phd-wallpapers = {
+      url = "git+ssh://git@github.com/phdenzel/wallpapers";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -57,6 +62,7 @@
     disko,
     sops-nix,
     stylix,
+    phd-wallpapers,  
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -82,6 +88,7 @@
           ./hosts/phinix
           home-manager.nixosModules.home-manager
           {
+            home-manager.extraSpecialArgs = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.phdenzel = import ./home/phdenzel;
@@ -95,6 +102,7 @@
           ./hosts/idun
           home-manager.nixosModules.home-manager
           {
+            home-manager.extraSpecialArgs = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.phdenzel = import ./home/phdenzel;

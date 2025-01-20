@@ -292,6 +292,22 @@
         "type": "github"
       }
     },
+    "phd-wallpapers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736639266,
+        "narHash": "sha256-5N5wBroo5O1nPXhImXCz9AA2WGkzJvWiyFBU6Dqs7M8=",
+        "ref": "refs/heads/main",
+        "rev": "6b9539f4e0e9239fa79386d05b57be587cd87c50",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@github.com/phdenzel/wallpapers"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/phdenzel/wallpapers"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -299,6 +315,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
+        "phd-wallpapers": "phd-wallpapers",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "systems": "systems_2"
