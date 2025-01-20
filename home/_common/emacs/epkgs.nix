@@ -17,7 +17,14 @@
       expand-region # C-M-SPC: expand-region
       drag-stuff # C-M-<up>/C-M-<down>: drag regions up and down
       company # completion framework
-      # company-jedi
+      # company-jedi  # completion for python
+      lsp-mode # Language Server Protocol support
+      lsp-ui # Language Server Protocol UI support
+      lsp-treemacs # Language Server Protocol treemacs
+      dap-mode # Debugger
+      flycheck # syntax checker
+      pyvenv # select virtual environments
+      ein # jupyer notebooks
       python-mode # python support
       cython-mode # cython support
       rust-mode # rust support
@@ -31,13 +38,9 @@
       sass-mode # sass support
       markdown-mode # markdown support
       yaml-mode # yaml support
-      lsp-mode # Language Server Protocol support
-      pyvenv # select virtual environments
-      ein # jupyer notebooks
       # editorconfig # needed for copilot
       # copilot # GitHub copilot
       # tabby # TabbyML self-hosted
-      flycheck # syntax checker
       highlight-parentheses # highlight parentheses
       rainbow-delimiters # color parentheses
       rainbow-mode # colorize color strings

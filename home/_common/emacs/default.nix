@@ -5,9 +5,9 @@
   services.emacs.defaultEditor = true;
 
   imports = [
+    ./configs
     ./epkgs.nix
     # ./overrides.nix
-    ./configs
     ./theme.nix
   ];
 }
