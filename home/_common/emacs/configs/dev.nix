@@ -2,14 +2,21 @@
   programs.emacs.init.usePackage = {
     lsp-mode = {
       enable = true;
-      command = ["lsp" "lsp-deferred"];
+      commands = ["lsp" "lsp-deferred"];
       hook = [
         "(python-mode . lsp)"
-        "(nix-mode . lsp-deferred)"
         "(rust-mode . lsp)"
+        "(nix-mode . lsp-deferred)"
+        "(c-mode   . lsp-deferred)"
+        "(c++-mode . lsp-deferred)"
+        "(LaTeX-mode . lsp)"
+        "(latex-mode . lsp)"
+        "(bibtex-mode . lsp)"
       ];
-      config = ''
+      init = ''
         (setq lsp-keymap-prefix "C-c l")
+      '';
+      config = ''
         (setq lsp-inline-completion-enable t
               lsp-pylsp-configuration-sources '("ruff")
               lsp-pylsp-plugins-ruff-enabled t
@@ -18,9 +25,14 @@
               lsp-pylsp-rename-backend 'rope)
       '';
     };
-    lsp-ui = {
+    lsp-ivy = {
       enable = true;
-      command = ["lsp-ui-mode"];
+      commands = ["lsp-ivy-workspace-symbol"];
+    };
+    lsp-ui = {
+      enable = false;
+      after = ["lsp-mode"];
+      commands = ["lsp-ui-mode"];
       config = ''
         (setq lsp-ui-sideline-enable nil
               lsp-ui-sideline-show-symbol nil
@@ -33,7 +45,7 @@
     lsp-treemacs = {
       enable = true;
       after = ["lsp-mode" "treemacs"];
-      command = ["lsp-treemacs-errors-list" "lsp-treemacs-symbols"];
+      commands = ["lsp-treemacs-errors-list" "lsp-treemacs-symbols"];
       config = ''
         (lsp-treemacs-sync-mode 1)
         (setq lsp-treemacs-deps-position-params
@@ -49,7 +61,7 @@
     dap-mode = {
       enable = true;
       after = ["lsp-mode"];
-      command = ["dap-mode" "dap-ui-mode"];
+      commands = ["dap-mode" "dap-ui-mode"];
       config = ''
         (require 'dap-python)
         (setq dap-python-debugger 'debugpy)

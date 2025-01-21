@@ -134,7 +134,7 @@ with lib; let
         '';
       };
 
-      command = mkOption {
+      commands = mkOption {
         type = types.listOf types.str;
         default = [ ];
         description = ''
@@ -245,7 +245,7 @@ with lib; let
       in concatStringsSep "\n  " ([ "(use-package ${name}" ]
         ++ mkAfter config.after ++ mkBind config.bind
         ++ mkBindKeyMap config.bindKeyMap ++ mkBindLocal config.bindLocal
-        ++ mkChords config.chords ++ mkCommand config.command
+        ++ mkChords config.chords ++ mkCommand config.commands
         ++ mkDefer config.defer ++ mkDefines config.defines
         ++ mkFunctions config.functions ++ mkDemand config.demand
         ++ mkDiminish config.diminish ++ mkHook config.hook

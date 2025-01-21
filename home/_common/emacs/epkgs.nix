@@ -1,4 +1,4 @@
-{...}: let
+{pkgs, ...}: let
   epkgsFn = epkgs:
     with epkgs; [
       s # elisp string methods
@@ -20,6 +20,7 @@
       # company-jedi  # completion for python
       lsp-mode # Language Server Protocol support
       lsp-ui # Language Server Protocol UI support
+      lsp-ivy # Language Server Protocol ivy support
       lsp-treemacs # Language Server Protocol treemacs
       dap-mode # Debugger
       flycheck # syntax checker
@@ -83,4 +84,8 @@
     ];
 in {
   programs.emacs.extraPackages = epkgsFn;
+  home.packages = with pkgs; [
+    nil
+    texlab
+  ];
 }

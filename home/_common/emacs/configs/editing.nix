@@ -16,7 +16,7 @@
     };
     electric = {
       enable = true;
-      command = [ "electric-indent-local-mode" ];
+      commands = ["electric-indent-local-mode"];
       config = ''
         (electric-pair-mode t)
       '';
