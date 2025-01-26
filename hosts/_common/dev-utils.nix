@@ -22,6 +22,8 @@ with lib; {
     pkg-config
     podman
     podman-compose
+    python313
+    python313Packages.virtualenv
     rustup
     yq-go
   ];
