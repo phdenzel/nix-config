@@ -46,6 +46,9 @@
         "C-c C-<" = "mc/mark-all-like-this";
         "<C-S-mouse-1>" = "mc/add-cursor-on-click";
       };
+      sudo-edit.bind = {
+        "C-c C-s C-e" = "sudo-edit";
+      };
       comment-dwim-2.bind = {
         "M-/" = "comment-dwim-2";
       };

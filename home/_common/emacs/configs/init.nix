@@ -361,6 +361,16 @@ with lib; let
     mapGlobalBinds = attrs: concatStringsSep "\n" (
       attrValues (mapAttrs (name: value: "(global-set-key (kbd \"${name}\") '${value})") attrs)
     );
+    mapGlobalFunctions = attrs: concatStringsSep "\n" (
+      attrValues (mapAttrs (name: value: ''
+      (defun ${name} (${optionalString (hasAttr "args" value) value.args})
+         "${optionalString (hasAttr "description" value) value.description}"
+         ${optionalString (hasAttr "interactive" value) "${if (isBool value.interactive)
+                                                           then "(interactive)"
+                                                           else "(interactive \"${value.interactive}\")"}"}
+         ${optionalString (hasAttr "body" value) value.body})
+      '') attrs)
+    );
     in
     ''
     ;;; hm-init.el --- Emacs configuration via Home Manager -*- lexical-binding: t; -*-
@@ -384,6 +394,9 @@ with lib; let
 
     ;; Global binds
     ${mapGlobalBinds cfg.globalBinds}
+
+    ;; Global functions
+    ${mapGlobalFunctions cfg.globalFunctions}
 
     ${usePackageSetup}
   '' + concatStringsSep "\n\n" (map (getAttr "assembly")
@@ -434,8 +447,8 @@ in {
     };
 
     globalFunctions = mkOption {
-      type = types.lines;
-      default = "";
+      type = types.attrs;
+      default = {};
       description = ''
         Configuration lines describing functions in
         <filename>init.el</filename>.

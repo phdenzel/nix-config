@@ -12,8 +12,11 @@
     avy.enable = true;
     ivy = {
       enable = true;
+      diminish = ["ivy-mode"];
+      commands = ["ivy-mode"];
       config = ''
         (setq ivy-use-virtual-buffers t)
+        (ivy-mode 1)
       '';
     };
     ace-window.enable = true;

@@ -31,6 +31,10 @@
 			(tool-bar-mode -1)
 			(scroll-bar-mode -1)
 			(menu-bar-mode -1)
+      (defun phd/display-linum-hook ()
+             (display-line-numbers-mode 1)
+      )
+      (add-hook 'prog-mode-hook 'phd/display-linum-hook)
 
 			;; Parentheses
       (show-paren-mode t)

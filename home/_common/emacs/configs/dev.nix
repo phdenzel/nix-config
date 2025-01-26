@@ -30,7 +30,7 @@
       commands = ["lsp-ivy-workspace-symbol"];
     };
     lsp-ui = {
-      enable = false;
+      enable = true;
       after = ["lsp-mode"];
       commands = ["lsp-ui-mode"];
       config = ''
@@ -39,7 +39,8 @@
               lsp-ui-sideline-show-hover nil
               lsp-ui-sideline-show-code-actions nil
               lsp-ui-sideline-update-mode 'point
-              lsp-ui-doc-enable t)
+              lsp-ui-doc-enable t
+              lsp-ui-doc-show-with-cursor t)
       '';
     };
     lsp-treemacs = {
@@ -62,11 +63,23 @@
       enable = true;
       after = ["lsp-mode"];
       commands = ["dap-mode" "dap-ui-mode"];
+    };
+    dap-python = {
+      enable = true;
       config = ''
-        (require 'dap-python)
         (setq dap-python-debugger 'debugpy)
-        (dap-mode t)
-        (dap-ui-mode t)
+      '';
+    };
+    dap-gdb-lldb = {
+      enable = true;
+      config = ''
+        (dap-register-debug-template "Rust::GDB Run Configuration"
+                             (list :type "gdb"
+                                   :request "launch"
+                                   :name "GDB::Run"
+                           :gdbpath "rust-gdb"
+                                   :target nil
+                                   :cwd nil))
       '';
     };
     pyvenv = {
