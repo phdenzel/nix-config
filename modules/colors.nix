@@ -56,5 +56,16 @@ in {
         Use baseXX attributes for compatibility with base16/24 colors.
       '';
     };
+    palette256 = mkOption {
+      type = with types; attrsOf (
+        coercedTo str (removePrefix "#") hexColorType
+      );
+      default = {};
+      example = "";
+      description = ''
+        An unopinionated color palette of ANSI colors
+        (add whatever attributes you want).
+      '';
+    };
   };
 }

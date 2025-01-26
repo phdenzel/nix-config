@@ -4,25 +4,10 @@
   ...
 }:
 with lib; let
-  hexDigitToInt = c: let
-    hexChars = "0123456789abcdef";
-  in
-    stringLength (head (splitString c (toLower hexChars)));
-
-  hexToRgb = hexColor: let
-    r = substring 0 2 hexColor;
-    g = substring 2 2 hexColor;
-    b = substring 4 2 hexColor;
-    toDecimal = hex: hexDigitToInt (substring 0 1 hex) * 16 + hexDigitToInt (substring 1 1 hex);
-  in "${toString (toDecimal r)};${toString (toDecimal g)};${toString (toDecimal b)}";
   mkColor = {
     color,
     type ? "",
   }: "${type}38;5;${color}";
-  mkBgColor = {
-    color,
-    type ? "",
-  }: "${type}48;5;${color}";
   mkFBColor = {
     fgColor,
     bgColor,
@@ -62,7 +47,7 @@ in {
       TERM vt100
       TERM xterm*
     '';
-    settings = with config.colorScheme.palette; {
+    settings = with config.colorScheme.palette256; {
       RESET = "0";
       MULTIHARDLINK = "00";
       DIR = mkColor {
@@ -137,6 +122,10 @@ in {
       ".exe" = mkColor {color = teal256;};
       ".cmd" = mkColor {color = teal256;};
       # Backup files
+      "*~" = mkColor {
+        color = subtext256;
+        type = "02;";
+      };
       ".bak" = mkColor {
         color = subtext256;
         type = "02;";

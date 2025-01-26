@@ -1,14 +1,10 @@
-{config, ...}: let
-  theme = {
-    
-  };
-in {
+{config, ...}: {
   imports = [
     ../../../modules/colors.nix
   ];
   colorScheme = {
     slug = "phd-ark-iridis";
-    palette = rec {
+    palette = {
       magenta = "FF0087";
       pink = "E83A82";
       ruby = "D7005F";
@@ -45,6 +41,8 @@ in {
       base = "303033";
       mantle = "2B2B2F";
       crust = "181E26";
+    };
+    palette256 = {
       overlay256 = "000";
       red256 = "001";
       green256 = "002";
