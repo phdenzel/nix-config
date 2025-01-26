@@ -16,6 +16,7 @@ in {
     ../_common/crypt-utils.nix # Cryptographic tool collection
     ../_common/cli-utils.nix # CLI tool collection
     ../_common/dev-utils.nix # Dev tool collection
+    ../_common/computing.nix # Computing/AI tool collection
     ../_common/emacs.nix # Editor and god tool
     ../_common/fonts.nix # Font packages
     # ../_common/texlive.nix # Full TeXLive package

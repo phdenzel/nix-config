@@ -17,6 +17,7 @@ in {
     ../_common/crypt-utils.nix # Cryptographic tool collection
     ../_common/cli-utils.nix # CLI tool collection
     ../_common/dev-utils.nix # Dev tool collection
+    ../_common/computing.nix # Computing/AI tool collection
     ../_common/emacs.nix # Editor and god tool
     ../_common/fonts.nix # Font packages
     ../_common/texlive.nix # Full TeXLive package
@@ -56,6 +57,7 @@ in {
   # Hardware customization (see ../../modules)
   drivers.amdgpu.enable = true;
   drivers.amdgpu.utils.install = true;
+  nixpkgs.config.rocmSupport = true;
 
   # Language customization (see ../../modules)
   intl.defaultLocale = "en_US";
@@ -68,6 +70,7 @@ in {
 
   # Networking
   networking.hostName = "${hostName}";
+  networking.hostId = "27b636ba";
   #networking.wireless.enable = true;  # wireless via wpa_supplicant.
   networking.networkmanager.enable = true;
   #systemd.services.NetworkManager-wait-online.enable = false;
@@ -91,7 +94,6 @@ in {
     mpv
     pavucontrol
     podman-desktop
-    protonmail-desktop
     rgp
     udiskie
     usbutils
@@ -105,6 +107,7 @@ in {
     java.binfmt = true;
     thunderbird.enable = true;
     winbox.enable = true;
+    winbox.package = pkgs.winbox4;
   };
 
   # System-wide services
@@ -121,9 +124,7 @@ in {
       hplip
     ];
     udisks2.enable = true;
-    # jupyter.enable = mkDefault true;  #TODO: move to home-manager config
     # onedrive.enable = mkDefault true;  #TODO: move to home-manager config
-    # ollama.enable = mkDefault true;  #TODO: move to home-manager config
     # protonmail-bridge.enable  #TODO: move to home-manager config
     # tabby.enable = true;  #TODO: move to home-manager config
     # tailscale.enable = true;  #TODO: move to home-manager config
@@ -131,6 +132,7 @@ in {
 
   # Hardware
   # hardware = {
+  #   uni-sync.enable = true;
   #   fancontrol.enable = true;
   #   fancontrol.config = {};
   # };
