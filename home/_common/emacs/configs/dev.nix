@@ -17,13 +17,36 @@
         (setq lsp-keymap-prefix "C-c l")
       '';
       config = ''
-        (setq lsp-inline-completion-enable t
-              lsp-pylsp-configuration-sources '("ruff")
-              lsp-pylsp-plugins-ruff-enabled t
-              lsp-pylsp-plugins-flake8-enabled nil
-              lsp-pylsp-plugins-pycodestyle-enabled nil
-              lsp-pylsp-rename-backend 'rope)
+        (setq lsp-inline-completion-enable t)
       '';
+    };
+    lsp-rust = {
+      enable = true;
+      after = ["lsp-mode"];
+    };
+    lsp-ruff = {
+      enable = true;
+      after = ["lsp-mode"];
+    };
+    lsp-pylsp = {
+      enable = false;
+      after = ["lsp-mode"];
+      custom = {
+        lsp-pylsp-configuration-sources = "'(\"ruff\")";
+        lsp-pylsp-plugins-ruff-enabled = true;
+        lsp-pylsp-plugins-flake8-enabled = false;
+        lsp-pylsp-plugins-pycodestyle-enabled = false;
+        lsp-pylsp-rename-backend = "'rope";
+      };
+    };
+    lsp-nix = {
+      enable = true;
+      after = ["lsp-mode"];
+      custom = {lsp-nix-nil-formatter = "[\"alejandra\"]";};
+    };
+    lsp-tex = {
+      enable = true;
+      after = ["lsp-mode"];
     };
     lsp-ivy = {
       enable = true;
@@ -40,6 +63,7 @@
               lsp-ui-sideline-show-code-actions nil
               lsp-ui-sideline-update-mode 'point
               lsp-ui-doc-enable t
+              lsp-ui-doc-delay 2
               lsp-ui-doc-show-with-cursor t)
       '';
     };

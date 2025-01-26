@@ -85,6 +85,7 @@
 in {
   programs.emacs.extraPackages = epkgsFn;
   home.packages = with pkgs; [
+    alejandra
     nil
     texlab
   ];

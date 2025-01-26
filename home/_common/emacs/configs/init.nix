@@ -280,11 +280,6 @@ with lib; let
     };
   });
 
-  usePackageStr = name: pkgConfStr: ''
-    (use-package ${name}
-      ${pkgConfStr})
-  '';
-
   mkRecommendedOption = type: extraDescription:
     mkOption {
       type = types.bool;
