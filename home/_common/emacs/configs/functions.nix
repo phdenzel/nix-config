@@ -17,7 +17,7 @@
         body = ''
           (split-window-vertically)
           (other-window 1 nil)
-          (switch-to-next-buffer)''; 
+          (switch-to-next-buffer)'';
       };
       "phd/hsplit-current-buffer" = {
         description = "Split the current buffer vertically and switch to the next.";

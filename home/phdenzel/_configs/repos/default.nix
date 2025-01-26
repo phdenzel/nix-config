@@ -1,4 +1,8 @@
-{inputs, config, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   # another (pinned) read-only wallpaper clone in nix-store registry
   home.file.wallpapers = {
     source = inputs.phd-wallpapers;

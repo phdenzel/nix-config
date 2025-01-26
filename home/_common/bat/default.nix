@@ -2,5 +2,4 @@
   programs.bat = {
     enable = true;
   };
-  
 }

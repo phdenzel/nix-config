@@ -41,14 +41,16 @@ in {
       type = types.enum ["dark" "light"];
       description = "Scheme polarity, either 'dark' or 'light'";
       example = "dark";
-      default = if builtins.substring 0 1 cfg.palette.base00 < "5"
-                then "dark"
-                else "light";
+      default =
+        if builtins.substring 0 1 cfg.palette.base00 < "5"
+        then "dark"
+        else "light";
     };
     palette = mkOption {
-      type = with types; attrsOf (
-        coercedTo str (removePrefix "#") hexColorType
-      );
+      type = with types;
+        attrsOf (
+          coercedTo str (removePrefix "#") hexColorType
+        );
       default = {};
       example = "";
       description = ''
@@ -57,9 +59,10 @@ in {
       '';
     };
     palette256 = mkOption {
-      type = with types; attrsOf (
-        coercedTo str (removePrefix "#") hexColorType
-      );
+      type = with types;
+        attrsOf (
+          coercedTo str (removePrefix "#") hexColorType
+        );
       default = {};
       example = "";
       description = ''

@@ -6,7 +6,6 @@
 with lib; let
   cfg = config.intl;
   localeMap = {
-    
   };
   locationsMap = {
     "de_CH" = "Europe/Zurich";

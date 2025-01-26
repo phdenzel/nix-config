@@ -62,7 +62,7 @@
     disko,
     sops-nix,
     stylix,
-    phd-wallpapers,  
+    phd-wallpapers,
     ...
   } @ inputs: let
     inherit (self) outputs;

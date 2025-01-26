@@ -19,7 +19,7 @@ in {
     enableBashIntegration = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
-    extraConfig  = ''
+    extraConfig = ''
       COLORTERM ?*
       TERM Eterm
       TERM ansi

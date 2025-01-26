@@ -25,7 +25,7 @@
         "C-x C-f" = "counsel-find-file";
         "C-x C-y" = "counsel-yank-pop";
         "C-c i u" = "counsel-unicode-char";
-        
+
         "M-i" = "counsel-imenu";
       };
       swiper.bind = {
@@ -65,7 +65,6 @@
         "<C-M-down>" = "drag-stuff-down";
       };
       # Dev
-      
     };
   };
 }
