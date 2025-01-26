@@ -13,6 +13,7 @@ with lib; {
     gnutls
     gzip
     just
+    perl
     psmisc
     ripgrep
     rsync
