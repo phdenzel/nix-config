@@ -56,6 +56,11 @@ in {
       description = ''
         An unopinionated color palette (add whatever attributes you want).
         Use baseXX attributes for compatibility with base16/24 colors.
+        Include all following attributes for emacs theme compatibility:
+          magenta, pink, ruby, crimson, red, tiger, orange, sand, yellow,
+          green, grass, emerald, viridis, teal, ocean, cyan, blue, indigo,
+          amethyst, purple, violet, white, subtext0, subtext1, text, overlay2,
+          overlay1, overlay0, surface2, surface1, surface0, base, mantle, crust.
       '';
     };
     palette256 = mkOption {

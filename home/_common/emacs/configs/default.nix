@@ -7,5 +7,6 @@
     ./navigation.nix
     ./editing.nix
     ./dev.nix
+    ./style.nix
   ];
 }

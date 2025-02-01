@@ -3,7 +3,7 @@
     alacritty.enable = true;
     bat.enable = true;
     btop.enable = true;
-    emacs.enable = true;
+    emacs.enable = false;
     firefox.enable = true;
     foot.enable = true;
     ghostty.enable = true;

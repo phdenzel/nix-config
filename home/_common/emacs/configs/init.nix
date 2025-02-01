@@ -61,6 +61,14 @@ with lib; let
         '';
       };
 
+      loadPath = mkOption {
+        type = types.str;
+        default = "";
+        description = ''
+          The <option>:load-path</option> setting.
+        '';
+      };
+
       demand = mkOption {
         type = types.bool;
         default = false;
@@ -220,7 +228,7 @@ with lib; let
           optionals (bs != {}) ([":${cmd} (${prefix}"]
             ++ mapAttrsToList (n: v: "  (${quoted n} . ${v})") bs
             ++ [")"]);
-
+        mkLoadPath = vs: optional (vs != "") ":load-path \"${vs}\"";
         mkAfter = vs: optional (vs != []) ":after (${toString vs})";
         mkCommand = vs: optional (vs != []) ":commands (${toString vs})";
         mkCustomHelper = mapAttrsToList (n: v: let
@@ -259,6 +267,7 @@ with lib; let
         mkDemand = v: optional v ":demand t";
       in
         concatStringsSep "\n  " (["(use-package ${name}"]
+          ++ mkLoadPath config.loadPath
           ++ mkAfter config.after
           ++ mkBind config.bind
           ++ mkBindKeyMap config.bindKeyMap
