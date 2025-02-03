@@ -7,6 +7,8 @@
       "<M-up>" = "backward-paragraph";
       "<M-down>" = "forward-paragraph";
       "C-M-'" = "other-window";
+      "C-M-s-h" = "previous-buffer";
+      "C-M-s-l" = "next-buffer";
       "C-M-S-h" = "shrink-window-horizontally";
       "C-M-S-l" = "enlarge-window-horizontally";
       "C-M-S-j" = "enlarge-window";
@@ -25,7 +27,6 @@
         "C-x C-f" = "counsel-find-file";
         "C-x C-y" = "counsel-yank-pop";
         "C-c i u" = "counsel-unicode-char";
-
         "M-i" = "counsel-imenu";
       };
       swiper.bind = {
@@ -37,6 +38,7 @@
       ace-window.bind = {
         "C-x o" = "ace-window";
       };
+
       # Editing
       multiple-cursors.bind = {
         "M-SPC" = "set-rectangular-regin-anchor";
@@ -61,10 +63,39 @@
         "C-M-SPC" = "er/expand-region";
       };
       drag-stuff.bind = {
-        "<C-M-up>" = "drag-stuff-up";
-        "<C-M-down>" = "drag-stuff-down";
+        "C-M-k" = "drag-stuff-up";
+        "C-M-j" = "drag-stuff-down";
       };
+
+      # Project
+      magit.bind = {
+        "C-c m" = "magit-status";
+      };
+      projectile.bindLocal = {
+        projectile-mode-map = {
+          "C-c p" = "projectile-command-map";
+        };
+      };
+
       # Dev
+      treemacs.bind = {
+        "C-M-s-;" = "treemacs";
+        "C-M-s-:" = "treemacs-select-window";
+      };
+      lsp-treemacs.bind = {
+        "C-M-s-\"" = "lsp-treemacs-symbols";
+        "C-M-s-'" = "lsp-treemacs-errors-list";
+      };
+      lsp-ui.bind = {
+        "C-M-s-." = "lsp-ui-doc-focus-frame";
+      };
+
+      # Typeset
+      jinx.bind = {
+        "M-$" = "jinx-mode";
+        "C-$" = "jinx-correct";
+        "C-M-$" = "jinx-languages";
+      };
     };
   };
 }
