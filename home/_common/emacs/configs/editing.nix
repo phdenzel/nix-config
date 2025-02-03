@@ -125,7 +125,7 @@
       # name: tex-formula
       # key: <fta
       # --
-      \$\$$0\$\$
+      \$\$ $0 \$\$
     '';
     ".emacs.d/snippets/LaTeX-mode/tex-inline-formula".text = ''
       # -*- mode: snippet -*-
@@ -139,14 +139,14 @@
       # name: align-formula
       # key: <fa
       # --
-      \[$0\]
+      \\[$0\\]
     '';
     ".emacs.d/snippets/LaTeX-mode/inline-formula".text = ''
       # -*- mode: snippet -*-
       # name: inline-formula
       # key: <f
       # --
-      \($0\)
+      \\($0\\)
     '';
     ".emacs.d/snippets/latex-mode/.yas-parents".text = ''
       org-mode LaTeX-mode
