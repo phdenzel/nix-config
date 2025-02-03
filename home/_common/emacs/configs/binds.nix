@@ -96,6 +96,19 @@
           "C-C ! !" = "flycheck-explain-error-at-point";
         };
       };
+
+      # Shell
+      vterm.bindLocal = {
+        vterm-mode-map = {
+          "C-SPC" = "vterm-copy-mode";
+        };
+        vterm-copy-mode-map = {
+          "RET" = "vterm-copy-mode";
+          "<return>" = "vterm-copy-mode";
+          "ESC" = "vterm-copy-mode-done";
+        };
+      };
+      
       # Typeset
       jinx.bind = {
         "M-$" = "jinx-mode";
