@@ -553,6 +553,7 @@ in {
         ivy-minibuffer-match-face-2 = {fg = "pink";};
         ivy-minibuffer-match-face-3 = {fg = "sand";};
         ivy-minibuffer-match-face-4 = {fg = "teal";};
+        all-the-icons-ivy-dir-face = {fg = "blue";};
 
         # Avy
         avy-lead-face = {
