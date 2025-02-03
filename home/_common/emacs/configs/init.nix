@@ -205,6 +205,14 @@ with lib; let
         '';
       };
 
+      hydras = mkOption {
+        type = types.attrs;
+        description = ''
+          The hydra entries to use for <option>:init</option>.
+        '';
+        default = {};
+      };
+
       extraPackages = mkOption {
         type = types.listOf types.package;
         default = [];
@@ -248,6 +256,17 @@ with lib; let
         in "(${n} ${mkValue v})");
         mkCustom = cs:
           optionals (cs != {}) ([":custom"] ++ mkCustomHelper cs);
+        mkHydrasHelper = let
+          mapHydraBinds = hb:
+            concatStringsSep "\n" (mapAttrsToList (n: v: "(\"${n}\" ${v})") hb);
+        in mapAttrsToList (n: v: ''
+          (defhydra ${n}
+            (:color ${v.color}${optionalString (hasAttr "pre" v) " :pre ${v.pre}"}${optionalString (hasAttr "post" v) " :post ${v.post}"}${optionalString (hasAttr "hint" v) " :hint ${v.hint}"})
+            ${optionalString (hasAttr "description" v) "\"${v.description}\""}
+            ${optionalString (hasAttr "binds" v) (mapHydraBinds v.binds)})
+          '');
+        mkHydras = hydra:
+          optionals (hydra != {}) ([":init"] ++ mkHydrasHelper hydra);
         mkDefines = vs: optional (vs != []) ":defines (${toString vs})";
         mkDiminish = vs: optional (vs != []) ":diminish (${toString vs})";
         mkMode = map (v: ":mode ${v}");
@@ -283,6 +302,7 @@ with lib; let
           ++ mkMode config.mode
           ++ mkCustom config.custom
           ++ optionals (config.init != "") [":init" config.init]
+          ++ mkHydras config.hydras
           ++ optionals (config.config != "") [":config" config.config]
           ++ optional (config.extraConfig != "") config.extraConfig)
         + ")";

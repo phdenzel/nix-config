@@ -89,6 +89,9 @@
       lsp-ui.bind = {
         "C-M-s-." = "lsp-ui-doc-focus-frame";
       };
+      flycheck.bind = {
+        "C-c ! f" = "phd/hydra-flycheck/body";
+      };
       flycheck.bindLocal = {
         flycheck-mode-map = {
           "C-c ! n" = "flycheck-next-error";
@@ -108,7 +111,7 @@
           "ESC" = "vterm-copy-mode-done";
         };
       };
-      
+
       # Typeset
       jinx.bind = {
         "M-$" = "jinx-mode";

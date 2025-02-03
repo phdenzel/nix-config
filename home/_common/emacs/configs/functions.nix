@@ -75,6 +75,17 @@
           (indent-region (point-min) (point-max) nil)
           (untabify (point-min) (point-max))'';
       };
+      "phd/hydra-hint-toggle" = {
+        args = "name body";
+        interative = "P";
+        body = ''
+          (let ((cv (hydra-get-property name :verbosity)))
+            (if (eq cv 2)
+                (hydra-set-property name :verbosity 0)
+              (hydra-set-property name :verbosity 2))
+            body)
+        '';
+      };
     };
   };
 }

@@ -8,6 +8,7 @@
     ./dev.nix
     ./shell.nix
     ./typeset.nix
+    ./hydras.nix
     ./functions.nix
     ./binds.nix
     ./style.nix
