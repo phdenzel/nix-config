@@ -22,8 +22,16 @@ with lib; {
     pkg-config
     podman
     podman-compose
-    python313
-    python313Packages.virtualenv
+    python312
+    python312Packages.pip
+    python312Packages.uv
+    python312Packages.virtualenv
+    python312Packages.isort
+    python312Packages.jedi
+    python312Packages.mypy
+    python312Packages.python-lsp-server
+    python312Packages.rope
+    python312Packages.ruff
     rustup
     yq-go
   ];
