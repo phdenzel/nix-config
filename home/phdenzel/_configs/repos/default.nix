@@ -16,8 +16,55 @@
   programs.mr = {
     enable = true;
     settings = {
+      # home repos
+      nix-config = {
+        checkout = "git clone git@github.com:phdenzel/nix-config.git";
+      };
+      ".password-store" = {
+        checkout = "git clone git@github.com:phdenzel/.password-store.git";
+      };
+      slides = {
+        checkout = "git clone git@github.com:phdenzel/slides.git";
+      };
+      "phdenzel.github.io" = {
+        checkout = "git clone git@github.com:phdenzel/phdenzel.github.io.git";
+      };
+      chuchichaestli = {
+        checkout = "git clone git@github.com:CAIIVS/chuchichaestli.git";
+      };
+      skais = {
+        checkout = "git clone git@github.com:phdenzel/skais.git";
+      };
+      zmk-config = {
+        checkout = "git clone git@github.com:phdenzel/zmk-config.git";
+      };
+
+      # papers
+      "Documents/phd-thesis" = {
+        checkout = "git clone git@github.com:phdenzel/phd-thesis.git";
+      };
+      "Documents/papers/galactic-alchemy-1" = {
+        checkout = "git clone git@github.com:phdenzel/galactic-alchemy-1.git";
+      };
+      # "Documents/papers/" = {
+      #   checkout = "git clone git@github.com:phdenzel/.git";
+      # };
+      # "Documents/papers/" = {
+      #   checkout = "git clone git@github.com:phdenzel/.git";
+      # };
+      # "Documents/papers/" = {
+      #   checkout = "git clone git@github.com:phdenzel/.git";
+      # };
+      # "Documents/papers/" = {
+      #   checkout = "git clone git@github.com:phdenzel/.git";
+      # };
+      
+      # local repos
       "local/wallpapers" = {
         checkout = "git clone git@github.com:phdenzel/wallpapers.git";
+      };
+      "local/nix-systems" = {
+        checkout = "git clone git@github.com:phdenzel/nix-systems.git";
       };
       "local/phd-dashboard" = {
         checkout = "git clone git@github.com:phdenzel/phd-dashboard.git";
@@ -68,29 +115,6 @@
         checkout = "git clone git@github.com:phdenzel/fibonacci-flower.git";
       };
 
-      zmk-config = {
-        checkout = "git clone git@github.com:phdenzel/zmk-config.git";
-      };
-      nix-config = {
-        checkout = "git clone git@github.com:phdenzel/nix-config.git";
-      };
-      ".password-store" = {
-        checkout = "git clone git@github.com:phdenzel/.password-store.git";
-      };
-
-      "phdenzel.github.io" = {
-        checkout = "git clone git@github.com:phdenzel/phdenzel.github.io.git";
-      };
-      slides = {
-        checkout = "git clone git@github.com:phdenzel/slides.git";
-      };
-
-      chuchichaestli = {
-        checkout = "git clone git@github.com:CAIIVS/chuchichaestli.git";
-      };
-      skais = {
-        checkout = "git clone git@github.com:phdenzel/skais.git";
-      };
     };
   };
 }
