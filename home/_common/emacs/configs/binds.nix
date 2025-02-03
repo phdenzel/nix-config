@@ -89,7 +89,13 @@
       lsp-ui.bind = {
         "C-M-s-." = "lsp-ui-doc-focus-frame";
       };
-
+      flycheck.bindLocal = {
+        flycheck-mode-map = {
+          "C-c ! n" = "flycheck-next-error";
+          "C-c ! p" = "flycheck-previous-error";
+          "C-C ! !" = "flycheck-explain-error-at-point";
+        };
+      };
       # Typeset
       jinx.bind = {
         "M-$" = "jinx-mode";
