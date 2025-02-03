@@ -1,20 +1,45 @@
 {...}: {
   programs.emacs.init = {
     enable = true;
-    # earlyInit = ''
-    #   (setenv "LSP_USE_PLISTS" "true")
-    # '';
-    recommendedGcSettings = true;
-    prelude = ''
-      (setq user-full-name "Philipp Denzel")
-      (setq user-main-address "phdenzel@gmail.com")
-
-      ;; General
-      (setq inhibit-startup-message t)
-      (fset 'yes-or-no-p 'y-or-n-p)
+    earlyInit = ''
+      ;; Settings for startup performance
+      (prefer-coding-system 'utf-8)
       ;; for better performance (in LSP) 4K -> 1M
       (setq read-process-output-max (* 1024 1024))
-      (prefer-coding-system 'utf-8)
+
+      ;; load newer compiled files
+      (setq load-prefer-newer t)
+
+      ;; Disabling some UI elements during early-init.
+      (setq default-frame-alist
+            '((vertical-scroll-bars . nil)
+              (menu-bar-lines       . 0)
+              (tool-bar-lines       . 0)))
+
+      ;; Disable startup messages
+      (advice-add #'display-startup-echo-area-message :override #'ignore)
+      (advice-add #'display-startup-screen :override #'ignore)
+      (setq inhibit-splash-screen t)
+
+      ;; scratch in fundamental mode for added performance
+      (setq initial-major-mode 'fundamental-mode
+            initial-scratch-message nil)
+
+      ;; Fix: unfortunately this causes errors with LSP on nix
+      ;; (setenv "LSP_USE_PLISTS" "true")
+    '';
+    recommendedGcSettings = true;
+    prelude = /*elisp*/ ''
+      (setq user-full-name "Philipp Denzel")
+      (setq user-mail-address "phdenzel@gmail.com")
+
+      ;; General
+      (setq user-emacs-directory "~/.emacs.d/")
+      (prefer-coding-system       'utf-8)
+      (set-default-coding-systems 'utf-8)
+      (set-terminal-coding-system 'utf-8)
+      (fset 'yes-or-no-p 'y-or-n-p)
+      (setq text-scale-mode-step 1.1)
 
       ;; Buffers
       (setq Buffer-menu-use-frame-buffer-list nil
@@ -49,6 +74,25 @@
 
       ;; Mouse
       (xterm-mouse-mode t)
-      (mouse-wheel-mode t)'';
+      (mouse-wheel-mode t)
+
+      ;; Backup configuration
+      (defvar phd/backup-directory
+        (file-name-concat user-emacs-directory "backups")
+        "The subdirectory path where autosaves are stored.")
+      (if (not (file-exists-p phd/backup-directory))
+          (make-directory phd/backup-directory t))
+      (setq backup-directory-alist `((".*" . ,phd/backup-directory))
+            auto-save-file-name-transforms `((".*" ,phd/backup-directory t)))
+      ;; Backup behaviour
+      (setq backup-by-copying t
+            version-control t
+            delete-old-versions t
+            kept-old-versions 5
+            kept-new-versions 10)
+      ;; Backup cleanup
+      (setq delete-by-moving-to-trash t
+            trash-directory "~/.local/share/Trash/files")
+      '';
   };
 }
