@@ -3,6 +3,10 @@
     magit = {
       enable = true;
     };
+    forge = {
+      enable = true;
+      after = ["magit"];
+    };
     projectile = {
       enable = true;
       init = ''
@@ -41,11 +45,6 @@
     treemacs-projectile = {
       enable = true;
       after = ["treemacs" "projectile"];
-    };
-    treemacs-all-the-icons = {
-      enable = true;
-      after = ["treemacs" "all-the-icons"];
-      config = ''(treemacs-load-theme "all-the-icons")'';
     };
   };
 }

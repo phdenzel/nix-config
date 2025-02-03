@@ -38,6 +38,11 @@
       enable = true;
       hook = ["(dired-mode . all-the-icons-dired-mode)"];
     };
+    treemacs-all-the-icons = {
+      enable = true;
+      after = ["treemacs" "all-the-icons"];
+      config = ''(treemacs-load-theme "all-the-icons")'';
+    };
     phd-ark-theme = {
       enable = true;
       init = ''

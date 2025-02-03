@@ -1,15 +1,20 @@
 {pkgs, ...}: let
   packages = epkgs:
     with epkgs; [
+      # Elisp packages
       s # elisp string methods
       f # file system module
       dash # modern elisp lists (requirement of many other packages)
+
+      # Navigation packages
       hydra # emacs key bindings system
       ivy-hydra # Ivy key bindings
       counsel # misc ivy-enhancements
       swiper # i-search with ivy
       avy # M-s: char-based jumping
       ace-window # window manipulation
+
+      # Editing packages
       multiple-cursors # multiple cursors
       sudo-edit # sudo edit
       comment-dwim-2 # do what I mean when commenting
@@ -17,17 +22,28 @@
       expand-region # C-M-SPC: expand-region
       drag-stuff # C-M-<up>/C-M-<down>: drag regions up and down
       company # completion framework
-      # company-jedi  # completion for python
+      #company-jedi  # completion for python
       yasnippet # template system
       yasnippet-snippets # collection of snippets
+
+      # Project managment packages
+      magit # git magick
+      forge # git forges for magit
+      projectile # project management
+      counsel-projectile # counsel support for projectile
+      treemacs # tree layout file explorer
+      treemacs-magit # magit plugin for treemacs
+      treemacs-projectile # projectile plugin for treemacs
+
+      # Dev packages
       lsp-mode # Language Server Protocol support
       lsp-ui # Language Server Protocol UI support
-      # lsp-ivy # Ivy symbol support; currently borked: https://github.com/emacs-lsp/lsp-ivy/issues/27
+      #lsp-ivy # Ivy symbol support; currently borked: https://github.com/emacs-lsp/lsp-ivy/issues/27
       lsp-treemacs # Language Server Protocol treemacs
       dap-mode # Debugger
       pyvenv # select virtual environments
       ein # jupyer notebooks
-      # python-mode # custom mode different from built-in python-mode
+      #python-mode # custom mode different from built-in python-mode
       cython-mode # cython support
       rust-mode # rust support
       nix-mode # nix support
@@ -41,48 +57,52 @@
       markdown-mode # markdown support
       yaml-mode # yaml support
       flycheck # syntax checker
-      # editorconfig # needed for copilot
-      # copilot # GitHub copilot
-      # tabby # TabbyML self-hosted
-      magit # git magick
-      forge # git forges for magit
-      projectile # project management
-      counsel-projectile # counsel support for projectile
-      treemacs # tree layout file explorer
-      treemacs-magit # magit plugin for treemacs
-      treemacs-projectile # projectile plugin for treemacs
-      treemacs-all-the-icons # icon plugin for treemacs
-      dashboard # dashboard for startup
-      htmlize # buffer style to html
+
+      # Shell packages
+      vterm # terminal emulator
+
+      # Typesetting packages
+      jinx # spell checking using enchant API
+      auctex # latex support
+      pdf-tools # pdf functionality
+
       org # org-mode
       org-bullets # bullet style for org-mode headings
       org-ref # citations and references for org-mode
       ivy-bibtex # bibtex bibliography browsing
-      pdf-tools # pdf functionality
       org-roam # knowledge management system
       org-roam-ui # UI for org-roam
       org-roam-bibtex # connect org-roam and ivy-bibtex
       org-re-reveal # org export to reveal.js
+      htmlize # buffer style to html
       toc-org # auto-refreshing TOC
       ox-gfm # org export to GitHub Flavored Markdown
       ox-rst # org export to reStructuredText
-      auctex # latex support
-      jinx # spell checking using enchant API
-      # exec-path-from-shell # proper PATH from shell
-      vterm # terminal emulator
+
+      # AI
+      #editorconfig # needed for copilot
+      #copilot # GitHub copilot
+      #tabby # TabbyML self-hosted
+      
+      # Misc
+      dashboard # dashboard for startup
+      #exec-path-from-shell # proper PATH from shell
       mu4e # emails
       org-mime # html in emails
       pass # zx2c4 pass
       password-store # for pass
       password-store-otp # for pass
-      auth-source-xoauth2 # XOAuth2 authentication
-      # highlight-parentheses # rather use rainbow-delimiters
+      auth-source-xoauth2 # OAuth2 authentication
+
+      # Style packages
+      #highlight-parentheses # rather use rainbow-delimiters
       rainbow-delimiters # color parentheses
       rainbow-mode # colorize color strings
       all-the-icons # icon set
       all-the-icons-ibuffer # icon set for ibuffer
       all-the-icons-ivy # icon set for ivy
       all-the-icons-dired # icons set for dired
+      treemacs-all-the-icons # icon plugin for treemacs
     ];
 in {
   programs.emacs.extraPackages = packages;
