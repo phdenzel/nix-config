@@ -7,6 +7,7 @@ with lib; {
   environment.systemPackages = with pkgs; [
     bat
     coreutils-full
+    dust
     eza
     fzf
     gh
