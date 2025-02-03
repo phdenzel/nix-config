@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  epkgsFn = epkgs:
+  packages = epkgs:
     with epkgs; [
       s # elisp string methods
       f # file system module
@@ -18,15 +18,16 @@
       drag-stuff # C-M-<up>/C-M-<down>: drag regions up and down
       company # completion framework
       # company-jedi  # completion for python
+      yasnippet # template system
+      yasnippet-snippets # collection of snippets
       lsp-mode # Language Server Protocol support
       lsp-ui # Language Server Protocol UI support
-      lsp-ivy # Language Server Protocol ivy support
+      # lsp-ivy # Ivy symbol support; currently borked: https://github.com/emacs-lsp/lsp-ivy/issues/27
       lsp-treemacs # Language Server Protocol treemacs
       dap-mode # Debugger
-      flycheck # syntax checker
       pyvenv # select virtual environments
       ein # jupyer notebooks
-      python-mode # python support
+      # python-mode # custom mode different from built-in python-mode
       cython-mode # cython support
       rust-mode # rust support
       nix-mode # nix support
@@ -39,14 +40,10 @@
       sass-mode # sass support
       markdown-mode # markdown support
       yaml-mode # yaml support
+      flycheck # syntax checker
       # editorconfig # needed for copilot
       # copilot # GitHub copilot
       # tabby # TabbyML self-hosted
-      highlight-parentheses # highlight parentheses
-      rainbow-delimiters # color parentheses
-      rainbow-mode # colorize color strings
-      yasnippet # template system
-      yasnippet-snippets # collection of snippets
       magit # git magick
       forge # git forges for magit
       projectile # project management
@@ -70,7 +67,8 @@
       ox-gfm # org export to GitHub Flavored Markdown
       ox-rst # org export to reStructuredText
       auctex # latex support
-      exec-path-from-shell # proper PATH from shell
+      jinx # spell checking using enchant API
+      # exec-path-from-shell # proper PATH from shell
       vterm # terminal emulator
       mu4e # emails
       org-mime # html in emails
@@ -78,14 +76,44 @@
       password-store # for pass
       password-store-otp # for pass
       auth-source-xoauth2 # XOAuth2 authentication
+      # highlight-parentheses # rather use rainbow-delimiters
+      rainbow-delimiters # color parentheses
+      rainbow-mode # colorize color strings
       all-the-icons # icon set
+      all-the-icons-ibuffer # icon set for ibuffer
       all-the-icons-ivy # icon set for ivy
       all-the-icons-dired # icons set for dired
     ];
 in {
-  programs.emacs.extraPackages = epkgsFn;
+  programs.emacs.extraPackages = packages;
+    # epkgs:
+    #   (packages (epkgs.overrideScope (ff: pp: {
+    #     lsp-mode = (
+    #       pp.lsp-mode.overrideAttrs (f: p: {
+    #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
+    #       }));
+    #     lsp-ui = (
+    #       pp.lsp-mode.overrideAttrs (f: p: {
+    #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
+    #       }));
+    #     lsp-treemacs = (
+    #       pp.lsp-mode.overrideAttrs (f: p: {
+    #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
+    #       }));
+    #     dap-mode = (
+    #       pp.lsp-mode.overrideAttrs (f: p: {
+    #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
+    #       }));
+    # })));
   home.packages = with pkgs; [
     alejandra
+    aspell
+    aspellDicts.de
+    aspellDicts.en
+    aspellDicts.en-science
+    emacs-all-the-icons-fonts
+    enchant
+    jansson
     nil
     texlab
   ];
