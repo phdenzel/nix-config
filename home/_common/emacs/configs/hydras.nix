@@ -33,6 +33,36 @@
             "!" = "flycheck-verify-setup";
           };
         };
+        "phd/hydra-ace-window" = {
+          color = "pink";
+          description = ''
+            ^
+            ^Ace windows^
+            ^───────────────^───────────────^──────────────^─────────────
+            _q_ quit        _f_ new frame   _z_ del frame  _x_ del window
+            _h_ (h)shrink   _j_ (v)shrink   _k_ (v)grow    _l_ (h)grow
+            _n_ scroll ↑    _p_ scroll ↓
+            _v_ (v)split    _b_ (h)split    _o_ swap       _c_ flip
+          '';
+          binds = {
+            "Q" = "nil";
+            "q" = "nil";
+            "C-g" = "nil";
+            "f" = "make-frame";
+            "z" = "delete-frame";
+            "x" = "ace-delete-window";
+            "h" = "shrink-window-horizontally";
+            "j" = "shrink-window";
+            "k" = "enlarge-window";
+            "l" = "enlarge-window-horizontally";
+            "n" = "scroll-up";
+            "p" = "scroll-down";
+            "v" = "split-window-vertically";
+            "b" = "split-window-horizontally";
+            "o" = "ace-swap-window";
+            "c" = "aw-flip-window";
+          };
+        };
         "phd/hydra-llm" = {
           color = "blue";
           hint = "none";

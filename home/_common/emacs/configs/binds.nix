@@ -37,6 +37,7 @@
       };
       ace-window.bind = {
         "C-x o" = "ace-window";
+        "C-x C-o" = "phd/hydra-ace-window/body";
       };
 
       # Editing
