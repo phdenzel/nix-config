@@ -107,14 +107,14 @@ in {
     # })));
   home.packages = with pkgs; [
     alejandra
-    aspell
-    aspellDicts.de
-    aspellDicts.en
-    aspellDicts.en-science
     emacs-all-the-icons-fonts
     enchant
+    hunspellDicts.de-de
+    hunspellDicts.en-us
+    hunspellDicts.en-gb-ize
     jansson
     nil
+    nuspell
     texlab
   ];
 }
