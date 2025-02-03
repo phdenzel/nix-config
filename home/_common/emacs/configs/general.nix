@@ -1,6 +1,8 @@
 {...}: {
   programs.emacs.init = {
     enable = true;
+    startupTimer = true;
+    recommendedGcSettings = true;
     earlyInit = ''
       ;; Settings for startup performance
       (prefer-coding-system 'utf-8)
@@ -28,7 +30,6 @@
       ;; Fix: unfortunately this causes errors with LSP on nix
       ;; (setenv "LSP_USE_PLISTS" "true")
     '';
-    recommendedGcSettings = true;
     prelude = /*elisp*/ ''
       (setq user-full-name "Philipp Denzel")
       (setq user-mail-address "phdenzel@gmail.com")
