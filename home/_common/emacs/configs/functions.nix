@@ -2,12 +2,12 @@
   programs.emacs.init = {
     globalFunctions = {
       "phd/relinum/on" = {
-        description = "Activate relative line number in the current buffer (if show-line-numbers-mode is active).";
+        description = "Activate relative line number in the current buffer.";
         interactive = true;
         body = "(setq display-line-numbers 'relative)";
       };
       "phd/relinum/off" = {
-        description = "Deactivate relative line number in the current buffer (if show-line-numbers-mode is active).";
+        description = "Deactivate relative line number in the current buffer.";
         interactive = true;
         body = "(setq display-line-numbers 1)";
       };
@@ -40,8 +40,8 @@
           This command does the reverse of `fill-paragraph'.'';
         interactive = true;
         body = ''
-          (let ((fill-column 90002000))
-          (fill-paragraph nil))'';
+          (let ((fill-column most-positive-fixnum))
+          (call-interactively 'fill-paragraph))'';
       };
       "phd/unfill-region" = {
         args = "start end";
@@ -50,13 +50,26 @@
           This command does the reverse of `fill-region'.'';
         interactive = "r";
         body = ''
-          (let ((fill-column 90002000))
-          (fill-paragraph nil))'';
+          (let ((fill-column most-positive-fixnum))
+          (fill-region start end))'';
+      };
+      "phd/unfill-toggle" = {
+        description = ''
+          Toggle filling/unfilling of the current region.
+          Operates on the current paragraph if no region is active.'';
+        interactive = true;
+        body = ''
+          (let (deactivate-mark
+                 (fill-column
+                   (if (eq last-command this-command)
+                       (progn (setq this-command nil)
+                              most-positive-fixnum)
+                     fill-column)))
+             (call-interactively 'fill-paragraph))'';
       };
       "phd/indent-entire-buffer" = {
-        args = "&optional arg";
-        description = "Indent the whole buffer. ARG for compatibility.";
-        interactive = "P";
+        description = "Indent the whole buffer.";
+        interactive = true;
         body = ''
           (delete-trailing-whitespace)
           (indent-region (point-min) (point-max) nil)
