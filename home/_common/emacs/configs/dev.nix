@@ -13,7 +13,6 @@
         "(c++-mode . lsp-deferred)"
         "(LaTeX-mode . lsp)"
         "(latex-mode . lsp)"
-        "(bibtex-mode . lsp)"
       ];
       init = ''
         (setq lsp-keymap-prefix "C-c l")
