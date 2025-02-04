@@ -119,6 +119,18 @@
         "C-$" = "jinx-correct";
         "C-M-$" = "jinx-languages";
       };
+
+      # AI
+      copilot.bindLocal = {
+        copilot-mode = {
+          "<backtab>" = "copilot-accept-completion-by-word";
+          "C-<tab>" = "copilot-accept-completion";
+          # "M-C-<next>" = "copilot-next-completion";
+          # "M-C-<prior>" = "copilot-previous-completion";
+          # "M-C-<right>" = "copilot-accept-completion-by-word";
+          # "M-C-<down>" . copilot-accept-completion-by-name)
+        };
+      };
     };
   };
 }

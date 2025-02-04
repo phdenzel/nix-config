@@ -61,13 +61,16 @@
       # Shell packages
       vterm # terminal emulator
 
+      # Org-mode packages
+      org # org-mode
+      org-bullets # bullet style for org-mode headings
+
       # Typesetting packages
       jinx # spell checking using enchant API
       auctex # latex support
       pdf-tools # pdf functionality
 
-      org # org-mode
-      org-bullets # bullet style for org-mode headings
+
       org-ref # citations and references for org-mode
       ivy-bibtex # bibtex bibliography browsing
       org-roam # knowledge management system
@@ -80,9 +83,11 @@
       ox-rst # org export to reStructuredText
 
       # AI
-      #editorconfig # needed for copilot
-      #copilot # GitHub copilot
-      #tabby # TabbyML self-hosted
+      editorconfig # needed for copilot
+      jsonrpc # needed for copilot
+      copilot # GitHub copilot
+      ellama # Ollama self-hosted LLMs
+      #tabby # TabbyML
       
       # Misc
       dashboard # dashboard for startup
@@ -127,6 +132,7 @@ in {
     # })));
   home.packages = with pkgs; [
     alejandra
+    copilot-node-server
     emacs-all-the-icons-fonts
     enchant
     hunspellDicts.de-de
