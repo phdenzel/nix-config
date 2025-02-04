@@ -23,6 +23,9 @@
       ".password-store" = {
         checkout = "git clone git@github.com:phdenzel/.password-store.git";
       };
+      zettelkasten = {
+        checkout = "git clone git@github.com:phdenzel/zettelkasten.git";
+      };
       slides = {
         checkout = "git clone git@github.com:phdenzel/slides.git";
       };
@@ -39,25 +42,35 @@
         checkout = "git clone git@github.com:phdenzel/zmk-config.git";
       };
 
-      # papers
+      # documents repos
+      "Documents/PhDCV" = {
+        checkout = "git clone git@github.com:phdenzel/PhDCV.git";
+      };
       "Documents/phd-thesis" = {
         checkout = "git clone git@github.com:phdenzel/phd-thesis.git";
       };
+
+      # papers
       "Documents/papers/galactic-alchemy-1" = {
         checkout = "git clone git@github.com:phdenzel/galactic-alchemy-1.git";
       };
-      # "Documents/papers/" = {
-      #   checkout = "git clone git@github.com:phdenzel/.git";
-      # };
-      # "Documents/papers/" = {
-      #   checkout = "git clone git@github.com:phdenzel/.git";
-      # };
-      # "Documents/papers/" = {
-      #   checkout = "git clone git@github.com:phdenzel/.git";
-      # };
-      # "Documents/papers/" = {
-      #   checkout = "git clone git@github.com:phdenzel/.git";
-      # };
+      "Documents/papers/sds25-ml4gleam" = {
+        checkout = "git clone git@github.com:phdenzel/sds25-ml4gleam.git";
+      };
+      "Documents/papers/saia24-pract-cert" = {
+        checkout = "git clone git@github.com:phdenzel/saia24-pract-cert.git";
+      };
+      "Documents/papers/sds24-cert-ais" = {
+        checkout = "git clone git@github.com:phdenzel/sds24-cert-ais.git";
+      };
+      "Documents/papers/sds24-mlops4tai" = {
+        checkout = "git clone git@github.com:phdenzel/sds24-mlops4tai.git";
+      };
+
+      # posters
+      "Documents/posters/poster-mlops4tai" = {
+        checkout = "git clone git@github.com:phdenzel/poster-mlops4tai.git";
+      };
       
       # local repos
       "local/wallpapers" = {
@@ -99,6 +112,8 @@
       "local/reveal.js" = {
         checkout = "git clone git@github.com:phdenzel/reveal.js.git";
       };
+
+      # archived repos
       "local/archived/julia" = {
         checkout = "git clone git@github.com:phdenzel/julia.git";
       };
