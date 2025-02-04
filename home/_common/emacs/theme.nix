@@ -222,12 +222,14 @@ in {
           description = "Get the COLOR of POLARITY or the current flavor.";
           interactive = "\"SThe color to get: \"";
           body = ''
-            (alist-get color
-                       (symbol-value
-                        (intern-soft
-                         (concat "${cfg.name}-"
-                                 (symbol-name (or polarity ${cfg.name}-polarity))
-                                 "-colors"))))'';
+            (let ((result (alist-get color
+                   (symbol-value (intern-soft
+                     (concat "${cfg.name}-"
+                       (symbol-name (or polarity ${cfg.name}-polarity))
+                                    "-colors"))))))
+              (if (called-interactively-p 'interactive)
+                (message result)
+              result))'';
         };
         "${cfg.name}/set-color" = {
           args = "color value &optional polarity";

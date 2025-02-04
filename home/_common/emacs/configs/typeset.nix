@@ -58,10 +58,11 @@
       mode = [
         ''("\\.pdf\\'" . pdf-view-mode)''
       ];
+      hook = ["(pdf-view-mode . pdf-view-midnight-minor-mode)"];
       init = ''(pdf-loader-install)'';
-      config = ''
-        (setq pdf-view-use-scaling t)
-      '';
+      custom = {
+        pdf-view-use-scaling = true;
+      };
       bindLocal = {
         pdf-view-mode-map = {
           "C-s" = "isearch-forward";

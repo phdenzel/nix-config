@@ -43,6 +43,13 @@
       after = ["treemacs" "all-the-icons"];
       config = ''(treemacs-load-theme "all-the-icons")'';
     };
+    pdf-tools = {
+      config = ''
+        (let ((pdf-fg (phd-ark/get-color 'text))
+              (pdf-bg (phd-ark/get-color 'base)))
+          (setq pdf-view-midnight-colors (cons pdf-fg pdf-bg)))
+      '';
+    };
     phd-ark-theme = {
       enable = true;
       init = ''
