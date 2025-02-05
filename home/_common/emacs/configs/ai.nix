@@ -17,12 +17,12 @@
                 (make-llm-ollama
                 ;; this model should be pulled to use it
                 ;; value should be the same as you print in terminal during pull
-                :chat-model "llama3:8b-instruct-q8_0"
+                :chat-model "llama3.1:8b-instruct-q8_0"
                 :embedding-model "nomic-embed-text"
                 :default-chat-non-standard-params '(("num_ctx" . 8192))))
         (setopt ellama-summarization-provider
                 (make-llm-ollama
-                :chat-model "qwen2.5:3b"
+                :chat-model "llama3.2:3b"
                 :embedding-model "nomic-embed-text"
                 :default-chat-non-standard-params '(("num_ctx" . 32768))))
         (setopt ellama-coding-provider
@@ -34,15 +34,15 @@
   	            '(("zephyr" . (make-llm-ollama
   			                      :chat-model "zephyr:7b-beta-q6_K"
   			                      :embedding-model "zephyr:7b-beta-q6_K"))
-  	              ("mistral" . (make-llm-ollama
-  			                       :chat-model "mistral:7b-instruct-v0.2-q6_K"
-  			                       :embedding-model "mistral:7b-instruct-v0.2-q6_K"))
+                  ("deepseek" . (make-llm-ollama
+  			                      :chat-model "deepseek-r1:7b"
+  			                      :embedding-model "deepseek-r1:7b"))
   	              ("mixtral" . (make-llm-ollama
-  			                       :chat-model "mixtral:8x7b-instruct-v0.1-q3_K_M-4k"
-  			                       :embedding-model "mixtral:8x7b-instruct-v0.1-q3_K_M-4k"))))
+  			                       :chat-model "mixtral:8x7b-instruct-v0.1-q3_K_M"
+  			                       :embedding-model "mixtral:8x7b-instruct-v0.1-q3_K_M"))))
         (setopt ellama-naming-provider
   	            (make-llm-ollama
-  	            :chat-model "llama3:8b-instruct-q8_0"
+  	            :chat-model "llama3.1:8b-instruct-q8_0"
   	            :embedding-model "nomic-embed-text"
   	            :default-chat-non-standard-params '(("stop" . ("\n")))))
         (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
