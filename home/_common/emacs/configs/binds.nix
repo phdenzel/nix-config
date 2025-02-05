@@ -113,6 +113,13 @@
         };
       };
 
+      # Org-mode
+      org.bindLocal = {
+        org-mode-map = {
+          "C-c C-S-l" = "org-toggle-link-display";
+        };
+      };
+
       # Typeset
       jinx.bind = {
         "M-$" = "jinx-mode";

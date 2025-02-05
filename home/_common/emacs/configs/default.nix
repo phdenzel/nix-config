@@ -7,7 +7,7 @@
     ./project.nix
     ./dev.nix
     ./shell.nix
-    # ./org.nix
+    ./org.nix
     ./typeset.nix
     ./ai.nix
     ./hydras.nix
