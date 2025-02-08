@@ -427,7 +427,7 @@ with lib; let
                ${optionalString (hasAttr "interactive" value) "${
               if (isBool value.interactive)
               then "(interactive)"
-              else "(interactive \"${value.interactive}\")"
+              else "(interactive ${value.interactive})"
             }"}
                ${optionalString (hasAttr "body" value) value.body})
           '')
