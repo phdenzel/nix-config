@@ -12,15 +12,15 @@
       init = ''
         (projectile-mode +1)
       '';
-      config = ''
-        ;; (setq projectile-known-projects-file "~/.emacs.d/projectile-bookmarks.eld")
-        (setq projectile-completion-system 'ivy)
-        (setq projectile-indexing-method 'alien)'';
+      custom = {
+        projectile-completion-system = "'ivy";
+        projectile-indexing-method = "'alien";
+      };
     };
     counsel-projectile = {
       enable = true;
       after = ["counsel"];
-      config = ''(counsel-projectile-mode)'';
+      config = "(counsel-projectile-mode)";
     };
     treemacs = {
       enable = true;
@@ -46,5 +46,12 @@
       enable = true;
       after = ["treemacs" "projectile"];
     };
+  };
+
+  home.file = {
+    # Projectile bookmarks
+    ".emacs.d/projectile-bookmarks.eld".text = ''
+      ("~/nix-config/" "~/zettelkasten/" "~/phdenzel.github.io/" "~/slides/" "~/chuchichaestli/" "~/skais/" "~/Documents/papers/galactic-alchemy-1/" "~/Documents/papers/sds25-ml4gleam/" "~/Documents/letters/" "~/Documents/PhDCV/")
+    '';
   };
 }
