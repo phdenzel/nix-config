@@ -317,14 +317,14 @@ in {
         link = {
           fg = "purple";
           ul = {
-            color = "purple";
+            # color = "purple";
             style = "line";
           };
         };
         link-visited = {
           fg = "violet";
           ul = {
-            color = "violet";
+            # color = "violet";
             style = "line";
           };
         };
@@ -884,14 +884,15 @@ in {
         mapPaletteColors = attrs: let
           formattedAttrs =
             mapAttrsToList (
-              name: value: "(${cfg.name}-${name}   \t\t(${cfg.name}/get-color '${name}) (${cfg.name}-quantize-color (${cfg.name}/get-color '${name})))"
+              # name: value: "(${cfg.name}-${name}   \t\t(${cfg.name}/get-color '${name}) (${cfg.name}-quantize-color (${cfg.name}/get-color '${name})))"
+              name: value: "(${cfg.name}-${name}   \t\t(${cfg.name}/get-color '${name}) (${cfg.name}/get-color '${name}))"
             )
             attrs;
         in "'((undef        \"#ff00ff\" \"$ff00ff\")\n${concatStringsSep "\n" formattedAttrs})";
         mapFaces = attrs: let
           formattedAttrs =
             mapAttrsToList (
-              name: value: "(${name}   \t\t${optionalString (hasAttr "bg" value) " :background ,${cfg.name}-${value.bg}"}${optionalString (hasAttr "fg" value) " :foreground ,${cfg.name}-${value.fg}"}${optionalString (hasAttr "from" value) " :inherit ${value.from}"}${optionalString (hasAttr "ul" value) " :underline (:color ,${cfg.name}-${value.ul.color} :style ${value.ul.style})"}${optionalString (hasAttr "bold" value) " :bold ${
+              name: value: "(${name}   \t\t${optionalString (hasAttr "bg" value) " :background ,${cfg.name}-${value.bg}"}${optionalString (hasAttr "fg" value) " :foreground ,${cfg.name}-${value.fg}"}${optionalString (hasAttr "from" value) " :inherit ${value.from}"}${optionalString (hasAttr "ul" value) " :underline (${optionalString (hasAttr "color" value.ul) ":color ,${cfg.name}-${value.ul.color}"} :style ${value.ul.style})"}${optionalString (hasAttr "bold" value) " :bold ${
                 if value.bold
                 then "t"
                 else "nil"
