@@ -22,6 +22,7 @@
     tex = {
       enable = true;
       defer = true;
+      after = ["auctex"];
       custom = {
         TeX-auto-save = true;
         TeX-parse-self = true;
@@ -43,9 +44,15 @@
 		      #'TeX-revert-document-buffer)
       '';
     };
+    latex = {
+      enable = true;
+      defer = true;
+      after = ["tex"];
+    };
     reftex = {
       enable = true;
       defer = true;
+      after = ["auctex" "tex"];
       custom = {
         reftex-toc-split-windows-horizontally = true;
         reftex-toc-split-windows-fraction = 0.2;
@@ -104,6 +111,18 @@
             (rst-mode      . bibtex-completion-format-citation-sphinxcontrib-bibtex)
             (default       . bibtex-completion-format-citation-default))'';
         bibtex-completion-display-formats = "'((t . \"\${=has-pdf=:1}\${=has-note=:1} \${=key=:16} \${=type=:9} \${author:16} \${year:4} \${title:44}\"))";
+      };
+    };
+    ivy-bibtex = {
+      enable = true;
+      after = ["ivy" "bibtex-completion"];
+      init = ''
+        (setq ivy-re-builders-list
+                '((ivy-bibtex . ivy--regex-ignore-order)
+                  (t . ivy--regex-plus)))'';
+      custom = {
+        ivy-bibtex-default-action = "'ivy-bibtex-insert-citation";
+        ivy-bibtex-default-multi-action = "'ivy-bibtex-insert-citation";
       };
     };
   };
