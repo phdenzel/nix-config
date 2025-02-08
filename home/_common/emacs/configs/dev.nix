@@ -18,6 +18,9 @@
         (setq lsp-keymap-prefix "C-c l")
         ;; (setq lsp-use-plists t)
       '';
+      custom = {
+        lsp-auto-guess-root = true;  # avoid projectile bookmark prompt
+      };
     };
     lsp-completion = {
       # https://github.com/MasseR/nix-conf-emacs/commit/f4287c2b34128b0dde61f58ada4e474e1ed096dc
@@ -191,13 +194,13 @@
       mode = [
         ''"\\.html\\'"''
       ];
-      config = ''
-        (setq web-mode-enable-auto-closing t
-              web-mode-enable-auto-quoting t
-              web-mode-attr-indent-offset 4
-              web-mode-code-indent-offset 2
-              web-mode-markup-indent-offset 2)
-      '';
+      custom = {
+        web-mode-enable-auto-closing = true;
+        web-mode-enable-auto-quoting = true;
+        web-mode-attr-indent-offset = 4;
+        web-mode-code-indent-offset = 2;
+        web-mode-markup-indent-offset = 2;
+      };
     };
     js2-mode = {
       enable = true;
@@ -237,12 +240,12 @@
     flycheck = {
       enable = true;
       commands = ["global-flycheck-mode"];
-      init = ''
-        (setq-default flycheck-flake8-maximum-line-length 99)
-        (setq-default flycheck-disabled-checkers '(python-pylint))'';
-      config = ''
-        (setq flycheck-check-syntax-automatically '(mode-enabled save))
-        (global-flycheck-mode t)'';
+      custom = {
+        flycheck-check-syntax-automatically = "'(mode-enabled save)";
+        flycheck-flake8-maximum-line-length = 99;
+        flycheck-disabled-checkers = "'(python-pylint)";
+      };
+      config = "(global-flycheck-mode t)";
     };
   };
 }

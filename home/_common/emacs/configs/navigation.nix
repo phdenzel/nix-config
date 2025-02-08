@@ -14,10 +14,10 @@
       enable = true;
       diminish = ["ivy-mode"];
       commands = ["ivy-mode"];
-      config = ''
-        (setq ivy-use-virtual-buffers t)
-        (ivy-mode 1)
-      '';
+      custom = {
+        ivy-use-virtual-buffers = true;
+      };
+      config = ''(ivy-mode 1)'';
     };
     ace-window.enable = true;
   };

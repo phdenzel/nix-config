@@ -8,15 +8,15 @@
     drag-stuff.enable = true;
     company = {
       enable = true;
-      config = ''
-        (setq company-idle-delay                 0.3
-              company-minimum-prefix-length      2
-              company-tooltip-align-annotations  t
-              company-tooltip-annotation-padding 1
-              company-tooltip-margin             1
-              company-detect-icons-margin        'company-dot-icons-margin)
-        (global-company-mode t)
-      '';
+      custom = {
+        company-idle-delay = 0.3;
+        company-minimum-prefix-length = 2;
+        company-tooltip-align-annotations = true;
+        company-tooltip-annotation-padding = 1;
+        company-tooltip-margin = 1;
+        company-detect-icons-margin-function = "'company-dot-icons-margin";
+      };
+      config = "(global-company-mode t)";
     };
     electric = {
       enable = true;
@@ -35,9 +35,9 @@
         "(LaTeX-mode . yas-minor-mode)"
         "(python-mode . yas-minor-mode)"
       ];
-      config = ''
-        (setq yas-snippet-dirs '((file-name-concat user-emacs-directory "snippets")))
-      '';
+      custom = {
+        yas-snippet-dirs = "'((file-name-concat user-emacs-directory \"snippets\"))";
+      };
     };
   };
 
