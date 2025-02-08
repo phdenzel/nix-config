@@ -114,9 +114,41 @@
       };
 
       # Org-mode
-      org.bindLocal = {
+      org-ref.bindLocal = {
         org-mode-map = {
           "C-c C-S-l" = "org-toggle-link-display";
+          "C-c b" = "org-ref-cite-insert-ivy";
+          "C-c r" = "org-ref-insert-link-hydra/body";
+          "C-c C-b" = "org-ref-citation-hydra/body";
+          "C-c M-b" = "org-ref-bibtex-hydra/body";
+        };
+      };
+      org-roam.bind = {
+        "C-c n f" = "org-roam-node-find";
+        "C-c n i" = "org-roam-node-insert";
+        "C-c n c" = "org-roam-capture";
+        "C-c n g" = "org-roam-graph";
+        "C-c n l" = "org-roam-buffer-toggle";
+        "C-c n a" = "org-roam-alias-add";
+        "C-c n r" = "org-roam-ref-add";
+        "C-c n b" = "orb-insert-link";
+        "C-c n u" = "org-roam-ui-mode";
+      };
+      toc-org.bindLocal = {
+        org-mode-map = {
+          "C-c t" = "(lambda () (interactive) (org-set-tags \"TOC\"))";
+          "C-c M-t" = "toc-org-insert-toc";
+        };
+        markdown-mode-map = {
+          "C-c C-o" = "toc-org-markdown-follow-thing-at-point";
+        };
+      };
+      org-mime.bindLocal = {
+        org-mode-map = {
+          "C-c M-o" = "org-mime-org-buffer-htmlize";
+        };
+        message-mode-map = {
+          "C-c M-o" = "org-mime-htmlize";
         };
       };
 
@@ -126,10 +158,25 @@
         "C-$" = "jinx-correct";
         "C-M-$" = "jinx-languages";
       };
+      latex.bindLocal = {
+        LaTeX-mode-map = {
+          "C-c b" = "ivy-bibtex-with-local-bibliography";
+          "C-c r" = "org-ref-insert-link-hydra/body";
+          "C-c C-b" = "org-ref-citation-hydra/body";
+          "C-c M-b" = "org-ref-bibtex-hydra/body";
+        };
+      };
+      bibtex.bindLocal = {
+        bibtex-mode-map = {
+          "C-c b" = "ivy-bibtex-with-local-bibliography";
+          "C-c r" = "org-ref-insert-link-hydra/body";
+          "C-c M-b" = "org-ref-bibtex-hydra/body";
+        };
+      };
 
       # AI
       copilot.bindLocal = {
-        copilot-mode = {
+        copilot-mode-map = {
           "<backtab>" = "copilot-accept-completion-by-word";
           "C-<tab>" = "copilot-accept-completion";
           # "M-C-<next>" = "copilot-next-completion";
