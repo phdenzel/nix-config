@@ -64,23 +64,20 @@
       # Org-mode packages
       org # org-mode
       org-bullets # bullet style for org-mode headings
+      org-ref # citations and references for org-mode
+      org-roam # knowledge management system
+      org-roam-bibtex # connect org-roam and ivy-bibtex
+      org-roam-ui # UI for org-roam
+      org-re-reveal # org export to reveal.js
+      htmlize # buffer style to html
+      toc-org # auto-refreshing TOC
+      org-mime # html in emails
 
       # Typesetting packages
       jinx # spell checking using enchant API
       auctex # latex support
       pdf-tools # pdf functionality
-
-
-      org-ref # citations and references for org-mode
       ivy-bibtex # bibtex bibliography browsing
-      org-roam # knowledge management system
-      org-roam-ui # UI for org-roam
-      org-roam-bibtex # connect org-roam and ivy-bibtex
-      org-re-reveal # org export to reveal.js
-      htmlize # buffer style to html
-      toc-org # auto-refreshing TOC
-      ox-gfm # org export to GitHub Flavored Markdown
-      ox-rst # org export to reStructuredText
 
       # AI
       editorconfig # needed for copilot
@@ -93,7 +90,6 @@
       dashboard # dashboard for startup
       #exec-path-from-shell # proper PATH from shell
       mu4e # emails
-      org-mime # html in emails
       pass # zx2c4 pass
       password-store # for pass
       password-store-otp # for pass
