@@ -13,6 +13,7 @@
       "C-M-S-l" = "enlarge-window-horizontally";
       "C-M-S-j" = "enlarge-window";
       "C-M-S-k" = "shrink-window";
+      "C-c e" = "phd/hydra-llm/body";
     };
     usePackage = {
       # Navigation
@@ -184,7 +185,7 @@
           # "M-C-<right>" = "copilot-accept-completion-by-word";
           # "M-C-<down>" . copilot-accept-completion-by-name)
         };
-      };
+      };      
     };
   };
 }

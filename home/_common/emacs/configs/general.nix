@@ -5,7 +5,13 @@
     recommendedGcSettings = true;
     earlyInit = ''
       ;; Settings for startup performance
+      (set-language-environment "UTF-8")
       (prefer-coding-system 'utf-8)
+      (set-default-coding-systems 'utf-8)
+      (set-terminal-coding-system 'utf-8)
+      (set-keyboard-coding-system 'utf-8)
+      (set-selection-coding-system 'utf-8)
+      (setq locale-coding-system 'utf-8)
       ;; for better performance (in LSP) 4K -> 1M
       (setq read-process-output-max (* 1024 1024))
 
@@ -46,10 +52,11 @@
       (setq Buffer-menu-use-frame-buffer-list nil
             uniquify-buffer-name-style 'forward)
 
-      ;; Cursor
+      ;; Cursor & Scrolling
       (setq line-move-visual nil
             scroll-step 1
-            scroll-conservatively 5)
+            scroll-conservatively 5
+            pixel-scroll-precision-mode t)
 
       ;; Interface
       (global-tab-line-mode t)
@@ -76,6 +83,11 @@
       ;; Mouse
       (xterm-mouse-mode t)
       (mouse-wheel-mode t)
+      (setq mouse-wheel-progressive-speed nil
+            mouse-wheel-scroll-amount '(1
+                                        ((shift) . 3) ((meta) . 6)
+                                        ((control) . global-text-scale)
+                                        ((control meta) . text-scale)))
 
       ;; Backup configuration
       (defvar phd/backup-directory
