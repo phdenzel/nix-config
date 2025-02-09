@@ -38,6 +38,11 @@
       enable = true;
       hook = ["(dired-mode . all-the-icons-dired-mode)"];
     };
+    all-the-icons-nerd-fonts = {
+      enable = true;
+      after = ["all-the-icons"];
+      config = "(all-the-icons-nerd-fonts-prefer)";
+    };
     treemacs-all-the-icons = {
       enable = true;
       after = ["treemacs" "all-the-icons"];
@@ -55,12 +60,12 @@
       init = ''
         (load-theme 'phd-ark :no-confirm)'';
       config = ''
-        ;; Dark is default
+        ;; Dark is already default
         ;; (setq phd-ark-polarity 'dark)
         ;; (phd-ark/reload)
         ;; Fonts
         (defvar phd/mono-font "JetBrainsMono Nerd Font")
-        (defvar phd/pitched-font "Open Sans")
+        (defvar phd/pitched-font "Noto Sans")
         (when (member phd/mono-font (font-family-list))
           (set-face-attribute 'default nil :font (concat phd/mono-font "-12"))
           (set-face-attribute 'fixed-pitch nil :family (concat phd/mono-font "-12")))

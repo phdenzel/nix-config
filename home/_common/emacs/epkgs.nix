@@ -103,6 +103,7 @@
       all-the-icons-ibuffer # icon set for ibuffer
       all-the-icons-ivy # icon set for ivy
       all-the-icons-dired # icons set for dired
+      all-the-icons-nerd-fonts # nerd-font bridge
       treemacs-all-the-icons # icon plugin for treemacs
     ];
 in {
