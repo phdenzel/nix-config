@@ -471,24 +471,24 @@ in {
         mode-line-buffer-id = {nil = true;};
         header-line = {from = "mode-line";};
 
-        # phd-modeline
-        phd-modeline-buffer-name-face = {fg = "teal";};
-        phd-modeline-buffer-modified-face = {fg = "blue";};
-        phd-modeline-buffer-read-only-face = {fg = "pink";};
-        phd-modeline-buffer-line-face = {fg = "subtext1";};
-        phd-modeline-buffer-column-face = {fg = "subtext1";};
-        phd-modeline-buffer-percentage-face = {fg = "subtext1";};
-        phd-modeline-mode-face = {fg = "blue";};
-        phd-modeline-flycheck-success-face = {fg = "grass";};
-        phd-modeline-flycheck-warning-face = {fg = "orange";};
-        phd-modeline-flycheck-error-face = {fg = "ruby";};
-        phd-modeline-vc-icon-face = {fg = "pink";};
-        phd-modeline-vc-branch-face = {fg = "sand";};
-        phd-modeline-vc-status-face = {fg = "purple";};
-        phd-modeline-mail-icon-face = {fg = "grass";};
-        phd-modeline-mail-status-face = {fg = "text";};
-        phd-modeline-inactive-face = {from = "mode-line-inactive";};
-        phd-modeline-bar-face = {
+        # phd-ark-modeline
+        phd-ark-modeline-buffer-name-face = {fg = "teal";};
+        phd-ark-modeline-buffer-modified-face = {fg = "blue";};
+        phd-ark-modeline-buffer-read-only-face = {fg = "pink";};
+        phd-ark-modeline-buffer-line-face = {fg = "subtext1";};
+        phd-ark-modeline-buffer-column-face = {fg = "subtext1";};
+        phd-ark-modeline-buffer-percentage-face = {fg = "subtext1";};
+        phd-ark-modeline-mode-face = {fg = "blue";};
+        phd-ark-modeline-flycheck-success-face = {fg = "grass";};
+        phd-ark-modeline-flycheck-warning-face = {fg = "orange";};
+        phd-ark-modeline-flycheck-error-face = {fg = "ruby";};
+        phd-ark-modeline-vc-icon-face = {fg = "pink";};
+        phd-ark-modeline-vc-branch-face = {fg = "sand";};
+        phd-ark-modeline-vc-status-face = {fg = "purple";};
+        phd-ark-modeline-mail-icon-face = {fg = "grass";};
+        phd-ark-modeline-mail-status-face = {fg = "text";};
+        phd-ark-modeline-inactive-face = {from = "mode-line-inactive";};
+        phd-ark-modeline-bar-face = {
           fg = "teal";
           bg = "surface0";
         };
@@ -900,7 +900,7 @@ in {
                 if value.inverse-video
                 then "t"
                 else "nil"
-              }"}${optionalString (hasAttr "style" value) " :style ${value.style}"})"
+              }"}${optionalString (hasAttr "style" value) " :style ${value.style}"}${optionalString (hasAttr "extraConfig" value) " ${value.extraConfig}"})"
             )
             attrs;
         in "'(${concatStringsSep "\n" formattedAttrs})";

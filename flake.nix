@@ -52,6 +52,10 @@
       url = "git+ssh://git@github.com/phdenzel/wallpapers";
       flake = false;
     };
+    phd-ark-modeline = {
+      url = "git+ssh://git@github.com/phdenzel/phd-ark-modeline";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -63,6 +67,7 @@
     sops-nix,
     stylix,
     phd-wallpapers,
+    phd-ark-modeline,
     ...
   } @ inputs: let
     inherit (self) outputs;

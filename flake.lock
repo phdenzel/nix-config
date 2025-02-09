@@ -287,6 +287,22 @@
         "type": "github"
       }
     },
+    "phd-ark-modeline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739142610,
+        "narHash": "sha256-b6W5LXDHNcoW+LYNW0eTCrETJbDJ781hRxBKAyLrR2Y=",
+        "ref": "refs/heads/master",
+        "rev": "45c6d13be286e066e4cf9f0b6031c7f65ca636e9",
+        "revCount": 11,
+        "type": "git",
+        "url": "ssh://git@github.com/phdenzel/phd-ark-modeline"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/phdenzel/phd-ark-modeline"
+      }
+    },
     "phd-wallpapers": {
       "flake": false,
       "locked": {
@@ -310,6 +326,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
+        "phd-ark-modeline": "phd-ark-modeline",
         "phd-wallpapers": "phd-wallpapers",
         "sops-nix": "sops-nix",
         "stylix": "stylix",

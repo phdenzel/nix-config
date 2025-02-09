@@ -3,6 +3,11 @@
   config,
   ...
 }: {
+  # pinned repos as flake inputs
+  home.file.phd-ark-modeline = {
+    source = "${inputs.phd-ark-modeline}/phd-ark-modeline.el";
+    target = ".emacs.d/phd-ark-modeline.el";
+  };
   # another (pinned) read-only wallpaper clone in nix-store registry
   home.file.wallpapers = {
     source = inputs.phd-wallpapers;
@@ -82,8 +87,8 @@
       "local/phd-dashboard" = {
         checkout = "git clone git@github.com:phdenzel/phd-dashboard.git";
       };
-      "local/phd-modeline" = {
-        checkout = "git clone git@github.com:phdenzel/phd-modeline.git";
+      "local/phd-ark-modeline" = {
+        checkout = "git clone git@github.com:phdenzel/phd-ark-modeline.git";
       };
       "local/phd-mu4e-setup" = {
         checkout = "git clone git@github.com:phdenzel/phd-mu4e-setup.git";
