@@ -73,5 +73,38 @@
           (set-face-attribute 'variable-pitch nil :family (concat phd/pitched-font "-12")))
       '';
     };
+    phd-ark-modeline = {
+      enable = true;
+      after = ["all-the-icons-nerd-fonts" "flycheck"];
+      commands = ["phd-ark-modeline-mode"];
+      hook = ["(after-init . phd-ark-modeline-mode)"];
+      config = ''
+        (phd-ark-modeline-column-mode t)
+        (setq phd-ark-modeline-format
+          (list
+            '(:eval (phd-ark-modeline-padding))
+            '(:eval (phd-ark-modeline-bar))
+            '(:eval (phd-ark-modeline-whitespace))
+            '(:eval (phd-ark-modeline-buffer-lock-icon))
+            '(:eval (phd-ark-modeline-buffer-name))
+            '(:eval (phd-ark-modeline-buffer-modified-icon))
+            '(:eval (phd-ark-modeline-whitespace))
+            '(:eval (phd-ark-modeline-buffer-position))
+            '(:eval (phd-ark-modeline-media-info))
+            '(:eval (phd-ark-modeline-whitespace))
+            '(:eval (phd-ark-modeline-flycheck-status))
+            '(:eval (phd-ark-modeline-whitespace 4))
+            '(:eval (phd-ark-modeline-vc-icon 0 0 1))
+            '(:eval (phd-ark-modeline-vc-status))
+            '(:eval (phd-ark-modeline-whitespace 4))
+            '(:eval (phd-ark-modeline-space-between 4))
+            '(:eval (phd-ark-modeline-mode-icon))
+            '(:eval (phd-ark-modeline-whitespace))
+            '(:eval (phd-ark-modeline-major-mode))
+            '(:eval (phd-ark-modeline-whitespace))
+            '(:eval (phd-ark-modeline-padding))
+          ))
+      '';
+    };
   };
 }

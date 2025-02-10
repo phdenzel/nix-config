@@ -3,12 +3,21 @@
   config,
   ...
 }: {
-  # pinned repos as flake inputs
+  # emacs package as (pinned) read-only git clone in nix-store registry
+  programs.emacs.extraPackages = epkgs: [(epkgs.trivialBuild {
+    pname = "phd-ark-modeline";
+    src = inputs.phd-ark-modeline;
+    packageRequires = with epkgs; [all-the-icons-nerd-fonts flycheck];
+    version = "0.1.0";
+    preferLocalBuild = true;
+    allowSubstitutes = false;
+  })];
   home.file.phd-ark-modeline = {
     source = "${inputs.phd-ark-modeline}/phd-ark-modeline.el";
     target = ".emacs.d/phd-ark-modeline.el";
   };
-  # another (pinned) read-only wallpaper clone in nix-store registry
+
+  # wallpapers (pinned) read-only git clone in nix-store registry
   home.file.wallpapers = {
     source = inputs.phd-wallpapers;
     target = config.xdg.userDirs.pictures + "/wallpapers";
