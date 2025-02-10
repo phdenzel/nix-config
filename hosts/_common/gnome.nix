@@ -9,5 +9,7 @@
   };
   environment.gnome.excludePackages = with pkgs; [gnome-tour];
 
+  xdg.portal.enable = true;
+
   programs.dconf.enable = true;
 }

@@ -290,11 +290,11 @@
     "phd-ark-modeline": {
       "flake": false,
       "locked": {
-        "lastModified": 1739142610,
-        "narHash": "sha256-b6W5LXDHNcoW+LYNW0eTCrETJbDJ781hRxBKAyLrR2Y=",
+        "lastModified": 1739170732,
+        "narHash": "sha256-h/HDjbXmYcroYZ/WiuMLMqIrrd6/abMibmKQdkXoA5M=",
         "ref": "refs/heads/master",
-        "rev": "45c6d13be286e066e4cf9f0b6031c7f65ca636e9",
-        "revCount": 11,
+        "rev": "618b20232bd11492fb4d5705a79aa07472310f3e",
+        "revCount": 12,
         "type": "git",
         "url": "ssh://git@github.com/phdenzel/phd-ark-modeline"
       },
@@ -306,11 +306,11 @@
     "phd-wallpapers": {
       "flake": false,
       "locked": {
-        "lastModified": 1736639266,
-        "narHash": "sha256-5N5wBroo5O1nPXhImXCz9AA2WGkzJvWiyFBU6Dqs7M8=",
+        "lastModified": 1737723007,
+        "narHash": "sha256-N70QMSwO+onkJjkZP31hknKoxqN1/e2W1bzZ4ViqGM8=",
         "ref": "refs/heads/main",
-        "rev": "6b9539f4e0e9239fa79386d05b57be587cd87c50",
-        "revCount": 2,
+        "rev": "61b3432be852521028c20be2f046c198e0f45bc3",
+        "revCount": 3,
         "type": "git",
         "url": "ssh://git@github.com/phdenzel/wallpapers"
       },
