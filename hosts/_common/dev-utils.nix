@@ -8,7 +8,7 @@ with lib; {
     bacon
     binutils
     bun
-    cargo-asm
+    cargo-show-asm
     cargo-license
     cargo-outdated
     cmake
