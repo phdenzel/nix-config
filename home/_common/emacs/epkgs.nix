@@ -35,6 +35,9 @@
       treemacs-magit # magit plugin for treemacs
       treemacs-projectile # projectile plugin for treemacs
 
+      # Cytpography
+      pass # zx2c4 pass
+
       # Dev packages
       lsp-mode # Language Server Protocol support
       lsp-ui # Language Server Protocol UI support
@@ -60,6 +63,7 @@
 
       # Shell packages
       vterm # terminal emulator
+      #exec-path-from-shell # proper PATH from shell
 
       # Org-mode packages
       org # org-mode
@@ -85,15 +89,9 @@
       copilot # GitHub copilot
       ellama # Ollama self-hosted LLMs
       #tabby # TabbyML
-      
-      # Misc
-      dashboard # dashboard for startup
-      #exec-path-from-shell # proper PATH from shell
+
+      # Mail
       mu4e # emails
-      pass # zx2c4 pass
-      password-store # for pass
-      password-store-otp # for pass
-      auth-source-xoauth2 # OAuth2 authentication
 
       # Style packages
       #highlight-parentheses # rather use rainbow-delimiters
@@ -105,6 +103,7 @@
       all-the-icons-dired # icons set for dired
       all-the-icons-nerd-fonts # nerd-font bridge
       treemacs-all-the-icons # icon plugin for treemacs
+      dashboard # dashboard for startup
     ];
 in {
   programs.emacs.extraPackages = packages;
