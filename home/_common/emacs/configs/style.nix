@@ -76,6 +76,10 @@
           (set-face-attribute 'variable-pitch nil :family (concat phd/pitched-font "-12")))
       '';
     };
+    phd-ark-tabline = {
+      enable = true;
+      config = "(phd-ark-tabline-mode)";
+    };
     phd-ark-modeline = {
       enable = true;
       after = ["phd-ark-theme"];
