@@ -18,6 +18,4 @@
     open-webui.package = pkgs.stable.open-webui;
     open-webui.port = 8080;
   };
-
-  
 }

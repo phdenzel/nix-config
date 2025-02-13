@@ -185,7 +185,7 @@
           # "M-C-<right>" = "copilot-accept-completion-by-word";
           # "M-C-<down>" . copilot-accept-completion-by-name)
         };
-      };      
+      };
     };
   };
 }

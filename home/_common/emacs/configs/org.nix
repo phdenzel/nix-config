@@ -47,10 +47,10 @@
       enable = true;
       init = ''
         (setq org-ref-insert-link-function 'org-ref-insert-link-hydra/body
-	            org-ref-insert-cite-function 'org-ref-cite-insert-ivy
-	            org-ref-insert-label-function 'org-ref-insert-label-link
-	            org-ref-insert-ref-function 'org-ref-insert-ref-link
-	            org-ref-cite-onclick-function (lambda (_) (org-ref-citation-hydra/body)))
+             org-ref-insert-cite-function 'org-ref-cite-insert-ivy
+             org-ref-insert-label-function 'org-ref-insert-label-link
+             org-ref-insert-ref-function 'org-ref-insert-ref-link
+             org-ref-cite-onclick-function (lambda (_) (org-ref-citation-hydra/body)))
         (defhydra+ org-ref-insert-link-hydra (:color red :hint nil)
           "Add arxiv entry from DOI to `org-ref-insert-link-hydra'."
           ("ba" phd/bibtex-entry-from-arxiv-doi "Add bibtex entry from arXiv DOI" :column "Bibtex"))'';

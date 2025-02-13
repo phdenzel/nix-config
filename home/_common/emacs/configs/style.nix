@@ -75,10 +75,10 @@
         in ''
           `(
             ((,(all-the-icons-nerd-oct "mark-github" :height 1.2 :v-adjust 0.0) nil "Homepage" (lambda (&rest _) (browse-url "${gh-url}")) button)
-	           (,(all-the-icons-nerd-fa "refresh" :height 1.2 :v-adjust 0.0) nil "Reload Emacs" (lambda (&rest _) (load-file "${init-el}")) font-lock-variable-name-face)
+            (,(all-the-icons-nerd-fa "refresh" :height 1.2 :v-adjust 0.0) nil "Reload Emacs" (lambda (&rest _) (load-file "${init-el}")) font-lock-variable-name-face)
              (,(all-the-icons-nerd-md "help-circle-outline" :height 1.2 :v-adjust 0.0) nil "Show Help" (lambda (&rest _) (help-for-help)) minibuffer-prompt))
             ((,(all-the-icons-nerd-fa "linkedin" :height 1.2 :v-adjust 0.0) nil "Linkedin" (lambda (&rest _) (browse-url "${li-url}")) button)
-	           (,(all-the-icons-nerd-md "security" :height 1.2 :v-adjust 0.0) nil "Pass" (lambda (&rest _) (pass)) font-lock-keyword-face))
+            (,(all-the-icons-nerd-md "security" :height 1.2 :v-adjust 0.0) nil "Pass" (lambda (&rest _) (pass)) font-lock-keyword-face))
           )
         '';
         dashboard-footer-messages = "'(\"Deus Ex Machina!\")";

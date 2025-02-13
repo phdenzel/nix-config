@@ -17,7 +17,7 @@
         "(LaTeX-mode . prettify-symbols-mode)"
         "(LaTeX-mode . reftex-mode)"
         "(LaTeX-mode . outline-minor-mode)"
-      ];  
+      ];
     };
     tex = {
       enable = true;
@@ -40,8 +40,7 @@
           '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
             :help "Run latexmk on file"))
         ;; Reload after compile
-        (add-hook 'TeX-after-compilation-finished-functions
-		      #'TeX-revert-document-buffer)
+        (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
       '';
     };
     latex = {
@@ -100,8 +99,7 @@
         bibtex-completion-pdf-field = "\"file\"";
         bibtex-completion-notes-path = ''"~/zettelkasten/ref/"'';
         bibtex-completion-notes-symbol = "\"✎\"";
-        bibtex-completion-notes-template-multiple-files = 
-          "\"* $\{author-or-editor-abbrev} ($\{year}) - $\{title}\\n\\nReference: [[cite:&$\{=key=}]]\\n\"";
+        bibtex-completion-notes-template-multiple-files = "\"* $\{author-or-editor-abbrev} ($\{year}) - $\{title}\\n\\nReference: [[cite:&$\{=key=}]]\\n\"";
         bibtex-completion-format-citation-functions = ''
           '((org-mode . bibtex-completion-format-citation-org-cite)
             (latex-mode . bibtex-completion-format-citation-cite)

@@ -26,17 +26,17 @@
       enable = true;
       # defer = true;
       config = ''
-      (progn
-        (setq treemacs-position              'left
-              treemacs-width                 22
-              treemacs-indentation           2
-              treemacs-text-scale            -1
-              treemacs-show-hidden-files     t
-              treemacs-is-never-other-window t
-              treemacs-no-png-images         nil)
-        ;; (treemacs-resize-icons 22)
-        (treemacs-follow-mode t)
-      )'';
+        (progn
+          (setq treemacs-position              'left
+                treemacs-width                 22
+                treemacs-indentation           2
+                treemacs-text-scale            -1
+                treemacs-show-hidden-files     t
+                treemacs-is-never-other-window t
+                treemacs-no-png-images         nil)
+        q  ;; (treemacs-resize-icons 22)
+          (treemacs-follow-mode t)
+        )'';
     };
     treemacs-magit = {
       enable = true;

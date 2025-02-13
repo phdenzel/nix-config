@@ -102,7 +102,7 @@
       "Documents/posters/poster-mlops4tai" = {
         checkout = "git clone git@github.com:phdenzel/poster-mlops4tai.git";
       };
-      
+
       # local repos
       "local/wallpapers" = {
         checkout = "git clone git@github.com:phdenzel/wallpapers.git";
@@ -160,7 +160,6 @@
       "local/archived/fibonacci-flower" = {
         checkout = "git clone git@github.com:phdenzel/fibonacci-flower.git";
       };
-
     };
   };
 }

@@ -51,7 +51,7 @@
         zhUri = "zhaw.ch";
         zhSri = "office365.com";
         allIBs = "maildir:/Gmail/Inbox OR maildir:/Hispeed/INBOX OR maildir:/iCloud/INBOX OR maildir:/Outlook/Inbox OR maildir:/ZHAW/Inbox";
-        in ''
+      in ''
         (mu4e-bookmark-define "${allIBs}" "All Inboxes" ?i)
         (setq mu4e-contexts
           (list

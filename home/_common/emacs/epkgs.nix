@@ -108,25 +108,25 @@
     ];
 in {
   programs.emacs.extraPackages = packages;
-    # epkgs:
-    #   (packages (epkgs.overrideScope (ff: pp: {
-    #     lsp-mode = (
-    #       pp.lsp-mode.overrideAttrs (f: p: {
-    #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
-    #       }));
-    #     lsp-ui = (
-    #       pp.lsp-mode.overrideAttrs (f: p: {
-    #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
-    #       }));
-    #     lsp-treemacs = (
-    #       pp.lsp-mode.overrideAttrs (f: p: {
-    #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
-    #       }));
-    #     dap-mode = (
-    #       pp.lsp-mode.overrideAttrs (f: p: {
-    #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
-    #       }));
-    # })));
+  # epkgs:
+  #   (packages (epkgs.overrideScope (ff: pp: {
+  #     lsp-mode = (
+  #       pp.lsp-mode.overrideAttrs (f: p: {
+  #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
+  #       }));
+  #     lsp-ui = (
+  #       pp.lsp-mode.overrideAttrs (f: p: {
+  #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
+  #       }));
+  #     lsp-treemacs = (
+  #       pp.lsp-mode.overrideAttrs (f: p: {
+  #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
+  #       }));
+  #     dap-mode = (
+  #       pp.lsp-mode.overrideAttrs (f: p: {
+  #         buildPhase = ''export LSP_USE_PLISTS=true''+ p.buildPhase;
+  #       }));
+  # })));
   home.packages = with pkgs; [
     alejandra
     copilot-node-server

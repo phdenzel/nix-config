@@ -19,7 +19,7 @@
         ;; (setq lsp-use-plists t)
       '';
       custom = {
-        lsp-auto-guess-root = true;  # avoid projectile bookmark prompt
+        lsp-auto-guess-root = true; # avoid projectile bookmark prompt
       };
     };
     lsp-completion = {

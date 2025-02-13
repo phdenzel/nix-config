@@ -259,11 +259,12 @@ with lib; let
         mkHydrasHelper = let
           mapHydraBinds = hb:
             concatStringsSep "\n" (mapAttrsToList (n: v: "(\"${n}\" ${v})") hb);
-        in mapAttrsToList (n: v: ''
-          (defhydra ${n}
-            (:color ${v.color}${optionalString (hasAttr "pre" v) " :pre ${v.pre}"}${optionalString (hasAttr "post" v) " :post ${v.post}"}${optionalString (hasAttr "hint" v) " :hint ${v.hint}"})
-            ${optionalString (hasAttr "description" v) "\"${v.description}\""}
-            ${optionalString (hasAttr "binds" v) (mapHydraBinds v.binds)})
+        in
+          mapAttrsToList (n: v: ''
+            (defhydra ${n}
+              (:color ${v.color}${optionalString (hasAttr "pre" v) " :pre ${v.pre}"}${optionalString (hasAttr "post" v) " :post ${v.post}"}${optionalString (hasAttr "hint" v) " :hint ${v.hint}"})
+              ${optionalString (hasAttr "description" v) "\"${v.description}\""}
+              ${optionalString (hasAttr "binds" v) (mapHydraBinds v.binds)})
           '');
         mkHydras = hydra:
           optionals (hydra != {}) ([":init"] ++ mkHydrasHelper hydra);
