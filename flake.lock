@@ -290,11 +290,11 @@
     "phd-ark-modeline": {
       "flake": false,
       "locked": {
-        "lastModified": 1739170732,
-        "narHash": "sha256-h/HDjbXmYcroYZ/WiuMLMqIrrd6/abMibmKQdkXoA5M=",
+        "lastModified": 1739399258,
+        "narHash": "sha256-GNPUKRMnUQVKNYoPQnMBAz/E6UX71+BgYzIsnTJGr6E=",
         "ref": "refs/heads/master",
-        "rev": "618b20232bd11492fb4d5705a79aa07472310f3e",
-        "revCount": 12,
+        "rev": "90d0cd391e8222887108df2e893513a28a5e253b",
+        "revCount": 13,
         "type": "git",
         "url": "ssh://git@github.com/phdenzel/phd-ark-modeline"
       },

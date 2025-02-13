@@ -55,6 +55,9 @@
           (setq pdf-view-midnight-colors (cons pdf-fg pdf-bg)))
       '';
     };
+    # dashboard = {
+    #
+    # };
     phd-ark-theme = {
       enable = true;
       init = ''
@@ -75,15 +78,12 @@
     };
     phd-ark-modeline = {
       enable = true;
-      after = ["all-the-icons-nerd-fonts" "flycheck"];
-      commands = ["phd-ark-modeline-mode"];
-      hook = ["(after-init . phd-ark-modeline-mode)"];
-      config = ''
-        (phd-ark-modeline-column-mode t)
-        (setq phd-ark-modeline-format
+      after = ["phd-ark-theme"];
+      custom = {
+        phd-ark-modeline-format = ''
           (list
             '(:eval (phd-ark-modeline-padding))
-            '(:eval (phd-ark-modeline-bar))
+            '(:eval (phd-ark-modeline-marker ""))
             '(:eval (phd-ark-modeline-whitespace))
             '(:eval (phd-ark-modeline-buffer-lock-icon))
             '(:eval (phd-ark-modeline-buffer-name))
@@ -102,8 +102,12 @@
             '(:eval (phd-ark-modeline-whitespace))
             '(:eval (phd-ark-modeline-major-mode))
             '(:eval (phd-ark-modeline-whitespace))
-            '(:eval (phd-ark-modeline-padding))
-          ))
+            '(:eval (phd-ark-modeline-padding)))
+        '';
+      };
+      config = ''
+        (phd-ark-modeline-column-mode t)
+        (phd-ark-modeline-mode t)
       '';
     };
   };
