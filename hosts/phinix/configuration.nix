@@ -87,6 +87,7 @@ in {
   environment.systemPackages = with pkgs; [
     filezilla
     gimp
+    imagemagick
     inkscape
     lact
     imv
