@@ -290,17 +290,33 @@
     "phd-ark-modeline": {
       "flake": false,
       "locked": {
-        "lastModified": 1739399258,
-        "narHash": "sha256-GNPUKRMnUQVKNYoPQnMBAz/E6UX71+BgYzIsnTJGr6E=",
+        "lastModified": 1739444324,
+        "narHash": "sha256-rBNYzGNw35Tahda4lmzY2wlY+aCVkisZO3Lxswvv70c=",
         "ref": "refs/heads/master",
-        "rev": "90d0cd391e8222887108df2e893513a28a5e253b",
-        "revCount": 13,
+        "rev": "5a1718385aa38de7d44a5de8ae482e65a403c829",
+        "revCount": 14,
         "type": "git",
         "url": "ssh://git@github.com/phdenzel/phd-ark-modeline"
       },
       "original": {
         "type": "git",
         "url": "ssh://git@github.com/phdenzel/phd-ark-modeline"
+      }
+    },
+    "phd-ark-tabline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739444497,
+        "narHash": "sha256-1e6p1rLG3ciqGLMo2uR9nHjJn6CRk/QdSvH8WAHvUdA=",
+        "ref": "refs/heads/main",
+        "rev": "6d2b51cbb723e2054fb4aa675ed5c81aa770dabb",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@github.com/phdenzel/phd-ark-tabline"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/phdenzel/phd-ark-tabline"
       }
     },
     "phd-wallpapers": {
@@ -327,6 +343,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "phd-ark-modeline": "phd-ark-modeline",
+        "phd-ark-tabline": "phd-ark-tabline",
         "phd-wallpapers": "phd-wallpapers",
         "sops-nix": "sops-nix",
         "stylix": "stylix",

@@ -3,18 +3,32 @@
   config,
   ...
 }: {
-  # emacs package as (pinned) read-only git clone in nix-store registry
-  programs.emacs.extraPackages = epkgs: [(epkgs.trivialBuild {
-    pname = "phd-ark-modeline";
-    src = inputs.phd-ark-modeline;
-    packageRequires = with epkgs; [all-the-icons-nerd-fonts flycheck];
-    version = "0.1.0";
-    preferLocalBuild = true;
-    allowSubstitutes = false;
-  })];
+  # emacs packages as (pinned) read-only git clones in nix-store registry
+  programs.emacs.extraPackages = epkgs: [
+    (epkgs.trivialBuild {
+      pname = "phd-ark-modeline";
+      src = inputs.phd-ark-modeline;
+      packageRequires = with epkgs; [all-the-icons-nerd-fonts flycheck];
+      version = "0.1.0";
+      preferLocalBuild = true;
+      allowSubstitutes = false;
+    })
+    (epkgs.trivialBuild {
+      pname = "phd-ark-tabline";
+      src = inputs.phd-ark-tabline;
+      packageRequires = [epkgs.s];
+      version = "0.1.0";
+      preferLocalBuild = true;
+      allowSubstitutes = false;
+    })
+  ];
   home.file.phd-ark-modeline = {
     source = "${inputs.phd-ark-modeline}/phd-ark-modeline.el";
     target = ".emacs.d/phd-ark-modeline.el";
+  };
+  home.file.phd-ark-tabline = {
+    source = "${inputs.phd-ark-tabline}/phd-ark-tabline.el";
+    target = ".emacs.d/phd-ark-tabline.el";
   };
 
   # wallpapers (pinned) read-only git clone in nix-store registry
@@ -98,6 +112,9 @@
       };
       "local/phd-ark-modeline" = {
         checkout = "git clone git@github.com:phdenzel/phd-ark-modeline.git";
+      };
+      "local/phd-ark-tabline" = {
+        checkout = "git clone git@github.com:phdenzel/phd-ark-tabline.git";
       };
       "local/phd-mu4e-setup" = {
         checkout = "git clone git@github.com:phdenzel/phd-mu4e-setup.git";

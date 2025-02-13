@@ -56,6 +56,10 @@
       url = "git+ssh://git@github.com/phdenzel/phd-ark-modeline";
       flake = false;
     };
+    phd-ark-tabline = {
+      url = "git+ssh://git@github.com/phdenzel/phd-ark-tabline";
+      flake = false;
+    };
   };
 
   outputs = {
