@@ -74,6 +74,9 @@
       "Documents/PhDCV" = {
         checkout = "git clone git@github.com:phdenzel/PhDCV.git";
       };
+      # "Documents/letters" = {
+      #   checkout = "git clone git@github.com:phdenzel/letters.git";
+      # };
       "Documents/phd-thesis" = {
         checkout = "git clone git@github.com:phdenzel/phd-thesis.git";
       };
@@ -106,9 +109,6 @@
       };
       "local/nix-systems" = {
         checkout = "git clone git@github.com:phdenzel/nix-systems.git";
-      };
-      "local/phd-dashboard" = {
-        checkout = "git clone git@github.com:phdenzel/phd-dashboard.git";
       };
       "local/phd-ark-modeline" = {
         checkout = "git clone git@github.com:phdenzel/phd-ark-modeline.git";
