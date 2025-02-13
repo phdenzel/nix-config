@@ -36,7 +36,7 @@
         "(python-mode . yas-minor-mode)"
       ];
       custom = {
-        yas-snippet-dirs = "'((file-name-concat user-emacs-directory \"snippets\"))";
+        yas-snippet-dirs = "(list (concat user-emacs-directory \"snippets\"))";
       };
     };
   };

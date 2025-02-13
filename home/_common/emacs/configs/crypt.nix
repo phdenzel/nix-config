@@ -3,7 +3,7 @@
     pass = {
       enable = true;
       custom = {
-        pass-username-field = "login";
+        pass-username-field = "\"login\"";
       };
     };
   };

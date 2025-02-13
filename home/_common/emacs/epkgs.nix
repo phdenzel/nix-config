@@ -88,7 +88,8 @@
       jsonrpc # needed for copilot
       copilot # GitHub copilot
       ellama # Ollama self-hosted LLMs
-      #tabby # TabbyML
+      #gptel https://github.com/karthink/gptel
+      #aider https://github.com/tninja/aider.el
 
       # Mail
       mu4e # emails
