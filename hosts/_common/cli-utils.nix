@@ -18,6 +18,7 @@ with lib; {
     psmisc
     ripgrep
     rsync
+    starship
     strace
     tealdeer
     tree

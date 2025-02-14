@@ -37,5 +37,6 @@
     # ./_configs/password-store
     # ../_common/rofi
     ../_common/ruff
+    ../_common/starship
   ];
 }
