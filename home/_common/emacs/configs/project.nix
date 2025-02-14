@@ -34,7 +34,7 @@
                 treemacs-show-hidden-files     t
                 treemacs-is-never-other-window t
                 treemacs-no-png-images         nil)
-        q  ;; (treemacs-resize-icons 22)
+          ;; (treemacs-resize-icons 22)
           (treemacs-follow-mode t)
         )'';
     };
