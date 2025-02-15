@@ -12,7 +12,6 @@
     avy.enable = true;
     ivy = {
       enable = true;
-      diminish = ["ivy-mode"];
       commands = ["ivy-mode"];
       custom = {
         ivy-use-virtual-buffers = true;

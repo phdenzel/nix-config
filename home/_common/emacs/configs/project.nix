@@ -19,7 +19,6 @@
     };
     counsel-projectile = {
       enable = true;
-      after = ["counsel"];
       config = "(counsel-projectile-mode)";
     };
     treemacs = {
