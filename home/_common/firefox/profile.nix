@@ -120,34 +120,54 @@
 
       settings = {
         # User settings
+        # "browser.search.region" = "US";
         "apz.overscroll.enabled" = true; # smooth scrolling
         "general.smoothScroll" = true;
 
         "privacy.userContext.enabled" = true; # enable container tabs
-
+        "browser.display.use_system_colors" = true;
         "browser.newtabpage.activity-stream.feeds.topsites" = true; # add new tab topsites rows
         "browser.newtabpage.activity-stream.topSitesRows" = 2; # two rows
         "browser.newtabpage.pinned" = [
-          {url = "https://google.com"; label = "@google"; searchTopSite = true; baseDomain = "google.com";}
+          {
+            url = "https://google.com";
+            label = "@google";
+            searchTopSite = true;
+            baseDomain = "google.com";
+          }
           {url = "https://phdenzel.github.io";}
           {url = "http://jellyfin.home/";}
           {url = "http://nextcloud.home/";}
-          {url = "http://freshrss.home:9877/";}
+          {
+            url = "http://localhost:9091/";
+            label = "tx";
+          }
           {url = "https://mail.proton.me/";}
           {url = "https://www.youtube.com";}
           {url = "https://open.spotify.com/";}
 
-          {url = "https://arxiv.org/search/"; label = "@arxiv"; searchTopSite = false;}
+          {
+            url = "https://arxiv.org/search/";
+            label = "@arxiv";
+            searchTopSite = false;
+          }
           {url = "https://github.com/phdenzel";}
           {url = "https://gitlab.com/phdenzel";}
           {url = "https://www.overleaf.com/project";}
+          {url = "https://wandb.ai/home";}
+          {
+            url = "http://localhost:8080";
+            label = "ollama";
+          }
+          {
+            url = "http://localhost:8000/";
+            label = "jupyter";
+          }
           {url = "https://account.cscs.ch/ump";}
         ];
         "identity.fxaccounts.enabled" = false; # disable Firefox Sync
         "signon.rememberSignons" = false; # disable password manager
         "extensions.formautofill.creditCards.enabled" = false; # disable credit card manager
-        
-        # "browser.search.region" = "US";
       };
       # extensios = {
       # };
