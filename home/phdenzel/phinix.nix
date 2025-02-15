@@ -40,6 +40,7 @@ in {
         "networkmanager"
         "podman"
         "storage"
+        "transmission"
       ];
     hashedPasswordFile = config.sops.secrets."passwd/${userName}/${hostName}".path;
     packages = with pkgs; [

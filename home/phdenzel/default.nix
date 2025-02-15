@@ -34,7 +34,6 @@
     # ../_common/ncmpcpp
     # ../_common/neovim
     # ./_configs/newsboat
-    # ./_configs/password-store
     # ../_common/rofi
     ../_common/ruff
     ../_common/starship

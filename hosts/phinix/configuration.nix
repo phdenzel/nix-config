@@ -15,6 +15,7 @@ in {
     ../_common/thunar.nix # File manager
     ../_common/openssh.nix # OpenSSH
     ../_common/crypt-utils.nix # Cryptographic tool collection
+    ../_common/tx-rx.nix # Transmission / reception
     ../_common/cli-utils.nix # CLI tool collection
     ../_common/dev-utils.nix # Dev tool collection
     ../_common/computing.nix # Computing tool collection
@@ -126,10 +127,6 @@ in {
       hplip
     ];
     udisks2.enable = true;
-    # onedrive.enable = mkDefault true;  #TODO: move to home-manager config
-    # protonmail-bridge.enable  #TODO: move to home-manager config
-    # tabby.enable = true;  #TODO: move to home-manager config
-    # tailscale.enable = true;  #TODO: move to home-manager config
   };
 
   # Hardware
