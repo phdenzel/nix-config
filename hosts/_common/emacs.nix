@@ -9,7 +9,8 @@ with lib; {
   ];
   # technically not a CLI tool
   services.emacs = {
-    enable = mkDefault true;
+    install = mkDefault true;
+    startWithGraphical = true;
     defaultEditor = mkDefault true;
   };
 }
