@@ -20,7 +20,9 @@ with lib; {
     rsync
     starship
     strace
+    tcpdump
     tealdeer
+    timer
     tree
     yazi
     xdg-utils
