@@ -6,7 +6,10 @@
   imports = [./betterfox.nix];
 
   home.file = {
+    # arxiv logo for search engine
     ".mozilla/assets/logo/arxiv.png".source = ../../../assets/mozilla/arxiv.png;
+    # default simple tabs groups: restore backup after install to restore groups
+    ".mozilla/assets/stg_default.json".source = ../../../assets/mozilla/stg_default.json;
   };
 
   programs.firefox = {

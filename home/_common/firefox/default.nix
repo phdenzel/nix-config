@@ -7,4 +7,5 @@
     package = pkgs.firefox;
     languagePacks = ["en-US" "en-GB" "de"];
   };
+  home.file = {}
 }
