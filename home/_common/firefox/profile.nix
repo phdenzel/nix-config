@@ -162,6 +162,7 @@
 
         # Behaviour
         "browser.startup.homepage" = "about:home";
+        "browser.toolbars.bookmarks.visibility" = "always";
         "apz.overscroll.enabled" = true; # smooth scrolling
         "general.smoothScroll" = true;
         "privacy.trackingprotection.enabled" = true; # tracking protection
