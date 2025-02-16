@@ -27,10 +27,22 @@ with lib; {
     yazi
     xdg-utils
     zoxide
+    zsh
+    zsh-autosuggestions
+    zsh-completions
+    zsh-history-substring-search
+    zsh-syntax-highlighting
   ];
   programs.git.enable = mkDefault true;
   programs.less.enable = mkDefault true;
   programs.tmux.enable = mkDefault true;
   programs.vim.enable = mkDefault true;
-  programs.zsh.enable = mkDefault true;
+  programs.zsh = {
+    enable = mkDefault true;
+    autosuggestions.enable = mkDefault true;
+    enableCompletion = mkDefault true;
+    syntaxHighlighting.enable = mkDefault true;
+  };
+  
+  
 }
