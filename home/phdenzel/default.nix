@@ -37,5 +37,6 @@
     # ../_common/rofi
     ../_common/ruff
     ../_common/starship
+    ../_common/zsh
   ];
 }
