@@ -18,7 +18,6 @@
       ignoreAllDups = false;
       ignoreDups = true;
       ignoreSpace = true;
-      saveNoDups = true;
       share = true;
       size = 65536;
       save = size;
