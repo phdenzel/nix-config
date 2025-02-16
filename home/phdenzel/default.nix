@@ -20,6 +20,7 @@
     # ../_common/editorconfig
     ../_common/emacs
     # ../_common/eza
+    ../_common/fastfetch
     ../_common/firefox
     # ../_common/fzf
     # ../_common/gh
