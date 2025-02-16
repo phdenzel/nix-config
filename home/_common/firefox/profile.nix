@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [./betterfox.nix];
 
   home.file = {
@@ -9,6 +13,16 @@
     profiles."${config.home.username}" = {
       id = 0;
       isDefault = true;
+
+      extensions = with pkgs.inputs.firefox-addons; [
+        browserpass
+        darkreader
+        simple-tab-groups
+        ublock-origin
+        xbrowsersync
+      ];
+      settings."extensions.autoDisableScopes" = 0; # auto enable addons
+      settings."extensions.enabledScopes" = 15; # auto enable addons
 
       search = {
         default = "DuckDuckGo";
@@ -116,16 +130,43 @@
           id = 7;
         };
       };
+      settings."privacy.userContext.enabled" = true;
       containersForce = true;
 
       settings = {
-        # User settings
-        # "browser.search.region" = "US";
+        # User configuration
+        "browser.download.useDownloadDir" = false;
+
+        # UI
+        "browser.download.panel.shown" = true;
+        "browser.display.use_system_colors" = true;
+        "browser.uiCustomizaton.state" = {
+          dirtyAreaCache = ["unified-extensions-area" "nav-bar" "vertical-tabs" "PersonalToolbar"];
+          placements = {
+            currentVersion = 20;
+            newElementCount = 9;
+            TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
+            # TabsToolbar = ["firefox-view-button" "tabbrowser-tabs" "new-tab-button" "alltabs-button"];
+            nav-bar = ["back-button" "forward-button" "stop-reload-button" "urlbar-container" "save-to-pocket-button" "home-button" "downloads-button" "unified-extensions-button" "fxa-toolbar-menu-button" "reset-pbm-toolbar-button" "ublock0_raymondhill_net-browser-action" "addon_darkreader_org-browser-action" "browserpass_maximbaz_com-browser-action" "simple-tab-groups_drive4ik-browser-action"];
+            toolbar-menubar = ["menubar-items"];
+            PersonalToolbar = ["personal-bookmarks"];
+            unified-extensions-area = ["_019b606a-6f61-4d01-af2a-cea528f606da_-browser-action"];
+            widget-overflow-fixed-list = [];
+            vertical-tabs = [];
+          };
+          seen = ["reset-pbm-toolbar-button" "browserpass_maximbaz_com-browser-action" "addon_darkreader_org-browser-action" "simple-tab-groups_drive4ik-browser-action" "ublock0_raymondhill_net-browser-action" "_019b606a-6f61-4d01-af2a-cea528f606da_-browser-action" "developer-button"];
+        };
+
+        # Behaviour
+        "browser.startup.homepage" = "about:home";
         "apz.overscroll.enabled" = true; # smooth scrolling
         "general.smoothScroll" = true;
+        "privacy.trackingprotection.enabled" = true; # tracking protection
+        "identity.fxaccounts.enabled" = false; # disable Firefox Sync
+        "signon.rememberSignons" = false; # disable save password prompt
+        "extensions.formautofill.creditCards.enabled" = false; # disable credit card manager
 
-        "privacy.userContext.enabled" = true; # enable container tabs
-        "browser.display.use_system_colors" = true;
+        # New Tab Page
         "browser.newtabpage.activity-stream.feeds.topsites" = true; # add new tab topsites rows
         "browser.newtabpage.activity-stream.topSitesRows" = 2; # two rows
         "browser.newtabpage.pinned" = [
@@ -142,9 +183,15 @@
             url = "http://localhost:9091/";
             label = "tx";
           }
-          {url = "https://mail.proton.me/";}
+          {
+            url = "https://mail.proton.me/";
+            label = "proton";
+          }
           {url = "https://www.youtube.com";}
-          {url = "https://open.spotify.com/";}
+          {
+            url = "https://open.spotify.com/";
+            label = "spotify";
+          }
 
           {
             url = "https://arxiv.org/search/";
@@ -163,14 +210,12 @@
             url = "http://localhost:8000/";
             label = "jupyter";
           }
-          {url = "https://account.cscs.ch/ump";}
+          {
+            url = "https://account.cscs.ch/ump";
+            label = "cscs";
+          }
         ];
-        "identity.fxaccounts.enabled" = false; # disable Firefox Sync
-        "signon.rememberSignons" = false; # disable password manager
-        "extensions.formautofill.creditCards.enabled" = false; # disable credit card manager
       };
-      # extensios = {
-      # };
     };
   };
 }

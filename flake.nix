@@ -48,6 +48,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     phd-wallpapers = {
       url = "git+ssh://git@github.com/phdenzel/wallpapers";
       flake = false;

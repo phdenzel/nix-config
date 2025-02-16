@@ -99,6 +99,7 @@
         "network.connectivity-service.enabled" = mkDefault false; # disable Network Connectivity checks
 
         # Remove pesky annoyances
+        "browser.messaging-system.whatsNewPanel.enabled" = mkDefault false;
         "browser.privatebrowsing.vpnpromourl" = mkDefault ""; # Mozilla VPN
         "extensions.getAddons.showPane" = mkDefault false; # disable about:addons' Recommendations pane
         "extensions.htmlaboutaddons.recommendations.enabled" = mkDefault false; # disable recommendations in about:addons' Extensions and Themes panes
@@ -122,7 +123,7 @@
         "browser.urlbar.suggest.calculator" = mkDefault true; # URL bar suggestions for calculator
         "browser.urlbar.unitConversion.enabled" = mkDefault true; # URL bar suggestions for calculator
         "browser.urlbar.trending.featureGate" = mkDefault false; # disable urlbar trending search suggestions
-        "browser.newtabpage.activity-stream.feeds.topsites" = mkDefault false; # Pinned Shortcuts on New Tab
+        "browser.newtabpage.activity-stream.feeds.topsites" = mkDefault true; # Pinned Shortcuts on New Tab
         "browser.newtabpage.activity-stream.showWeather" = mkDefault false; # no weather lookup
         "browser.newtabpage.activity-stream.feeds.section.topstories" = mkDefault false; # recommended by Pocket
         "browser.newtabpage.activity-stream.showSponsored" = mkDefault false; # no sponsored stories

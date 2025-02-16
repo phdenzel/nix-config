@@ -18,12 +18,29 @@ in {
     # example = addPatches prev.example [./example.diff];
   };
 
-  # Make stable nixpkgs (declared in the flake inputs as nixpkgs-stable)
-  # accessible through 'pkgs.stable'
+  # Alias inputs.nixpkgs-stable to pkgs.stable,
+  # set system and allow unfree
   stable-packages = final: _prev: {
     stable = import inputs.nixpkgs-stable {
       system = final.system;
       config.allowUnfree = true;
     };
+  };
+
+  # For every flake input, create pkgs.inputs.${flake} alias from
+  # 'inputs.${flake}.packages.${pkgs.system}' or
+  # 'inputs.${flake}.legacyPackages.${pkgs.system}'
+  flake-inputs = final: _: {
+    inputs =
+      builtins.mapAttrs (
+        _: flake: let
+          legacyPackages = (flake.legacyPackages or {}).${final.system} or {};
+          packages = (flake.packages or {}).${final.system} or {};
+        in
+          if legacyPackages != {}
+          then legacyPackages
+          else packages
+      )
+      inputs;
   };
 }
