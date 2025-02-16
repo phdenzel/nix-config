@@ -140,11 +140,11 @@
         # UI
         "browser.download.panel.shown" = true;
         "browser.display.use_system_colors" = true;
-        "browser.uiCustomizaton.state" = {
+        "browser.uiCustomization.state" = {
           dirtyAreaCache = ["unified-extensions-area" "nav-bar" "vertical-tabs" "PersonalToolbar"];
-          placements = {
-            currentVersion = 20;
-            newElementCount = 9;
+          currentVersion = 20;
+          newElementCount = 10;
+          placements = {  
             TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
             # TabsToolbar = ["firefox-view-button" "tabbrowser-tabs" "new-tab-button" "alltabs-button"];
             nav-bar = ["back-button" "forward-button" "stop-reload-button" "urlbar-container" "save-to-pocket-button" "home-button" "downloads-button" "unified-extensions-button" "fxa-toolbar-menu-button" "reset-pbm-toolbar-button" "ublock0_raymondhill_net-browser-action" "addon_darkreader_org-browser-action" "browserpass_maximbaz_com-browser-action" "simple-tab-groups_drive4ik-browser-action"];
