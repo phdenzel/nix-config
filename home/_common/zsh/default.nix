@@ -5,14 +5,12 @@
     ./history-substring-search.nix
   ];
 
-  programs.zsh = let
-    inherit (lib) mkIf;
-    packageNames = map (p: p.pname or p.name or null) config.home.packages;
-    hasPackage = name: lib.any (x: x == name) packageNames;
-    hasEza = hasPackage "eza";
-    hasRg = hasPackage "ripgrep";
-  in {
+  programs.zsh = {
     enable = true;
+
+    initExtra = ''
+      fastfetch
+    '';
     
     history = rec {
       ignoreAllDups = false;
@@ -24,13 +22,13 @@
     };
 
     shellAliases = rec {
-      ls = mkIf hasEza "eza";
+      ls = "eza";
       exa = ls;
-      sl = "ls";
+      sl = ls;
       ll = "ls -halF";
       la = "ls -a";
       l = "ls -F";
-      grep = mkIf hasRg "rg";
+      grep = "rg";
       e = "emacsclient -c -nw";
       eg = "emacsclient -c";
       se = "SUDO_EDITOR=\"emacsclient -c -nw\" sudoedit";
