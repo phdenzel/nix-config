@@ -19,7 +19,7 @@
     ../_common/dircolors
     # ../_common/editorconfig
     ../_common/emacs  # TODO mu4e
-    # ../_common/eza
+    ../_common/eza
     ../_common/fastfetch
     ../_common/firefox
     # ../_common/fzf
