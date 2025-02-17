@@ -18,13 +18,13 @@
     # ../_common/dconf
     ../_common/dircolors
     # ../_common/editorconfig
-    ../_common/emacs
+    ../_common/emacs  # TODO mu4e
     # ../_common/eza
     ../_common/fastfetch
     ../_common/firefox
     # ../_common/fzf
     # ../_common/gh
-    # ../_common/ghostty
+    ../_common/ghostty
     ../_common/git
     # ../_common/hyprland
     # ../_common/imv
