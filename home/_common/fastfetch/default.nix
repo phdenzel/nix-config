@@ -16,7 +16,7 @@
       modules = [
         {
           "type" = "title";
-          "format" = "{#light_red}{user-name}{#reset_}@{#blue}{host-name}";
+          "format" = "{#magenta}{user-name}{#reset_}@{#blue}{host-name}";
         }
         "separator"
         "host"
