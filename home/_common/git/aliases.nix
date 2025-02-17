@@ -16,5 +16,6 @@
     rau = "remote add upstream";
     s = "status -s";
     undo = "reset HEAD~";
+    ds = "-c delta.features=side-by-side diff";
   };
 }
