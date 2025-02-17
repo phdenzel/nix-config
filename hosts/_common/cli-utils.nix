@@ -24,8 +24,10 @@ with lib; {
     tealdeer
     timer
     tree
-    yazi
+    unzip
     xdg-utils
+    yazi
+    zip
     zoxide
     zsh
     zsh-autosuggestions
