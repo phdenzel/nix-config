@@ -8,6 +8,30 @@ in {
   home.homeDirectory = "/home/${userName}";
   home.stateVersion = "24.11";
 
+  home.shell = {
+    enableShellIntegration = true;
+  };
+
+  home.shellAliases = rec {
+    ls = "eza";
+    exa = ls;
+    sl = ls;
+    ll = "ls -halF";
+    la = "ls -a";
+    l = "ls -F";
+    grep = "rg";
+    e = "emacsclient -c -nw";
+    eg = "emacsclient -c";
+    se = "SUDO_EDITOR=\"emacsclient -c -nw\" sudoedit";
+    seg = "SUDO_EDITOR=\"emacsclient -c\" sudoedit";
+    sj = "squeue -u $(whoami)";
+    sja = "squeue";
+    ipecho = "curl https://ipecho.net/plain; echo";
+    localip = "ip -4 addr | grep inet | awk '{print $2}'";
+    urlenc = "python3 -c \"import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]));\"";
+    emptytrash = "rm -rf \${HOME}/.local/share/Trash/{files,info}/*";
+  };
+
   programs = {
     home-manager.enable = true; # let home manager install and manage itself.
     mu.enable = true; # mail indexing
