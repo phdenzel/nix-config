@@ -26,18 +26,27 @@
     # ../_common/gh
     ../_common/ghostty
     ../_common/git
+    # ../_common/gtk
     # ../_common/hyprland
     # ../_common/imv
-    # ../_common/joshuto
     # ../_common/matplotlib
     # ./_configs/mbsync
     # ../_common/mpv
-    # ../_common/ncmpcpp
+    # ../_common/ncmpcpp # mpd
     # ../_common/neovim
     # ./_configs/newsboat
+    # ../_common/nextcloud
+    # ../_common/qutebrowser
     # ../_common/rofi
     ../_common/ruff
     ../_common/starship
+    # ../_common/swaync
+    # ../_common/tealdeer
+    # ./_configs/thunderbird
+    # ../_common/tmux
+    # ../_common/waybar
+    # ../_common/wlogout
+    # ../_common/yazi
     ../_common/zsh
   ];
 }
