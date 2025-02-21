@@ -16,7 +16,7 @@ in {
     ls = "eza";
     exa = ls;
     sl = ls;
-    ll = "ls -halF";
+    ll = "ls -glaF";
     la = "ls -a";
     l = "ls -F";
     grep = "rg";
