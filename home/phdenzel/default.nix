@@ -7,6 +7,7 @@
     ./_configs/password-store
     ../_common/xdg
     ./_configs/repos
+    ./_configs/mail
     ../_common/stylix
 
     # Program configs
@@ -30,7 +31,6 @@
     # ../_common/hyprland
     # ../_common/imv
     # ../_common/matplotlib
-    # ./_configs/mbsync
     # ../_common/mpv
     # ../_common/ncmpcpp # mpd
     # ../_common/neovim
@@ -42,7 +42,7 @@
     ../_common/starship
     # ../_common/swaync
     # ../_common/tealdeer
-    # ./_configs/thunderbird
+    ../_common/thunderbird
     # ../_common/tmux
     # ../_common/waybar
     # ../_common/wlogout
