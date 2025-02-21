@@ -32,6 +32,7 @@ with lib; {
     swayosd
     wlogout
     wlr-randr
+    wl-clipboard
   ];
   programs.foot = {
     enable = mkDefault true;
