@@ -45,6 +45,11 @@ in {
       type = types.listOf types.str;
       default = [];
     };
+    additional = mkOption {
+      description = "Additional secrets to decrypt.";
+      type = types.listOf types.str;
+      default = [];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -90,6 +95,12 @@ in {
             };
           })
           cfg.gpgKeys
+        )
+        // attrsets.mergeAttrsList (
+          lists.map (name: {
+            "${name}" = {};
+          })
+          cfg.additional
         );
     };
   };

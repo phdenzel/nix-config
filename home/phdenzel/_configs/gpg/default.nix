@@ -13,6 +13,18 @@
         source = "${config.home.homeDirectory}/.gnupg/pwds.public.asc";
         trust = "ultimate";
       }
+      {
+        source = "${config.home.homeDirectory}/.gnupg/gh.public.asc";
+        trust = "ultimate";
+      }
+      {
+        source = "${config.home.homeDirectory}/.gnupg/ecc.public.asc";
+        trust = "ultimate";
+      }
+      {
+        source = "${config.home.homeDirectory}/.gnupg/pm.public.asc";
+        trust = "ultimate";
+      }
     ];
   };
 
