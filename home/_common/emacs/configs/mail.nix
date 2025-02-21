@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   programs.emacs.init.usePackage = {
     mml-secure = {
       enable = true;
@@ -34,7 +34,7 @@
         mu4e-compose-format-flowed = true;
       };
       config = let
-        u = "phdenzel";
+        u = config.home.username;
         uz = "denp";
         un = "Philipp Denzel";
         gm = "Gmail";
