@@ -1,5 +1,7 @@
-{config, ...}: {
-  xdg.configFile."btop/themes/${config.colorScheme.slug}.theme".text = with config.colorScheme.palette; ''
+{config, ...}: let
+  btopThemeFile = "${config.xdg.configHome}/btop/themes/${config.colorScheme.slug}.theme";
+in {
+  home.file."${btopThemeFile}".text = with config.colorScheme.palette; ''
     # Custom theme
     theme[main_bg]="#${base}"
     theme[main_fg]="#${text}"

@@ -1,5 +1,7 @@
-{config, ...}: {
-  xdg.configFile."bat/themes/${config.colorScheme.slug}.tmTheme".text = with config.colorScheme.palette; ''
+{config, ...}: let
+  batThemeFile = "${config.xdg.configHome}/bat/themes/${config.colorScheme.slug}.tmTheme";
+in {
+  home.file."${batThemeFile}".text = with config.colorScheme.palette; ''
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">

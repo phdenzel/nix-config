@@ -1,6 +1,8 @@
-{config, ...}: {
-  home.file = {
-    "${config.xdg.configHome}/fastfetch/logo.png".source = ../../../assets/logos/phd-ark-512.png;
+{config, ...}: let
+  phdArkLogo = "${config.xdg.configHome}/fastfetch/logo.png";
+in {
+  home.file."${phdArkLogo}" = {
+    source = ../../../assets/logos/phd-ark-512.png;
   };
   
   programs.fastfetch = {
