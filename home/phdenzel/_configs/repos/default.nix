@@ -80,6 +80,9 @@
       "Documents/phd-thesis" = {
         checkout = "git clone git@github.com:phdenzel/phd-thesis.git";
       };
+      "Documents/master-thesis" = {
+        checkout = "git clone git@github.com:phdenzel/master-thesis.git";
+      };
 
       # papers
       "Documents/papers/galactic-alchemy-1" = {
@@ -96,6 +99,29 @@
       };
       "Documents/papers/sds24-mlops4tai" = {
         checkout = "git clone git@github.com:phdenzel/sds24-mlops4tai.git";
+      };
+      "Documents/papers/slacs-matching" = {
+        checkout = "git clone git@github.com:phdenzel/slacs-matching-paper.git slacs-matching";
+      };
+      "Documents/papers/time-delays" = {
+        checkout = "git clone git@github.com:phdenzel/time-delays-paper.git time-delays";
+      };
+      "Documents/papers/sw05" = {
+        checkout = "git clone git@github.com:phdenzel/sw05-paper.git sw05";
+      };
+      "Documents/papers/adler" = {
+        checkout = "git clone git@github.com:phdenzel/adler-paper.git adler";
+      };
+      "Documents/papers/heat-spike" = {
+        checkout = "git clone git@github.com:phdenzel/heat-spike-paper.git heat-spike";
+      };
+
+      # proposals
+      "Documents/proposals/snf_spark25_radigral" = {
+        checkout = "git clone git@github.com:phdenzel/snf_spark25_radigral.git";
+      };
+      "Documents/proposals/snf_spark23_gl3dgen" = {
+        checkout = "git clone git@github.com:phdenzel/snf_spark23_gl3dgen.git";
       };
 
       # posters
@@ -115,9 +141,6 @@
       };
       "local/phd-ark-tabline" = {
         checkout = "git clone git@github.com:phdenzel/phd-ark-tabline.git";
-      };
-      "local/phd-mu4e-setup" = {
-        checkout = "git clone git@github.com:phdenzel/phd-mu4e-setup.git";
       };
       "local/btrsnap" = {
         checkout = "git clone git@github.com:phdenzel/btrsnap.git";
