@@ -52,6 +52,15 @@ host-age-key HOST KEYFILE="/etc/ssh/ssh_host_ed25519_key.pub":
 update-secrets:
     [ -f "${HOME}/.config/sops/age/keys.txt" ] && sops updatekeys hosts/secrets.yaml && sops updatekeys home/phdenzel/secrets.yaml  || echo "Install authorized AGE keys and run `just update-secrets` again."
 
+# Dump pizauth
+spiz:
+	pizauth dump | age --encrypt --output pizauth.age -r age10eyh3zd3kusensxuy6j0g82x3qdjguju9r7ryk35zyl67j8w9gxqgx0aqp
+	mv pizauth.age ~/.config/
+
+# Restore pizauth
+repiz:
+	age --decrypt -i ~/.config/sops/age/keys.txt -o - ~/.config/pizauth.age | pizauth restore
+
 # Rebuild switch shorthand
 rbs MACHINE:
     sudo nixos-rebuild switch --flake .#{{MACHINE}}

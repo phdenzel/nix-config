@@ -45,8 +45,8 @@ in {
       type = types.listOf types.str;
       default = [];
     };
-    additional = mkOption {
-      description = "Additional secrets to decrypt.";
+    templates = mkOption {
+      description = "Additional secrets templates to decrypt.";
       type = types.listOf types.str;
       default = [];
     };
@@ -98,9 +98,9 @@ in {
         )
         // attrsets.mergeAttrsList (
           lists.map (name: {
-            "${name}" = {};
+            "${name}" = {}; 
           })
-          cfg.additional
+          cfg.templates
         );
     };
   };
