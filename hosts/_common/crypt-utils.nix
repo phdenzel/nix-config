@@ -6,6 +6,8 @@
 with lib; {
   environment.systemPackages = with pkgs; [
     age
+    openssl
+    pwgen
     ssh-to-age
     sops
   ];

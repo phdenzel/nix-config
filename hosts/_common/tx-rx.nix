@@ -1,9 +1,10 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    cyrus-sasl-xoauth2
+    filezilla
+    pizauth
     transmission_4
     transmission_4-gtk
-    cyrus-sasl-xoauth2
-    pizauth
   ];
   services = {
     # tailscale.enable = true;

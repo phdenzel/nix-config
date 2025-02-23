@@ -15,7 +15,8 @@ in {
     ../_common/thunar.nix # File manager
     ../_common/openssh.nix # OpenSSH
     ../_common/crypt-utils.nix # Cryptographic tool collection
-    ../_common/tx-rx.nix # Transmission / reception
+    ../_common/tx-rx.nix # transmission / reception
+    ../_common/graphical.nix # Graphical applications
     ../_common/cli-utils.nix # CLI tool collection
     ../_common/dev-utils.nix # Dev tool collection
     ../_common/computing.nix # Computing tool collection
@@ -86,21 +87,13 @@ in {
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
-    filezilla
-    gimp
-    imagemagick
-    inkscape
     lact
-    imv
-    libreoffice-fresh
     lm_sensors
-    mpv
     pavucontrol
     podman-desktop
     rgp
     udiskie
     usbutils
-    zathura
   ];
 
   # System-wide programs

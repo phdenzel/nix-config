@@ -45,6 +45,4 @@ with lib; {
     enableCompletion = mkDefault true;
     syntaxHighlighting.enable = mkDefault true;
   };
-  
-  
 }
