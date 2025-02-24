@@ -22,16 +22,27 @@ with lib; {
     pkg-config
     podman
     podman-compose
+    uv
     python312
-    python312Packages.pip
-    python312Packages.uv
-    python312Packages.virtualenv
-    python312Packages.isort
-    python312Packages.jedi
-    python312Packages.mypy
-    python312Packages.python-lsp-server
-    python312Packages.rope
-    python312Packages.ruff
+    (python312.withPackages (pypkgs: with pypkgs; [
+      pip
+      virtualenv
+      isort
+      jedi
+      mypy
+      python-lsp-server
+      rope
+      ruff
+    ]))
+    python313
+    (python313.withPackages (pypkgs: with pypkgs; [
+      pip
+      virtualenv
+      mypy
+      ruff
+    ]))
+    python311
+    python310
     rustup
     yq-go
   ];
