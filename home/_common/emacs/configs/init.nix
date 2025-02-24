@@ -161,6 +161,14 @@ with lib; let
         '';
       };
 
+      autoloads = mkOption {
+        type = types.listOf types.str;
+        default = [];
+        description = ''
+          The entries to use for <option>:autoload</option>.
+        '';
+      };
+
       config = mkOption {
         type = types.lines;
         default = "";
@@ -239,6 +247,7 @@ with lib; let
         mkLoadPath = vs: optional (vs != "") ":load-path \"${vs}\"";
         mkAfter = vs: optional (vs != []) ":after (${toString vs})";
         mkCommand = vs: optional (vs != []) ":commands (${toString vs})";
+        mkAutoload = vs: optional (vs != []) ":autoload (${toString vs})";
         mkCustomHelper = mapAttrsToList (n: v: let
           mkValue = v:
             if isBool v
@@ -294,6 +303,7 @@ with lib; let
           ++ mkBindLocal config.bindLocal
           ++ mkChords config.chords
           ++ mkCommand config.commands
+          ++ mkAutoload config.autoloads
           ++ mkDefer config.defer
           ++ mkDefines config.defines
           ++ mkFunctions config.functions
