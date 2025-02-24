@@ -17,7 +17,7 @@
       id = 0;
       isDefault = true;
 
-      extensions = with pkgs.inputs.firefox-addons; [
+      extensions.packages = with pkgs.inputs.firefox-addons; [
         browserpass
         darkreader
         simple-tab-groups
