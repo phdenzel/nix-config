@@ -12,7 +12,7 @@ with lib; {
     imv
     libreoffice-fresh
     mpv
-    okular
+    kdePackages.okular
     zathura
   ];
 }
