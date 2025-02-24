@@ -1,9 +1,7 @@
 {
   pkgs,
-  lib,
   ...
-}:
-with lib; {
+}: {
   environment.systemPackages = with pkgs; [
     bacon
     binutils
@@ -18,13 +16,13 @@ with lib; {
     gnumake
     gnuplot
     jq
+    libgcc
     libgccjit
     pkg-config
     podman
     podman-compose
-    uv
     python312
-    (python312.withPackages (pypkgs: with pypkgs; [
+    (python312.withPackages (p: with p; [
       pip
       virtualenv
       isort
@@ -33,17 +31,14 @@ with lib; {
       python-lsp-server
       rope
       ruff
+      numpy
     ]))
     python313
-    (python313.withPackages (pypkgs: with pypkgs; [
-      pip
-      virtualenv
-      mypy
-      ruff
-    ]))
     python311
     python310
     rustup
+    uv
     yq-go
   ];
+  
 }
