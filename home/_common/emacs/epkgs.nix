@@ -92,6 +92,7 @@
       #aider https://github.com/tninja/aider.el
 
       # Mail
+      himalaya # himalaya frontend
       mu4e # emails
 
       # Style packages

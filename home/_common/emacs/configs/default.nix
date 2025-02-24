@@ -11,7 +11,7 @@
     ./org.nix
     ./typeset.nix
     ./ai.nix
-    # ./mail.nix
+    ./mail.nix
     ./hydras.nix
     ./functions.nix
     ./binds.nix
