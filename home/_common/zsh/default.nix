@@ -28,4 +28,8 @@
   home.packages = with pkgs; [
     zsh-completions
   ];
+
+  programs.nix-your-shell = {
+    enable = true;
+  };
 }
