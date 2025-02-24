@@ -27,6 +27,7 @@ in {
   imports = [./pizauth.nix];
 
   # TODO: migrate to a more modern IMAP synchronizer
+  #   -> neverest
   programs.mbsync = {
     enable = true;
     package = pkgs.isync.override {
@@ -39,7 +40,7 @@ in {
     package = pkgs.himalaya.override {
       withNoDefaultFeatures = true;
       # buildNoDefaultFeatures = true;
-      buildFeatures = ["imap" "maildir" "smtp" "wizard" "oauth2" "keyring"];
+      withFeatures = ["imap" "maildir" "smtp" "wizard" "oauth2" "keyring"];
     };
     settings = {
       downloads-dir = "${config.home.homeDirectory}/Downloads";
