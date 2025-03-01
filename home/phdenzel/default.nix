@@ -27,6 +27,7 @@
     # ../_common/gh
     ../_common/ghostty
     ../_common/git
+    ../_common/gnome
     # ../_common/gtk
     # ../_common/hyprland
     # ../_common/imv
