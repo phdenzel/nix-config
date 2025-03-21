@@ -11,6 +11,11 @@
     transmission = {
       enable = true;
       package = pkgs.transmission_4;
+      settings = {
+        alt-speed-enabled = true;
+        alt-speed-up = 10;
+        alt-speed-down = 200000;
+      };
     };
   };
 }
