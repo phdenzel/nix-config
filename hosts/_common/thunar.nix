@@ -7,7 +7,10 @@
       thunar-volman
     ];
   };
-
+  environment.systemPackages = with pkgs; [
+    unp
+    xarchiver
+  ];
   programs.xfconf.enable = true;
   services.tumbler.enable = true;
 }

@@ -13,6 +13,7 @@ with lib; {
     libreoffice-fresh
     mpv
     kdePackages.okular
+    pdfarranger
     zathura
   ];
 }
