@@ -38,7 +38,7 @@
     # ./_configs/newsboat
     # ../_common/nextcloud
     # ../_common/qutebrowser
-    # ../_common/rofi
+    ../_common/rofi
     ../_common/ruff
     ../_common/starship
     # ../_common/swaync
