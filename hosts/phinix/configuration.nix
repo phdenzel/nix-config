@@ -61,6 +61,7 @@ in {
   drivers.amdgpu.enable = true;
   drivers.amdgpu.utils.install = true;
   nixpkgs.config.rocmSupport = true;
+  services.ollama.acceleration = "rocm";
 
   # Language customization (see ../../modules)
   intl.defaultLocale = "en_US";
