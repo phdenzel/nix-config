@@ -3,6 +3,7 @@
     [
       dejavu_fonts
       hubot-sans
+      liberation_ttf
       mona-sans
       noto-fonts
       open-sans
