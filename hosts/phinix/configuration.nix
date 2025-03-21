@@ -8,23 +8,24 @@
   hostName = "phinix";
 in {
   imports = [
-    ../_common # Default nix (and sops-nix) configuration
-    ../_common/sddm.nix # Display manager
-    ../_common/hyprland.nix # Window manager
-    ../_common/gnome.nix # Desktop as backup when Hyprland is bricked
-    ../_common/thunar.nix # File manager
-    ../_common/openssh.nix # OpenSSH
-    ../_common/crypt-utils.nix # Cryptographic tool collection
+    ../_common # default nix (and sops-nix) configuration
+    ../_common/sddm.nix # display manager
+    ../_common/hyprland.nix # window manager
+    ../_common/gnome.nix # desktop as backup when Hyprland is bricked
+    ../_common/thunar.nix # file manager
+    ../_common/openssh.nix # openSSH
+    ../_common/crypt-utils.nix # cryptographic tool collection
     ../_common/tx-rx.nix # transmission / reception
-    ../_common/graphical.nix # Graphical applications
-    ../_common/cli-utils.nix # CLI tool collection
-    ../_common/dev-utils.nix # Dev tool collection
-    ../_common/computing.nix # Computing tool collection
+    ../_common/mux.nix # muxing tool collection
+    ../_common/graphical.nix # graphical applications
+    ../_common/cli-utils.nix # cli tool collection
+    ../_common/dev-utils.nix # dev tool collection
+    ../_common/computing.nix # computing tool collection
     ../_common/ollama.nix # local LLM services
-    ../_common/emacs.nix # Editor and god tool
-    ../_common/fonts.nix # Font packages
-    ../_common/texlive.nix # Full TeXLive package
-    ../_common/comm.nix # Communication apps
+    ../_common/emacs.nix # editor and god tool
+    ../_common/fonts.nix # font packages
+    ../_common/texlive.nix # full TeXLive package
+    ../_common/comm.nix # communication apps
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-cpu-amd-pstate
