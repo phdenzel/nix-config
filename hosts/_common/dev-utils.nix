@@ -16,12 +16,9 @@
     gnumake
     gnuplot
     jq
-    libgcc
-    libgccjit
     pkg-config
     podman
     podman-compose
-    python312
     (python312.withPackages (p: with p; [
       pip
       virtualenv
@@ -31,7 +28,6 @@
       python-lsp-server
       rope
       ruff
-      numpy
     ]))
     python313
     python311
@@ -40,5 +36,27 @@
     uv
     yq-go
   ];
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      acl
+      bzip2
+      curl
+      dbus
+      freetype
+      libgcc
+      libgccjit
+      libssh
+      libuuid
+      libxml2
+      openssl
+      stdenv.cc.cc
+      util-linux
+      xz
+      zlib
+      zstd
+    ];
+  };
   
 }
