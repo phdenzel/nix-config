@@ -1,14 +1,15 @@
 {config, ...}: {
   programs.emacs.init.usePackage = {
     himalaya = {
-      enable = false;
+      enable = true;
       custom = {
-        himalaya-executable = "himalaya";
-        himalaya-config-path = "${config.xdg.configHome}/himalaya/config.toml";
+        himalaya-executable = ''"himalaya"'';
+        himalaya-config-path = ''"${config.xdg.configHome}/himalaya/config.toml"'';
       };
-      init = ''
-        (require 'himalaya)
-      '';
+      autoloads = [
+        "himalaya"
+        "himalaya--update-mode-line"
+      ];
     };
     # mml-secure = {
     #   enable = true;
