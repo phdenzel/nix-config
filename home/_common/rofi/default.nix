@@ -4,4 +4,8 @@
     package = pkgs.rofi-wayland;
     plugins = with pkgs; [rofi-calc];
   };
+
+  imports = [
+    ./rofi-pass.nix
+  ];
 }
