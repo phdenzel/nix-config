@@ -28,9 +28,9 @@
       settings."extensions.enabledScopes" = 15; # auto enable addons
 
       search = {
-        default = "DuckDuckGo";
+        default = "ddg";
         force = true;
-        order = ["DuckDuckGo" "Google" "arXiv" "Wikipedia" "Nix Packages" "NixOS Wiki"];
+        order = ["ddg" "google" "arXiv" "wikipedia" "Nix Packages" "NixOS Wiki"];
         engines = {
           "Nix Packages" = {
             urls = [
@@ -48,13 +48,13 @@
                 ];
               }
             ];
-            iconUpdateURL = "https://search.nixos.org/favicon.png";
+            icon = "https://search.nixos.org/favicon.png";
             updateInterval = 24 * 60 * 60 * 1000; # every day
             definedAliases = ["@np"];
           };
           "NixOS Wiki" = {
             urls = [{template = "https://wiki.nixos.org/index.php?search={searchTerms}";}];
-            iconUpdateURL = "https://search.nixos.org/favicon.png";
+            icon = "https://search.nixos.org/favicon.png";
             updateInterval = 24 * 60 * 60 * 1000; # every day
             definedAliases = ["@nw"];
           };
@@ -89,10 +89,10 @@
             icon = "${config.home.homeDirectory}/.mozilla/assets/logo/arxiv.png";
             definedAliases = ["@a" "@arxiv"];
           };
-          "Bing".metaData.hidden = true;
-          "DuckDuckGo".metaData.alias = "@d";
-          "Google".metaData.alias = "@g";
-          "Wikipedia".metaData.alias = "@w";
+          "bing".metaData.hidden = true;
+          "ddg".metaData.alias = "@d";
+          "google".metaData.alias = "@g";
+          "wikipedia".metaData.alias = "@w";
         };
       };
 
