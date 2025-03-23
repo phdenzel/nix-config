@@ -21,7 +21,7 @@ with lib; {
 
   environment.systemPackages = with pkgs; [
     clipse
-    grim
+    flameshot
     hyprpaper
     hyprpicker
     hyprpolkitagent
@@ -31,7 +31,6 @@ with lib; {
     nwg-look
     pyprland
     rofi-wayland
-    slurp
     swaynotificationcenter
     swayosd
     uwsm

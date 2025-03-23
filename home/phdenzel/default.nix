@@ -19,7 +19,7 @@
     # ../_common/dconf
     ../_common/dircolors
     # ../_common/editorconfig
-    ../_common/emacs  # TODO mu4e
+    ../_common/emacs  # TODO mailing
     ../_common/eza
     ../_common/fastfetch
     ../_common/firefox
@@ -29,7 +29,7 @@
     ../_common/git
     ../_common/gnome
     # ../_common/gtk
-    # ../_common/hyprland
+    ../_common/hyprland
     # ../_common/imv
     # ../_common/matplotlib
     # ../_common/mpv
