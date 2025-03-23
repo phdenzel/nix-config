@@ -75,6 +75,6 @@ in {
     BROWSER = "firefox";
     PAGER = "less";
     TERMINAL = "ghostty";
-    VISUAL = "emacs";
+    VISUAL = "emacsclient -c --alternate-editor=emacs";
   };
 }

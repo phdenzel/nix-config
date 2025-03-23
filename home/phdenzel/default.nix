@@ -47,7 +47,7 @@
     # ../_common/tmux
     # ../_common/waybar
     # ../_common/wlogout
-    # ../_common/yazi
+    ../_common/yazi
     ../_common/zsh
   ];
 }
