@@ -7,6 +7,7 @@ with lib; {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    withUWSM = true;
   };
   programs.waybar.enable = true;
   programs.hyprlock.enable = true;
@@ -17,19 +18,23 @@ with lib; {
     wireplumber.enable = true;
   };
   security.rtkit.enable = true; # recommended for pipewire
+
   environment.systemPackages = with pkgs; [
     clipse
     grim
     hyprpaper
     hyprpicker
+    hyprpolkitagent
     hyprsunset
     kitty
     nwg-displays
     nwg-look
+    pyprland
     rofi-wayland
     slurp
     swaynotificationcenter
     swayosd
+    uwsm
     wlogout
     wlr-randr
     wl-clipboard
@@ -39,4 +44,6 @@ with lib; {
     enableBashIntegration = mkDefault true;
     enableZshIntegration = mkDefault true;
   };
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

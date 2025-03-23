@@ -12,20 +12,20 @@ in {
     ../_common/sddm.nix # display manager
     ../_common/hyprland.nix # window manager
     ../_common/gnome.nix # desktop as backup when Hyprland is bricked
+    ../_common/fonts.nix # font packages
     ../_common/thunar.nix # file manager
     ../_common/openssh.nix # openSSH
     ../_common/crypt-utils.nix # cryptographic tool collection
-    ../_common/tx-rx.nix # transmission / reception
-    ../_common/mux.nix # muxing tool collection
-    ../_common/graphical.nix # graphical applications
+    ../_common/emacs.nix # editor and god tool
     ../_common/cli-utils.nix # cli tool collection
     ../_common/dev-utils.nix # dev tool collection
     ../_common/computing.nix # computing tool collection
     ../_common/ollama.nix # local LLM services
-    ../_common/emacs.nix # editor and god tool
-    ../_common/fonts.nix # font packages
-    ../_common/texlive.nix # full TeXLive package
+    ../_common/graphical.nix # graphical applications
     ../_common/comm.nix # communication apps
+    ../_common/tx-rx.nix # transmission / reception
+    ../_common/mux.nix # muxing tool collection
+    ../_common/texlive.nix # full TeXLive package
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-cpu-amd-pstate
