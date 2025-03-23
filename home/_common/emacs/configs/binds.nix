@@ -2,13 +2,15 @@
   programs.emacs.init = {
     globalBinds = {
       "<f5>" = "revert-buffer";
-      "C-x k" = "kill-this-buffer";
+      "C-x k" = "kill-current-buffer";
       "C-a" = "back-to-indentation";
       "<M-up>" = "backward-paragraph";
       "<M-down>" = "forward-paragraph";
       "C-M-'" = "other-window";
       "C-M-s-h" = "previous-buffer";
+      "C-x <left>" = "previous-buffer";
       "C-M-s-l" = "next-buffer";
+      "C-x <right>" = "next-buffer";
       "C-M-S-h" = "shrink-window-horizontally";
       "C-M-S-l" = "enlarge-window-horizontally";
       "C-M-S-j" = "enlarge-window";
