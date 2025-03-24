@@ -14,7 +14,7 @@
     ./settings.nix
     ./rules.nix
     ./binds.nix
-    # ./hyprpolkitagent.nix
+    ./hyprpolkitagent.nix
     # ./hyprpaper.nix
     # ./hyprlock.nix
     # ./hypridle.nix

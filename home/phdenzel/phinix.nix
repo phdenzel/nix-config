@@ -11,6 +11,7 @@ in {
   imports = [
     inputs.sops-nix.nixosModules.sops
     ../_common/sops.nix
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   sops-user = {
@@ -51,4 +52,8 @@ in {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGZofJltIURsWCGEc+H5wyp4WJ3GGkcjPR5THptcR1dg phdenzel@asahi"
     ];
   };
+
+  home-manager.users.${userName}.wayland.windowManager.hyprland.settings.monitor = [
+    "DP-3, 7680x2160@120.0, 0x0, 2"
+  ];
 }

@@ -40,7 +40,7 @@ in {
 
       # DPMS
       "$mod, Escape, exec, ${uwsmOnce "hyprlock"}"
-      "$mod CTRL, Escape exec, ${uwsmToggle "wlogout"} -p layer-shell"
+      "$mod CTRL, Escape, exec, ${uwsmToggle "wlogout"} -p layer-shell"
 
       # Screenshots
       "$mod CTRL, minus, exec, ${uwsmOnce "flameshot"} full"

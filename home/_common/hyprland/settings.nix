@@ -38,7 +38,7 @@ with config.colorScheme.palette; {
         "border, 1, 6, default"
         "borderangle, 1, 4, default"
         "fade, 1, 4, default"
-        "windows, 1, 4, default, easeOutCirc"
+        "windows, 1, 4, easeOutCirc"
         "windowsOut, 1, 4, default, popin 80%"
         "workspaces, 1, 4, default, slide"
       ];
@@ -87,8 +87,10 @@ with config.colorScheme.palette; {
     };
 
     xwayland.force_zero_scaling = true;
-    no_update_news = true;
-    no_donation_nag = true;
-    #debug = disable_logs = true;
+    ecosystem = {
+      no_update_news = true;
+      no_donation_nag = true;
+    };
+    #debug.disable_logs = true;
   };
 }
