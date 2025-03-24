@@ -8,6 +8,9 @@
       # Firefox's PiP floating window
       "float, title:^(Picture-in-Picture)$"
       "pin, title:^(Picture-in-Picture)$"
+
+      # Scratchpads
+      "float, title:^(scratchpad.*)$"
     ];
   };
 }

@@ -5,19 +5,27 @@
     systemd.enable = false;  # conflicts with UWSM
   };
 
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    XDG_SESSION_TYPE = "wayland";
+    USE_WAYLAND_GRIM = 1;
+  };
+
   imports = [
     # ../waybar
     ../clipse
     ../swaync
     ../swayosd
+    ./env.nix
     ./exec-once.nix
     ./settings.nix
     ./rules.nix
     ./binds.nix
+    ./pyprland.nix
     ./hyprpolkitagent.nix
     # ./hyprpaper.nix
     # ./hyprlock.nix
     # ./hypridle.nix
-    ./pyprland.nix
   ];
 }

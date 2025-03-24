@@ -22,6 +22,7 @@ with lib; {
   environment.systemPackages = with pkgs; [
     clipse
     flameshot
+    grim
     hyprpaper
     hyprpicker
     hyprpolkitagent
@@ -31,6 +32,7 @@ with lib; {
     nwg-look
     pyprland
     rofi-wayland
+    slurp
     swaynotificationcenter
     swayosd
     uwsm
@@ -44,5 +46,7 @@ with lib; {
     enableZshIntegration = mkDefault true;
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 }

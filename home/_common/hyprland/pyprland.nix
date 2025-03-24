@@ -1,29 +1,36 @@
-{...}: {
+{pkgs, ...}: let
+  termExec = program: "uwsm app -- ghostty --title=scratchpad.${program}";
+in {
+  home.packages = with pkgs; [pyprland];
+  
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]
     plugins = [
       "scratchpads",
     ]
-
-    [pyprland.variables]
-    uwsm_term = "uwsm app -T --"
     
     [scratchpads.term]
-    animation = ""
-    # animation = "fromTop"
-    command = "[uwsm_term]"
+    animation = "fromTop"
+    command = "${termExec "term"}"
     class = "scratchpad-term"
-    position = "50% 5%"
-    size = "75% 60%"
+    position = "30% 10%"
+    size = "75% 88%"
     max_size = "1920px 100%"
 
     [scratchpads.filemgr]
-    animation = ""
-    # animation = "fromTop"
-    command = "[uwsm_term] yazi"
+    animation = "fromTop"
+    command = "${termExec "filemgr"} -e yazi"
     class = "scratchpad-filemgr"
-    position = "50% 5%"
-    size = "75% 60%"
+    position = "30% 10%"
+    size = "75% 88%"
+    max_size = "1920px 100%"
+
+    [scratchpads.clipboard]
+    animation = "fromTop"
+    command = "${termExec "clipboard"} -e clipse"
+    class = "scratchpad-clipboard"
+    position = "30% 10%"
+    size = "75% 88%"
     max_size = "1920px 100%"
   '';
 }

@@ -86,7 +86,7 @@ with config.colorScheme.palette; {
       preserve_split = true;  # you probably want this
     };
 
-    xwayland.force_zero_scaling = true;
+    xwayland.force_zero_scaling = false;
     ecosystem = {
       no_update_news = true;
       no_donation_nag = true;

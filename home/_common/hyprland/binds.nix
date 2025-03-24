@@ -20,13 +20,15 @@ in {
 
     bind = [
       # App launcher
-      "$mod, Slash, exec, rofi -show run -run-command \"${uwsmRun "{cmd}"}\""
+      "$mod, Slash, exec, rofi -show drun -run-command \"${uwsmRun "{cmd}"}\""
       "$mod, P, exec, rofi-pass -b wl-clipboard"
 
       # Scratchpad
       "$mod SHIFT, Return, exec, pypr toggle term"
       "$mod SHIFT, D, exec, pypr toggle filemgr"
       "$mod SHIFT, Space, exec, pypr toggle filemgr"
+      "$mod SHIFT, D, exec, pypr toggle filemgr"
+      "$mod, W, exec, pypr toggle clipboard"
 
       # Status bar
       "$mod, B, exec, killall -SIGUSR1 waybar" # hide bar (w/o killing it)
@@ -35,6 +37,7 @@ in {
 
       # Essential apps
       "$mod, Return, exec, ${uwsmRun "$term"}"
+      "$mod, E, exec, $editor"
       "$mod, D, exec, ${uwsmRun "$files"}"
       "$mod ALT, D, exec, ${uwsmTerm "$filesAlt"}"
 
@@ -48,10 +51,8 @@ in {
       "$mod ALT, minus, exec, ${uwsmOnce "flameshot"} screen"
       "$mod ALT, equal, exec, ${uwsmOnce "flameshot"} gui -c"
 
-      # Clipboard
-      "$mod, W, exec, ${uwsmTerm "clipse"}"
-
       # Window navigation
+      "$mod, Tab, cyclenext"
       "$mod, H, movefocus, l"
       "$mod, J, movefocus, d"
       "$mod, K, movefocus, u"
