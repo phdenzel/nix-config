@@ -1,4 +1,12 @@
 {pkgs, ...}: {
+  home.file.".config/rofi-pass/config".text = ''
+    pw_store_dir="$HOME/.password-store"
+    clipboard_backend="wl-clipboard"
+    clipboard_timeout=30
+    clipboard='both'
+    notifications=1
+  '';
+
   home.packages = with pkgs; [
     (writeShellScriptBin "rofi-pass" ''
 # rofi-pass
