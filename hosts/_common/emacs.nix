@@ -10,6 +10,7 @@ with lib; {
   # technically not a CLI tool
   services.emacs = {
     install = mkDefault true;
+    package = mkDefault pkgs.emacs-pgtk;
     startWithGraphical = true;
     defaultEditor = mkDefault true;
   };
