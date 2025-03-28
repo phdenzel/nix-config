@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     cyrus-sasl-xoauth2
     filezilla
+    networkmanagerapplet
     pizauth
     transmission_4
     transmission_4-gtk
