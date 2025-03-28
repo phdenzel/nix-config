@@ -21,7 +21,7 @@ with lib; {
 
   environment.systemPackages = with pkgs; [
     clipse
-    flameshot
+    (flameshot.override {enableWlrSupport = true;})
     grim
     hyprpaper
     hyprpicker
