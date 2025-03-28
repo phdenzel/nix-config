@@ -16,7 +16,6 @@ in {
     "$browserAlt" = "qutebrowser";
     "$email" = "thunderbird";
     "$emailAlt" = "$editor -e '(himalaya)'";
-    "$passwm" = "pass";
 
     bind = [
       # App launcher
@@ -73,6 +72,7 @@ in {
       "$mod ALT, L, movetoworkspace, +1"
       "$mod SHIFT, C, killactive"
       "$mod, F, fullscreen, 0"
+      "$mod, R, togglesplit,"
       "$mod, T, togglefloating, active"
       "$mod, mouse:274, killactive"
 
@@ -121,6 +121,14 @@ in {
       "$mod CTRL, period, movecurrentworkspacetomonitor, 1"
       "$mod SHIFT, comma, swapactiveworkspaces, 0 1"
       "$mod SHIFT, period, swapactiveworkspaces, 1 0"
+    ];
+
+    binde = [
+      # Window control
+      "$mod SHIFT, left, resizeactive, -5 0"
+      "$mod SHIFT, right, resizeactive, 5 0"
+      "$mod SHIFT, up, resizeactive, 0 -5"
+      "$mod SHIFT, down, resizeactive, 0 5"
     ];
 
     bindm = [
