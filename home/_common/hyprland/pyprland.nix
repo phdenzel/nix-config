@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  uwsmExec = program: "uwsm app -- ghostty --title=scratchpad.${program}";
+  uwsmExec = program: "uwsm app ${program}";
   termExec = program: "uwsm app -- ghostty --title=scratchpad.${program}";
 in {
   home.packages = with pkgs; [pyprland];
@@ -11,17 +11,15 @@ in {
     ]
     
     [scratchpads.term]
-    animation = "fromTop"
+    animation = ""
     command = "${termExec "term"}"
-    class = "scratchpad-term"
     position = "30% 10%"
     size = "75% 88%"
     max_size = "1920px 100%"
 
     [scratchpads.filemgr]
-    animation = "fromTop"
+    animation = ""
     command = "${termExec "filemgr"} -e yazi"
-    class = "scratchpad-filemgr"
     position = "30% 10%"
     size = "75% 88%"
     max_size = "1920px 100%"
@@ -29,15 +27,16 @@ in {
     [scratchpads.monitor]
     animation = "fromTop"
     command = "${termExec "monitor"} -e btop"
-    class = "scratchpad-monitor"
     position = "30% 10%"
     size = "75% 88%"
     max_size = "1920px 100%"
 
     [scratchpads.volmgr]
     animation = "fromTop"
-    command = "${uwsmExec "volmgr"} -e pavucontrol"
-    class = "scratchpad-volmgr"
+    command = "pavucontrol"
+    class = "org.pulseaudio.pavucontrol"
+    title = "scratchpad.volmgr"
+    lazy = true
     position = "30% 10%"
     size = "75% 88%"
     max_size = "1920px 100%"

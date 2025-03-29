@@ -11,6 +11,7 @@
 
       # Scratchpads
       "float, title:^(scratchpad.*)$"
+      "float, class:^(org.pulseaudio.pavucontrol)$"
     ];
   };
 }
