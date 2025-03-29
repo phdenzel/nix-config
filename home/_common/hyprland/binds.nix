@@ -30,9 +30,9 @@ in {
       "$mod, W, exec, pypr toggle clipboard"
 
       # Status bar
-      "$mod, B, exec, killall -SIGUSR1 waybar" # hide bar (w/o killing it)
-      "$mod SHIFT, B, exec, killall -SIGUSR2 waybar" # reload bar (no restart)
-      "$mod ALT, B, exec, killall waybar; waybar" # restart bar
+      "$mod, B, exec, pkill --signal SIGUSR1 waybar" # hide bar (w/o killing it)
+      "$mod SHIFT, B, exec, pkill --signal SIGUSR2 waybar" # reload bar (no restart)
+      "$mod ALT, B, exec, pkill waybar; waybar" # restart bar
 
       # Essential apps
       "$mod, Return, exec, ${uwsmRun "$term"}"
