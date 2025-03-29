@@ -41,12 +41,9 @@
     ../_common/rofi
     ../_common/ruff
     ../_common/starship
-    # ../_common/swaync
     # ../_common/tealdeer
     ../_common/thunderbird
     # ../_common/tmux
-    # ../_common/waybar
-    # ../_common/wlogout
     ../_common/yazi
     ../_common/zsh
   ];

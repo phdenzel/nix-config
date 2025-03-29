@@ -9,7 +9,6 @@ with lib; {
     xwayland.enable = true;
     withUWSM = true;
   };
-  programs.waybar.enable = true;
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
 
@@ -36,6 +35,7 @@ with lib; {
     swaynotificationcenter
     swayosd
     uwsm
+    waybar
     wlogout
     wlr-randr
     wl-clipboard

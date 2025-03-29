@@ -13,10 +13,11 @@
   };
 
   imports = [
-    # ../waybar
     ../clipse
+    ../flameshot
     ../swaync
     ../swayosd
+    ../waybar
     ./env.nix
     ./exec-once.nix
     ./settings.nix

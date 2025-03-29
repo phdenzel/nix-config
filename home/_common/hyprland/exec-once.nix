@@ -4,8 +4,9 @@
       "uwsm finalize"
       "pypr --debug /tmp/pypr.log"
       # "hyprlock"
+      "waybar"
       "udiskie"
-      "lact daemon"
+      "lact daemon"      
       # "licht -d"
     ];
   };
