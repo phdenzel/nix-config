@@ -2,6 +2,7 @@
   fonts.packages = with pkgs;
     [
       dejavu_fonts
+      fira-sans
       hubot-sans
       liberation_ttf
       mona-sans
