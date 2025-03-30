@@ -1,6 +1,10 @@
 {pkgs, config, lib, ...}: let
   uwsmRun = program: "uwsm app -- ${program}";
   palette = config.colorScheme.palette;
+  baseColor = palette.crust;
+  bgColor = palette.overlay1;
+  fgColor = palette.text;
+  fgHColor = palette.subtext0;
 in {
   home.packages = with pkgs; [nixos-icons];
 
@@ -20,16 +24,16 @@ in {
       # Build
       modules-left = ["group/session" "custom/apps" "custom/clipboard" "hyprland/workspaces" "wlr/taskbar" "mpris"];
       modules-center = ["clock"];
-      modules-right = ["tray" "idle_inhibitor" "group/hardware" "wireplumber" "bluetooth" "network" "battery" "custom/notification"];
+      modules-right = ["tray" "power-profiles-daemon" "group/hardware" "network" "bluetooth" "battery" "wireplumber" "custom/notification" "idle_inhibitor"];
       
       # Modules
       "battery" = {
         bat = "BAT0";
         adapter = "AC";
         design-capacity = false;
-        format = "{icon} {capacity}%";
-        format-alt = "{icon} {time}";
-        format-charging = "󰂄 {capacity}%";
+        format = "<span color='#${palette.viridis}'>{icon}</span> {capacity}%";
+        format-alt = "<span color='#${palette.viridis}'>{icon}</span> {time}";
+        format-charging = "<span color='#${palette.viridis}'>󰂄</span> {capacity}%";
         format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         format-plugged = "󰚥 {capacity}%";
         format-time = "{H}h {M}m";
@@ -43,9 +47,9 @@ in {
       };
 
       "bluetooth" = {
-        format = " {num_connections}";
-        format-disabled = "󰂴";
-        format-off = "󰂲";
+        format = "<span color='#${palette.blue}'></span> {num_connections}";
+        format-disabled = "<span color='#${palette.blue}'>󰂴</span>";
+        format-off = "<span color='#${palette.blue}'>󰂲</span>";
         interval = 15;
         on-click = "blueman-manager";
         on-click-right = "bluetoothctl show | grep 'Powered: no' -q && bluetoothctl power on || bluetoothctl power off";
@@ -63,8 +67,8 @@ in {
         };
         calendar = {
           format = {
-            months = "<span color='#${palette.subtext0}'><b>{}</b></span>";
-            days = "<span color='#${palette.text}'><b>{}</b></span>";
+            months = "<span color='#${fgHColor}'><b>{}</b></span>";
+            days = "<span color='#${fgColor}'><b>{}</b></span>";
             weeks = "<span color='#${palette.teal}'><b>W{}</b></span>";
             weekdays = "<span color='#${palette.sand}'><b>{}</b></span>";
             today = "<span color='#${palette.pink}'><b>{}</b></span>";
@@ -74,94 +78,119 @@ in {
           on-scroll = 1;
           weeks-pos = "left";
         };
-        format = "󱑎  {:%H:%M}";
-        format-alt = "󰸗  {:%B %d, %Y}";
+        format = "<span color='#${palette.white}'>󱑎</span>  {:%H:%M}";
+        format-alt = "<span color='#${palette.white}'>󰸗</span>  {:%B %d, %Y}";
         timezone = "Europe/Zurich";
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
 
       "cpu" = {
-        format = " {usage}%";
-        interval = 5;
-        max-length = 6;
+        format = "<span color='#${palette.blue}'></span>  {usage}%";
+        interval = 3;
+        min-length = 5;
+        max-length = 7;
         on-click = "sleep 0.1 && pypr toggle monitor";
+      };
+
+      "custom/nvidia" = {
+        exec = "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
+        format = "<span color='#${palette.viridis}'>{icon}</span>  {}%";
+        format-icons = "󰆧";
+        interval = 3;
+        min-length = 5;
+        max-length = 7;
+        on-click = "sleep 0.1 && ${uwsmRun "nvidia-settings"}";
+        return-type = "";
+        tooltip = true;
+        tooltip-format = "GPU usage: {}%";
       };
 
       "custom/amd" = {
         exec = "rocm-smi -u --json | jq '.card0[] | tonumber'";
-        format = "󱥒 {}%";
-        interval = 5;
-        max-length = 6;
+        format = "<span color='#${palette.pink}'>{icon}</span>  {}%";
+        format-icons = "󱥒";
+        interval = 3;
+        min-length = 5;
+        max-length = 7;
         on-click = "sleep 0.1 && ${uwsmRun "lact gui"}";
         return-type = "";
-        tooltip = false;
+        tooltip = true;
+        tooltip-format = "GPU usage: {}%";
       };
 
       "custom/apps" = {
-        format = "";
+        format = "<span color='#${palette.sand}'></span>";
         on-click = "rofi -show drun -run-command \"${uwsmRun "{cmd}"}\"";
-        tooltip = false;
+        tooltip = true;
+        tooltip-format = "Application launcher";
       };
 
       "custom/clipboard" = {
-        format = "";
+        format = "<span color='#${palette.purple}'></span>";
         on-click = "sleep 0.1 && pypr toggle clipboard";
-        tooltip = false;
+        tooltip = true;
+        tooltip-format = "Clipboard history";
       };
 
       "custom/lock" = {
         format = "";
         on-click = "${uwsmRun "hyprlock"}";
-        tooltip = false;
+        tooltip = true;
+        tooltip-format = "Lock current session";
       };
 
       "custom/logout" = {
         format = "󰍃";
         on-click = "hyprctl dispatch exit";
-        tooltip = false;
+        tooltip = true;
+        tooltip-format = "Logout of current session";
       };
 
       "custom/nixos" = {
-        format = "󱄅";
+        format = "<span color='#${palette.blue}'>󱄅</span>";
         on-click = "${uwsmRun "wlogout"}";
-        tooltip = false;
+        tooltip = true;
+        tooltip-format = "Logout menu";
       };
 
       "custom/notification" = {
         escape = true;
         exec = "swaync-client -swb";
         exec-if = "which swaync-client";
-        format = "{icon} {}";
+        format = "{icon}  {}";
         format-icons = {
-          notification = "󰂚<span foreground='#${palette.pink}'><sup></sup></span>";
-          none = "󰂚";
-          dnd-notification = "󰂛<span foreground='#${palette.pink}'><sup></sup></span>";
-          dnd-none = "󰂛";
-          inhibited-notification = "󰂜<span foreground='#${palette.pink}'><sup></sup></span>";
-          inhibited-none = "󰂜";
-          dnd-inhibited-notification = "󰪑<span foreground='#${palette.pink}'><sup></sup></span>";
-          dnd-inhibited-none = "󰪑";  
+          notification = "<span color='#${palette.teal}'>󰂚</span><span foreground='#${palette.pink}'><sup></sup></span>";
+          none = "<span color='#${palette.teal}'>󰂚</span>";
+          dnd-notification = "<span color='#${palette.sand}'>󰂛</span><span foreground='#${palette.pink}'><sup></sup></span>";
+          dnd-none = "<span color='#${palette.sand}'>󰂛</span>";
+          inhibited-notification = "<span color='#${palette.teal}'>󰂜</span><span foreground='#${palette.pink}'><sup></sup></span>";
+          inhibited-none = "<span color='#${palette.teal}'>󰂜</span>";
+          dnd-inhibited-notification = "<span color='#${palette.pink}'>󰪑</span><span foreground='#${palette.pink}'><sup></sup></span>";
+          dnd-inhibited-none = "<span color='#${palette.pink}'>󰪑</span>";
         };
         on-click = "sleep 0.1 && ${uwsmRun "swaync-client -t -sw"}";
         on-click-right = "sleep 0.1 && ${uwsmRun "swaync-client -d -sw"}";
         return-type = "json";
-        tooltip = false;
+        tooltip = true;
+        tooltip-format = "Notification centre";
       };
 
       "custom/reboot" = {
         format = "";
-        tooltip = false;
         on-click = "reboot";
+        tooltip = true;
+        tooltip-format = "Reboot machine";
       };
 
       "custom/turnoff" = {
         format = "";
-        tooltip = false;
         on-click = "shutdown now";
+        tooltip = true;
+        tooltip-format = "Shut down machine";
       };
 
       "disk" = {
-        format = " {free}";
+        format = "<span color='#${palette.sand}'></span>  {free}";
         interval = 30;
         path = "/";
         on-click = "sleep 0.1 && pypr toggle monitor";
@@ -210,23 +239,30 @@ in {
       "idle_inhibitor" = {
         format = "{icon}";
         format-icons = {
-          activated = "󱐌";
-          deactivated = "";
+          activated = "<span color='#${palette.sand}'>󱐌</span>";
+          deactivated = "<span color='#${palette.blue}'></span>";
         };
+        start-activated = false;
         tooltip = true;
+        tooltip-format-activated = "Idle inhibitor is {status}";
+        tooltip-format-deactivated = "Idle inhibitor is {status}";
       };
 
       "memory" = {
-        format = " {percentage}%";
-        interval = 5;
-        max-length = 6;
+        format = "<span color='#${palette.teal}'></span>   {percentage}%";
+        interval = 3;
+        min-length = 6;
+        max-length = 8;
         on-click = "sleep 0.1 && pypr toggle monitor";
       };
 
       "mpris" = {
         dynamic-len = 50;
+        dynamic-order = ["title" "artist" "position" "length"];
+        dynamic-importance-order = ["title" "artist" "position" "length"];
         format = "{player_icon}  {status_icon} {dynamic}";
         # ignored-players = ["Lollypop"];
+        interval = 1;
         player-icons = {
           default = "";
           firefox = "󰈹";
@@ -241,16 +277,17 @@ in {
 
       "network" = {
         interval = 3;
+        family = "ipv4";
         format = "{ifname}";
-        format-wifi = " {signalStrength}%";
-        format-ethernet = "↑{bandwidthUpBytes} | ↓{bandwidthDownBytes}  󰈀  {ipaddr}";
+        format-wifi = "<span color='#${palette.purple}'></span>  {signalStrength}%";
+        format-ethernet = "<span color='#${palette.teal}'>↑</span> {bandwidthUpBytes} | <span color='#${palette.sand}'>↓</span> {bandwidthDownBytes}  <span color='#${palette.purple}'>󰈀</span>  {ipaddr}";
         format-disconnected = "";
         tooltip-format = "󰈀 {ifname} via {gwaddri}";
-        tooltip-format-wifi = " {essid} ({signalStrength}%)";
-        tooltip-format-ethernet = " {ifname} ({ipaddr}/{cidr})";
+        tooltip-format-wifi = "  {essid} ({signalStrength}%)";
+        tooltip-format-ethernet = "  {ifname} ({ipaddr}/{cidr})";
         tooltip-format-disconnected = "Disconnected";
-        max-length = 34;
-        min-length = 34;
+        max-length = 35;
+        min-length = 35;
         on-click = "nm-connection-editor";
         on-click-right = "nmcli networking connectivity | grep -q none && nmcli networking on || nmcli networking off";
       };
@@ -260,10 +297,10 @@ in {
         tooltip = true;
         tooltip-format = "Power profile: {profile}\nDriver: {driver}";
         format-icons = {
-          default = "";
-          performance = "󰓅";
-          balanced = "";
-          power-saver = "";
+          default = "<span color='#${palette.viridis}'></span>";
+          performance = "<span color='#${palette.pink}'>󰓅</span>";
+          balanced = "<span color='#${palette.sand}'></span>";
+          power-saver = "<span color='#${palette.viridis}'></span>";
         };
       };
 
@@ -274,7 +311,7 @@ in {
 
       "wireplumber" = {
         format = "{icon} {volume}%";
-        format-icons = ["" "" ""];
+        format-icons = ["<span color='#${palette.white}'></span>" "<span color='#${palette.sand}'></span>" "<span color='#${palette.pink}'></span>"];
         format-muted = "";
         on-click = "pypr toggle volmgr";
       };
@@ -282,7 +319,7 @@ in {
       "wlr/taskbar" = {
         format = " {icon}";
         icon-size = 18;
-        ignore-list = ["^(scratchpad.*)$"];
+        ignore-list = ["scratchpad.term" "scratchpad.filemgr" "scratchpad.monitor" "scratchpad.clipboard"];
         on-click = "activate";
         on-click-middle = "close";
         tooltip-format = "{title}";
@@ -293,62 +330,76 @@ in {
       * {
           border: none;
           border-radius: 0px;
-          font-family: "Fira Sans SemiBold", FontAwesome, "DejaVu Sans", sans-serif;
+          font-family: "Fira Sans SemiBold", FontAwesome, "DejaVu Sans", Helvetica, Arial, sans-serif;
           font-size: 16px;
       }
 
       window#waybar {
-          background: alpha(#${palette.crust},.2);
+          background: alpha(#${baseColor},.2);
+          color: #${fgColor};
           transition-property: background-property;
           transition-duration: .5s;
       }
 
+      /* Tooltips */
+      tooltip {
+          background-color: #${palette.crust};
+          border: 1px solid #${bgColor};
+          border-radius: 10px;
+          opacity: 0.8;
+      }
+      tooltip label {
+          color: #${fgHColor};
+          font-family: "DejaVu Sans";
+          font-size: 13px;
+      }
+
       /* Group: Session */
       #custom-nixos {
-          background: #${palette.overlay1};
+          background: #${bgColor};
           border-radius: 0px 0px 40px 0px;
-          color: #${palette.subtext0};
+          color: #${fgHColor};
           font-size: 28px;
           margin: 0px;
           padding: 0px 25px 0px 10px;
       }
 
       #custom-lock, #custom-logout, #custom-reboot, #custom-turnoff {
-          background: #${palette.overlay1};
+          background: #${bgColor};
           font-size: 18px;
           margin: 0px;
           padding: 0px 8px;
       }
 
       #custom-nixos:hover, #custom-lock:hover, #custom-logout:hover, #custom-reboot:hover, #custom-turnoff:hover {
-          background: #${palette.subtext0};
-          color: #${palette.overlay1};
+          background: alpha(#${fgHColor},.8);
+          color: #${bgColor};
           opacity: 0.7;
       }
 
-      /* Laucher */
-      #custom-apps, #custom-clipboard {
-          background: #${palette.overlay1};
+      /* Left standard modules */
+      #custom-apps, #custom-clipboard, #mpris {
+          background: #${bgColor};
           border-radius: 24px 8px 24px 8px;
           margin: 0px 4px;
           min-width: 30px;
-          padding: 6px 6px;
+          padding: 6px 9px;
       }
 
       /* Workspaces */
       #workspaces {
-          background: #${palette.overlay1};
+          background: #${bgColor};
           border-radius: 24px 8px 24px 8px;
-          color: #${palette.overlay1};
+          color: #${bgColor};
           margin: 0px 4px;
           opacity: 0.8;
           padding: 6px 6px;
       }
 
       #workspaces button {
-          background-color: #${palette.subtext0};
+          background: #${fgColor};
           border-radius: 12px;
-          color: #${palette.overlay1};
+          color: #${bgColor};
           margin: 0px 4px;
           opacity: 0.4;
           padding: 0px 6px;
@@ -356,18 +407,18 @@ in {
       }
 
       #workspaces button.active {
-          background: #${palette.subtext0};
+          background: #${fgHColor};
           border-radius: 12px;
-          color: #${palette.overlay1};
+          color: #${bgColor};
           min-width: 30px;
           opacity: 1.0;
           transition: all 0.3s ease-in-out;
       }
 
       #workspaces button:hover {
-          background: #${palette.subtext0};
+          background: #${fgHColor};
           border-radius: 12px;
-          color: #${palette.overlay1};
+          color: #${bgColor};
           opacity: 0.7;
       }
 
@@ -381,7 +432,7 @@ in {
 
       /* Taskbar */
       #taskbar {
-          background: #${palette.overlay1};
+          background: #${bgColor};
           border-radius: 24px 8px 24px 8px;
           margin: 0px 4px;
           opacity: 0.8;
@@ -396,37 +447,85 @@ in {
           transition: all 0.3s ease-in-out;
       }
       #taskbar button.active {
-        background: #${palette.overlay1};
-        border-radius: 16px;
-        color: #${palette.overlay1};
-        opacity: 1.0;
-        transition: all 0.3s ease-in-out;
+          background: #${bgColor};
+          border-radius: 16px;
+          color: #${bgColor};
+          opacity: 1.0;
+          transition: all 0.3s ease-in-out;
       }
 
       #taskbar.empty {
-        background-color: transparent;
-        min-width: 0px;
-        opacity: 0.0;
+          background-color: transparent;
+          min-width: 0px;
+          opacity: 0.0;
       }
-      
 
-      /* Tooltips */
-      tooltip {
-        background-color: #${palette.crust};
-        border: 1px solid #${palette.overlay1};
-        border-radius: 10px;
-        opacity: 0.8;
+      /* Clock */
+      #clock {
+          background: #${bgColor};
+          border-radius: 8px 8px 24px 24px;
+          color: #${fgHColor};
+          margin: 0px 8px;
+          padding: 0px 16px;
       }
-      tooltip label {
-        color: #${palette.subtext0};
-        font-family: "DejaVu Sans";
-        font-size: 13px;
+
+      /* Tray */
+      #tray {
+          background: #${bgColor};
+          border-radius: 8px 24px 8px 24px;
+          margin: 0px 4px;
+          padding: 0px 12px;
+      }
+      #tray > .passive {
+          -gtk-icon-effect: dim;
+      }
+      #tray > .needs-attention {
+          -gtk-icon-effect: highlight;
+      }
+
+      /* Group: Hardware */
+      #cpu, #custom-amd, #memory, #disk {
+          background: #${bgColor};
+          margin: 0px 0px 0px 0px;
+          min-width: 30px;
+          padding: 6px 9px;
+      }
+      #cpu {
+          border-radius: 8px 0px 0px 24px;
+          margin: 0px 0px 0px 4px;
+      }
+      #disk {
+          border-radius: 0px 24px 8px 0px;
+          margin: 0px 4px 0px 0px;
+      }
+
+      /* Right standard modules */
+      #power-profiles-daemon, #network, #bluetooth, #battery, #wireplumber, #custom-notification {
+          background: #${bgColor};
+          border-radius: 8px 24px 8px 24px;
+          margin: 0px 4px;
+          min-width: 30px;
+          padding: 6px 9px;
+      }
+
+      /* Idle inhibitor */
+      #idle_inhibitor {
+          background: #${bgColor};
+          border-radius: 0px 0px 0px 40px;
+          color: #${fgHColor};
+          font-size: 24px;
+          margin: 0px;
+          padding: 0px 10px 0px 25px;
+      }
+
+      /* Other */
+      label:focus {
+           background-color: #000000;
+      }
+
+      #backlight {
+           background-color: #${palette.yellow};
       }
     '';
   };
 }
-  
-# /* color7 #EDF3FE;  -> textcolor2
-#  * color8 #404850;  -> backgroundlight, workspacesbackground1, bordercolor, textcolorlightbg
-#  * color15 #F6F9FE; -> backgrounddark, workspacesbackground2
-#  * text    #BDC3CE; -> textcolor3, iconcolor */
