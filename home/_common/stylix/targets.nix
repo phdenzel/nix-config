@@ -13,6 +13,7 @@
     ghostty.enable = true;
     gnome.enable = true;
     gtk.enable = true;
+    hyprpaper.enable = true;
     kitty.enable = true;
   };
 }

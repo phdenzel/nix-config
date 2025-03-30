@@ -25,7 +25,7 @@
     ./binds.nix
     ./pyprland.nix
     ./hyprpolkitagent.nix
-    # ./hyprpaper.nix
+    ./hyprpaper.nix
     # ./hyprlock.nix
     # ./hypridle.nix
   ];
