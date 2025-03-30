@@ -37,6 +37,7 @@ in {
       # Essential apps
       "$mod, Return, exec, ${uwsmRun "$term"}"
       "$mod, E, exec, $editor"
+      "$mod, N, exec, ${uwsmRun "swaync-client -t -sw"}"
       "$mod, D, exec, ${uwsmRun "$files"}"
       "$mod ALT, D, exec, ${uwsmTerm "$filesAlt"}"
 
