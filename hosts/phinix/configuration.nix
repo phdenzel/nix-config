@@ -74,11 +74,15 @@ in {
   };
 
   # Networking
-  networking.hostName = "${hostName}";
-  networking.hostId = "27b636ba";
-  #networking.wireless.enable = true;  # wireless via wpa_supplicant.
-  networking.networkmanager.enable = true;
-  #systemd.services.NetworkManager-wait-online.enable = false;
+  networking = {
+    hostName = "${hostName}";
+    hostId = "27b636ba";
+    # wireless.enable = true;  # wireless via wpa_supplicant.
+    networkmanager.enable = true;
+    enableIPv6 = false;
+  };
+  systemd.services.NetworkManager-wait-online.enable = false;
+  
   # Local networking
   services.avahi = {
     enable = true;
@@ -91,6 +95,7 @@ in {
   environment.systemPackages = with pkgs; [
     lact
     lm_sensors
+    networkmanagerapplet
     pavucontrol
     podman-desktop
     rgp
