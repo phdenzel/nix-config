@@ -90,8 +90,8 @@
     toc-org = {
       enable = true;
       hook = [
-        "(org-mode . #'toc-org-mode)"
-        "(markdown-mode . #'toc-org-mode)"
+        "(org-mode . toc-org-mode)"
+        "(markdown-mode . toc-org-mode)"
       ];
     };
     org-mime = {
