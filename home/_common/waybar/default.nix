@@ -177,14 +177,14 @@ in {
 
       "custom/reboot" = {
         format = "";
-        on-click = "reboot";
+        on-click = "systemctl reboot";
         tooltip = true;
         tooltip-format = "Reboot machine";
       };
 
       "custom/turnoff" = {
         format = "";
-        on-click = "shutdown now";
+        on-click = "systemctl poweroff";
         tooltip = true;
         tooltip-format = "Shut down machine";
       };
