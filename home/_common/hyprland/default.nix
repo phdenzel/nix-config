@@ -18,6 +18,7 @@
     ../swaync
     ../swayosd
     ../waybar
+    ../wlogout
     ./env.nix
     ./exec-once.nix
     ./settings.nix
