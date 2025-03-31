@@ -389,11 +389,11 @@
     "phd-ark-tabline": {
       "flake": false,
       "locked": {
-        "lastModified": 1739444497,
-        "narHash": "sha256-1e6p1rLG3ciqGLMo2uR9nHjJn6CRk/QdSvH8WAHvUdA=",
+        "lastModified": 1743439335,
+        "narHash": "sha256-bAQgUYuOvYCcMt2nSfgQKzE0blAFWWHDtBkIP5N+Q78=",
         "ref": "refs/heads/main",
-        "rev": "6d2b51cbb723e2054fb4aa675ed5c81aa770dabb",
-        "revCount": 2,
+        "rev": "24cc7d0db92d105ab241e7bc06750bc1f9c76a7b",
+        "revCount": 3,
         "type": "git",
         "url": "ssh://git@github.com/phdenzel/phd-ark-tabline"
       },
