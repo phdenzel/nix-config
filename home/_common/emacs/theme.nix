@@ -884,8 +884,8 @@ in {
         mapPaletteColors = attrs: let
           formattedAttrs =
             mapAttrsToList (
-              # name: value: "(${cfg.name}-${name}   \t\t(${cfg.name}/get-color '${name}) (${cfg.name}-quantize-color (${cfg.name}/get-color '${name})))"
-              name: value: "(${cfg.name}-${name}   \t\t(${cfg.name}/get-color '${name}) (${cfg.name}/get-color '${name}))"
+              name: value: "(${cfg.name}-${name}   \t\t(${cfg.name}/get-color '${name}) (${cfg.name}-quantize-color (${cfg.name}/get-color '${name})))"
+              # name: value: "(${cfg.name}-${name}   \t\t(${cfg.name}/get-color '${name}) (${cfg.name}/get-color '${name}))"
             )
             attrs;
         in "'((undef        \"#ff00ff\" \"$ff00ff\")\n${concatStringsSep "\n" formattedAttrs})";

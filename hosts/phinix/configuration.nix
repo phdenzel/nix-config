@@ -82,7 +82,7 @@ in {
     enableIPv6 = false;
   };
   systemd.services.NetworkManager-wait-online.enable = false;
-  
+
   # Local networking
   services.avahi = {
     enable = true;
