@@ -93,6 +93,47 @@ in {
         thunderbird.enable = true;
       };
 
+      ikmail = rec {
+        flavor = "plain";
+        realName = "${realname}";
+        address = "${username}@ikmail.com";
+        userName = "${address}";
+        passwordCommand = "${lib.getExe pkgs.pass} mail/${address}";
+        signature = {
+          showSignature = "append";
+          delimiter = "   ";
+          text = "${casualSignature}";
+        };
+        folders = {
+          inbox = "Inbox";
+          sent = "Sent";
+          drafts = "Drafts";
+          trash = "Trash";
+        };
+        imap = {
+          host = "mail.infomaniak.com";
+          port = 993;
+          tls.enable = true;
+        };
+        smtp = {
+          host = "mail.infomaniak.com";
+          port = lib.mkForce 465;
+          tls.enable = true;
+        };
+        mu.enable = true;
+        mbsync = defaultMbsyncConfig {
+          accountExtra = {AuthMechs = "PLAIN";};
+        };
+        himalaya = {
+          enable = true;
+          settings = {
+            message.send.save-copy = true;
+            sync.enable = true;
+          };
+        };
+        thunderbird.enable = true;
+      };
+
       hispeed = rec {
         flavor = "plain";
         realName = "${realname}";
