@@ -148,7 +148,7 @@ in {
 
       "custom/nixos" = {
         format = "<span color='#${palette.blue}'>󱄅</span>";
-        on-click = "${uwsmRun "wlogout"}";
+        on-click = "${uwsmRun "wlogout"} -p layer-shell -b 5";
         tooltip = true;
         tooltip-format = "Logout menu";
       };
