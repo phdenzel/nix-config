@@ -156,8 +156,10 @@ in {
     bindle = [
       ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 1%+"
       ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 1%-"
-      ", XF86MonBrightnessUp, exec, "
-      ", XF86MonBrightnessDown, exec, "
+      ", XF86MonBrightnessUp, exec, hyprctl hyprsunset gamma +10"
+      ", XF86MonBrightnessDown, exec, hyprctl hyprsunset gamma -10"
+      "$mod SHIFT, apostrophe, exec, hyprctl hyprsunset temperature +100"
+      "$mod SHIFT, Escape, exec, hyprctl hyprsunset temperature -100"
     ];
   };
 }
