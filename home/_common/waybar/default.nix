@@ -134,7 +134,7 @@ in {
 
       "custom/lock" = {
         format = "";
-        on-click = "${uwsmRun "hyprlock"}";
+        on-click = "loginctl lock-session";
         tooltip = true;
         tooltip-format = "Lock current session";
       };

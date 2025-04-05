@@ -3,10 +3,10 @@
     exec-once = [
       "uwsm finalize"
       "pypr --debug /tmp/pypr.log"
-      # "hyprlock"
       "waybar"
+      "hyprsunset"
       "udiskie"
-      "lact daemon"      
+      "lact daemon"
       # "licht -d"
     ];
   };
