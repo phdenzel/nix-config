@@ -137,7 +137,9 @@ in {
   # };
 
   # Security
-  security.polkit.enable = true;
+  security = {
+    polkit.enable = true;
+  };
 
   system.stateVersion = "24.11";
 }

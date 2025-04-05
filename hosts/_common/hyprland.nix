@@ -16,7 +16,10 @@ with lib; {
     enable = true;
     wireplumber.enable = true;
   };
-  security.rtkit.enable = true; # recommended for pipewire
+  security = {
+    rtkit.enable = true; # recommended for pipewire
+    pam.services.hyprlock = {}; # enable unlocking with hyprlock
+  };
 
   environment.systemPackages = with pkgs; [
     clipse
