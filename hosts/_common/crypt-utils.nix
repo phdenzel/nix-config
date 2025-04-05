@@ -10,6 +10,7 @@ with lib; {
     pwgen
     ssh-to-age
     sops
+    zbar
   ];
 
   programs.gnupg.agent = {
