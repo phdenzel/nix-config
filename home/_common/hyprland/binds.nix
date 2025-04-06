@@ -19,7 +19,7 @@ in {
 
     bind = [
       # App launcher
-      "$mod, Slash, exec, rofi -show drun -run-command \"${uwsmRun "{cmd}"}\""
+      "$mod, Slash, exec, rofi -show drun -run-command \"${uwsmRun "{cmd}"}\" -calc-command \"echo -n '{result}' | wl-copy\""
       "$mod, P, exec, rofi-pass -b wl-clipboard"
 
       # Scratchpad

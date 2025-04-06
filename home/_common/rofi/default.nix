@@ -23,7 +23,7 @@ in {
       display-emoji = " Emoji";
       display-calc = " Calc";
       sidebar-mode = true;
-      calc-command = "echo -h '{result} | wl-copy'";
+      calc-command = "echo -n '{result}' | wl-copy";
     };
     location = "center";
     theme = let # will be symlinked to ~/.local/share/rofi/themes/custom.rasi
