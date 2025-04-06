@@ -26,6 +26,7 @@ in {
     ../_common/tx-rx.nix # transmission / reception
     ../_common/mux.nix # muxing tool collection
     ../_common/texlive.nix # full TeXLive package
+    ../_common/vpn-zhaw.nix # VPN for work
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-cpu-amd-pstate
@@ -128,7 +129,7 @@ in {
     ];
     udisks2.enable = true;
   };
-
+  
   # Hardware
   # hardware = {
   #   uni-sync.enable = true;

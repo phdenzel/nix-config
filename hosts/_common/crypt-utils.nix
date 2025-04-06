@@ -6,6 +6,7 @@
 with lib; {
   environment.systemPackages = with pkgs; [
     age
+    cacert
     openssl
     pwgen
     ssh-to-age
