@@ -12,7 +12,7 @@
 
     # Program configs
     ../_common/alacritty
-    # ../_common/bash
+    ../_common/bash
     ../_common/bat
     ../_common/btop
     # ../_common/bun
