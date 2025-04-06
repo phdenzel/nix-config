@@ -32,7 +32,6 @@
     ../_common/hyprland
     # ../_common/imv
     # ../_common/matplotlib
-    # ../_common/mpv
     # ../_common/ncmpcpp # mpd
     # ../_common/neovim
     # ./_configs/newsboat
@@ -43,7 +42,7 @@
     ../_common/starship
     # ../_common/tealdeer
     ../_common/thunderbird
-    # ../_common/tmux
+    ../_common/tmux
     ../_common/yazi
     ../_common/zsh
   ];
