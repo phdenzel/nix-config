@@ -60,6 +60,7 @@ in {
   };
 
   # Hardware customization (see ../../modules)
+  hardware.cpu.amd.updateMicrocode = true;
   drivers.amdgpu.enable = true;
   drivers.amdgpu.utils.install = true;
   nixpkgs.config.rocmSupport = true;
