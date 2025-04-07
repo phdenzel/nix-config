@@ -17,7 +17,7 @@ in {
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than +5";
+      options = "--delete-older-than 5d";
     };
     optimise.automatic = true;
 
