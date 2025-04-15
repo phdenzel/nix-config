@@ -32,9 +32,11 @@ in {
         "wheel"
       ]
       ++ ifTheyExist [
+        "disk"
         "docker"
         "git"
         "input"
+        "jupyter"
         "kvm"
         "libvirtd"
         "network"
