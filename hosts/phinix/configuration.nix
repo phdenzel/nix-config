@@ -25,6 +25,7 @@ in {
     ../_common/comm.nix # communication apps
     ../_common/tx-rx.nix # transmission / reception
     ../_common/mux.nix # muxing tool collection
+    ../_common/games.nix # Gaming utils
     ../_common/texlive.nix # full TeXLive package
     ../_common/vpn-zhaw.nix # VPN for work
     ../../modules # AMD/Nvidia, Internationalization configs

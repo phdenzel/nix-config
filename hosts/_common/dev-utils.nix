@@ -47,6 +47,7 @@
       freetype
       libgcc
       libgccjit
+      libGL
       libssh
       libuuid
       libxml2
