@@ -13,6 +13,7 @@ in {
       experimental-features = "nix-command flakes";
       trusted-users = ["root" "@wheel" "phdenzel"];
       auto-optimise-store = lib.mkDefault true;
+      download-buffer-size = 524288000;
     };
     gc = {
       automatic = true;
