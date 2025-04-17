@@ -1,19 +1,14 @@
-# NixOS configuration file for phinix
+# NixOS configuration file for ygdrasil
 {
   pkgs,
   config,
   inputs,
   ...
 }: let
-  hostName = "phinix";
+  hostName = "ygdrasil";
 in {
   imports = [
     ../_common # default nix (and sops-nix) configuration
-    ../_common/sddm.nix # display manager
-    ../_common/hyprland.nix # window manager
-    ../_common/gnome.nix # desktop as backup when Hyprland is bricked
-    ../_common/fonts.nix # font packages
-    ../_common/thunar.nix # file manager
     ../_common/openssh.nix # openSSH
     ../_common/crypt-utils.nix # cryptographic tool collection
     ../_common/emacs.nix # editor and god tool
@@ -21,17 +16,24 @@ in {
     ../_common/dev-utils.nix # dev tool collection
     ../_common/computing.nix # computing tool collection
     ../_common/ollama.nix # local LLM services
-    ../_common/graphical.nix # graphical applications
-    ../_common/comm.nix # communication apps
-    ../_common/tx-rx.nix # transmission / reception
-    ../_common/mux.nix # muxing tool collection
-    ../_common/games.nix # Gaming utils
     ../_common/texlive.nix # full TeXLive package
-    ../_common/vpn-zhaw.nix # VPN for work
+    ../_common/tx-rx.nix # transmission / reception
+    # ../_common/srv/dashboards.nix # service dashboards (homepage-dashboard, glance, ...)
+    # ../_common/srv/admin.nix # monitoring (cockpit, uptime-kuma, gotify, filebrowser, ...)
+    # ../_common/srv/proxy.nix # server proxy services (traefik, crowdsec, keycloak, ...)
+    # ../_common/srv/pihole.nix # Pi-Hole service (fallback: cloudflared)
+    # ../_common/srv/vpn.nix # VPN services (tailscale, wireguard, ...)
+    # ../_common/srv/forgejo.nix # git forge service (forgejo)
+    # ../_common/srv/nextcloud.nix # cloud service
+    # ../_common/srv/immich.nix # image hosting service
+    # ../_common/srv/jellyfin.nix # media streaming service
+    # ../_common/srv/servarr.nix # servarr stack
+    # ../_common/srv/home-assistant.nix # home assistant service
+    # ../_common/srv/vikunja.nix # ToDo management service
+    # ../_common/srv/mealie.nix # recipe service
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-cpu-amd-pstate
-    inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
   ];
 
@@ -62,10 +64,6 @@ in {
 
   # Hardware customization (see ../../modules)
   hardware.cpu.amd.updateMicrocode = true;
-  drivers.amdgpu.enable = true;
-  drivers.amdgpu.utils.install = true;
-  nixpkgs.config.rocmSupport = true;
-  services.ollama.acceleration = "rocm";
 
   # Language customization (see ../../modules)
   intl.defaultLocale = "en_US";
@@ -79,7 +77,7 @@ in {
   # Networking
   networking = {
     hostName = "${hostName}";
-    hostId = "27b636ba";
+    # hostId = "";
     # wireless.enable = true;  # wireless via wpa_supplicant.
     networkmanager.enable = true;
     enableIPv6 = false;
@@ -96,20 +94,14 @@ in {
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
-    lact
     lm_sensors
-    networkmanagerapplet
-    pavucontrol
-    podman-desktop
-    rgp
     udiskie
     usbutils
+    # 
   ];
 
   # System-wide programs
   programs = {
-    firefox.enable = true;
-    thunderbird.enable = true;
     winbox.enable = true;
     winbox.package = pkgs.winbox4;
   };
@@ -119,23 +111,8 @@ in {
     blueman.enable = true;
     gvfs.enable = true;
     fwupd.enable = true;
-    hardware.openrgb.enable = true;
-    hardware.openrgb.package = pkgs.openrgb-with-all-plugins;
-    playerctld.enable = true;
-    printing.enable = true;
-    printing.cups-pdf.enable = true;
-    printing.drivers = with pkgs; [
-      hplip
-    ];
     udisks2.enable = true;
   };
-  
-  # Hardware
-  # hardware = {
-  #   uni-sync.enable = true;
-  #   fancontrol.enable = true;
-  #   fancontrol.config = {};
-  # };
 
   # Security
   services.gnome.gnome-keyring.enable = true;

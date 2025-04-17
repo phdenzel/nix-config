@@ -36,6 +36,10 @@
     uv
     yq-go
   ];
+  programs = {
+    java.enable = true;
+    java.binfmt = true;
+  };
 
   programs.nix-ld = {
     enable = true;
