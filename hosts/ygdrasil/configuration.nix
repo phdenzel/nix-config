@@ -9,7 +9,8 @@
 in {
   imports = [
     ../_common # default nix (and sops-nix) configuration
-    ../_common/openssh.nix # openSSH
+    ../_common/security.nix # security configs
+    ../_common/openssh.nix # openSSH configs
     ../_common/crypt-utils.nix # cryptographic tool collection
     ../_common/emacs.nix # editor and god tool
     ../_common/cli-utils.nix # cli tool collection
@@ -31,6 +32,7 @@ in {
     # ../_common/srv/home-assistant.nix # home assistant service
     # ../_common/srv/vikunja.nix # ToDo management service
     # ../_common/srv/mealie.nix # recipe service
+    # ../_common/srv/ghostfolio.nix # wealth management service
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-cpu-amd-pstate

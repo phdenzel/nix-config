@@ -14,7 +14,8 @@ in {
     ../_common/gnome.nix # desktop as backup when Hyprland is bricked
     ../_common/fonts.nix # font packages
     ../_common/thunar.nix # file manager
-    ../_common/openssh.nix # openSSH
+    ../_common/security.nix # security configs
+    ../_common/openssh.nix # openSSH configs
     ../_common/crypt-utils.nix # cryptographic tool collection
     ../_common/emacs.nix # editor and god tool
     ../_common/cli-utils.nix # cli tool collection
@@ -40,6 +41,7 @@ in {
     kernelPackages = pkgs.linuxPackages_latest;
     # Bootloader
     #loader.systemd-boot.enable = true;
+    #loader.systemd-boot.editor = false;
     loader.efi.canTouchEfiVariables = true;
     loader.grub.enable = true;
     loader.grub.efiSupport = true;
@@ -48,6 +50,7 @@ in {
     tmp = {
       useTmpfs = true;
       tmpfsSize = "5%";
+      cleanOnBoot = (!config.boot.tmp.useTmpfs);
     };
     # Boot screen
     # plymouth.enable = mkDefault true;
@@ -117,6 +120,7 @@ in {
   # System-wide services
   services = {
     blueman.enable = true;
+    gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
     fwupd.enable = true;
     hardware.openrgb.enable = true;
@@ -136,12 +140,6 @@ in {
   #   fancontrol.enable = true;
   #   fancontrol.config = {};
   # };
-
-  # Security
-  services.gnome.gnome-keyring.enable = true;
-  security = {
-    polkit.enable = true;
-  };
 
   system.stateVersion = "24.11";
 }
