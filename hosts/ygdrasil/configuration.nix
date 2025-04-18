@@ -111,15 +111,10 @@ in {
   # System-wide services
   services = {
     blueman.enable = true;
+    gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
     fwupd.enable = true;
     udisks2.enable = true;
-  };
-
-  # Security
-  services.gnome.gnome-keyring.enable = true;
-  security = {
-    polkit.enable = true;
   };
 
   system.stateVersion = "24.11";
