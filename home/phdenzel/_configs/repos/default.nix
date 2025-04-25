@@ -123,6 +123,9 @@
       "Documents/proposals/snf_spark23_gl3dgen" = {
         checkout = "git clone git@github.com:phdenzel/snf_spark23_gl3dgen.git";
       };
+      "Documents/proposals/snf_project_dg3nerate" = {
+        checkout = "git clone git@github.com:phdenzel/snf_project_dg3nerate.git";
+      };
 
       # posters
       "Documents/posters/poster-mlops4tai" = {
@@ -151,6 +154,9 @@
       "local/hatch-bump" = {
         checkout = "git clone git@github.com:phdenzel/hatch-bump.git";
       };
+      "local/pyphd" = {
+        checkout = "git clone git@github.com:phdenzel/pyphd.git";
+      };
       "local/camengine.js" = {
         checkout = "git clone git@github.com:phdenzel/camengine.js.git";
       };
@@ -168,6 +174,12 @@
       };
 
       # archived repos
+      "local/archived/pentaplex" = {
+        checkout = "git clone git@github.com:phdenzel/pentaplex.git";
+      };
+      "local/archived/twilio-sms-bot" = {
+        checkout = "git clone git@github.com:phdenzel/twilio-sms-bot.git";
+      };
       "local/archived/julia" = {
         checkout = "git clone git@github.com:phdenzel/julia.git";
       };
