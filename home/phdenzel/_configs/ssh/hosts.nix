@@ -14,7 +14,7 @@
     "github.zhaw.ch" = {
       hostname = "github.zhaw.ch";
       user = "git";
-      identityFile = "~/.ssh/ghzh_id_ed25519";
+      identityFile = "~/.ssh/ghzhaw_id_ed25519";
     };
 
     # Home environment
