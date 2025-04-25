@@ -9,6 +9,9 @@
       "float, title:^(Picture-in-Picture)$"
       "pin, title:^(Picture-in-Picture)$"
 
+      # Floats
+      "float, title:^(File Operation Progress)$"
+
       # Scratchpads
       "float, title:^(scratchpad.*)$"
       "float, class:^(org.pulseaudio.pavucontrol)$"
