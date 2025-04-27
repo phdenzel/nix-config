@@ -110,6 +110,8 @@ in {
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
+    exfat
+    exfatprogs
     gparted
     lact
     lm_sensors
