@@ -66,9 +66,6 @@
       skais = {
         checkout = "git clone git@github.com:phdenzel/skais.git";
       };
-      zmk-config = {
-        checkout = "git clone git@github.com:phdenzel/zmk-config.git";
-      };
 
       # documents repos
       "Documents/PhDCV" = {
@@ -171,6 +168,9 @@
       };
       "local/reveal.js" = {
         checkout = "git clone git@github.com:phdenzel/reveal.js.git";
+      };
+      "local/zmk-config" = {
+        checkout = "git clone git@github.com:phdenzel/zmk-config.git";
       };
 
       # archived repos
