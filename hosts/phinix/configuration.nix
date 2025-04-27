@@ -9,6 +9,7 @@
 in {
   imports = [
     ../_common # default nix (and sops-nix) configuration
+    ../_common/nfs.nix # NFS mounts
     ../_common/sddm.nix # display manager
     ../_common/hyprland.nix # window manager
     ../_common/gnome.nix # desktop as backup when Hyprland is bricked
@@ -46,6 +47,7 @@ in {
     loader.grub.enable = true;
     loader.grub.efiSupport = true;
     loader.grub.devices = ["nodev"];
+    supportedFilesystems = ["nfs"];
     # /tmp as tmpfs
     tmp = {
       useTmpfs = true;
@@ -92,13 +94,23 @@ in {
   # Local networking
   services.avahi = {
     enable = true;
+    domainName = "local";
     nssmdns4 = true;
     openFirewall = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      domain = true;
+      hinfo = true;
+      userServices = true;
+      workstation = true;
+    };
   };
 
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
+    gparted
     lact
     lm_sensors
     networkmanagerapplet
