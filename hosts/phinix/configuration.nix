@@ -40,6 +40,7 @@ in {
   boot = {
     # Kernel
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = ["sg"];  # for disk drives
     # Bootloader
     #loader.systemd-boot.enable = true;
     #loader.systemd-boot.editor = false;
