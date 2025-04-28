@@ -32,7 +32,6 @@ in {
     keyFile = mkOption {
       description = "SSH keyfile used by sops-nix to decrypt secrets.";
       type = types.str;
-      # full file path will be ../${cfg.user}/secrets.yaml
       default = "/etc/ssh/ssh_host_ed25519_key";
     };
     sshKeys = mkOption {
