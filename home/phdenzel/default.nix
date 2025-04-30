@@ -41,6 +41,8 @@
     ../_common/ruff
     ../_common/starship
     ../_common/syncthing
+    ../_common/syncthing/devices.nix
+    ../_common/syncthing/folders.nix
     # ../_common/tealdeer
     ../_common/thunderbird
     ../_common/tmux

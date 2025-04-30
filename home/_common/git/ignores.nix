@@ -4,6 +4,11 @@
     "private"
     ""
 
+    "# Syncthing"
+    ".stfolder"
+    ".stignore"
+    ""
+
     "# General"
     "*~"
     ""
