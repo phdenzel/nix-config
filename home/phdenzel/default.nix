@@ -40,6 +40,7 @@
     ../_common/rofi
     ../_common/ruff
     ../_common/starship
+    ../_common/syncthing
     # ../_common/tealdeer
     ../_common/thunderbird
     ../_common/tmux
