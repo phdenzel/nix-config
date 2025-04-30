@@ -55,6 +55,8 @@
       libssh
       libuuid
       libxml2
+      openblas
+      lapack
       openssl
       stdenv.cc.cc
       util-linux
