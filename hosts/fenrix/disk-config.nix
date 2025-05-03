@@ -5,12 +5,8 @@
 # 3) nixos btrfs partition (subvol @, @home, @nix, @var, @snapshots)
 # Devices in fenrix:
 # - nixos:  nvme0n1 (/dev/nvme0n1)
-{
-  disks ? [
-    "/dev/nvme0n1"
-  ],
-  ...
-}: let
+{...}: let
+  disks = ["/dev/nvme0n1"];
   nvme = rec {
     a = builtins.elemAt disks 0;
     a1 =

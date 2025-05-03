@@ -28,9 +28,9 @@ in {
     ../_common/texlive.nix # full TeXLive package
     ../_common/vpn-zhaw.nix # VPN for work
     ../../modules # AMD/Nvidia, Internationalization configs
-    inputs.hardware.nixosModules.lenovo-t14s
-    inputs.hardware.nixosModules.common-cpu-intel-tiger-lake
-    inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.lenovo-thinkpad-t14s
+    inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
   ];
 
   boot = {
