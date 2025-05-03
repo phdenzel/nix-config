@@ -22,9 +22,11 @@ with lib; {
   };
 
   environment.systemPackages = with pkgs; [
+    bibata-cursors
     clipse
     (flameshot.override {enableWlrSupport = true;})
     grim
+    hyprcursor
     hyprpaper
     hyprpicker
     hyprpolkitagent
@@ -43,11 +45,11 @@ with lib; {
     wlr-randr
     wl-clipboard
   ];
-  programs.foot = {
-    enable = mkDefault true;
-    enableBashIntegration = mkDefault true;
-    enableZshIntegration = mkDefault true;
-  };
+  # programs.foot = {
+  #   enable = mkDefault true;
+  #   enableBashIntegration = mkDefault true;
+  #   enableZshIntegration = mkDefault true;
+  # };
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
