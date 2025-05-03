@@ -126,9 +126,8 @@
           }
         ];
       };
-    };
 
-    fenrix = lib.nixosSystem {
+      fenrix = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;};
         modules = [
           ./hosts/fenrix
@@ -141,6 +140,7 @@
           }
         ];
       };
+    };
 
     homeConfigurations = {
       # Main workstation
