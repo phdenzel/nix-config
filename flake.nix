@@ -128,6 +128,20 @@
       };
     };
 
+    fenrix = lib.nixosSystem {
+        specialArgs = {inherit self inputs outputs;};
+        modules = [
+          ./hosts/fenrix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.phdenzel = import ./home/phdenzel;
+          }
+        ];
+      };
+
     homeConfigurations = {
       # Main workstation
       "phdenzel@phinix" = lib.homeManagerConfiguration {
@@ -144,6 +158,15 @@
         pkgs = pkgsFor.x86_64-linux;
         modules = [
           ./home/phdenzel/idun.nix
+          ./home/phdenzel
+        ];
+      };
+      # VM
+      "phdenzel@fenrix" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [
+          ./home/phdenzel/fenrix.nix
           ./home/phdenzel
         ];
       };

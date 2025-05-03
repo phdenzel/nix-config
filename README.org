@@ -22,6 +22,7 @@ Then, you can inspect the ~justfile~ for the commands necessary for a proper ins
   just iso-install <my-machine>
 #+end_src
 where ~<my-machine>~ has to be replaced with the name of an implemented host. So far,
+- ~fenrix~
 - ~idun~
 - ~phinix~
 are implemented.
