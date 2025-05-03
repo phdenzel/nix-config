@@ -4,6 +4,7 @@ keys:
   - &hosts '':
       - &idun age1m7y642t548ct35yq4ucspvelclx4efx06se7djff4huk33sved0qvjsrex
       - &phinix age17m4k0g7xn6ek7szh2vg6pdc4vwvvxwfr4zzg36rwhxjfelx6ec7q2v368g
+      - &fenrix age1s7pkaz683sf8ms92adh2x4xvspmkfqjenkv06k5leyjly2qewyssnxkwfm
 creation_rules:
   - path_regex: hosts/secrets.ya?ml$
     key_groups:
@@ -11,9 +12,11 @@ creation_rules:
           - *phdenzel
           - *idun
           - *phinix
+          - *fenrix
   - path_regex: home/phdenzel/secrets.ya?ml$
     key_groups:
       - age:
           - *phdenzel
           - *idun
           - *phinix
+          - *fenrix
