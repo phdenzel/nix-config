@@ -63,7 +63,7 @@ in {
   services.btrfs.autoScrub = {
     enable = true;
     interval = "weekly";
-    fileSystems = ["/"];
+    fileSystems = ["/" "/raid" "/scratch"];
   };
 
   # Hardware customization (see ../../modules)
