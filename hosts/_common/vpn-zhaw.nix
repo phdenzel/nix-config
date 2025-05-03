@@ -2,7 +2,6 @@
   environment.systemPackages = with pkgs; [
     openconnect
     networkmanager-openconnect
-    globalprotect-openconnect
   ];
 
   networking.openconnect.interfaces.zhaw = {

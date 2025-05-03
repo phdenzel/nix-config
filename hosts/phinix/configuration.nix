@@ -31,7 +31,6 @@ in {
     ../_common/texlive.nix # full TeXLive package
     ../_common/vpn-zhaw.nix # VPN for work
     ../../modules # AMD/Nvidia, Internationalization configs
-    inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-cpu-amd-pstate
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
@@ -67,7 +66,6 @@ in {
   };
 
   # Hardware customization (see ../../modules)
-  hardware.cpu.amd.updateMicrocode = true;
   drivers.amdgpu.enable = true;
   drivers.amdgpu.utils.install = true;
   nixpkgs.config.rocmSupport = true;
