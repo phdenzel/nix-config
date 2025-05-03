@@ -3,7 +3,6 @@
     # Home setup
     ./home.nix
     ./_configs/ssh
-    ./_configs/gpg
     ./_configs/password-store
     ../_common/xdg
     ./_configs/repos

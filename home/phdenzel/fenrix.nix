@@ -56,7 +56,18 @@ in {
     ];
   };
 
-  # home-manager.users.${userName}.wayland.windowManager.hyprland.settings.monitor = [
-  #   "DP-3, 1920x1080@60.0, 0x0, 2"
-  # ];
+  home-manager.users.${userName} = {
+    # wayland.windowManager.hyprland.settings.monitor = [
+    #   "DP-3, 1920x1080@60.0, 0x0, 2"
+    # ];
+    stylix = {
+      image = "/home/${userName}/wallpapers/gate_4k.png";
+      imageScalingMode = "fill";
+    };
+    # imports = [
+    #   ./_configs/gpg
+    # ];
+  };
+  
+  
 }

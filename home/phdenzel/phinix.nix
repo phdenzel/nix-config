@@ -56,7 +56,16 @@ in {
     ];
   };
 
-  home-manager.users.${userName}.wayland.windowManager.hyprland.settings.monitor = [
-    "DP-3, 7680x2160@120.0, 0x0, 2"
-  ];
+  home-manager.users.${userName} = {
+    wayland.windowManager.hyprland.settings.monitor = [
+      "DP-3, 7680x2160@120.0, 0x0, 2"
+    ];
+    stylix = {
+      image = "/home/${userName}/Pictures/wallpapers/ethereal_4k.png";
+      imageScalingMode = "fill";
+    };
+    imports = [
+      ./_configs/gpg
+    ];
+  };
 }
