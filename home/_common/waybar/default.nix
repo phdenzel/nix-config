@@ -24,7 +24,7 @@ in {
       # Build
       modules-left = ["group/session" "custom/apps" "custom/clipboard" "hyprland/workspaces" "wlr/taskbar" "mpris"];
       modules-center = ["clock"];
-      modules-right = ["tray" "power-profiles-daemon" "group/hardware" "network" "bluetooth" "battery" "wireplumber" "custom/notification" "idle_inhibitor"];
+      modules-right = ["tray" "power-profiles-daemon" "group/hardware" "network" "bluetooth" "wireplumber" "battery" "custom/notification" "idle_inhibitor"];
       
       # Modules
       "battery" = {

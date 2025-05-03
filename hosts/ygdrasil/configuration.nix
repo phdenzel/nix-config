@@ -19,20 +19,21 @@ in {
     ../_common/ollama.nix # local LLM services
     ../_common/texlive.nix # full TeXLive package
     ../_common/tx-rx.nix # transmission / reception
-    # ../_common/srv/dashboards.nix # service dashboards (homepage-dashboard, glance, ...)
-    # ../_common/srv/admin.nix # monitoring (cockpit, uptime-kuma, gotify, filebrowser, ...)
-    # ../_common/srv/proxy.nix # server proxy services (traefik, crowdsec, keycloak, ...)
-    # ../_common/srv/pihole.nix # Pi-Hole service (fallback: cloudflared)
-    # ../_common/srv/vpn.nix # VPN services (tailscale, wireguard, ...)
-    # ../_common/srv/forgejo.nix # git forge service (forgejo)
-    # ../_common/srv/nextcloud.nix # cloud service
-    # ../_common/srv/immich.nix # image hosting service
-    # ../_common/srv/jellyfin.nix # media streaming service
-    # ../_common/srv/servarr.nix # servarr stack
-    # ../_common/srv/home-assistant.nix # home assistant service
-    # ../_common/srv/vikunja.nix # ToDo management service
-    # ../_common/srv/mealie.nix # recipe service
-    # ../_common/srv/ghostfolio.nix # wealth management service
+    # ../_srv/dashboards.nix # service dashboards (homepage-dashboard, glance, ...)
+    # ../_srv/admin.nix # monitoring (cockpit, uptime-kuma, gotify, ...)
+    # ../_srv/proxy.nix # server proxy services (traefik, crowdsec, keycloak, ...)
+    # ../_srv/dns.nix # DNS/Ad-blocking service (blocky, ...)
+    # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
+    # ../_srv/forgejo.nix # git forge service (forgejo)
+    # # ../_srv/cloud.nix # cloud service (filebrowser, opencloud, ...)
+    # ../_srv/immich.nix # image hosting service
+    # ../_srv/jellyfin.nix # media streaming service
+    # ../_srv/servarr.nix # servarr stack
+    # ../_srv/home-assistant.nix # home assistant service
+    # ../_srv/db.nix # database services (grafana, influxdb, ...)
+    # ../_srv/vikunja.nix # ToDo management service
+    # ../_srv/mealie.nix # recipe service
+    # ../_srv/ghostfolio.nix # wealth management service
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-cpu-amd-pstate

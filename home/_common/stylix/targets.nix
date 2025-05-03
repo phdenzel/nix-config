@@ -9,7 +9,7 @@
       firefoxGnomeTheme.enable = true;
       profileNames = [ "${config.home.username}" ];
     };
-    foot.enable = true;
+    # foot.enable = true;
     ghostty.enable = true;
     gnome.enable = true;
     gtk.enable = true;
