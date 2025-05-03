@@ -11,7 +11,7 @@
   programs.zsh = {
     enable = true;
 
-    initExtra = ''
+    initContent = ''
       fastfetch
     '';
 
