@@ -2,6 +2,7 @@
   pkgs,
   config,
   inputs,
+  lib,
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
@@ -19,7 +20,7 @@ in {
     user = "${userName}";
     host = "${hostName}";
     sshKeys = ["id_ed25519" "gh_id_ed25519" "gl_id_ed25519" "dgx_id_ed25519" "ghzhaw_id_ed25519"];
-    # gpgKeys = ["pwds" "gh" "pm" "ecc"];
+    gpgKeys = ["pwds"];
   };
 
   users.users.${userName} = {
@@ -57,16 +58,21 @@ in {
   };
 
   home-manager.users.${userName} = {
-    # wayland.windowManager.hyprland.settings.monitor = [
-    #   "DP-3, 1920x1080@60.0, 0x0, 2"
-    # ];
+    wayland.windowManager.hyprland.settings.monitor = [
+      "eDP-1, 1920x1080@60.0, 0x0, 1"
+    ];
     stylix = {
-      image = "/home/${userName}/wallpapers/gate_4k.png";
+      image = "/home/${userName}/Pictures/wallpapers/gate_4k.png";
       imageScalingMode = "fill";
     };
-    # imports = [
-    #   ./_configs/gpg
-    # ];
+    services.hyprpaper.settings.wallpaper = [
+      ",/home/${userName}/Pictures/wallpapers/gate_4k.png"
+    ];
+    imports = [
+      ./_configs/gpg/gpg.nix
+      ./_configs/gpg/key-pwds.nix
+      ./_configs/gpg/agent.nix
+    ];
   };
   
   
