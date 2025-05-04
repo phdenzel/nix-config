@@ -70,8 +70,8 @@ in {
     ];
     programs.gpg.settings.default-key = lib.mkDefault "629FC7317EFB4935";
     imports = [
-      ./_configs/gpg/gpg.nix
       ./_configs/gpg/key-pwds.nix
+      ./_configs/gpg/gpg.nix
       ./_configs/gpg/agent.nix
     ];
   };
