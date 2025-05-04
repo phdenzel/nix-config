@@ -92,84 +92,45 @@
           config.allowUnfree = true;
         }
     );
+    nixosMachineWithHM = name: {
+      "${name}" = lib.nixosSystem {
+        specialArgs = {inherit self inputs outputs;};
+        modules = [
+          ./hosts/${name}
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.phdenzel = import ./home/phdenzel;
+          }
+        ];
+      };
+    };
+    hmMachineConf = name: {
+      "phdenzel@${name}" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [
+          ./home/phdenzel/${name}.nix
+          ./home/phdenzel
+        ];
+      };
+    };
   in {
     inherit lib;
 
     packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
     overlays = import ./overlays {inherit inputs outputs;};
 
-    nixosConfigurations = {
-      phinix = lib.nixosSystem {
-        specialArgs = {inherit self inputs outputs;};
-        modules = [
-          ./hosts/phinix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.phdenzel = import ./home/phdenzel;
-          }
-        ];
-      };
+    nixosConfigurations =
+      (nixosMachineWithHM "phinix")
+      // (nixosMachineWithHM "fenrix")
+      // (nixosMachineWithHM "idun");
 
-      idun = lib.nixosSystem {
-        specialArgs = {inherit self inputs outputs;};
-        modules = [
-          ./hosts/idun
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.phdenzel = import ./home/phdenzel;
-          }
-        ];
-      };
-
-      fenrix = lib.nixosSystem {
-        specialArgs = {inherit self inputs outputs;};
-        modules = [
-          ./hosts/fenrix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.phdenzel = import ./home/phdenzel;
-          }
-        ];
-      };
-    };
-
-    homeConfigurations = {
-      # Main workstation
-      "phdenzel@phinix" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = pkgsFor.x86_64-linux;
-        modules = [
-          ./home/phdenzel/phinix.nix
-          ./home/phdenzel
-        ];
-      };
-      # VM
-      "phdenzel@idun" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = pkgsFor.x86_64-linux;
-        modules = [
-          ./home/phdenzel/idun.nix
-          ./home/phdenzel
-        ];
-      };
-      # VM
-      "phdenzel@fenrix" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = pkgsFor.x86_64-linux;
-        modules = [
-          ./home/phdenzel/fenrix.nix
-          ./home/phdenzel
-        ];
-      };
-    };
+    homeConfigurations =
+      (hmMachineConf "phinix")
+      // (hmMachineConf "fenrix")
+      // (hmMachineConf "idun");
   };
 }
