@@ -9,9 +9,7 @@ in {
         "${wallpaperDir}/noctilusent_4k.png"
         "${wallpaperDir}/nocturnal_reveries_4k.png"
         "${wallpaperDir}/within_everything_4k.png"
-      ];
-      wallpaper = [
-        ",${wallpaperDir}/ethereal_4k.png"
+        "${wallpaperDir}/gate_4k.png"
       ];
     };
   };

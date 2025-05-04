@@ -2,7 +2,7 @@
   phdArkLogo = "${config.xdg.configHome}/fastfetch/logo.png";
 in {
   home.file."${phdArkLogo}" = {
-    source = ../../../assets/logos/phd-ark-512.png;
+    source = ../../../assets/logos/phd-ark-256.png;
   };
   
   programs.fastfetch = {

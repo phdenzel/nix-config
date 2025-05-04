@@ -64,6 +64,9 @@ in {
       image = "/home/${userName}/Pictures/wallpapers/ethereal_4k.png";
       imageScalingMode = "fill";
     };
+    services.hyprpaper.settings.wallpaper = [
+      ",/home/${userName}/Pictures/wallpapers/ethereal_4k.png"
+    ];
     imports = [
       ./_configs/gpg
     ];
