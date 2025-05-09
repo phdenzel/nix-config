@@ -97,7 +97,10 @@ in {
         )
         // attrsets.mergeAttrsList (
           lists.map (name: {
-            "${name}" = {}; 
+            "${name}" = {
+              owner = "${cfg.user}";
+              mode = "0400";
+            };
           })
           cfg.genericKeys
         );

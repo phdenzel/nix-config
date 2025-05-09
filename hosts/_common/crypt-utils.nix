@@ -7,6 +7,7 @@ with lib; {
   environment.systemPackages = with pkgs; [
     age
     cacert
+    merecat  # for htpasswd
     openssl
     pwgen
     ssh-to-age

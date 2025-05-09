@@ -21,7 +21,7 @@ in {
     sshKeys = ["id_ed25519" "gh_id_ed25519" "gl_id_ed25519" "dgx_id_ed25519" "ghzhaw_id_ed25519"];
     gpgKeys = ["pwds" "gh" "pm" "ecc"];
     genericKeys = [
-      # "syncthing/${userName}/${hostName}/password"
+      "syncthing/${userName}/${hostName}/password"
       "syncthing/${userName}/${hostName}/cert.pem"
       "syncthing/${userName}/${hostName}/key.pem"
     ];
@@ -73,7 +73,7 @@ in {
       ",/home/${userName}/Pictures/wallpapers/ethereal_4k.png"
     ];
     services.syncthing = {
-      # passwordFile = config.sops.secrets."syncthing/${userName}/${hostName}/password".path;
+      passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
       key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
       cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
     };
