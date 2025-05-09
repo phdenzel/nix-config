@@ -78,13 +78,12 @@ in {
     VISUAL = "emacsclient -c --alternate-editor=emacs";
   };
 
-  sops-hm = {
-    enable = true;
-    user = "${userName}";
-    secrets = [
-      "syncthing/${userName}/password"
-      "syncthing/${userName}/cert.pem"
-      "syncthing/${userName}/key.pem"
-    ];
-  };
+  # Secrets same on all machines
+  # sops-hm = {
+  #   enable = true;
+  #   user = "${userName}";
+  #   secrets = [
+  #     ...
+  #   ];
+  # };
 }
