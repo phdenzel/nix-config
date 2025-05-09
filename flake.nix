@@ -96,7 +96,7 @@
       "${name}" = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;};
         modules = [
-          ./hosts/${name}
+          (./. + "/hosts/${name}")
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = {inherit inputs;};
@@ -112,7 +112,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [
-          ./home/phdenzel/${name}.nix
+          (./. + "/home/phdenzel/${name}.nix")
           ./home/phdenzel
         ];
       };
