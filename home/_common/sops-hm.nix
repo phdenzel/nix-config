@@ -30,7 +30,7 @@ in {
       default = "${cfg.usersRoot}/${cfg.user}/.config/sops/age/keys.txt";
     };
     secrets = mkOption {
-      description = "Syncthing secrets to decrypt.";
+      description = "Generic secrets to decrypt.";
       type = types.listOf types.str;
       default = [];
     };

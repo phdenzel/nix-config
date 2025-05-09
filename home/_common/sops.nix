@@ -44,8 +44,8 @@ in {
       type = types.listOf types.str;
       default = [];
     };
-    templates = mkOption {
-      description = "Additional secrets templates to decrypt.";
+    genericKeys = mkOption {
+      description = "Additional secret keys to decrypt.";
       type = types.listOf types.str;
       default = [];
     };
@@ -99,7 +99,7 @@ in {
           lists.map (name: {
             "${name}" = {}; 
           })
-          cfg.templates
+          cfg.genericKeys
         );
     };
   };
