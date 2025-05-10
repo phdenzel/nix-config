@@ -46,7 +46,7 @@ in {
     supportedFilesystems = ["nfs"];
     # /tmp as tmpfs
     tmp = {
-      useTmpfs = true;
+      useTmpfs = false;
       tmpfsSize = "5%";
       cleanOnBoot = (!config.boot.tmp.useTmpfs);
     };
