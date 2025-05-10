@@ -21,6 +21,10 @@ in {
     host = "${hostName}";
     sshKeys = ["id_ed25519" "gh_id_ed25519" "gl_id_ed25519" "dgx_id_ed25519" "ghzhaw_id_ed25519"];
     gpgKeys = ["pwds"];
+    genericKeys = [
+      "syncthing/${userName}/${hostName}/cert.pem"
+      "syncthing/${userName}/${hostName}/key.pem"
+    ];
   };
 
   users.users.${userName} = {
@@ -68,6 +72,11 @@ in {
     services.hyprpaper.settings.wallpaper = [
       ",/home/${userName}/Pictures/wallpapers/gate_4k.png"
     ];
+    services.syncthing = {
+      passwordFile = config.sops.secrets."syncthing/${userName}/${hostName}/password".path;
+      key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
+      cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
+    };
     programs.gpg.settings.default-key = lib.mkDefault "629FC7317EFB4935";
     imports = [
       ./_configs/gpg/key-pwds.nix

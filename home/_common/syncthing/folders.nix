@@ -1,7 +1,8 @@
 {lib, ...}:
 with lib; let
-  devices = ["phinix" "asahi"];
-  homeSyncs = [
+  allDevices = ["phinix" "fenrix" "asahi"];
+  homeDevices = ["phinix" "asahi"];
+  allSyncs = [
     "Sync"
     "cai-seminar-doc"
     "chuchichaestli"
@@ -9,15 +10,17 @@ with lib; let
     "Documents"
     "Experiments"
     "mdq-doc"
-    "Music"
     "org"
-    "Pictures"
     "Playground"
     "Projects"
     "skach"
     "slides"
     "teaching"
     "zettelkasten"
+  ];
+  homeSyncs = [
+    "Music"
+    "Pictures"
   ];
   ignoreFile = ''
     (?d).DS_Store
@@ -46,18 +49,27 @@ in {
       lists.map (name: {
         "${name}" = {
           path = "~/${name}";
-          devices = devices;
+          devices = allDevices;
+          ignorePerms = false;
+        };
+      })
+      allSyncs
+    )
+    // attrsets.mergeAttrsList (
+      lists.map (name: {
+        "${name}" = {
+          path = "~/${name}";
+          devices = homeDevices;
           ignorePerms = false;
         };
       })
       homeSyncs
     );
 
-  home.file =
-    attrsets.mergeAttrsList (
-      lists.map (name: {
-        "${name}/.stignore".text = ignoreFile;
-      })
-      homeSyncs
-    );
+  home.file = attrsets.mergeAttrsList (
+    lists.map (name: {
+      "${name}/.stignore".text = ignoreFile;
+    })
+    (allSyncs ++ homeSyncs)
+  );
 }
