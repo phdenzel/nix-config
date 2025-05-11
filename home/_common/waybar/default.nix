@@ -24,7 +24,7 @@ in {
       # Build
       modules-left = ["group/session" "custom/apps" "custom/clipboard" "hyprland/workspaces" "wlr/taskbar" "mpris"];
       modules-center = ["clock"];
-      modules-right = ["tray" "power-profiles-daemon" "group/hardware" "network" "bluetooth" "wireplumber" "battery" "custom/notification" "idle_inhibitor"];
+      modules-right = ["tray" "power-profiles-daemon" "group/hardware" "network" "bluetooth" "wireplumber" "custom/hyprsunset-temp" "custom/hyprsunset-gamma" "battery" "custom/notification" "idle_inhibitor"];
       
       # Modules
       "battery" = {
@@ -79,7 +79,7 @@ in {
           weeks-pos = "left";
         };
         format = "<span color='#${palette.white}'>󱑎</span>  {:%H:%M}";
-        format-alt = "<span color='#${palette.white}'>󰸗</span>  {:%B %d, %Y}";
+        format-alt = "<span color='#${palette.white}'>󰸗</span>  {:%B %d, %Y}  <span color='#${palette.white}'>󱑎</span>  {:%H:%M}";
         timezone = "Europe/Zurich";
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
@@ -88,7 +88,7 @@ in {
         format = "<span color='#${palette.blue}'></span>  {usage}%";
         interval = 3;
         min-length = 5;
-        max-length = 7;
+        max-length = 8;
         on-click = "sleep 0.1 && pypr toggle monitor";
       };
 
@@ -98,7 +98,7 @@ in {
         format-icons = "󰆧";
         interval = 3;
         min-length = 5;
-        max-length = 7;
+        max-length = 8;
         on-click = "sleep 0.1 && ${uwsmRun "nvidia-settings"}";
         return-type = "";
         tooltip = true;
@@ -111,7 +111,7 @@ in {
         format-icons = "󱥒";
         interval = 3;
         min-length = 5;
-        max-length = 7;
+        max-length = 8;
         on-click = "sleep 0.1 && ${uwsmRun "lact gui"}";
         return-type = "";
         tooltip = true;
@@ -130,6 +130,73 @@ in {
         on-click = "sleep 0.1 && pypr toggle clipboard";
         tooltip = true;
         tooltip-format = "Clipboard history";
+      };
+
+      "custom/hyprsunset-gamma" = {
+        format = "{icon}  {percentage}%";
+        exec-if = "pidof hyprsunset";
+        exec = ''
+          jq --unbuffered -c -n \
+             --arg gamma "$(hyprctl hyprsunset gamma)" \
+             '{"text": $gamma, "tooltip": "Display gamma at ", "percentage": $gamma | tonumber | floor, "class": "gamma"} | .tooltip += .text'
+        '';
+        return-type = "json";
+        on-click = "hyprctl hyprsunset gamma 60";
+        on-click-middle = "pkill hyprsunset && hyprctl exec 'hyprsunset'";
+        on-click-right = "hyprctl hyprsunset gamma 100";
+        on-scroll-up = "hyprctl hyprsunset gamma +1";
+        on-scroll-down = "hyprctl hyprsunset gamma -1";
+        interval = 30;
+        min-length = 5;
+        max-length = 8;
+        format-icons = [
+          "<span color='#${palette.crust}'>󰃚</span>"
+          "<span color='#${palette.mantle}'>󰃛</span>"
+          "<span color='#${palette.overlay0}'>󰃜</span>"
+          "<span color='#${palette.text}'>󰃝</span>"
+          "<span color='#${palette.white}'>󰃞</span>"
+          "<span color='#${palette.yellow}'>󰃟</span>"
+          "<span color='#${palette.sand}'>󰃠</span>"
+          "<span color='#${palette.orange}'>󰃠</span>"
+          "<span color='#${palette.red}'>󰃠</span>"
+          "<span color='#${palette.pink}'>󰃠</span>"
+        ];
+      };
+
+      "custom/hyprsunset-temp" = {
+        format = "{icon}  {percentage}%";
+        exec-if = "pidof hyprsunset";
+        exec = ''
+          jq --unbuffered -c -n \
+             --arg temp "$(hyprctl hyprsunset temperature)" \
+             '{"text": $temp, "tooltip": "Display temperature at ", "percentage": $temp | tonumber | floor | log10, "class": "temperature"} | .tooltip += .text + "°K" | .percentage = (((.percentage - 3) / 0.01301) | round)'
+        '';
+        return-type = "json";
+        on-click = "hyprctl hyprsunset temperature 3500";
+        on-click-middle = "pkill hyprsunset && hyprctl exec 'hyprsunset'";
+        on-click-right = "hyprctl hyprsunset temperature 6000";
+        on-scroll-up = "hyprctl hyprsunset temperature +100";
+        on-scroll-down = "hyprctl hyprsunset temperature -100";
+        interval = 30;
+        min-length = 5;
+        max-length = 8;
+        format-icons = [
+          "<span color='#${palette.magenta}'></span>"
+          "<span color='#${palette.pink}'></span>"
+          "<span color='#${palette.ruby}'></span>"
+          "<span color='#${palette.red}'></span>"
+          "<span color='#${palette.orange}'></span>"
+          "<span color='#${palette.sand}'></span>"
+          "<span color='#${palette.yellow}'></span>"
+          "<span color='#${palette.white}'></span>"
+          "<span color='#${palette.cyan}'></span>"
+          "<span color='#${palette.blue}'></span>"
+          "<span color='#${palette.blue}'></span>"
+          "<span color='#${palette.blue}'></span>"
+          "<span color='#${palette.indigo}'></span>"
+          "<span color='#${palette.indigo}'></span>"
+          "<span color='#${palette.amethyst}'></span>"
+        ];
       };
 
       "custom/lock" = {
@@ -156,7 +223,7 @@ in {
       "custom/notification" = {
         escape = true;
         exec = "swaync-client -swb";
-        exec-if = "which swaync-client";
+        exec-if = "pidof swaync-client";
         format = "{icon}  {}";
         format-icons = {
           notification = "<span color='#${palette.teal}'>󰂚</span><span foreground='#${palette.pink}'><sup></sup></span>";
@@ -279,7 +346,7 @@ in {
         interval = 3;
         family = "ipv4";
         format = "{ifname}";
-        format-wifi = "<span color='#${palette.purple}'></span>  {signalStrength}%";
+        format-wifi = "<span color='#${palette.teal}'>↑</span> {bandwidthUpBytes} | <span color='#${palette.sand}'>↓</span> {bandwidthDownBytes}  <span color='#${palette.purple}'></span>  {signalStrength}%";
         format-ethernet = "<span color='#${palette.teal}'>↑</span> {bandwidthUpBytes} | <span color='#${palette.sand}'>↓</span> {bandwidthDownBytes}  <span color='#${palette.purple}'>󰈀</span>  {ipaddr}";
         format-disconnected = "";
         tooltip-format = "󰈀 {ifname} via {gwaddri}";
@@ -287,7 +354,7 @@ in {
         tooltip-format-ethernet = "  {ifname} ({ipaddr}/{cidr})";
         tooltip-format-disconnected = "Disconnected";
         max-length = 35;
-        min-length = 35;
+        min-length = 5;
         on-click = "nm-connection-editor";
         on-click-right = "nmcli networking connectivity | grep -q none && nmcli networking on || nmcli networking off";
       };
@@ -311,7 +378,7 @@ in {
 
       "wireplumber" = {
         format = "{icon} {volume}%";
-        format-icons = ["<span color='#${palette.white}'></span>" "<span color='#${palette.sand}'></span>" "<span color='#${palette.pink}'></span>"];
+        format-icons = ["<span color='#${palette.white}'></span>" "<span color='#${palette.sand}'></span>" "<span color='#${palette.sand}'></span>" "<span color='#${palette.pink}'></span>"];
         format-muted = "";
         on-click = "pypr toggle volmgr";
       };
@@ -500,7 +567,7 @@ in {
       }
 
       /* Right standard modules */
-      #power-profiles-daemon, #network, #bluetooth, #battery, #wireplumber, #custom-notification {
+      #power-profiles-daemon, #network, #bluetooth, #battery, #wireplumber, #custom-hyprsunset-temp, #custom-hyprsunset-gamma, #custom-notification {
           background: #${bgColor};
           border-radius: 8px 24px 8px 24px;
           margin: 0px 4px;
