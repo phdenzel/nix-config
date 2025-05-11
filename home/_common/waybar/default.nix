@@ -24,7 +24,7 @@ in {
       # Build
       modules-left = ["group/session" "custom/apps" "custom/clipboard" "hyprland/workspaces" "wlr/taskbar" "mpris"];
       modules-center = ["clock"];
-      modules-right = ["tray" "power-profiles-daemon" "group/hardware" "network" "bluetooth" "wireplumber" "custom/hyprsunset-temp" "custom/hyprsunset-gamma" "battery" "custom/notification" "idle_inhibitor"];
+      modules-right = ["tray" "power-profiles-daemon" "group/hardware" "network" "wireplumber" "custom/hyprsunset-temp" "custom/hyprsunset-gamma" "battery" "custom/notification" "idle_inhibitor"];
       
       # Modules
       "battery" = {
@@ -79,7 +79,7 @@ in {
           weeks-pos = "left";
         };
         format = "<span color='#${palette.white}'>󱑎</span>  {:%H:%M}";
-        format-alt = "<span color='#${palette.white}'>󰸗</span>  {:%B %d, %Y  - 󱑎 %H:%M}";
+        format-alt = "<span color='#${palette.white}'>󰸗</span>  {:%B %d, %Y   󱑎  %H:%M}";
         timezone = "Europe/Zurich";
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
@@ -87,7 +87,7 @@ in {
       "cpu" = {
         format = "<span color='#${palette.blue}'></span>  {usage}%";
         interval = 3;
-        min-length = 6;
+        min-length = 7;
         max-length = 8;
         on-click = "sleep 0.1 && pypr toggle monitor";
       };
@@ -97,7 +97,7 @@ in {
         format = "<span color='#${palette.viridis}'>{icon}</span>  {}%";
         format-icons = "󰆧";
         interval = 3;
-        min-length = 6;
+        min-length = 7;
         max-length = 8;
         on-click = "sleep 0.1 && ${uwsmRun "nvidia-settings"}";
         return-type = "";
@@ -110,7 +110,7 @@ in {
         format = "<span color='#${palette.pink}'>{icon}</span>  {}%";
         format-icons = "󱥒";
         interval = 3;
-        min-length = 6;
+        min-length = 7;
         max-length = 8;
         on-click = "sleep 0.1 && ${uwsmRun "lact gui"}";
         return-type = "";
@@ -142,13 +142,11 @@ in {
         '';
         return-type = "json";
         on-click = "hyprctl hyprsunset gamma 60";
-        on-click-middle = "pkill hyprsunset && hyprctl exec 'hyprsunset'";
+        on-click-middle = "pkill hyprsunset; hyprctl dispatch exec 'hyprsunset'";
         on-click-right = "hyprctl hyprsunset gamma 100";
         on-scroll-up = "hyprctl hyprsunset gamma +1";
         on-scroll-down = "hyprctl hyprsunset gamma -1";
         interval = 30;
-        min-length = 6;
-        max-length = 8;
         format-icons = [
           "<span color='#${palette.crust}'>󰃚</span>"
           "<span color='#${palette.mantle}'>󰃛</span>"
@@ -173,13 +171,11 @@ in {
         '';
         return-type = "json";
         on-click = "hyprctl hyprsunset temperature 3500";
-        on-click-middle = "pkill hyprsunset && hyprctl exec 'hyprsunset'";
+        on-click-middle = "pkill hyprsunset; hyprctl dispatch exec 'hyprsunset'";
         on-click-right = "hyprctl hyprsunset temperature 6000";
         on-scroll-up = "hyprctl hyprsunset temperature +100";
         on-scroll-down = "hyprctl hyprsunset temperature -100";
         interval = 30;
-        min-length = 6;
-        max-length = 8;
         format-icons = [
           "<span color='#${palette.magenta}'></span>"
           "<span color='#${palette.pink}'></span>"
@@ -318,7 +314,7 @@ in {
       "memory" = {
         format = "<span color='#${palette.teal}'></span>   {percentage}%";
         interval = 3;
-        min-length = 6;
+        min-length = 7;
         max-length = 8;
         on-click = "sleep 0.1 && pypr toggle monitor";
       };
@@ -349,12 +345,12 @@ in {
         format-wifi = "<span color='#${palette.teal}'>↑</span> {bandwidthUpBytes} | <span color='#${palette.sand}'>↓</span> {bandwidthDownBytes}  <span color='#${palette.purple}'></span>  {signalStrength}%";
         format-ethernet = "<span color='#${palette.teal}'>↑</span> {bandwidthUpBytes} | <span color='#${palette.sand}'>↓</span> {bandwidthDownBytes}  <span color='#${palette.purple}'>󰈀</span>  {ipaddr}";
         format-disconnected = "";
-        tooltip-format = "󰈀 {ifname} via {gwaddri}";
+        tooltip-format = "󰈀  {ifname} via {gwaddri}";
         tooltip-format-wifi = "  {essid} ({signalStrength}%)";
         tooltip-format-ethernet = "  {ifname} ({ipaddr}/{cidr})";
         tooltip-format-disconnected = "Disconnected";
-        max-length = 38;
-        min-length = 32;
+        max-length = 39;
+        min-length = 34;
         on-click = "nm-connection-editor";
         on-click-right = "nmcli networking connectivity | grep -q none && nmcli networking on || nmcli networking off";
       };
