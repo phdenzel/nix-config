@@ -79,7 +79,7 @@ in {
           weeks-pos = "left";
         };
         format = "<span color='#${palette.white}'>󱑎</span>  {:%H:%M}";
-        format-alt = "<span color='#${palette.white}'>󰸗</span>  {:%B %d, %Y}  <span color='#${palette.white}'>󱑎</span>  {:%H:%M}";
+        format-alt = "<span color='#${palette.white}'>󰸗</span>  {:%B %d, %Y  - 󱑎 %H:%M}";
         timezone = "Europe/Zurich";
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
@@ -87,7 +87,7 @@ in {
       "cpu" = {
         format = "<span color='#${palette.blue}'></span>  {usage}%";
         interval = 3;
-        min-length = 5;
+        min-length = 6;
         max-length = 8;
         on-click = "sleep 0.1 && pypr toggle monitor";
       };
@@ -97,7 +97,7 @@ in {
         format = "<span color='#${palette.viridis}'>{icon}</span>  {}%";
         format-icons = "󰆧";
         interval = 3;
-        min-length = 5;
+        min-length = 6;
         max-length = 8;
         on-click = "sleep 0.1 && ${uwsmRun "nvidia-settings"}";
         return-type = "";
@@ -110,7 +110,7 @@ in {
         format = "<span color='#${palette.pink}'>{icon}</span>  {}%";
         format-icons = "󱥒";
         interval = 3;
-        min-length = 5;
+        min-length = 6;
         max-length = 8;
         on-click = "sleep 0.1 && ${uwsmRun "lact gui"}";
         return-type = "";
@@ -147,7 +147,7 @@ in {
         on-scroll-up = "hyprctl hyprsunset gamma +1";
         on-scroll-down = "hyprctl hyprsunset gamma -1";
         interval = 30;
-        min-length = 5;
+        min-length = 6;
         max-length = 8;
         format-icons = [
           "<span color='#${palette.crust}'>󰃚</span>"
@@ -178,7 +178,7 @@ in {
         on-scroll-up = "hyprctl hyprsunset temperature +100";
         on-scroll-down = "hyprctl hyprsunset temperature -100";
         interval = 30;
-        min-length = 5;
+        min-length = 6;
         max-length = 8;
         format-icons = [
           "<span color='#${palette.magenta}'></span>"
@@ -353,8 +353,8 @@ in {
         tooltip-format-wifi = "  {essid} ({signalStrength}%)";
         tooltip-format-ethernet = "  {ifname} ({ipaddr}/{cidr})";
         tooltip-format-disconnected = "Disconnected";
-        max-length = 35;
-        min-length = 5;
+        max-length = 38;
+        min-length = 32;
         on-click = "nm-connection-editor";
         on-click-right = "nmcli networking connectivity | grep -q none && nmcli networking on || nmcli networking off";
       };
