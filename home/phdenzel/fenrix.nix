@@ -22,6 +22,7 @@ in {
     sshKeys = ["id_ed25519" "gh_id_ed25519" "gl_id_ed25519" "dgx_id_ed25519" "ghzhaw_id_ed25519"];
     gpgKeys = ["pwds"];
     genericKeys = [
+      "syncthing/${userName}/${hostName}/password"
       "syncthing/${userName}/${hostName}/cert.pem"
       "syncthing/${userName}/${hostName}/key.pem"
     ];
@@ -62,6 +63,12 @@ in {
   };
 
   home-manager.users.${userName} = {
+    imports = [
+      ./_configs/gpg/key-pwds.nix
+      ./_configs/gpg/gpg.nix
+      ./_configs/gpg/agent.nix
+      ../_common/syncthing/spec.nix
+    ];
     wayland.windowManager.hyprland.settings.monitor = [
       "eDP-1, 1920x1080@60.0, 0x0, 1"
     ];
@@ -73,16 +80,15 @@ in {
       ",/home/${userName}/Pictures/wallpapers/gate_4k.png"
     ];
     services.syncthing = {
-      passwordFile = config.sops.secrets."syncthing/${userName}/${hostName}/password".path;
+      passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
       key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
       cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
     };
+    syncthingSpec = {
+      enable = true;
+      deactivatedFolders = ["Music" "Pictures"];
+    };
     programs.gpg.settings.default-key = lib.mkDefault "629FC7317EFB4935";
-    imports = [
-      ./_configs/gpg/key-pwds.nix
-      ./_configs/gpg/gpg.nix
-      ./_configs/gpg/agent.nix
-    ];
   };
   
   

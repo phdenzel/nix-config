@@ -1,0 +1,18 @@
+[
+  "Sync"
+  "cai-seminar-doc"
+  "chuchichaestli"
+  "cluster"
+  "Documents"
+  "Experiments"
+  "Music"
+  "mdq-doc"
+  "org"
+  "Pictures"
+  "Playground"
+  "Projects"
+  "skach"
+  "slides"
+  "teaching"
+  "zettelkasten"
+]

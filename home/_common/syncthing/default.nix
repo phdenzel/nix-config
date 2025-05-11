@@ -11,4 +11,10 @@
       enable = true;
     };
   };
+
+  imports = [
+    ./devices.nix
+    ./folders.nix
+    ./ignores.nix
+  ];
 }
