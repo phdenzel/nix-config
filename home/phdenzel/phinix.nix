@@ -62,6 +62,14 @@ in {
   };
 
   home-manager.users.${userName} = {
+    imports = [
+      ./_configs/gpg
+    ];
+    services.syncthing = {
+      passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
+      key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
+      cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
+    };
     wayland.windowManager.hyprland.settings.monitor = [
       "DP-3, 7680x2160@120.0, 0x0, 2"
     ];
@@ -71,14 +79,6 @@ in {
     };
     services.hyprpaper.settings.wallpaper = [
       ",/home/${userName}/Pictures/wallpapers/ethereal_4k.png"
-    ];
-    services.syncthing = {
-      passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
-      key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
-      cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
-    };
-    imports = [
-      ./_configs/gpg
     ];
   };
 }

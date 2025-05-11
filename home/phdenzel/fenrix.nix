@@ -69,6 +69,16 @@ in {
       ./_configs/gpg/agent.nix
       ../_common/syncthing/spec.nix
     ];
+    programs.gpg.settings.default-key = lib.mkDefault "629FC7317EFB4935";
+    services.syncthing = {
+      passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
+      key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
+      cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
+    };
+    syncthingSpec = {
+      enable = true;
+      deactivatedFolders = ["Music" "Pictures"];
+    };
     wayland.windowManager.hyprland.settings.monitor = [
       "eDP-1, 1920x1080@60.0, 0x0, 1"
     ];
@@ -79,16 +89,6 @@ in {
     services.hyprpaper.settings.wallpaper = [
       ",/home/${userName}/Pictures/wallpapers/gate_4k.png"
     ];
-    services.syncthing = {
-      passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
-      key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
-      cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
-    };
-    syncthingSpec = {
-      enable = true;
-      deactivatedFolders = ["Music" "Pictures"];
-    };
-    programs.gpg.settings.default-key = lib.mkDefault "629FC7317EFB4935";
   };
   
   
