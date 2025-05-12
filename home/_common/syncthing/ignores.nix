@@ -28,6 +28,6 @@ in {
       lists.map (name: {
         "${name}/.stignore".text = globalIgnoreFile;
       })
-      syncs
+      (syncs.all ++ syncs.home ++ syncs.work)
     );
 }
