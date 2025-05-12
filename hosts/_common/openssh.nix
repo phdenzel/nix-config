@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   services.openssh = {
     enable = true;
     # disable RSA keys
@@ -9,7 +9,8 @@
         type = "ed25519";
       }
     ];
-    settings.PermitRootLogin = "no";
+    # allow SSH root logins for remote builds
+    settings.PermitRootLogin = lib.mkDefault "prohibit-password";
     allowSFTP = true;
   };
 }

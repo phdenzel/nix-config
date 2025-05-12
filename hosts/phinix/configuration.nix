@@ -78,6 +78,9 @@ in {
   # Root configuration
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
+    # openssh.authorizedKeys.keys = [
+    #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLoBbnz9XBvuq7QIUT1cPpyn32PWJFEnH1tPJAidJvO phdenzel@phinix"
+    # ];
   };
 
   # Networking
