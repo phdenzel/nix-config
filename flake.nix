@@ -2,16 +2,17 @@
   description = ''
     The NixOS configuration for all my machines
       #phinix:    workstation
+      #sol:       Nvidia AI NUC
       #mani:      AMD AI NUC
       #asahi:     macOS laptop
       #fenrix:    lenovo laptop
       #ygdrasil:  NAS server
       #durathror: kubernetes cluster node
       #dvalar:    kubernetes cluster node
-      #dain:      kubernetes cluster node
+      #duneyr:    kubernetes cluster node
       #heimdall:  raspberry pi
       #munin:     raspberry pi
-      #hunin:     raspberry pi
+      #hugin:     raspberry pi
       #loki:      raspberry pi
       #idun:      VM for new config development
   '';
