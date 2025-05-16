@@ -54,6 +54,10 @@ in {
       tmpfsSize = "5%";
       cleanOnBoot = (!config.boot.tmp.useTmpfs);
     };
+    # Cross building
+    binfmt.emulatedSystems = [
+      "aarch64-linux"
+    ];
     # Boot screen
     # plymouth.enable = mkDefault true;
   };
@@ -76,6 +80,7 @@ in {
   intl.extraLocale = "de_CH";
 
   # Root configuration
+  sops-host.enable = true;
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
     # openssh.authorizedKeys.keys = [
@@ -112,6 +117,7 @@ in {
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
+    caligula
     exfat
     exfatprogs
     gparted

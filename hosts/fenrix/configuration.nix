@@ -66,6 +66,7 @@ in {
   intl.extraLocale = "de_CH";
 
   # Root configuration
+  sops-host.enable = true;
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
     openssh.authorizedKeys.keys = [
@@ -77,7 +78,7 @@ in {
   networking = {
     hostName = "${hostName}";
     hostId = "42b816d1";
-    # wireless.enable = true;  # wireless via wpa_supplicant.
+    wireless.enable = true;  # wireless via wpa_supplicant.
     networkmanager.enable = true;
     enableIPv6 = false;
   };
