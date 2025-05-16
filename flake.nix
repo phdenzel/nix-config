@@ -93,9 +93,19 @@
           config.allowUnfree = true;
         }
     );
-    nixosMachineWithHM = name: {
+    nixosMachine = {name, system ? "x86_64-linux"}: {
       "${name}" = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;};
+        system = "${system}";
+        modules = [
+          (./. + "/hosts/${name}")
+        ];
+      };
+    };
+    nixosMachineWithHM = {name, system ? "x86_64-linux"}: {
+      "${name}" = lib.nixosSystem {
+        specialArgs = {inherit self inputs outputs;};
+        system = "${system}";
         modules = [
           (./. + "/hosts/${name}")
           home-manager.nixosModules.home-manager
@@ -108,10 +118,10 @@
         ];
       };
     };
-    hmMachineConf = name: {
+    hmMachineConf = {name, system ? "x86_64-linux"}: {
       "phdenzel@${name}" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = pkgsFor.x86_64-linux;
+        pkgs = pkgsFor."${system}";
         modules = [
           (./. + "/home/phdenzel/${name}.nix")
           ./home/phdenzel
@@ -121,12 +131,19 @@
   in {
     inherit lib;
 
-    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    packages = (forEachSystem (pkgs: import ./pkgs {inherit pkgs;}));
     overlays = import ./overlays {inherit inputs outputs;};
+
+    images = {
+      iso = self.nixosConfigurations.iso.config.system.build.images.iso;
+      heimdall = self.nixosConfigurations.heimdall.config.system.build.sdImage;
+    };
 
     nixosConfigurations =
       (nixosMachineWithHM "phinix")
       // (nixosMachineWithHM "fenrix")
+      // (nixosMachine "heimdall" "aarch64-linux")
+      // (nixosMachine "iso")
       // (nixosMachineWithHM "idun");
 
     homeConfigurations =
