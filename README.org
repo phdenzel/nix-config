@@ -3,19 +3,41 @@
 #+DATE: 2025-01-05 Sun
 #+OPTIONS: author:nil title:t date:nil timestamp:nil toc:nil num:nil \n:nil
 
+** Build images
+
+This flake also supports building custom ISO images.
+Use
+#+begin_src bash
+  nix build .#images.<my-machine>
+#+end_src
+where ~<my-machine>~ has to be replaced with the name of an implemented host.
+So far,
+- ~iso~
+- ~heimdall~
+are implemented. The builds should appear in ~./results/~.
+
+For cross-platform building make sure to have the appropriate system
+emulation enabled, e.g. with
+#+begin_src nix
+  boot.binfmt.emulatedSystems = ["aarch64-linux"]; # e.g. for Raspberry Pis
+#+end_src
+
+Use the following to flash the images to a USB or SD card (say at ~/dev/sda~)
+#+begin_src bash
+  sudo dd if=./result/<image> of=/dev/sda status=progress bs=4M conv=noerror,fsync
+#+end_src
+
 
 ** Install from ISO
 
-The install of these configurations is best done from a fresh, minimal NixOS install.
-For this, download and flash the ISO onto a USB stick and boot from it.
-
+Once the ISO is flashed, boot into it on the machine where you want to install NixOS.
 The ~nix-config~ contains a few helpful commands that aid in the CLI-based installation.
 Thus, clone the repository with
 #+begin_src bash
   git clone https://github.com/phdenzel/nix-config.git
 #+end_src
 
-Then, you can inspect the ~justfile~ for the commands necessary for a proper installation.
+You can inspect the ~justfile~ for the commands necessary for a proper installation.
 #+begin_src bash
   cd nix-config
   nix-shell -p just
@@ -26,8 +48,6 @@ where ~<my-machine>~ has to be replaced with the name of an implemented host. So
 - ~idun~
 - ~phinix~
 are implemented.
-
-This will install and build a minimal fresh version of NixOS.
 
 
 ** Install on NixOS
