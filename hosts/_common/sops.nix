@@ -44,7 +44,7 @@ in {
       age.sshKeyPaths = mkDefault cfg.keyFiles;
 
       secrets = {
-        "passwd/${sopsHost}" = {
+        "passwd/${cfg.host}" = {
           neededForUsers = true;
           sopsFile = cfg.secretsFile;
         };

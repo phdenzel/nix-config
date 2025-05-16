@@ -140,15 +140,15 @@
     };
 
     nixosConfigurations =
-      (nixosMachineWithHM "phinix")
-      // (nixosMachineWithHM "fenrix")
-      // (nixosMachine "heimdall" "aarch64-linux")
-      // (nixosMachine "iso")
-      // (nixosMachineWithHM "idun");
+      (nixosMachineWithHM {name = "phinix";})
+      // (nixosMachineWithHM {name = "fenrix";})
+      // (nixosMachine {name = "heimdall"; system = "aarch64-linux";})
+      // (nixosMachine {name = "iso";})
+      // (nixosMachineWithHM {name = "idun";});
 
     homeConfigurations =
-      (hmMachineConf "phinix")
-      // (hmMachineConf "fenrix")
-      // (hmMachineConf "idun");
+      (hmMachineConf {name = "phinix";})
+      // (hmMachineConf {name = "fenrix";})
+      // (hmMachineConf {name = "idun";});
   };
 }
