@@ -22,7 +22,7 @@ in {
 
   users.users.${userName} = {
     isNormalUser = true;
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
     extraGroups =
       [
         "audio"

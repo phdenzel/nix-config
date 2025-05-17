@@ -30,6 +30,12 @@
       port = 22;
       identityFile = "~/.ssh/id_ed25519";
     };
+    "heimdall" = {
+      hostname = "heimdall.home";
+      user = "phdenzel";
+      port = 22;
+      identityFile = "~/.ssh/id_ed25519";
+    };
     "loki" = {
       hostname = "loki.home";
       user = "phdenzel";
@@ -60,7 +66,7 @@
       port = 22;
       identityFile = "~/.ssh/id_ed25519";
     };
-    "dain" = {
+    "duneyr" = {
       hostname = "dain.home";
       user = "phdenzel";
       port = 22;

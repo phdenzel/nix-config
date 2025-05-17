@@ -8,10 +8,10 @@ build IMG:
 	nix build .#images.{{IMG}}
 
 flash DEVICE IMG=shell('ls ./result/iso/nixos-*.iso'):
-	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M conv=noerror,fsync
+	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M
 
 flash-sd DEVICE IMG=shell('ls ./result/sd-image/nixos-image-sd-card-*.img'):
-	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M conv=noerror,fsync
+	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M
 
 # Show install commands
 show-iso-cmds MACHINE="idun":
