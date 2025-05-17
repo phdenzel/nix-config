@@ -135,7 +135,7 @@
     overlays = import ./overlays {inherit inputs outputs;};
 
     images = {
-      iso = self.nixosConfigurations.iso.config.system.build.images.iso;
+      iso = self.nixosConfigurations.iso.config.system.build.isoImage;
       heimdall = self.nixosConfigurations.heimdall.config.system.build.sdImage;
     };
 
