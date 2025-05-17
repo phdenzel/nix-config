@@ -15,7 +15,6 @@
     gfortran
     gnumake
     gnuplot
-    jq
     pkg-config
     podman
     podman-compose
@@ -34,7 +33,6 @@
     python310
     rustup
     uv
-    yq-go
   ];
   programs = {
     java.enable = true;

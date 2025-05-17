@@ -14,6 +14,7 @@ with lib; {
     gnutls
     gzip
     just
+    jq
     perl
     psmisc
     ripgrep
@@ -27,6 +28,7 @@ with lib; {
     unzip
     xdg-utils
     yazi
+    yq-go
     zip
     zoxide
     zsh
