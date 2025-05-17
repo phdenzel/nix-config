@@ -5,5 +5,4 @@
     ./configuration.nix
     ./users.nix
   ];
-  config.system.build.sdImage.compressImage = false;
 }

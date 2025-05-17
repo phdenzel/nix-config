@@ -1,6 +1,7 @@
 # NixOS configuration file for phinix
 {
   pkgs,
+  lib,
   config,
   inputs,
   ...
@@ -19,7 +20,18 @@ in {
     inputs.hardware.nixosModules.raspberry-pi-4
   ];
 
+  sdImage.compressImage = lib.mkForce false;
+  # Workaround for `modprobe: FATAL: Module sun4i-drm not found in directory`
+  # See: https://github.com/NixOS/nixpkgs/issues/154163
+  nixpkgs.overlays = [
+    (final: super: {
+      makeModulesClosure = x:
+        super.makeModulesClosure (x // {allowMissing = true;});
+    })
+  ];
+
   boot = {
+    supportedFilesystems.zfs = lib.mkForce false;
     # /tmp as tmpfs
     tmp = {
       useTmpfs = false;
@@ -73,6 +85,8 @@ in {
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
+    libraspberrypi
+    raspberrypi-eeprom
     exfat
     exfatprogs
     usbutils
