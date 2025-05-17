@@ -4,6 +4,15 @@
 default:
     @just --list
 
+build IMG:
+	nix build .#images.{{IMG}}
+
+flash DEVICE IMG=shell('ls ./result/iso/nixos-*.iso'):
+	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M conv=noerror,fsync
+
+flash-sd DEVICE IMG=shell('ls ./result/sd-image/nixos-image-sd-card-*.img'):
+	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M conv=noerror,fsync
+
 # Show install commands
 show-iso-cmds MACHINE="idun":
     @echo "just disko {{MACHINE}}"
@@ -67,3 +76,9 @@ rbs MACHINE:
 
 rep:
 	sudo nix-store --repair --verify --check-contents
+
+gc:
+	sudo nix-collect-garbage -d
+
+gcn AGE:
+	sudo nix-collect-garbage --delete-older-than {{AGE}}d
