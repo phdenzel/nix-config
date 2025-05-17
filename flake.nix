@@ -136,13 +136,14 @@
 
     images = {
       iso = self.nixosConfigurations.iso.config.system.build.isoImage;
-      heimdall = self.nixosConfigurations.heimdall.config.system.build.sdImage;
+      rpi = self.nixosConfigurations.rpi.config.system.build.sdImage;
     };
 
     nixosConfigurations =
       (nixosMachineWithHM {name = "phinix";})
       // (nixosMachineWithHM {name = "fenrix";})
       // (nixosMachine {name = "heimdall"; system = "aarch64-linux";})
+      // (nixosMachine {name = "rpi"; system = "aarch64-linux";})
       // (nixosMachine {name = "iso";})
       // (nixosMachineWithHM {name = "idun";});
 
