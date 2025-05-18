@@ -60,7 +60,7 @@ in {
   # Networking
   networking = {
     hostName = "${hostName}";
-    # hostId = "27b636ba";
+    hostId = "78e00dd5";
     wireless.enable = false;
     networkmanager.enable = true;
     enableIPv6 = false;

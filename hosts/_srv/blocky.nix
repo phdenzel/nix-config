@@ -1,10 +1,12 @@
 {...}: {
+  networking.firewall.allowedTCPPorts = [53];
+  networking.firewall.allowedUDPPorts = [53];
   services.blocky = {
     enable = true;
     settings = {
       ports = {
         dns = 53;
-        tls = 853;
+        # tls = 853;
         https = 443;
         http = 4000;
       };
@@ -20,7 +22,7 @@
         strategy = "parallel_best";
         timeout = "2s";
       };
-      connectIPVersion = "dual"; # v4
+      connectIPVersion = "v4"; # v4
       customDNS = {
         rewrite = {
           "local" = "home";
@@ -29,7 +31,7 @@
         mapping = {
           # Machines
           "fritzbox.home" = "192.168.178.1";
-          # "heimdall.home" = "192.168.178.";
+          "heimdall.home" = "192.168.178.64";
           "ygdrasil.home" = "192.168.178.42";
           "phinix.home" = "192.168.178.156";
           "ipmi-phinix.home" = "192.168.178.157";
@@ -69,16 +71,16 @@
           ];
           malware = [
             "https://urlhaus.abuse.ch/downloads/hostfile"
-            "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt"
+            # contains errors: "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt"
             "https://v.firebog.net/hosts/Prigent-Crypto.txt"
             "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Risk/hosts"
             "https://bitbucket.org/ethanr/dns-blacklists/raw/8575c9f96e5b4a1308f2f12394abd86d0927a4a0/bad_lists/Mandiant_APT1_Report_Appendix_D.txt"
             "https://phishing.army/download/phishing_army_blocklist_extended.txt"
             "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt"
-            "https://v.firebog.net/hosts/RPiList-Malware.txt"
+            # contains errors: "https://v.firebog.net/hosts/RPiList-Malware.txt"
             "https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt"
             "https://raw.githubusercontent.com/AssoEchap/stalkerware-indicators/master/generated/hosts"
-            "https://lists.cyberhost.uk/malware.txt"
+            # contains errors: "https://lists.cyberhost.uk/malware.txt"
           ];
           trackers = [
             "https://v.firebog.net/hosts/Easyprivacy.txt"
@@ -101,7 +103,7 @@
             "https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt"
             # Malware
             "https://v.firebog.net/hosts/Prigent-Malware.txt"
-            "https://v.firebog.net/hosts/RPiList-Phishing.txt"
+            # contains errors: "https://v.firebog.net/hosts/RPiList-Phishing.txt"
             
           ];
         };
@@ -109,7 +111,7 @@
         clientGroupsBlock = {
           default = ["ads" "malware" "trackers" "special"];
         };
-        blockType = "zeroIp";
+        blockType = "nxDomain";
         blockTTL = "1h";
         loading = {
           refreshPeriod = "24h";
