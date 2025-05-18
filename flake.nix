@@ -62,11 +62,11 @@
       flake = false;
     };
     phd-ark-modeline = {
-      url = "git+ssh://git@github.com/phdenzel/phd-ark-modeline";
+      url = "git+https://git@github.com/phdenzel/phd-ark-modeline";
       flake = false;
     };
     phd-ark-tabline = {
-      url = "git+ssh://git@github.com/phdenzel/phd-ark-tabline";
+      url = "git+https://git@github.com/phdenzel/phd-ark-tabline";
       flake = false;
     };
   };
