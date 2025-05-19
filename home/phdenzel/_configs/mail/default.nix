@@ -90,7 +90,13 @@ in {
             sync.enable = true;
           };
         };
-        thunderbird.enable = true;
+        thunderbird = {
+          enable = true;
+          settings = id: {
+            "mail.identity.id_${id}.reply_on_top" = 1;
+            "mail.identity.id_${id}.sig_bottom" = false;
+          };
+        };
       };
 
       ikmail = rec {
@@ -131,7 +137,13 @@ in {
             sync.enable = true;
           };
         };
-        thunderbird.enable = true;
+        thunderbird = {
+          enable = true;
+          settings = id: {
+            "mail.identity.id_${id}.reply_on_top" = 1;
+            "mail.identity.id_${id}.sig_bottom" = false;
+          };
+        };
       };
 
       hispeed = rec {
@@ -173,7 +185,13 @@ in {
             sync.enable = true;
           };
         };
-        thunderbird.enable = true;
+        thunderbird = {
+          enable = true;
+          settings = id: {
+            "mail.identity.id_${id}.reply_on_top" = 1;
+            "mail.identity.id_${id}.sig_bottom" = false;
+          };
+        };
       };
 
       icloud = rec {
@@ -214,7 +232,13 @@ in {
             sync.enable = true;
           };
         };
-        thunderbird.enable = true;
+        thunderbird = {
+          enable = true;
+          settings = id: {
+            "mail.identity.id_${id}.reply_on_top" = 1;
+            "mail.identity.id_${id}.sig_bottom" = false;
+          };
+        };
       };
 
       ms = rec {
@@ -283,6 +307,8 @@ in {
         thunderbird = {
           enable = true;
           settings = id: {
+            "mail.identity.id_${id}.reply_on_top" = 1;
+            "mail.identity.id_${id}.sig_bottom" = false;
             "mail.server.server_${id}.authMethod" = 10;
             "mail.smtpserver.smtp_${id}.authMethod" = 10;
           };
@@ -297,13 +323,14 @@ in {
         passwordCommand = "${lib.getExe pkgs.pizauth} show zhaw";
         signature = {
           showSignature = "append";
+          delimiter = "--";
           text = "${workSignature}";
         };
         folders = {
           drafts = "Drafts";
           inbox = "Inbox";
-          sent = "Sent";
-          trash = "Trash";
+          sent = "Sent Items";
+          trash = "Deleted Items";
         };
         imap = {
           host = "${flavor}";
@@ -358,6 +385,8 @@ in {
         thunderbird = {
           enable = true;
           settings = id: {
+            "mail.identity.id_${id}.reply_on_top" = 1;
+            "mail.identity.id_${id}.sig_bottom" = false;
             "mail.server.server_${id}.authMethod" = 10;
             "mail.smtpserver.smtp_${id}.authMethod" = 10;
           };
