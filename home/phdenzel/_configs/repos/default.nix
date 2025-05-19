@@ -32,10 +32,10 @@
   };
 
   # wallpapers (pinned) read-only git clone in nix-store registry
-  home.file.wallpapers = {
-    source = inputs.phd-wallpapers;
-    target = config.xdg.userDirs.pictures + "/wallpapers";
-  };
+  # home.file.wallpapers = {
+  #   source = inputs.phd-wallpapers;
+  #   target = config.xdg.userDirs.pictures + "/wallpapers";
+  # };
 
   programs.mr = {
     enable = true;
@@ -125,10 +125,12 @@
         checkout = "git clone git@github.com:phdenzel/poster-mlops4tai.git";
       };
 
-      # local repos
-      "local/wallpapers" = {
+      # pictures
+      "Pictures/wallpapers" = {
         checkout = "git clone git@github.com:phdenzel/wallpapers.git";
       };
+
+      # local repos
       "local/nix-systems" = {
         checkout = "git clone git@github.com:phdenzel/nix-systems.git";
       };

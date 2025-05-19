@@ -1,5 +1,5 @@
-{config, ...}: let
-  wallpaperDir = "${config.xdg.userDirs.pictures}/wallpapers";
+{...}: let
+  wallpaperDir = "/etc/wallpapers";
 in {
   services.hyprpaper = {
     enable = true;
