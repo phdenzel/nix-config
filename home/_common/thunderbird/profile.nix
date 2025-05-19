@@ -6,6 +6,8 @@
       "browser.display.foreground_color" = "#${text}";
       "browser.anchor_color" = "#${blue}";
       "browser.active_color" = "#${teal}";
+      "mailnews.reply_on_top" = 1;
+      "mail.identity.default.reply_on_top" = 1;
     };
   };
 }

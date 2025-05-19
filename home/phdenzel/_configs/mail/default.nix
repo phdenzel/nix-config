@@ -302,8 +302,8 @@ in {
         folders = {
           drafts = "Drafts";
           inbox = "Inbox";
-          sent = "Sent Items";
-          trash = "Deleted Items";
+          sent = "Sent";
+          trash = "Trash";
         };
         imap = {
           host = "${flavor}";
