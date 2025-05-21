@@ -31,12 +31,6 @@
     target = ".emacs.d/phd-ark-tabline.el";
   };
 
-  # wallpapers (pinned) read-only git clone in nix-store registry
-  # home.file.wallpapers = {
-  #   source = inputs.phd-wallpapers;
-  #   target = config.xdg.userDirs.pictures + "/wallpapers";
-  # };
-
   programs.mr = {
     enable = true;
     settings = {

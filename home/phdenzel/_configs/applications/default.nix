@@ -1,0 +1,5 @@
+{...}: {
+  imports = [
+    ./cscs-keygen.nix
+  ];
+}
