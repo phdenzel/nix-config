@@ -78,7 +78,7 @@ in {
   networking = {
     hostName = "${hostName}";
     hostId = "42b816d1";
-    wireless.enable = true;  # wireless via wpa_supplicant.
+    wireless.enable = false;  # wireless via wpa_supplicant.
     networkmanager.enable = true;
     enableIPv6 = false;
   };
