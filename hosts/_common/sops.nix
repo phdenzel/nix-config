@@ -22,7 +22,6 @@ in {
     secretsFile = mkOption {
       description = "Path of the secrets file from which sops-nix extracts secrets.";
       type = types.path;
-      # full file path will be ../${cfg.user}/secrets.yaml
       default = ../secrets.yaml;
     };
     keyFiles = mkOption {
@@ -51,7 +50,9 @@ in {
       } //
       attrsets.mergeAttrsList (
         lists.map (name: {
-          "${name}" = {};
+          "${name}" = {
+            sopsFile = cfg.secretsFile;
+          };
         })
         cfg.keys
       );
