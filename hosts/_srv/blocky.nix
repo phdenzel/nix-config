@@ -64,10 +64,13 @@
             "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext"
             "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts"
             "https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts"
+            "https://blocklistproject.github.io/Lists/ads.txt"
+            "https://blocklistproject.github.io/Lists/gambling.txt"
           ];
           adult = [
             "https://raw.githubusercontent.com/chadmayfield/my-pihole-blocklists/master/lists/pi_blocklist_porn_top1m.list"
             "https://v.firebog.net/hosts/Prigent-Adult.txt"
+            "https://blocklistproject.github.io/Lists/porn.txt"
           ];
           malware = [
             "https://urlhaus.abuse.ch/downloads/hostfile"
@@ -80,6 +83,12 @@
             # contains errors: "https://v.firebog.net/hosts/RPiList-Malware.txt"
             "https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt"
             "https://raw.githubusercontent.com/AssoEchap/stalkerware-indicators/master/generated/hosts"
+            "https://blocklistproject.github.io/Lists/malware.txt"
+            "https://blocklistproject.github.io/Lists/abuse.txt"
+            "https://blocklistproject.github.io/Lists/fraud.txt"
+            "https://blocklistproject.github.io/Lists/phishing.txt"
+            "https://blocklistproject.github.io/Lists/ransomware.txt"
+            "https://blocklistproject.github.io/Lists/scam.txt"
             # contains errors: "https://lists.cyberhost.uk/malware.txt"
           ];
           trackers = [
@@ -88,12 +97,15 @@
             "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.2o7Net/hosts"
             "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt"
             "https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt"
+            "https://blocklistproject.github.io/Lists/tracking.txt"
+            "https://blocklistproject.github.io/Lists/smart-tv.txt"
           ];
           special = [
             "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts"
             "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt"
             "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Spam/hosts"
             "https://v.firebog.net/hosts/static/w3kbl.txt"
+            "https://blocklistproject.github.io/Lists/redirect.txt"
           ];
           restrictive = [
             # Social media
