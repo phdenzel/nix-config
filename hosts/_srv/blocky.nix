@@ -70,7 +70,7 @@
           adult = [
             "https://raw.githubusercontent.com/chadmayfield/my-pihole-blocklists/master/lists/pi_blocklist_porn_top1m.list"
             "https://v.firebog.net/hosts/Prigent-Adult.txt"
-            "https://blocklistproject.github.io/Lists/porn.txt"
+            # contains errors: "https://blocklistproject.github.io/Lists/porn.txt"
           ];
           malware = [
             "https://urlhaus.abuse.ch/downloads/hostfile"
