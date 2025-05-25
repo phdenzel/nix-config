@@ -26,7 +26,7 @@ with config.colorScheme.palette; {
 
       device {
         name = tpps/2-elan-trackpoint
-        accel_profile = "adaptive"
+        accel_profile = "flat"
         sensitivity = 0.95
       }
     '';
