@@ -9,6 +9,7 @@ with config.colorScheme.palette; {
       device {
         name = razer-razer-pro-click-v2-vertical-edition
         sensitivity = 0.1
+        scroll_method = on_button_down
       }
 
       device {
