@@ -36,6 +36,7 @@ in {
   boot = {
     # Kernel
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = ["mem_sleep_default=deep"];
     # Bootloader
     #loader.systemd-boot.enable = true;
     #loader.systemd-boot.editor = false;
@@ -52,6 +53,19 @@ in {
     };
     # Boot screen
     # plymouth.enable = mkDefault true;
+  };
+
+  # Suspend settings
+  powerManagement.enable = true;
+  services.power-profiles-daemon.enable = true;
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=30m
+    SuspendState=mem
+  '';
+  services.logind = {
+    lidSwitch = "suspend-then-hibernate";
+    powerKey = "hibernate";
+    powerKeyLongPress = "poweroff";
   };
 
   # File system configuration
@@ -120,6 +134,7 @@ in {
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
+    fprintd.enable = true;
     fwupd.enable = true;
     playerctld.enable = true;
     printing.enable = true;
