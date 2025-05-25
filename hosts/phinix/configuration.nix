@@ -126,6 +126,8 @@ in {
     networkmanagerapplet
     pavucontrol
     podman-desktop
+    polychromatic
+    razergenie
     rgp
     udiskie
     usbutils
@@ -157,11 +159,13 @@ in {
   };
   
   # Hardware
-  # hardware = {
-  #   uni-sync.enable = true;
-  #   fancontrol.enable = true;
-  #   fancontrol.config = {};
-  # };
+  hardware = {
+    openrazer.enable = true;
+    openrazer.batteryNotifier.enable = true;
+    # uni-sync.enable = true;
+    # fancontrol.enable = true;
+    # fancontrol.config = {};
+  };
 
   system.stateVersion = "24.11";
 }

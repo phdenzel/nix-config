@@ -46,6 +46,7 @@ in {
         "libvirtd"
         "network"
         "networkmanager"
+        "openrazer"
         "podman"
         "storage"
         "transmission"
