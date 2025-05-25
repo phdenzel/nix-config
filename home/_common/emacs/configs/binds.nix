@@ -16,6 +16,8 @@
       "C-M-S-j" = "enlarge-window";
       "C-M-S-k" = "shrink-window";
       "C-c e" = "phd/hydra-llm/body";
+      "<mouse-2>" = "mouse-yank-primary";
+      "M-<mouse-2>" = "mouse-yank-secondary";
     };
     usePackage = {
       # Navigation
