@@ -15,19 +15,19 @@ with config.colorScheme.palette; {
       device {
         name = syna800e:00-06cb:ce67-mouse
         accel_profile = "adaptive"
-        sensitivity = 0.95
+        sensitivity = 0.8
       }
 
       device {
         name = syna800e:00-06cb:ce67-touchpad
         accel_profile = "adaptive"
-        sensitivity = 0.95
+        sensitivity = 0.8
       }
 
       device {
         name = tpps/2-elan-trackpoint
         accel_profile = "flat"
-        sensitivity = 0.95
+        sensitivity = 0.5
       }
     '';
     settings = {
