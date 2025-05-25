@@ -34,6 +34,11 @@ in {
       type = types.listOf types.str;
       default = [];
     };
+    ownedKeys = mkOption {
+      description = "Additional owned secret keys to decrypt (owner is at root).";
+      type = types.listOf types.str;
+      default = [];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -55,6 +60,21 @@ in {
           };
         })
         cfg.keys
+      ) //
+      attrsets.mergeAttrsList (
+        lists.map (name: {
+          "${name}" = {
+            sopsFile = cfg.secretsFile;
+            mode = "0400";
+            owner = let
+              group = (elemAt (lib.strings.splitString "/" "${name}") 0);
+            in
+              if (hasAttr group config.users.groups)
+              then group
+              else "root";
+          };
+        })
+        cfg.ownedKeys
       );
     };
   };

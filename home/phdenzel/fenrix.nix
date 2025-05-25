@@ -41,6 +41,7 @@ in {
         "disk"
         "docker"
         "git"
+        "grafana"
         "input"
         "jupyter"
         "kvm"

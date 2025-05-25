@@ -32,6 +32,7 @@ in {
       ++ ifTheyExist [
         "disk"
         "git"
+        "grafana"
         "input"
         "kvm"
         "libvirtd"
