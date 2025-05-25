@@ -8,26 +8,22 @@ with config.colorScheme.palette; {
     extraConfig = ''
       device {
         name = razer-razer-pro-click-v2-vertical-edition
-        accel_profile = "flat"
         sensitivity = 0.1
       }
 
       device {
         name = syna800e:00-06cb:ce67-mouse
-        accel_profile = "adaptive"
-        sensitivity = 0.8
+        sensitivity = 0.6
       }
 
       device {
         name = syna800e:00-06cb:ce67-touchpad
-        accel_profile = "adaptive"
-        sensitivity = 0.8
+        sensitivity = 0.6
       }
 
       device {
         name = tpps/2-elan-trackpoint
-        accel_profile = "flat"
-        sensitivity = 0.5
+        sensitivity = 0.3
       }
     '';
     settings = {
