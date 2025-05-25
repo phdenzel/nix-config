@@ -13,17 +13,17 @@ with config.colorScheme.palette; {
 
       device {
         name = syna800e:00-06cb:ce67-mouse
-        sensitivity = 0.6
+        sensitivity = 0.8
       }
 
       device {
         name = syna800e:00-06cb:ce67-touchpad
-        sensitivity = 0.6
+        sensitivity = 0.8
       }
 
       device {
         name = tpps/2-elan-trackpoint
-        sensitivity = 0.3
+        sensitivity = 0.4
       }
     '';
     settings = {
