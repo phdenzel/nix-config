@@ -134,7 +134,7 @@ in {
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
-    fprintd.enable = true;
+    # fprintd.enable = true;
     fwupd.enable = true;
     playerctld.enable = true;
     printing.enable = true;
