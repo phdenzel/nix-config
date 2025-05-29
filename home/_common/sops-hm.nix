@@ -34,11 +34,6 @@ in {
       type = types.listOf types.str;
       default = [];
     };
-    templates = mkOption {
-      description = "Additional secrets templates to decrypt.";
-      type = types.listOf types.str;
-      default = [];
-    };
   };
 
   config = mkIf cfg.enable {
@@ -53,15 +48,11 @@ in {
         }
         // attrsets.mergeAttrsList (
           lists.map (name: {
-            "${name}" = {};
+            "${name}" = {
+              mode = "0440";
+            };
           })
           cfg.secrets
-        )
-        // attrsets.mergeAttrsList (
-          lists.map (name: {
-            "${name}" = {};
-          })
-          cfg.templates
         );
     };
   };

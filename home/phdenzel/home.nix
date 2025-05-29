@@ -79,11 +79,12 @@ in {
   };
 
   # Secrets same on all machines
-  # sops-hm = {
-  #   enable = true;
-  #   user = "${userName}";
-  #   secrets = [
-  #     ...
-  #   ];
-  # };
+  sops-hm = {
+    enable = true;
+    user = "${userName}";
+    secrets = [
+      "pypi/${userName}/pypi"
+      "pypi/${userName}/testpypi"
+    ];
+  };
 }

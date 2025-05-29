@@ -7,6 +7,7 @@
     ../_common/xdg
     ./_configs/repos
     ./_configs/applications
+    ./_configs/pypirc
     ./_configs/mail
     ../_common/stylix
 
