@@ -15,6 +15,8 @@
     gfortran
     gnumake
     gnuplot
+    hdf5
+    hdfview
     pkg-config
     podman
     podman-compose
