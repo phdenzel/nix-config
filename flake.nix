@@ -2,8 +2,7 @@
   description = ''
     The NixOS configuration for all my machines
       #phinix:    workstation
-      #sol:       Nvidia AI NUC
-      #mani:      AMD AI NUC
+      #sol:       AMD AI NUC
       #asahi:     macOS laptop
       #fenrix:    lenovo laptop
       #ygdrasil:  NAS server
@@ -141,15 +140,20 @@
 
     nixosConfigurations =
       (nixosMachineWithHM {name = "phinix";})
+      // (nixosMachineWithHM {name = "sol";})
       // (nixosMachineWithHM {name = "fenrix";})
+      // (nixosMachineWithHM {name = "ygdrasil";})
+      // (nixosMachineWithHM {name = "idun";})
       // (nixosMachine {name = "heimdall"; system = "aarch64-linux";})
       // (nixosMachine {name = "rpi"; system = "aarch64-linux";})
-      // (nixosMachine {name = "iso";})
-      // (nixosMachineWithHM {name = "idun";});
+      // (nixosMachine {name = "iso";});
+      
 
     homeConfigurations =
       (hmMachineConf {name = "phinix";})
+      // (hmMachineConf {name = "sol";})
       // (hmMachineConf {name = "fenrix";})
+      // (hmMachineConf {name = "ygdrasil";})
       // (hmMachineConf {name = "idun";});
   };
 }

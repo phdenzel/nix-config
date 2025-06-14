@@ -53,7 +53,9 @@ You can inspect the ~justfile~ for the commands necessary for a proper installat
 #+end_src
 where ~<my-machine>~ has to be replaced with the name of an implemented host. So far,
 - ~phinix~
+- ~sol~
 - ~fenrix~
+- ~ygdrasil~
 - ~heimdall~
 - ~idun~
 are implemented.
