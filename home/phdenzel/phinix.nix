@@ -58,7 +58,9 @@ in {
       protonmail-desktop
     ];
     openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFyUOUvvJENjM7fNdGW/9ljjJnPEGHlt1pYFYRx2mZIW phdenzel@sol"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOr6HdrDEH1BztobKQo9xZqlqqYUEWTuz5+QricptROm phdenzel@fenrix"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPb8EAGxZ/djOy8zy3tTUBYl45LgP0oitoL099hNtMbj phdenzel@ygdrasil"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGZofJltIURsWCGEc+H5wyp4WJ3GGkcjPR5THptcR1dg phdenzel@asahi"
     ];
   };
