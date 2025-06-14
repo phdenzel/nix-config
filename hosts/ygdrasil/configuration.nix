@@ -9,20 +9,23 @@
 in {
   imports = [
     ../_common # default nix (and sops-nix) configuration
+    ../_common/hyprland.nix # just in case
+    ../_common/gnome.nix # just in case
+    ../_common/fonts.nix # font packages
+    ../_common/thunar.nix # file manager
     ../_common/security.nix # security configs
     ../_common/openssh.nix # openSSH configs
     ../_common/crypt-utils.nix # cryptographic tool collection
     ../_common/emacs.nix # editor and god tool
     ../_common/cli-utils.nix # cli tool collection
     ../_common/dev-utils.nix # dev tool collection
-    ../_common/computing.nix # computing tool collection
-    ../_common/ollama.nix # local LLM services
-    ../_common/texlive.nix # full TeXLive package
-    ../_common/tx-rx.nix # transmission / reception
-    # ../_srv/dashboards.nix # service dashboards (homepage-dashboard, glance, ...)
+    # ../_srv/computing.nix # computing tool collection
+    # ../_srv/ollama.nix # local LLM services
+    # ../_common/tx-rx.nix # transmission / reception
+    # ../_srv/dashboards.nix # server dashboards (homepage-dashboard, glances, ...)
     # ../_srv/admin.nix # monitoring (cockpit, uptime-kuma, gotify, ...)
     # ../_srv/proxy.nix # server proxy services (traefik, crowdsec, keycloak, ...)
-    # ../_srv/dns.nix # DNS/Ad-blocking service (blocky, ...)
+    # # ../_srv/blocky.nix # DNS/Ad-blocking service (blocky, ...)
     # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
     # ../_srv/forgejo.nix # git forge service (forgejo)
     # # ../_srv/cloud.nix # cloud service (filebrowser, opencloud, ...)
@@ -30,13 +33,13 @@ in {
     # ../_srv/jellyfin.nix # media streaming service
     # ../_srv/servarr.nix # servarr stack
     # ../_srv/home-assistant.nix # home assistant service
-    # ../_srv/db.nix # database services (grafana, influxdb, ...)
+    # # ../_srv/db.nix # database services (grafana, influxdb, ...)
     # ../_srv/vikunja.nix # ToDo management service
     # ../_srv/mealie.nix # recipe service
     # ../_srv/ghostfolio.nix # wealth management service
     ../../modules # AMD/Nvidia, Internationalization configs
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-cpu-amd-pstate
+    inputs.hardware.nixosModules.common-cpu-amd-zenpower
+    inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
   ];
 
@@ -49,10 +52,11 @@ in {
     loader.grub.enable = true;
     loader.grub.efiSupport = true;
     loader.grub.devices = ["nodev"];
+    supportedFilesystems = ["nfs"];
     # /tmp as tmpfs
     tmp = {
       useTmpfs = true;
-      tmpfsSize = "5%";
+      tmpfsSize = "25%";
     };
     # Boot screen
     # plymouth.enable = mkDefault true;
@@ -62,7 +66,7 @@ in {
   services.btrfs.autoScrub = {
     enable = true;
     interval = "weekly";
-    fileSystems = ["/"];
+    fileSystems = ["/" "/data"];
   };
 
   # Hardware customization (see ../../modules)
@@ -76,6 +80,12 @@ in {
   sops-host.enable = true;
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLoBbnz9XBvuq7QIUT1cPpyn32PWJFEnH1tPJAidJvO phdenzel@phinix"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFyUOUvvJENjM7fNdGW/9ljjJnPEGHlt1pYFYRx2mZIW phdenzel@sol"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOr6HdrDEH1BztobKQo9xZqlqqYUEWTuz5+QricptROm phdenzel@fenrix"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGZofJltIURsWCGEc+H5wyp4WJ3GGkcjPR5THptcR1dg phdenzel@asahi"
+    ];
   };
 
   # Networking
@@ -86,13 +96,19 @@ in {
     networkmanager.enable = true;
     enableIPv6 = false;
   };
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.network.wait-online.enable = false;
 
   # Local networking
   services.avahi = {
     enable = true;
     nssmdns4 = true;
     openFirewall = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      domain = true;
+      hinfo = true;
+    };
   };
 
   # System-wide packages
@@ -119,5 +135,5 @@ in {
     udisks2.enable = true;
   };
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }
