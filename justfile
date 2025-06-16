@@ -34,22 +34,17 @@ disko MACHINE:
 # Install minimal configuration.nix to /mnt/etc/nixos
 iso-config:
     [ -d "/iso" ] && sudo mkdir -p /mnt/etc/nixos
-    [ -d "/iso" ] && sudo cp iso/configuration.nix /mnt/etc/nixos/configuration.nix
-    @just hardware-config
+    [ -d "/iso" ] && sudo nixos-generate-config --kernel latest --root /mnt || sudo nixos-generate-config --kernel latest
 
 # Print a new hardware-configuration.nix file
 show-hardware-config:
     [ -d "/iso" ] && sudo nixos-generate-config --root /mnt --show-hardware-config || sudo nixos-generate-config --show-hardware-config
 
-# Generate a new hardware-configuration.nix file
-hardware-config:
-    [ -d "/iso" ] && sudo nixos-generate-config --root /mnt || sudo nixos-generate-config
-
 # Install from iso
 iso-install MACHINE:
     [ -d "/mnt/boot" ] || just disko {{MACHINE}}
     [ -f "/mnt/etc/nixos/configuration.nix" ] || just iso-config
-    [ -f "/mnt/etc/nixos/hardware-configuration.nix" ] || just hardware-config
+    [ -f "/mnt/etc/nixos/hardware-configuration.nix" ] || just iso-config
     [ -d "/iso" ] && sudo nixos-install
 
 # Append a host age key to the .sops.yaml file
