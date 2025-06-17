@@ -35,7 +35,7 @@ disko MACHINE:
 iso-config:
     [ -d "/iso" ] && sudo mkdir -p /mnt/etc/nixos
     [ -d "/local" ] && cp /local/etc/nixos/configuration.nix /mnt/etc/nixos/configuration.nix
-	[ -d "/root/nix-config" ] && cp -r /root/nix-config /mnt/root/nix-config
+    [ -d "/root/nix-config" ] && cp -r /root/nix-config /mnt/root/nix-config
     [ -d "/iso" ] && sudo nixos-generate-config --kernel latest --root /mnt || sudo nixos-generate-config --kernel latest
 
 # Print a new hardware-configuration.nix file
