@@ -25,15 +25,17 @@ show-iso-longcmds:
 
 # Dry-run the disko configuration (formatting and mounting) for specified machine.
 test-disko MACHINE="idun":
-    sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode format,mount --dry-run ./hosts/{{MACHINE}}/disk-config.nix
+    sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount --dry-run ./hosts/{{MACHINE}}/disk-config.nix
 
 # Run the disko configuration (formatting and mounting) for specified machine.
 disko MACHINE:
-    sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode format,mount ./hosts/{{MACHINE}}/disk-config.nix
+    sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount ./hosts/{{MACHINE}}/disk-config.nix
 
 # Install minimal configuration.nix to /mnt/etc/nixos
 iso-config:
     [ -d "/iso" ] && sudo mkdir -p /mnt/etc/nixos
+    [ -d "/local" ] && cp /local/etc/nixos/configuration.nix /mnt/etc/nixos/configuration.nix
+	[ -d "/root/nix-config" ] && cp -r /root/nix-config /mnt/root/nix-config
     [ -d "/iso" ] && sudo nixos-generate-config --kernel latest --root /mnt || sudo nixos-generate-config --kernel latest
 
 # Print a new hardware-configuration.nix file
@@ -75,5 +77,5 @@ rep:
 gc:
 	sudo nix-collect-garbage -d
 
-gcn AGE:
-	sudo nix-collect-garbage --delete-older-than {{AGE}}d
+gcn DAYS:
+	sudo nix-collect-garbage --delete-older-than {{DAYS}}d

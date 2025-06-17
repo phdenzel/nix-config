@@ -10,12 +10,22 @@
     ../../modules/intl.nix # internationalization configs
   ];
 
+  isoImage.contents = [
+    {
+      source = ./install-configuration.nix;
+      target = "/local/etc/nixos/configuration.nix";
+    }
+  ];
+  system.userActivationScripts.nix-config-repository.text = ''
+     ${pkgs.git}/bin/git clone git@github.com:phdenzel/nix-config.git /root/nix-config
+  '';
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     supportedFilesystems = pkgs.lib.mkForce ["btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs"];
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos-iso"; # Define your hostname.
   time.timeZone = "Europe/Zurich";
   i18n.defaultLocale = "en_US.UTF-8";
 
