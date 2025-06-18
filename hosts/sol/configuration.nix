@@ -132,7 +132,7 @@ in {
     caligula
     exfat
     exfatprogs
-    fancontrol-gui
+    # fancontrol-gui
     gparted
     lact
     lm_sensors

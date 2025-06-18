@@ -67,7 +67,9 @@ in {
 
   home-manager.users.${userName} = {
     imports = [
-      ./_configs/gpg
+      ./_configs/gpg/key-pwds.nix
+      ./_configs/gpg/gpg.nix
+      ./_configs/gpg/agent.nix
     ];
     services.syncthing = {
       passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
@@ -75,14 +77,14 @@ in {
       # cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
     };
     wayland.windowManager.hyprland.settings.monitor = [
-      "DP-3, 7680x2160@120.0, 0x0, 2"
+      "HDMI-1, 3840x1080@60.0, 0x0, 1"
     ];
     stylix = {
-      image = "/etc/wallpapers/noctilusent_4k.png";
+      image = "/etc/wallpapers/withine_everything_4k.png";
       imageScalingMode = "fill";
     };
     services.hyprpaper.settings.wallpaper = [
-      ",/etc/wallpapers/noctilusent_4k.png"
+      ",/etc/wallpapers/withine_everything_4k.png"
     ];
   };
 }
