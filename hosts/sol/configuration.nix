@@ -103,7 +103,7 @@ in {
   # Networking
   networking = {
     hostName = "${hostName}";
-    hostId = "10db7abc%";
+    hostId = "10db7abc";
     # wireless.enable = true;  # wireless via wpa_supplicant.
     networkmanager.enable = true;
     enableIPv6 = false;
