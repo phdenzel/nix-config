@@ -22,8 +22,8 @@ in {
     gpgKeys = ["pwds"];
     genericKeys = [
       "syncthing/${userName}/${hostName}/password"
-      # "syncthing/${userName}/${hostName}/cert.pem"
-      # "syncthing/${userName}/${hostName}/key.pem"
+      "syncthing/${userName}/${hostName}/cert.pem"
+      "syncthing/${userName}/${hostName}/key.pem"
     ];
   };
 
@@ -73,18 +73,18 @@ in {
     ];
     services.syncthing = {
       passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
-      # key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
-      # cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
+      key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
+      cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
     };
     wayland.windowManager.hyprland.settings.monitor = [
       "HDMI-1, 3840x1080@60.0, 0x0, 1"
     ];
     stylix = {
-      image = "/etc/wallpapers/withine_everything_4k.png";
+      image = "/etc/wallpapers/within_everything_4k.png";
       imageScalingMode = "fill";
     };
     services.hyprpaper.settings.wallpaper = [
-      ",/etc/wallpapers/withine_everything_4k.png"
+      ",/etc/wallpapers/within_everything_4k.png"
     ];
   };
 }
