@@ -15,12 +15,16 @@ with lib; {
     gzip
     just
     jq
+    libarchive
+    libisoburn
+    p7zip
     perl
     psmisc
     ripgrep
     rsync
     starship
     strace
+    squashfsTools
     tcpdump
     tealdeer
     timer
