@@ -55,7 +55,7 @@ in {
     # /tmp as tmpfs
     tmp = {
       useTmpfs = true;
-      tmpfsSize = "12%";
+      tmpfsSize = "24%";
       cleanOnBoot = (!config.boot.tmp.useTmpfs);
     };
     # Cross building
@@ -86,12 +86,12 @@ in {
   # Root configuration
   sops-host = {
     enable = true;
-    keys = [
-      "homepage-dashboard/env"
-    ];
-    ownedKeys = [
-      "grafana/admin_password"
-    ];
+    # keys = [
+    #   "homepage-dashboard/env"
+    # ];
+    # ownedKeys = [
+    #   "grafana/admin_password"
+    # ];
   };
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
@@ -103,12 +103,11 @@ in {
   # Networking
   networking = {
     hostName = "${hostName}";
-    # hostId = "";
+    hostId = "10db7abc%";
     # wireless.enable = true;  # wireless via wpa_supplicant.
     networkmanager.enable = true;
     enableIPv6 = false;
   };
-  systemd.network.wait-online.enable = false;
 
   # Local networking
   services.avahi = {

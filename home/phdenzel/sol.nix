@@ -76,15 +76,15 @@ in {
       key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
       cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
     };
-    wayland.windowManager.hyprland.settings.monitor = [
-      "HDMI-1, 3840x1080@60.0, 0x0, 1"
-    ];
+    # wayland.windowManager.hyprland.settings.monitor = [
+    #   "HDMI-1, 3840x1080@60.0, 0x0, 1"
+    # ];
     stylix = {
-      image = "/etc/wallpapers/within_everything_4k.png";
+      image = "/etc/wallpapers/noctilusent_4k.png";
       imageScalingMode = "fill";
     };
     services.hyprpaper.settings.wallpaper = [
-      ",/etc/wallpapers/within_everything_4k.png"
+      ",/etc/wallpapers/noctilusent_4k.png"
     ];
   };
 }
