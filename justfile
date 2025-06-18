@@ -44,8 +44,8 @@ disko MACHINE:
 # Install minimal configuration.nix to /mnt/etc/nixos
 iso-config:
     [ -d "/iso" ] && sudo mkdir -p /mnt/etc/nixos
-    [ -d "/local" ] && cp /local/etc/nixos/configuration.nix /mnt/etc/nixos/configuration.nix
-    [ -d "/root/nix-config" ] && cp -r /root/nix-config /mnt/root/nix-config
+    [ -d "/iso/local" ] && cp /iso/local/etc/nixos/configuration.nix /mnt/etc/nixos/configuration.nix
+    [ -d "/iso/local/root/nix-config" ] && cp -r /iso/local/root/nix-config /mnt/root/nix-config
     [ -d "/home/nixos/nix-config" ] && cp -r /home/nixos/nix-config /mnt/root/nix-config
     [ -d "/iso" ] && sudo nixos-generate-config --kernel latest --root /mnt || sudo nixos-generate-config --kernel latest
 
