@@ -78,6 +78,12 @@
       port = 22;
       identityFile = "~/.ssh/id_ed25519";
     };
+    "sol" = {
+      hostname = "sol.home";
+      user = "phdenzel";
+      port = 22;
+      identityFile = "~/.ssh/id_ed25519";
+    };
     "fenrix" = {
       hostname = "fenrix.home";
       user = "phdenzel";
