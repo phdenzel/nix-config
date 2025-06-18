@@ -39,7 +39,7 @@ test-disko MACHINE="idun":
 
 # Run the disko configuration (formatting and mounting) for specified machine.
 disko MACHINE:
-    sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount ./hosts/{{MACHINE}}/disk-config.nix
+    sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount --yes-wipe-all-disks ./hosts/{{MACHINE}}/disk-config.nix
 
 # Install minimal configuration.nix to /mnt/etc/nixos
 iso-config:
