@@ -7,6 +7,16 @@ default:
 build IMG:
 	nix build .#images.{{IMG}}
 
+iso-rebuild:
+	@echo "This command is currently not working... fix is WIP." && exit 1
+	[ -d "result/iso" ] || just build iso
+	mkdir -p tmp/iso
+	bsdtar -C tmp/iso -xf ./result/iso/nixos-*.iso
+	chmod 755 tmp/iso/local
+	mkdir tmp/iso/local/root && cp -r ~/.config/sops tmp/iso/local/root/
+	chmod 555 tmp/iso/local/root && chmod 555 tmp/iso/local
+	xorriso -as mkisofs -isohybrid-mbr tmp/iso/isolinux/isohdpfx.bin -c isolinux/boot.cat -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4 -boot-info-table -eltorito-alt-boot -e boot/efi.img -no-emul-boot -isohybrid-gpt-basdat -volid NIXOS-ISO -o tmp/nixos-25.05.custom.iso tmp/iso/
+
 flash DEVICE IMG=shell('ls ./result/iso/nixos-*.iso'):
 	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M
 
@@ -36,6 +46,7 @@ iso-config:
     [ -d "/iso" ] && sudo mkdir -p /mnt/etc/nixos
     [ -d "/local" ] && cp /local/etc/nixos/configuration.nix /mnt/etc/nixos/configuration.nix
     [ -d "/root/nix-config" ] && cp -r /root/nix-config /mnt/root/nix-config
+	[ -d "/home/nixos/nix-config" ] && cp -r /home/nixos/nix-config /mnt/root/nix-config
     [ -d "/iso" ] && sudo nixos-generate-config --kernel latest --root /mnt || sudo nixos-generate-config --kernel latest
 
 # Print a new hardware-configuration.nix file
