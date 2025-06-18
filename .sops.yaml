@@ -6,6 +6,7 @@ keys:
       - &phinix age17m4k0g7xn6ek7szh2vg6pdc4vwvvxwfr4zzg36rwhxjfelx6ec7q2v368g
       - &fenrix age1s7pkaz683sf8ms92adh2x4xvspmkfqjenkv06k5leyjly2qewyssnxkwfm
       - &heimdall age15et4zlq38fdwspnvfuglym3r5dvnaqhgp7ckryk25prnvtx9uqmqapc5rt
+      - &sol age14azxpzvfle8ze00ndmdxvmw43a56y0fgy5rg9s9e22wxwxxwgsps4wwxfk
 creation_rules:
   - path_regex: hosts/secrets.ya?ml$
     key_groups:
@@ -15,6 +16,7 @@ creation_rules:
           - *phinix
           - *fenrix
           - *heimdall
+          - *sol
   - path_regex: home/phdenzel/secrets.ya?ml$
     key_groups:
       - age:
@@ -23,3 +25,4 @@ creation_rules:
           - *phinix
           - *fenrix
           - *heimdall
+          - *sol
