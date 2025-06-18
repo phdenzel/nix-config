@@ -17,7 +17,7 @@
     }
   ];
   system.userActivationScripts.nix-config-repository.text = ''
-     ${pkgs.git}/bin/git clone git@github.com:phdenzel/nix-config.git /root/nix-config
+     ${pkgs.git}/bin/git clone https://github.com/phdenzel/nix-config.git /local/home/nixos/nix-config
   '';
 
   boot = {
@@ -45,7 +45,7 @@
 
   # More open OpenSSH settings.
   systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
-  services.openssh.settings.PermitRootLogin = "yes";
+  services.openssh.settings.PermitRootLogin = pkgs.lib.mkForce "yes";
 
   # For more information, see `man configuration.nix` or
   # https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
