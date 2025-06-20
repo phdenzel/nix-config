@@ -6,6 +6,7 @@
 with lib; {
   environment.systemPackages = with pkgs; [
     foliate
+    gapless
     gimp
     imagemagick
     inkscape
