@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{inputs, pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     openconnect
     networkmanager-openconnect
+    inputs.openconnect-sso.packages.${pkgs.system}.openconnect-sso
   ];
 
   networking.openconnect.interfaces.zhaw = {
