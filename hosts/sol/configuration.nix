@@ -22,7 +22,7 @@ in {
     ../_common/cli-utils.nix # cli tool collection
     ../_common/dev-utils.nix # dev tool collection
     ../_common/computing.nix # computing tool collection
-    ../_common/ollama.nix # local LLM services
+    # ../_common/ollama.nix # local LLM services
     ../_common/graphical.nix # graphical applications
     ../_common/comm.nix # communication apps
     ../_common/tx-rx.nix # transmission / reception
