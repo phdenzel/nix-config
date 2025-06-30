@@ -6,6 +6,7 @@
     pizauth
     transmission_4
     transmission_4-gtk
+    wget
   ];
   services = {
     transmission = {
