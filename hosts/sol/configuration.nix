@@ -140,7 +140,7 @@ in {
     podman-desktop
     polychromatic
     razergenie
-    rgp
+    stable.rgp
     udiskie
     usbutils
   ];
