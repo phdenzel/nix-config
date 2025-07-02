@@ -56,6 +56,9 @@
       skais = {
         checkout = "git clone git@github.com:phdenzel/skais.git";
       };
+      skais-mapper = {
+        checkout = "git clone git@github.com:phdenzel/skais-mapper.git";
+      };
 
       # documents repos
       "Documents/PhDCV" = {
