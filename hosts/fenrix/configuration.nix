@@ -116,7 +116,6 @@ in {
     networkmanagerapplet
     pavucontrol
     podman-desktop
-    rgp
     udiskie
     usbutils
   ];
