@@ -30,6 +30,10 @@ in {
     ../_common/games.nix # Gaming utils
     ../_common/texlive.nix # full TeXLive package
     ../_common/vpn-zhaw.nix # VPN for work
+    # testing
+    ../_srv/dashboards.nix
+    ../_srv/blocky.nix
+    ../_srv/blocky-grafana.nix
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd-pstate
     inputs.hardware.nixosModules.common-gpu-amd
@@ -80,7 +84,15 @@ in {
   intl.extraLocale = "de_CH";
 
   # Root configuration
-  sops-host.enable = true;
+  sops-host = {
+    enable = true;
+    keys = [
+      "homepage-dashboard/env"
+    ];
+    ownedKeys = [
+      "grafana/admin_password"
+    ];
+  };
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
     # openssh.authorizedKeys.keys = [
@@ -96,7 +108,7 @@ in {
     networkmanager.enable = true;
     enableIPv6 = false;
   };
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.network.wait-online.enable = false;
 
   # Local networking
   services.avahi = {
@@ -128,7 +140,7 @@ in {
     podman-desktop
     polychromatic
     razergenie
-    rgp
+    stable.rgp
     udiskie
     usbutils
   ];
@@ -163,8 +175,6 @@ in {
     openrazer.enable = true;
     openrazer.batteryNotifier.enable = true;
     # uni-sync.enable = true;
-    # fancontrol.enable = true;
-    # fancontrol.config = {};
   };
 
   system.stateVersion = "24.11";
