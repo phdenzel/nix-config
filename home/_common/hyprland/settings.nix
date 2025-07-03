@@ -26,6 +26,11 @@ with config.colorScheme.palette; {
         name = tpps/2-elan-trackpoint
         sensitivity = 0.4
       }
+
+      device {
+        name = apple-inc.-magic-trackpad
+        sensitivity = 0.8
+      }
     '';
     settings = {
       general = {
