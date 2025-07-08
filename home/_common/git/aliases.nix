@@ -10,8 +10,8 @@
     ex = "update-index --assume-unchanged";
     nex = "update-index --no-assume-unchanged";
     fu = "fetch upstream";
-    l = "log --pretty=oneline ---abbrev-commit -12";
-    ll = "log --pretty=oneline ---abbrev-commit";
+    l = "log --pretty=oneline --abbrev-commit -12";
+    ll = "log --pretty=oneline --abbrev-commit";
     r = "remote -v";
     rau = "remote add upstream";
     s = "status -s";
