@@ -53,11 +53,14 @@
       chuchichaestli = {
         checkout = "git clone git@github.com:CAIIVS/chuchichaestli.git";
       };
-      skais = {
-        checkout = "git clone git@github.com:phdenzel/skais.git";
-      };
+      # skais = {
+      #   checkout = "git clone git@github.com:phdenzel/skais.git";
+      # };
       skais-mapper = {
         checkout = "git clone git@github.com:phdenzel/skais-mapper.git";
+      };
+      skais-model = {
+        checkout = "git clone git@github.com:phdenzel/skais-model.git";
       };
 
       # documents repos

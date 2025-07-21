@@ -50,7 +50,7 @@
   home.file = {
     # Projectile bookmarks
     ".emacs.d/projectile-bookmarks.eld".text = ''
-      ("~/nix-config/" "~/org" "~/zettelkasten/" "~/phdenzel.github.io/" "~/slides/" "~/Documents/letters/" "~/Documents/PhDCV/" "~/chuchichaestli/" "~/skais/" "~/skais-mapper/" "~/Documents/papers/galactic-alchemy-1/" "~/Documents/papers/sds25-ml4gleam/")
+      ("~/nix-config/" "~/org" "~/zettelkasten/" "~/phdenzel.github.io/" "~/slides/" "~/Documents/letters/" "~/Documents/PhDCV/" "~/chuchichaestli/" "~/skais-mapper/" "~/skais-model/" "~/Documents/papers/galactic-alchemy-1/")
     '';
   };
 }
