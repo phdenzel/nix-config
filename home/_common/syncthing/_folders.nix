@@ -11,6 +11,8 @@
     "Playground"
     "Projects"
     "skach"
+    "skais-mapper"
+    "skais-model"
     "slides"
     "teaching"
     "zettelkasten"
