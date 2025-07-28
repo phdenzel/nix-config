@@ -7,9 +7,9 @@
     pyverto = pkgs.callPackage default {
       src = pkgs.fetchFromGitHub {
         owner = "phdenzel";
-        repo = "puverto";
+        repo = "pyverto";
         rev = "main";
-        sha256 = "";
+        sha256 = "sha256-OGjDJJrHdaySPf/Zlfva0IL3SzP43A1E3tOgJb4iW8A=";
       };
     };
   in
