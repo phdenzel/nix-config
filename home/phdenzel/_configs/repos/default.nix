@@ -53,9 +53,6 @@
       chuchichaestli = {
         checkout = "git clone git@github.com:CAIIVS/chuchichaestli.git";
       };
-      # skais = {
-      #   checkout = "git clone git@github.com:phdenzel/skais.git";
-      # };
       skais-mapper = {
         checkout = "git clone git@github.com:phdenzel/skais-mapper.git";
       };
@@ -149,8 +146,8 @@
       "local/hatch-bump" = {
         checkout = "git clone git@github.com:phdenzel/hatch-bump.git";
       };
-      "local/pyphd" = {
-        checkout = "git clone git@github.com:phdenzel/pyphd.git";
+      "local/pyverto" = {
+        checkout = "git clone git@github.com:phdenzel/pyverto.git";
       };
       "local/camengine.js" = {
         checkout = "git clone git@github.com:phdenzel/camengine.js.git";
