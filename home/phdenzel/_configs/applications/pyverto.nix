@@ -9,7 +9,7 @@
         owner = "phdenzel";
         repo = "pyverto";
         rev = "main";
-        sha256 = "sha256-OGjDJJrHdaySPf/Zlfva0IL3SzP43A1E3tOgJb4iW8A=";
+        sha256 = "sha256-gt8VMIm22ao7FumP+lfraoUMPTht8GBSYXRSPdm+sUU=";
       };
     };
   in
