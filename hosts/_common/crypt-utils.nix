@@ -10,6 +10,7 @@ with lib; {
     merecat  # for htpasswd
     openssl
     pwgen
+    qrencode
     ssh-to-age
     sops
     zbar
