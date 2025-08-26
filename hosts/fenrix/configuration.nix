@@ -22,6 +22,7 @@ in {
     ../_common/cli-utils.nix # cli tool collection
     ../_common/dev-utils.nix # dev tool collection
     ../_common/computing.nix # computing tool collection
+    ../_common/containerization.nix # podman and oci stuff
     ../_common/graphical.nix # graphical applications
     ../_common/comm.nix # communication apps
     ../_common/tx-rx.nix # transmission / reception
