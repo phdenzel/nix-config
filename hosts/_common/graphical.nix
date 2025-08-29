@@ -17,4 +17,8 @@ with lib; {
     pdfarranger
     zathura
   ];
+
+  programs = {
+    appimage.enable = true;
+  };
 }
