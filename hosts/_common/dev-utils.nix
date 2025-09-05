@@ -19,7 +19,7 @@
     pkg-config
     podman
     podman-compose
-    (python312.withPackages (p: with p; [
+    (python313.withPackages (p: with p; [
       pip
       virtualenv
       isort
@@ -29,7 +29,7 @@
       rope
       ruff
     ]))
-    python313
+    python312
     python311
     python310
     rustup
