@@ -32,7 +32,7 @@ with lib; {
     hyprpolkitagent
     hyprsunset
     kitty
-    nwg-displays
+    stable.nwg-displays
     nwg-look
     pyprland
     rofi-wayland
