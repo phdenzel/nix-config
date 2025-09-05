@@ -64,9 +64,11 @@ in {
     SuspendState=mem
   '';
   services.logind = {
-    lidSwitch = "suspend-then-hibernate";
-    powerKey = "hibernate";
-    powerKeyLongPress = "poweroff";
+    settings.Login = {
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandlePowerKey = "hibernate";
+      HandlePowerKeyLongPress = "poweroff";
+    };
   };
 
   # File system configuration
