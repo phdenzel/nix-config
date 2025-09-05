@@ -34,6 +34,7 @@ in {
     localip = "ip -4 addr | grep inet | awk '{print $2}'";
     urlenc = "python3 -c \"import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]));\"";
     emptytrash = "rm -rf \${HOME}/.local/share/Trash/{files,info}/*";
+    zhaw-vpn = "QT_QPA_PLATFORM=xcb openconnect-sso --server ras.zhaw.ch";
   };
 
   programs = {
