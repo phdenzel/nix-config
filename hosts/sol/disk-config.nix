@@ -66,6 +66,7 @@ in {
               size = "32G";
               content = {
                 type = "swap";
+                discardPolicy = "both";
                 extraArgs = ["-L swap"];
                 # randomEncryption = true;
               };
