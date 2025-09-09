@@ -85,9 +85,9 @@
         bibtex-autokey-name-year-separator = "\"_\"";
         bibtex-autokey-year-title-separator = "\"_\"";
         bibtex-autokey-titleword-separator = "\"_\"";
-        bibtex-autokey-titlewords = 1;
+        bibtex-autokey-titlewords = 2;
         bibtex-autokey-titlewords-stretch = 1;
-        # bibtex-autokey-titleword-length = 0;
+        bibtex-autokey-titleword-length = 16;
       };
     };
     bibtex-completion = {
