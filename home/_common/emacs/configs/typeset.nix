@@ -80,14 +80,14 @@
       enable = true;
       custom = {
         # bibtex key format definition
-        bibtex-autokey-year-length = 2;
-        bibtex-autokey-name-case-convert-function = "'capitalize";
-        bibtex-autokey-name-year-separator = "\"\"";
-        bibtex-autokey-year-title-separator = "\"\"";
-        bibtex-autokey-titleword-separator = "\"\"";
-        bibtex-autokey-titlewords = 0;
-        bibtex-autokey-titlewords-stretch = 0;
-        bibtex-autokey-titleword-length = 0;
+        bibtex-autokey-year-length = 4;
+        # bibtex-autokey-name-case-convert-function = "'capitalize";
+        bibtex-autokey-name-year-separator = "\"_\"";
+        bibtex-autokey-year-title-separator = "\"_\"";
+        bibtex-autokey-titleword-separator = "\"_\"";
+        bibtex-autokey-titlewords = 1;
+        bibtex-autokey-titlewords-stretch = 1;
+        # bibtex-autokey-titleword-length = 0;
       };
     };
     bibtex-completion = {
