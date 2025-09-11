@@ -93,7 +93,7 @@
     bibtex-completion = {
       enable = true;
       custom = {
-        bibtex-completion-bibliography = '''("~/zettelkasten/bib/master.bib")'';
+        bibtex-completion-bibliography = '''("~/zettelkasten/bib/master.bib" "~/zettelkasten/bib/publications.bib" "~/zettelkasten/bib/astro_ph.bib" "~/zettelkasten/bib/corr.bib")'';
         bibtex-completion-library-path = '''("~/zettelkasten/pdf")'';
         bibtex-completion-pdf-symbol = "\"⌘\"";
         bibtex-completion-pdf-field = "\"file\"";
