@@ -5,6 +5,7 @@
       custom = {
         org-src-fontify-natively = true;
         org-src-tab-acts-natively = true;
+        org-export-backends = "(quote (ascii html latex md))";
       };
       config = ''
         (org-babel-do-load-languages
