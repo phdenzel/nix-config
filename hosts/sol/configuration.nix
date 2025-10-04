@@ -30,10 +30,6 @@ in {
     ../_common/games.nix # Gaming utils
     ../_common/texlive.nix # full TeXLive package
     ../_common/vpn-zhaw.nix # VPN for work
-    # testing
-    # ../_srv/dashboards.nix
-    # ../_srv/blocky.nix
-    # ../_srv/blocky-grafana.nix
     ../../modules # AMD/Nvidia, Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd-zenpower
     inputs.hardware.nixosModules.common-gpu-amd
