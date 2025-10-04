@@ -23,7 +23,7 @@ in {
     # ../_common/fonts.nix # Font packages
     # ../_common/texlive.nix # Full TeXLive package
     # ../_common/comm.nix # Communication apps
-    ../../modules # AMD/Nvidia, Internationalization configs
+    ../../modules # Internationalization configs
   ];
 
   boot = {
@@ -49,8 +49,7 @@ in {
   };
 
   # Hardware customization (see ../../modules)
-  drivers.amdgpu.enable = false;
-  drivers.amdgpu.utils.install = false;
+  # ...
 
   # Language customization (see ../../modules)
   intl.defaultLocale = "en_US";

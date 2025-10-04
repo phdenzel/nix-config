@@ -24,13 +24,14 @@ in {
     ../_common/computing.nix # computing tool collection
     # ../_common/ollama.nix # local LLM services
     ../_common/graphical.nix # graphical applications
+    # ../_common/ghostfolio.nix # wealth management tool
     ../_common/comm.nix # communication apps
     ../_common/tx-rx.nix # transmission / reception
     ../_common/mux.nix # muxing tool collection
     ../_common/games.nix # Gaming utils
     ../_common/texlive.nix # full TeXLive package
     ../_common/vpn-zhaw.nix # VPN for work
-    ../../modules # AMD/Nvidia, Internationalization configs
+    ../../modules # Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd-zenpower
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
@@ -69,11 +70,13 @@ in {
     fileSystems = ["/" "/scratch"];
   };
 
-  # Hardware customization (see ../../modules)
-  drivers.amdgpu.enable = true;
-  drivers.amdgpu.utils.install = true;
+  # Hardware customization
   nixpkgs.config.rocmSupport = true;
   services.ollama.acceleration = "rocm";
+  # systemd.tmpfiles.rules = with pkgs;
+  #   mkDefault [
+  #     "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"
+  #   ];
 
   # Language customization (see ../../modules)
   intl.defaultLocale = "en_US";
@@ -124,19 +127,25 @@ in {
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
+    btop-rocm
     caligula
+    clinfo
     exfat
     exfatprogs
     # fancontrol-gui
     gparted
     lact
+    libva-utils
     lm_sensors
     networkmanagerapplet
     pavucontrol
     podman-desktop
     polychromatic
     razergenie
+    rocmPackages.rocm-smi
+    rocmPackages.rocminfo
     stable.rgp
+    vdpauinfo
     udiskie
     usbutils
   ];

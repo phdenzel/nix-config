@@ -24,6 +24,7 @@ in {
     ../_common/computing.nix # computing tool collection
     ../_common/ollama.nix # local LLM services
     ../_common/graphical.nix # graphical applications
+    # ../_common/ghostfolio.nix # wealth management tool
     ../_common/comm.nix # communication apps
     ../_common/tx-rx.nix # transmission / reception
     ../_common/mux.nix # muxing tool collection
@@ -34,7 +35,14 @@ in {
     ../_srv/dashboards.nix
     ../_srv/blocky.nix
     ../_srv/blocky-grafana.nix
-    ../../modules # AMD/Nvidia, Internationalization configs
+    # ../_srv/jellyfin.nix
+    # ../_srv/cloud.nix
+    # ../_srv/forgejo.nix
+    # ../_srv/immich.nix
+    # ../_srv/vikunja.nix
+    # ../_srv/mealie.nix
+    
+    ../../modules # Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd-pstate
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
@@ -73,11 +81,13 @@ in {
     fileSystems = ["/" "/raid" "/scratch"];
   };
 
-  # Hardware customization (see ../../modules)
-  drivers.amdgpu.enable = true;
-  drivers.amdgpu.utils.install = true;
+  # Hardware customization
   nixpkgs.config.rocmSupport = true;
   services.ollama.acceleration = "rocm";
+  # systemd.tmpfiles.rules = with pkgs;
+  #   mkDefault [
+  #     "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"
+  #   ];
 
   # Language customization (see ../../modules)
   intl.defaultLocale = "en_US";
@@ -108,7 +118,6 @@ in {
     networkmanager.enable = true;
     enableIPv6 = false;
   };
-  systemd.network.wait-online.enable = false;
 
   # Local networking
   services.avahi = {
@@ -129,18 +138,25 @@ in {
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
+    btop-rocm
     caligula
+    clinfo
     exfat
     exfatprogs
+    # fancontrol-gui
     gparted
     lact
+    libva-utils
     lm_sensors
     networkmanagerapplet
     pavucontrol
     podman-desktop
     polychromatic
     razergenie
+    rocmPackages.rocm-smi
+    rocmPackages.rocminfo
     stable.rgp
+    vdpauinfo
     udiskie
     usbutils
   ];
@@ -175,6 +191,8 @@ in {
     openrazer.enable = true;
     openrazer.batteryNotifier.enable = true;
     # uni-sync.enable = true;
+    # fancontrol.enable = true;
+    # fancontrol.config = {};
   };
 
   system.stateVersion = "24.11";
