@@ -7,8 +7,8 @@ in {
 
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
-    plugins = with pkgs; [rofi-file-browser rofi-calc rofi-emoji-wayland];
+    package = pkgs.rofi;
+    plugins = with pkgs; [rofi-file-browser rofi-calc rofi-emoji];
     extraConfig = {
       modi = "drun,run,window,filebrowser,emoji,calc";
       show-icons = true;

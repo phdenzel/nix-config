@@ -35,7 +35,7 @@ with lib; {
     stable.nwg-displays
     nwg-look
     pyprland
-    rofi-wayland
+    rofi
     slurp
     swaynotificationcenter
     swayosd
