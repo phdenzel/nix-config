@@ -36,8 +36,8 @@
           pip
           numpy
           scipy
-          # torch
-          # torchvision
+          torch
+          torchvision
           h5py
           tqdm
           astropy
