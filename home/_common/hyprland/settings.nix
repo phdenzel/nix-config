@@ -95,12 +95,23 @@ with config.colorScheme.palette; {
       };
 
       gestures = {
-        workspace_swipe = true;
-        workspace_swipe_fingers = 4;
+        gesture = [
+          "3, horizontal, workspace"
+          "4, horizontal, workspace"
+          "3, down, close"
+          "4, down, close"
+          "3, up, scale: 1.5, fullscreen"
+          "4, up, scale: 1.5, fullscreen"
+          "3, pinchin, scale: 1.5, move"
+          "4, pinchin, scale: 1.5, move"
+          "3, pinchout, scale: 1.5, float"
+          "4, pinchout, scale: 1.5, float"
+        ];
         workspace_swipe_distance = 500;
         workspace_swipe_invert = false;
         workspace_swipe_min_speed_to_force = 5;
         workspace_swipe_forever = true;
+        workspace_swipe_use_r = true;
       };
 
       misc = {
