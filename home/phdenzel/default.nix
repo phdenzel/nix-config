@@ -15,6 +15,7 @@
     ../_common/alacritty
     ../_common/bash
     ../_common/bat
+    ../_common/brave
     ../_common/btop
     # ../_common/bun
     # ../_common/dconf
