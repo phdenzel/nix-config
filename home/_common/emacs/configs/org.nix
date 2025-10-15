@@ -87,6 +87,7 @@
         org-re-reveal-plugins = "'(highlight markdown math notes search zoom)";
       };
     };
+    biblio.enable = true;
     htmlize.enable = true;
     toc-org = {
       enable = true;

@@ -73,6 +73,7 @@
       org-roam-bibtex # connect org-roam and ivy-bibtex
       org-roam-ui # UI for org-roam
       org-re-reveal # org export to reveal.js
+      biblio # paper lookup
       htmlize # buffer style to html
       toc-org # auto-refreshing TOC
       org-mime # html in emails
