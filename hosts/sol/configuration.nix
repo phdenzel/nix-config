@@ -134,6 +134,7 @@ in {
     exfatprogs
     # fancontrol-gui
     gparted
+    jabref
     lact
     libva-utils
     lm_sensors

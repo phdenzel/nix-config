@@ -115,6 +115,7 @@ in {
     exfat
     exfatprogs
     gparted
+    jabref
     lm_sensors
     networkmanagerapplet
     pavucontrol
