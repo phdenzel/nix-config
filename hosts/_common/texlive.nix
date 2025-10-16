@@ -3,5 +3,6 @@
     texliveFull
     texinfo
     ghostscript
+    graphviz
   ];
 }
