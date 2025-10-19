@@ -94,7 +94,7 @@ in {
 
       "custom/nvidia" = {
         exec = "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
-        format = "<span color='#${palette.viridis}'>{icon}</span>  {}%";
+        format = "<span color='#${palette.viridis}'>{icon}</span>  {text}%";
         format-icons = "󰆧";
         interval = 3;
         min-length = 7;
@@ -106,16 +106,16 @@ in {
       };
 
       "custom/amd" = {
-        exec = "rocm-smi -u --json | jq '.card0[] | tonumber'";
-        format = "<span color='#${palette.pink}'>{icon}</span>  {}%";
+        exec = "rocm-smi -u --json | jq --unbuffered -c '.card0[] | {\"text\": tostring}'";
+        format = "<span color='#${palette.pink}'>{icon}</span>  {text}%";
         format-icons = "󱥒";
         interval = 3;
         min-length = 7;
         max-length = 8;
         on-click = "sleep 0.1 && ${uwsmRun "lact gui"}";
-        return-type = "";
+        return-type = "json";
         tooltip = true;
-        tooltip-format = "GPU usage: {}%";
+        tooltip-format = "GPU usage: {text}%";
       };
 
       "custom/apps" = {
@@ -220,7 +220,7 @@ in {
         escape = true;
         exec = "swaync-client -swb";
         exec-if = "pidof swaync-client";
-        format = "{icon}  {}";
+        format = "{icon}  {text}";
         format-icons = {
           notification = "<span color='#${palette.teal}'>󰂚</span><span foreground='#${palette.pink}'><sup></sup></span>";
           none = "<span color='#${palette.teal}'>󰂚</span>";
