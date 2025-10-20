@@ -17,6 +17,7 @@ with lib; {
     jq
     libarchive
     libisoburn
+    mermaid-cli
     p7zip
     perl
     psmisc
