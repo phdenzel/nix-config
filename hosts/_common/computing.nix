@@ -19,7 +19,7 @@
     jupyterhub.kernels = let
       remote-chuchichaestli = builtins.fetchurl {
         url = "https://raw.githubusercontent.com/CAIIVS/chuchichaestli/refs/heads/main/default.nix";
-        sha256 = "sha256:0a838l8h2qv4c95zi68r1nr8ndmn8929f53js04g3h15ii3zbskb";
+        sha256 = "sha256:0wsp93zxfm29l279hv3c6v4wqwax8mfya0i7haj3ydslbcgir2gj";
       };
       chuchichaestli = pkgs.callPackage remote-chuchichaestli {
         src = pkgs.fetchFromGitHub {
