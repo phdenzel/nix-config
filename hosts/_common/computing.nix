@@ -38,6 +38,7 @@
           scipy
           torch
           torchvision
+          torchinfo
           h5py
           tqdm
           astropy
@@ -47,6 +48,8 @@
           gitpython
           hydra-core
           chuchichaestli
+          torchinfo
+          diffusers
         ]));
       in {
         displayName = "Python3 for ML";
