@@ -7,14 +7,17 @@
 
   programs.git = {
     enable = true;
-    userName = "${config.home.username}";
-    userEmail = "${config.home.username}@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "${config.home.username}";
+      user.email = "${config.home.username}@gmail.com";
       init.defaultBranch = "main";
       core.editor = "emacsclient -c -nw";
     };
-    delta.enable = true;
-    delta.options = {
+  };
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
       true-color = "always";
       dark = true;
       syntax-theme = "${config.colorScheme.slug}";

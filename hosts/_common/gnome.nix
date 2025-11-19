@@ -8,11 +8,13 @@
     core-developer-tools.enable = false;
   };
   environment.gnome.excludePackages = with pkgs; [gnome-tour];
+  environment.systemPackages = with pkgs; [
+    file-roller
+  ];
 
   xdg.portal.enable = true;
 
   programs = {
     dconf.enable = true;
-    file-roller.enable = true;
   };
 }

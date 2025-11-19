@@ -8,7 +8,7 @@ with lib; {
     signal-desktop-bin
     slack
     teams-for-linux
-    whatsapp-for-linux
+    wasistlos
     zoom-us
   ];
 }

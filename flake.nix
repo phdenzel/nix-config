@@ -108,7 +108,8 @@
     nixosMachine = {name, system ? "x86_64-linux"}: {
       "${name}" = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;};
-        system = "${system}";
+        # system = "${system}";
+        inherit system;
         modules = [
           (./. + "/hosts/${name}")
         ];
@@ -117,7 +118,8 @@
     nixosMachineWithHM = {name, system ? "x86_64-linux"}: {
       "${name}" = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;};
-        system = "${system}";
+        # system = "${system}";
+        inherit system;
         modules = [
           (./. + "/hosts/${name}")
           home-manager.nixosModules.home-manager
@@ -143,7 +145,8 @@
     darwinMachineConf = {name, system ? "aarch64-darwin"}: {
       "${name}" = nix-darwin.lib.darwinSystem {
         specialArgs = {inherit self inputs outputs;};
-        system = "${system}";
+        # system = "${system}";
+        inherit system;
         modules = [
           (./. + "/hosts/${name}")
         ];

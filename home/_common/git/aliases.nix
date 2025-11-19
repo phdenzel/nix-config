@@ -1,5 +1,5 @@
 {...}: {
-  programs.git.aliases = {
+  programs.git.settings.alias = {
     aliases = "config --get-regexp alias";
     ac = "add -i && git commit -avm";
     am = "commit --amend --no-edit";

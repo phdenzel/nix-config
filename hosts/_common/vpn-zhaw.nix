@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [
     openconnect
     networkmanager-openconnect
-    inputs.openconnect-sso.packages.${pkgs.system}.openconnect-sso
+    inputs.openconnect-sso.packages.${stdenv.hostPlatform.system}.openconnect-sso
   ];
 
   networking.openconnect.interfaces.zhaw = {
