@@ -30,6 +30,11 @@
     hardware.url = "github:nixos/nixos-hardware";
     systems.url = "github:phdenzel/nix-systems/modern";
 
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,7 +65,6 @@
       inputs.nixpkgs.follows = "nixpkgs-openconnect-sso";
     };
      nixpkgs-openconnect-sso.url = "github:nixos/nixpkgs/46397778ef1f73414b03ed553a3368f0e7e33c2f";
-    
 
     phd-wallpapers = {
       url = "git+ssh://git@github.com/phdenzel/wallpapers";
@@ -79,14 +83,16 @@
   outputs = {
     self,
     nixpkgs,
+    nix-darwin,
     home-manager,
     systems,
+    hardware,
     disko,
     sops-nix,
     stylix,
     phd-wallpapers,
     phd-ark-modeline,
-    openconnect-sso,  
+    openconnect-sso,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -134,6 +140,15 @@
         ];
       };
     };
+    darwinMachineConf = {name, system ? "aarch64-darwin"}: {
+      "${name}" = nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit self inputs outputs;};
+        system = "${system}";
+        modules = [
+          (./. + "/hosts/${name}")
+        ];
+      };
+    };
   in {
     inherit lib;
 
@@ -154,7 +169,9 @@
       // (nixosMachine {name = "heimdall"; system = "aarch64-linux";})
       // (nixosMachine {name = "rpi"; system = "aarch64-linux";})
       // (nixosMachine {name = "iso";});
-      
+
+    darwinConfigurations =
+      (darwinMachineConf {name = "asahi";});
 
     homeConfigurations =
       (hmMachineConf {name = "phinix";})
