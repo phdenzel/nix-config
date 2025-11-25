@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   services = {
     ollama.enable = true;
-    ollama.package = pkgs.stable.ollama;
+    ollama.package = pkgs.ollama;
     # AI models
     ollama.loadModels = [
       "llama3.1:8b-instruct-q8_0"
