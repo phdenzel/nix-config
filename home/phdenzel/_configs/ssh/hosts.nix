@@ -155,7 +155,16 @@
       addKeysToAgent = "yes";
     };
     "daint" = {
-      hostname = "daint.cscs.ch";
+      hostname = "daint.alps.cscs.ch";
+      user = "pdenzel";
+      identityFile = "~/.ssh/cscs_signed_key";
+      proxyJump = "ela";
+      compression = false;
+      forwardAgent = true;
+      addKeysToAgent = "yes";
+    };
+    "eiger" = {
+      hostname = "eiger.alps.cscs.ch";
       user = "pdenzel";
       identityFile = "~/.ssh/cscs_signed_key";
       proxyJump = "ela";
