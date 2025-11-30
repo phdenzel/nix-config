@@ -36,6 +36,7 @@
           pip
           numpy
           scipy
+          pandas
           torch
           torchvision
           torchinfo
