@@ -159,18 +159,16 @@
       user = "pdenzel";
       identityFile = "~/.ssh/cscs_signed_key";
       proxyJump = "ela";
-      compression = false;
-      forwardAgent = true;
       addKeysToAgent = "yes";
+      identitiesOnly = true;
     };
     "eiger" = {
       hostname = "eiger.alps.cscs.ch";
       user = "pdenzel";
       identityFile = "~/.ssh/cscs_signed_key";
-      proxyJump = "ela";
-      compression = false;
-      forwardAgent = true;
+      proxyJump = "ela";      
       addKeysToAgent = "yes";
+      identitiesOnly = true;
     };
 
     "austin" = {

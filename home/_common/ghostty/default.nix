@@ -4,7 +4,7 @@
     settings = {
       theme = "${config.colorScheme.slug}";
       cursor-style = "block";
-      shell-integration-features = "no-cursor";
+      shell-integration-features = "no-cursor,ssh-env";
       mouse-hide-while-typing = true;
       window-height = 48;
       window-width = 84;
