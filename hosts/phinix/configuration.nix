@@ -23,6 +23,7 @@ in {
     ../_common/dev-utils.nix # dev tool collection
     ../_common/computing.nix # computing tool collection
     ../_common/ollama.nix # local LLM services
+    ../_common/ai.nix # miscellaneous AI tools
     ../_common/graphical.nix # graphical applications
     # ../_common/ghostfolio.nix # wealth management tool
     ../_common/comm.nix # communication apps
