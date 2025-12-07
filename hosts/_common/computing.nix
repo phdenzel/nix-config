@@ -45,6 +45,8 @@
           astropy
           pillow
           matplotlib
+          seaborn
+          plotly
           psutil
           gitpython
           hydra-core
