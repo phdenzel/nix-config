@@ -9,6 +9,7 @@ with lib; {
     slack
     teams-for-linux
     wasistlos
+    webex
     zoom-us
   ];
 }
