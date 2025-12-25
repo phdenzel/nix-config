@@ -34,6 +34,7 @@
         "(latex-mode . yas-minor-mode)"
         "(LaTeX-mode . yas-minor-mode)"
         "(python-mode . yas-minor-mode)"
+        "(rust-mode . yas-minor-mode)"
       ];
       custom = {
         yas-snippet-dirs = "(list (concat user-emacs-directory \"snippets\"))";
