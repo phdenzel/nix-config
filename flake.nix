@@ -61,6 +61,7 @@
     };
 
     openconnect-sso = {
+      # needed for zhaw-vpn
       url = "git+https://git@github.com/jcszymansk/openconnect-sso";
       inputs.nixpkgs.follows = "nixpkgs-openconnect-sso";
     };
@@ -90,9 +91,6 @@
     disko,
     sops-nix,
     stylix,
-    phd-wallpapers,
-    phd-ark-modeline,
-    openconnect-sso,
     ...
   } @ inputs: let
     inherit (self) outputs;
