@@ -6,9 +6,10 @@
     bacon
     binutils
     bun
-    cargo-show-asm
+    cargo-flamegraph
     cargo-license
     cargo-outdated
+    cargo-show-asm
     cmake
     gdb
     gcc
@@ -16,6 +17,7 @@
     gnumake
     gnuplot
     hdf5
+    perf
     pkg-config
     podman
     podman-compose
