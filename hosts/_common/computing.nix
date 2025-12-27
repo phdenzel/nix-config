@@ -5,28 +5,39 @@
       c.Authenticator.allow_all = True
       c.PAMAuthenticator.admin_groups = {'wheel'}
     '';
-    jupyterhub.jupyterhubEnv = pkgs.python312.withPackages (p:
+    jupyterhub.jupyterhubEnv = pkgs.python313.withPackages (p:
       with p; [
         jupyterhub
         jupyterhub-systemdspawner
       ]);
-    jupyterhub.jupyterlabEnv = pkgs.python312.withPackages (p:
+    jupyterhub.jupyterlabEnv = pkgs.python313.withPackages (p:
       with p; [
         jupyterhub
         jupyterlab
       ]);
     jupyterhub.port = 8000;
     jupyterhub.kernels = let
-      remote-chuchichaestli = builtins.fetchurl {
-        url = "https://raw.githubusercontent.com/CAIIVS/chuchichaestli/refs/heads/main/default.nix";
-        sha256 = "sha256:0wsp93zxfm29l279hv3c6v4wqwax8mfya0i7haj3ydslbcgir2gj";
-      };
-      chuchichaestli = pkgs.callPackage remote-chuchichaestli {
-        src = pkgs.fetchFromGitHub {
-          owner = "CAIIVS";
-          repo = "chuchichaestli";
-          rev = "main";
-          sha256 = "sha256:0l5q6j7kav2lsy1pl1izqa8f31q32r7fz47qhim45gjawp838vrw";
+      chuchichaestli = pkgs.python313Packages.buildPythonPackage rec {
+        pname = "chuchichaestli";
+        version = "0.2.16";
+        pyproject = true;
+        build-system = with pkgs.python313Packages; [hatchling];
+        propagatedBuildInputs = with pkgs.python313Packages; [
+          numpy
+          h5py
+          torch
+          torchvision
+        ];
+        src = pkgs.fetchPypi {
+          inherit pname version;
+          # dist = "py3";
+          # python = "py3";
+          sha256 = "sha256-7OGv0545CtpAkBw1V2dPrcJRgXqo7jGSbC4un3SIgIE=";
+        };
+        doCheck = false;
+        meta = {
+          description = "Where you find all the state-of-the-art cooking utensils (salt, pepper, gradient descent...  the usual).";
+          license = pkgs.lib.licenses.gpl3Plus;
         };
       };
     in {
@@ -47,12 +58,10 @@
           matplotlib
           seaborn
           plotly
-          psutil
           gitpython
           hydra-core
-          chuchichaestli
-          torchinfo
           diffusers
+          chuchichaestli
         ]));
       in {
         displayName = "Python3 for ML";
