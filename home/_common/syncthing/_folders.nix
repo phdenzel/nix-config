@@ -6,6 +6,7 @@
     "cluster"
     "Documents"
     "Experiments"
+    "lens-forge"
     "mdq-doc"
     "org"
     "Playground"
