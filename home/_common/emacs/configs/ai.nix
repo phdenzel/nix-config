@@ -17,43 +17,43 @@
                 (make-llm-ollama
                 ;; this model should be pulled to use it
                 ;; value should be the same as you print in terminal during pull
-                :chat-model "llama3.1:8b-instruct-q8_0"
+                :chat-model "deepseek-r1:14b"
                 :embedding-model "nomic-embed-text"
                 :default-chat-non-standard-params '(("num_ctx" . 8192))))
         (setopt ellama-summarization-provider
                 (make-llm-ollama
-                :chat-model "llama3.2:3b"
+                :chat-model "deepseek-r1:14b"
                 :embedding-model "nomic-embed-text"
                 :default-chat-non-standard-params '(("num_ctx" . 32768))))
         (setopt ellama-coding-provider
                 (make-llm-ollama
-                :chat-model "qwen2.5-coder:3b"
+                :chat-model "devstral-small-2:24b-instruct-2512-q4_K_M"
                 :embedding-model "nomic-embed-text"
                 :default-chat-non-standard-params '(("num_ctx" . 32768))))
         (setopt ellama-providers
-               '(("zephyr" . (make-llm-ollama
-                           :chat-model "zephyr:7b-beta-q6_K"
-                           :embedding-model "zephyr:7b-beta-q6_K"))
-                  ("deepseek" . (make-llm-ollama
-                           :chat-model "deepseek-r1:7b"
-                           :embedding-model "deepseek-r1:7b"))
-                 ("mixtral" . (make-llm-ollama
-                            :chat-model "mixtral:8x7b-instruct-v0.1-q3_K_M"
-                            :embedding-model "mixtral:8x7b-instruct-v0.1-q3_K_M"))))
+               '(("deepseek" . (make-llm-ollama
+                           :chat-model "deepseek-r1:14b"
+                           :embedding-model "deepseek-r1:14b"))
+                 ("gpt-oss" . (make-llm-ollama
+                            :chat-model "gpt-oss:20b"
+                            :embedding-model "gpt-oss:20b"))
+                 ("gemma3" . (make-llm-ollama
+                            :chat-model "gemma3:27b-it-q4_K_M"
+                            :embedding-model "gemma3:27b-it-q4_K_M"))))
         (setopt ellama-naming-provider
                (make-llm-ollama
-               :chat-model "llama3.1:8b-instruct-q8_0"
+               :chat-model "llama3.2:3b"
                :embedding-model "nomic-embed-text"
                :default-chat-non-standard-params '(("stop" . ("\n")))))
         (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
         ;; Translation llm provider
         (setopt ellama-translation-provider
                (make-llm-ollama
-               :chat-model "qwen2.5:3b"
+               :chat-model "deepseek-r1:14b"
                :embedding-model "nomic-embed-text"
                :default-chat-non-standard-params '(("num_ctx" . 32768))))
         (setopt ellama-extraction-provider (make-llm-ollama
-            :chat-model "qwen2.5-coder:7b-instruct-q8_0"
+            :chat-model "qwen2.5-coder:32b-instruct"
             :embedding-model "nomic-embed-text"
             :default-chat-non-standard-params
             '(("num_ctx" . 32768))))

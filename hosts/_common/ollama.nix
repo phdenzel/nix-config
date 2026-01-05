@@ -4,14 +4,15 @@
     ollama.package = pkgs.ollama;
     # AI models
     ollama.loadModels = [
-      "llama3.1:8b-instruct-q8_0"
+      "devstral-small-2:24b-instruct-2512-q4_K_M"
+      "deepseek-coder-v2:16b"
+      "qwen3-coder:30b"
+      "qwen2.5-coder:32b-instruct"
+      "codegemma:7b-instruct"
+      "deepseek-r1:14b"
+      "gpt-oss:20b"
+      "gemma3:27b-it-q4_K_M"
       "llama3.2:3b"
-      "qwen2.5:3b"
-      "qwen2.5-coder:3b"
-      "qwen2.5-coder:7b-instruct-q8_0"
-      "zephyr:7b-beta-q6_K"
-      "deepseek-r1:7b"
-      "mixtral:8x7b-instruct-v0.1-q3_K_M"
       "nomic-embed-text:v1.5"
     ];
     open-webui.enable = true;
