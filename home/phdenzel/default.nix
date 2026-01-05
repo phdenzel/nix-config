@@ -12,6 +12,7 @@
     ../_common/stylix
 
     # Program configs
+    ../_common/aider-chat
     ../_common/alacritty
     ../_common/bash
     ../_common/bat
