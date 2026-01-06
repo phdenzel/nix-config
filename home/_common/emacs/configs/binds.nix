@@ -190,6 +190,9 @@
           # "M-C-<down>" . copilot-accept-completion-by-name)
         };
       };
+      aidermacs.bind = {
+        "C-c a" = "aidermacs-transient-menu";
+      };
     };
   };
 }

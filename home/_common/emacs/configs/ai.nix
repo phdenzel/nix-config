@@ -8,6 +8,14 @@
         (delq 'company-preview-if-just-one-frontend company-frontends)
       '';
     };
+    aidermacs = {
+      enable = true;
+      config = ''
+        (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
+        (setq aider-default-chat-mode 'architect
+              aidermacs-backend 'vterm)
+      '';
+    };
     ellama = {
       enable = true;
       init = ''

@@ -89,8 +89,7 @@
       jsonrpc # needed for copilot
       copilot # GitHub copilot
       ellama # Ollama self-hosted LLMs
-      #gptel https://github.com/karthink/gptel
-      #aider https://github.com/tninja/aider.el
+      aidermacs # aider interface
 
       # Mail
       himalaya # himalaya frontend
