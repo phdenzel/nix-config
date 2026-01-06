@@ -7,14 +7,15 @@
       '';
     });
     settings = {
+      model = "ollama";
       architect = true;
       auto-commits = false;
-      dirty-commits = false;
+      gitignore = false;
       attribute-committer = false;
       cache-prompts = true;
       dark-mode = true;
       pretty = true;
-      lint = true;
+      lint = false;
     };
   };
 }
