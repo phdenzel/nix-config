@@ -1,10 +1,10 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   services = {
     ollama.enable = true;
-    ollama.package = pkgs.ollama;
+    ollama.package = lib.mkDefault pkgs.ollama;
     # AI models
     ollama.loadModels = [
-      # "devstral-small-2:24b-instruct-2512-q4_K_M"
+      "devstral-small-2:24b-instruct-2512-q4_K_M"
       "deepseek-coder-v2:16b"
       "qwen3-coder:30b"
       "qwen2.5-coder:32b-instruct"

@@ -9,6 +9,10 @@ with lib; {
     xwayland.enable = true;
     withUWSM = true;
   };
+  programs.uwsm.enable = true;
+  i18n.inputMethod = {
+    type = "ibus";
+  };
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
 
@@ -20,7 +24,6 @@ with lib; {
     rtkit.enable = true; # recommended for pipewire
     pam.services.hyprlock = {}; # enable unlocking with hyprlock
   };
-
   environment.systemPackages = with pkgs; [
     bibata-cursors
     clipse
@@ -39,7 +42,6 @@ with lib; {
     slurp
     swaynotificationcenter
     swayosd
-    uwsm
     waybar
     wlogout
     wlr-randr

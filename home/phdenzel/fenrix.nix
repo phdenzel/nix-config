@@ -91,7 +91,10 @@ in {
       imageScalingMode = "fill";
     };
     services.hyprpaper.settings.wallpaper = [
-      ",/etc/wallpapers/gate_4k.png"
+      {
+        monitor = "";
+        path = "/etc/wallpapers/gate_4k.png";
+      }
     ];
   };
   

@@ -82,7 +82,10 @@ in {
       imageScalingMode = "fill";
     };
     services.hyprpaper.settings.wallpaper = [
-      ",/etc/wallpapers/ethereal_4k.png"
+      {
+        monitor = "";
+        path = "/etc/wallpapers/ethereal_4k.png";
+      }
     ];
   };
 }

@@ -43,11 +43,6 @@
         (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
       '';
     };
-    latex = {
-      enable = true;
-      defer = true;
-      after = ["tex"];
-    };
     reftex = {
       enable = true;
       defer = true;
@@ -103,7 +98,6 @@
         bibtex-completion-format-citation-functions = ''
           '((org-mode . bibtex-completion-format-citation-org-cite)
             (latex-mode . bibtex-completion-format-citation-cite)
-            (LaTeX-mode . bibtex-completion-format-citation-cite)
             (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
             (python-mode   . bibtex-completion-format-citation-sphinxcontrib-bibtex)
             (rst-mode      . bibtex-completion-format-citation-sphinxcontrib-bibtex)
@@ -115,7 +109,7 @@
       enable = true;
       after = ["ivy" "bibtex-completion"];
       init = ''
-        (setq ivy-re-builders-list
+        (setq ivy-re-builders-alist
                 '((ivy-bibtex . ivy--regex-ignore-order)
                   (t . ivy--regex-plus)))'';
       custom = {

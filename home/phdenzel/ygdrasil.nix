@@ -83,7 +83,10 @@ in {
       imageScalingMode = "fill";
     };
     services.hyprpaper.settings.wallpaper = [
-      ",/etc/wallpapers/serenity_4k.png"
+      {
+        monitor = "";
+        path = "/etc/wallpapers/serenity_4k.png";
+      }
     ];
   };
 }

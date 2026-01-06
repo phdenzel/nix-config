@@ -76,7 +76,7 @@ in {
     BROWSER = "firefox";
     PAGER = "less";
     TERMINAL = "ghostty";
-    VISUAL = "emacsclient -c --alternate-editor=emacs";
+    # VISUAL = "emacsclient -c --alternate-editor=emacs";
   };
 
   # Secrets same on all machines

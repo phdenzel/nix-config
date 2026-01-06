@@ -1,6 +1,7 @@
 # NixOS configuration file for phinix
 {
   pkgs,
+  lib,
   config,
   inputs,
   ...
@@ -84,7 +85,7 @@ in {
 
   # Hardware customization
   nixpkgs.config.rocmSupport = true;
-  services.ollama.acceleration = "rocm";
+  services.ollama.package = lib.mkForce pkgs.ollama-rocm;
   # systemd.tmpfiles.rules = with pkgs;
   #   mkDefault [
   #     "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"

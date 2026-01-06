@@ -84,7 +84,10 @@ in {
       imageScalingMode = "fill";
     };
     services.hyprpaper.settings.wallpaper = [
-      ",/etc/wallpapers/noctilusent_4k.png"
+      {
+        monitor = "";
+        path = "/etc/wallpapers/noctilusent_4k.png";
+      }
     ];
   };
 }

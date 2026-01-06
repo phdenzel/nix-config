@@ -4,6 +4,7 @@ in {
   services.hyprpaper = {
     enable = true;
     settings = {
+      splash = false;
       preload = [
         "${wallpaperDir}/ethereal_4k.png"
         "${wallpaperDir}/noctilusent_4k.png"

@@ -123,9 +123,9 @@
         org-mode-map = {
           "C-c C-S-l" = "org-toggle-link-display";
           "C-c b" = "org-ref-cite-insert-ivy";
-          "C-c r" = "org-ref-insert-link-hydra/body";
-          "C-c C-b" = "org-ref-citation-hydra/body";
-          "C-c M-b" = "org-ref-bibtex-hydra/body";
+          "C-c r" = "org-ref-insert-link-menu";
+          "C-c C-b" = "org-ref-citation-menu";
+          "C-c M-b" = "org-ref-bibtex-entry-menu";
         };
       };
       org-roam.bind = {
@@ -166,16 +166,16 @@
       latex.bindLocal = {
         LaTeX-mode-map = {
           "C-c b" = "ivy-bibtex-with-local-bibliography";
-          "C-c r" = "org-ref-insert-link-hydra/body";
-          "C-c C-b" = "org-ref-citation-hydra/body";
-          "C-c M-b" = "org-ref-bibtex-hydra/body";
+          "C-c r" = "org-ref-insert-link-menu";
+          "C-c C-b" = "org-ref-citation-menu";
+          "C-c M-b" = "org-ref-bibtex-entry-menu";
         };
       };
       bibtex.bindLocal = {
         bibtex-mode-map = {
           "C-c b" = "ivy-bibtex-with-local-bibliography";
-          "C-c r" = "org-ref-insert-link-hydra/body";
-          "C-c M-b" = "org-ref-bibtex-hydra/body";
+          "C-c r" = "org-ref-insert-link-menu";
+          "C-c M-b" = "org-ref-bibtex-entry-menu";
         };
       };
 

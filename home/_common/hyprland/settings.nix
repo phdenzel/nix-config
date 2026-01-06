@@ -118,7 +118,7 @@ with config.colorScheme.palette; {
         vrr = 1;
         disable_autoreload = true;
         allow_session_lock_restore = true;
-        new_window_takes_over_fullscreen = 2;
+        force_default_wallpaper = 0;
       };
 
       dwindle = {

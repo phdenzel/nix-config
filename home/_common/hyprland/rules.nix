@@ -17,7 +17,7 @@
       "float, class:^(org.pulseaudio.pavucontrol)$"
     ];
     layerrule = [
-      "blur, logout_dialog"
+      "blur on, match:namespace wlogout"
     ];
   };
 }

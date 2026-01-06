@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    easytag
+    stable.easytag
     exiftool
     flac2all
     handbrake
