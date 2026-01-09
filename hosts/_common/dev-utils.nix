@@ -10,7 +10,13 @@
     cargo-license
     cargo-outdated
     cargo-show-asm
+    clang-tools
     cmake
+    cudaPackages.cudatoolkit
+    cudaPackages.cuda_cudart
+    cudaPackages.cuda_nvcc
+    cudaPackages.cuda_cccl
+    cudaPackages.cudnn
     gdb
     gcc
     gfortran

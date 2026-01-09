@@ -49,6 +49,7 @@
       #python-mode # custom mode different from built-in python-mode
       cython-mode # cython support
       rust-mode # rust support
+      cuda-mode # cuda support
       nix-mode # nix support
       just-mode # just support
       dockerfile-mode # Dockerfile support

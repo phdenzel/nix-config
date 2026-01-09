@@ -166,6 +166,10 @@
       enable = true;
       mode = [''"\\.rs\\'"''];
     };
+    cuda-mode = {
+      enable = true;
+      mode = [''"\\.cu\\'"''];
+    };
     haskell-mode = {
       enable = true;
       mode = [
