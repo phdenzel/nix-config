@@ -1,20 +1,20 @@
 {...}: {
   wayland.windowManager.hyprland.settings = {
-    windowrulev2 = [
+    windowrule = [
+      "stay_focused on, match:class (pinentry-)(.*)"
       # Idle inhibitors
-      "idleinhibit fullscreen, fullscreen:1"
-      "idleinhibit focus, class:(mpv|.+exe)$"
-
+      "idle_inhibit focus, match:fullscreen true"
+      "idle_inhibit focus, match:class (mpv|.+exe)$"
       # Firefox's PiP floating window
-      "float, title:^(Picture-in-Picture)$"
-      "pin, title:^(Picture-in-Picture)$"
+      "float on, match:title ^(Picture-in-Picture)$"
+      "pin on, match:title ^(Picture-in-Picture)$"
 
       # Floats
-      "float, title:^(File Operation Progress)$"
+      "float on, match:title ^(File Operation Progress)$"
 
       # Scratchpads
-      "float, title:^(scratchpad.*)$"
-      "float, class:^(org.pulseaudio.pavucontrol)$"
+      "float on, match:title ^(scratchpad.*)$"
+      "float on, match:class ^(org.pulseaudio.pavucontrol)$"
     ];
     layerrule = [
       "blur on, match:namespace wlogout"
