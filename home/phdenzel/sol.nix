@@ -80,7 +80,7 @@ in {
     #   "HDMI-1, 3840x1080@60.0, 0x0, 1"
     # ];
     stylix = {
-      image = "/etc/wallpapers/noctilusent_4k.png";
+      image = (inputs.phd-wallpapers + ./noctilusent_4k.png);
       imageScalingMode = "fill";
     };
     services.hyprpaper.settings.wallpaper = [

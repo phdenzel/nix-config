@@ -3,8 +3,8 @@
     stable.easytag
     exiftool
     flac2all
-    handbrake
-    kdePackages.kdenlive
+    stable.handbrake
+    stable.kdePackages.kdenlive
     makemkv  # broken links
     mkvtoolnix
   ];

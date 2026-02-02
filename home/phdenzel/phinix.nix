@@ -78,7 +78,7 @@ in {
       "DP-3, 7680x2160@120.0, 0x0, 2"
     ];
     stylix = {
-      image = "/etc/wallpapers/ethereal_4k.png";
+      image = (inputs.phd-wallpapers + ./ethereal_4k.png);
       imageScalingMode = "fill";
     };
     services.hyprpaper.settings.wallpaper = [

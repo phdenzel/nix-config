@@ -12,7 +12,7 @@ with lib; {
   # Stylix host defaults (required settings only)
   stylix.enable = mkDefault true;
   stylix.autoEnable = mkDefault false;
-  stylix.image = mkDefault "/etc/wallpapers/within_everything_4k.png";
+  stylix.image = mkDefault (inputs.phd-wallpapers + ./within_everything_4k.png);
   stylix.polarity = mkDefault "dark";
   stylix.targets = {
     console.enable = true;

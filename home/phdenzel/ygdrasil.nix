@@ -79,7 +79,7 @@ in {
       "DP-1, 7680x2160@120.0, 0x0, 2"
     ];
     stylix = {
-      image = "/etc/wallpapers/serenity_4k.png";
+      image = (inputs.phd-wallpapers + ./serenity_4k.png);
       imageScalingMode = "fill";
     };
     services.hyprpaper.settings.wallpaper = [
