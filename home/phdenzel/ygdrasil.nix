@@ -85,7 +85,7 @@ in {
     services.hyprpaper.settings.wallpaper = [
       {
         monitor = "";
-        path = "/etc/wallpapers/serenity_4k.png";
+        path = "${inputs.phd-wallpapers}/serenity_4k.png";
       }
     ];
   };

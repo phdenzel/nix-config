@@ -1,5 +1,5 @@
-{...}: let
-  wallpaperDir = "/etc/wallpapers";
+{inputs, ...}: let
+  wallpaperDir = "${inputs.phd-wallpapers}";
 in {
   services.hyprpaper = {
     enable = true;

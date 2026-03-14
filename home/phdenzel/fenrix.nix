@@ -93,7 +93,7 @@ in {
     services.hyprpaper.settings.wallpaper = [
       {
         monitor = "";
-        path = "/etc/wallpapers/gate_4k.png";
+        path = "${inputs.phd-wallpapers}/gate_4k.png";
       }
     ];
   };

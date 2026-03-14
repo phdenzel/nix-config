@@ -84,7 +84,7 @@ in {
     services.hyprpaper.settings.wallpaper = [
       {
         monitor = "";
-        path = "/etc/wallpapers/ethereal_4k.png";
+        path = "${inputs.phd-wallpapers}/ethereal_4k.png";
       }
     ];
   };
