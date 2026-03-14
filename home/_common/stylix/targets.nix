@@ -9,11 +9,18 @@
       firefoxGnomeTheme.enable = true;
       profileNames = [ "${config.home.username}" ];
     };
-    # foot.enable = true;
     ghostty.enable = true;
     gnome.enable = true;
     gtk.enable = true;
     hyprpaper.enable = true;
+    kde.enable = true;
     kitty.enable = true;
+    mpv.enable = true;
+    qt.enable = true;
+    starship.enable = false;
+    swaync.enable = true;
+    tmux.enable = true;
+    yazi.enable = true;
+    zathura.enable = true;
   };
 }

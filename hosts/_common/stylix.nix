@@ -14,9 +14,19 @@ with lib; {
   stylix.autoEnable = mkDefault false;
   stylix.image = mkDefault (inputs.phd-wallpapers + ./within_everything_4k.png);
   stylix.polarity = mkDefault "dark";
+  stylix.fonts = {
+    serif.name = "Noto Serif";
+    sansSerif.name = "Noto Sans";
+    sizes = {
+      applications = 10;
+      desktop = 10;
+      terminal = 10;
+    };
+  };
   stylix.targets = {
     console.enable = true;
     grub.enable = true;
     gtk.enable = true;
+    qt.enable = true;
   };
 }
