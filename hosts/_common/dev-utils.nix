@@ -37,9 +37,6 @@
       rope
       ruff
     ]))
-    python312
-    python311
-    python310
     rocmPackages.clr
     rustup
     uv

@@ -10,6 +10,7 @@
   environment.systemPackages = with pkgs; [
     unp
     xarchiver
+    kdePackages.breeze-icons
   ];
   programs.xfconf.enable = true;
   services.tumbler.enable = true;

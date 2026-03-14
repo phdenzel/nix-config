@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./globals.nix];
+  # imports = [./globals.nix];
 }

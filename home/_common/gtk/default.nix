@@ -1,13 +1,14 @@
 { pkgs, lib, ... }: {
   gtk = {
     enable = true;
+    colorScheme = "dark";
     theme = {
-      name = lib.mkForce "Breeze-Dark";
-      package = lib.mkForce pkgs.kdePackages.breeze-gtk;
+      name = lib.mkDefault "Breeze Dark";
+      package = lib.mkDefault pkgs.kdePackages.breeze-gtk;
     };
     iconTheme = {
-      name = "breeze-dark";
-      package = pkgs.kdePackages.breeze-icons;
+      name = lib.mkDefault "Breeze-Dark";
+      package = lib.mkDefault pkgs.kdePackages.breeze-icons;
     };
   };
 

@@ -5,7 +5,7 @@
 }:
 with lib; {
   environment.systemPackages = with pkgs; [
-    signal-desktop-bin
+    signal-desktop
     slack
     teams-for-linux
     wasistlos

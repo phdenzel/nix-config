@@ -36,8 +36,8 @@ in {
     ../_common/vpn-zhaw.nix # VPN for work
     # testing
     ../_srv/dashboards.nix
-    ../_srv/blocky.nix
-    ../_srv/blocky-grafana.nix
+    # ../_srv/blocky.nix
+    # ../_srv/blocky-grafana.nix
     # ../_srv/jellyfin.nix
     # ../_srv/cloud.nix
     # ../_srv/forgejo.nix
