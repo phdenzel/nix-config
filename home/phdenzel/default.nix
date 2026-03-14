@@ -31,15 +31,17 @@
     ../_common/ghostty
     ../_common/git
     ../_common/gnome
-    # ../_common/gtk
+    ../_common/gtk
     ../_common/hyprland
     # ../_common/imv
+    ../_common/kde
     # ../_common/matplotlib
     # ../_common/ncmpcpp # mpd
     # ../_common/neovim
     # ./_configs/newsboat
     # ../_common/nextcloud
     # ../_common/qutebrowser
+    ../_common/qt
     ../_common/rofi
     ../_common/ruff
     ../_common/starship
