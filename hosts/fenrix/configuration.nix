@@ -60,10 +60,10 @@ in {
   # Suspend settings
   powerManagement.enable = true;
   services.power-profiles-daemon.enable = true;
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30m
-    SuspendState=mem
-  '';
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "30m";
+    SuspendState = "mem";
+  };
   services.logind = {
     settings.Login = {
       HandleLidSwitch = "suspend-then-hibernate";
@@ -96,7 +96,7 @@ in {
   networking = {
     hostName = "${hostName}";
     hostId = "42b816d1";
-    wireless.enable = false;  # wireless via wpa_supplicant.
+    wireless.enable = true;  # wireless via wpa_supplicant.
     networkmanager.enable = true;
     enableIPv6 = false;
   };

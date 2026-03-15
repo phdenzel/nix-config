@@ -9,9 +9,7 @@
 in {
   imports = [
     ../_common # default nix (and sops-nix) configuration
-    # ../_common/hyprland.nix # for direct access
-    ../_common/kde.nix # desktop as fallback when window managers are bricked
-    # ../_common/gnome.nix
+    ../_common/kde.nix # desktop for direct graphical access
     ../_common/fonts.nix # font packages
     ../_common/thunar.nix # file manager
     ../_common/security.nix # security configs
