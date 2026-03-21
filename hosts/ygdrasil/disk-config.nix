@@ -10,7 +10,7 @@
 # - nas1:    sdd (/dev/disk/by-id/)
 # - nas1:    sde (/dev/disk/by-id/)
 # - nas1:    sdf (/dev/disk/by-id/)
-{...}: let
+{lib, ...}: let
   disks = [
     "/dev/nvme0n1"
     "/dev/sda"
@@ -18,6 +18,7 @@
     "/dev/sdc"
     "/dev/sdd"
     "/dev/sde"
+    "/dev/sdf"
   ];
   numberOfDisks =
     if (builtins.length disks > 7)
@@ -25,36 +26,39 @@
     else builtins.length disks;
   nvme = rec {
     device = builtins.elemAt disks 0;
-    p1 = if (builtins.substring 0 9 device == "/dev/nvme")
-         then "${device}p1"
-         else "${device}-part1";
-    p2 = if (builtins.substring 0 9 device == "/dev/nvme")
-         then "${device}p2"
-         else "${device}-part2";
-    p3 = if (builtins.substring 0 9 device == "/dev/nvme")
-         then "${device}p3"
-         else "${device}-part3";
+    p1 =
+      if (builtins.substring 0 9 device == "/dev/nvme")
+      then "${device}p1"
+      else "${device}-part1";
+    p2 =
+      if (builtins.substring 0 9 device == "/dev/nvme")
+      then "${device}p2"
+      else "${device}-part2";
+    p3 =
+      if (builtins.substring 0 9 device == "/dev/nvme")
+      then "${device}p3"
+      else "${device}-part3";
   };
   nas = rec {
     a = builtins.elemAt disks 1;
     b =
-      if (numberOfDisks > 1)
+      if (numberOfDisks > 2)
       then builtins.elemAt disks 2
       else "";
     c =
-      if (numberOfDisks > 2)
+      if (numberOfDisks > 3)
       then builtins.elemAt disks 3
       else "";
     d =
-      if (numberOfDisks > 3)
+      if (numberOfDisks > 4)
       then builtins.elemAt disks 4
       else "";
     e =
-      if (numberOfDisks > 4)
+      if (numberOfDisks > 5)
       then builtins.elemAt disks 5
       else "";
     f =
-      if (numberOfDisks > 5)
+      if (numberOfDisks > 6)
       then builtins.elemAt disks 6
       else "";
     a1 =
@@ -92,7 +96,41 @@
       "6" = "${nas.a1} ${nas.b1} ${nas.c1} ${nas.d1}";
       "7" = "${nas.a1} ${nas.b1} ${nas.c1} ${nas.d1} ${nas.e1}";
     }
-    ."${builtins.toString numberOfDisks}";
+      ."${builtins.toString numberOfDisks}";
+  nasSubvolumes = {
+    "@data" = {
+      mountpoint = "/data";
+      mountOptions = ["subvol=@data" "compress=zstd" "noatime"];
+    };
+    "@media" = {
+      mountpoint = "/data/media";
+      mountOptions = ["subvol=@media" "compress=zstd" "noatime"];
+    };
+    "@documents" = {
+      mountpoint = "/data/documents";
+      mountOptions = ["subvol=@documents" "compress=zstd" "noatime"];
+    };
+    "@backups" = {
+      mountpoint = "/data/backups";
+      mountOptions = ["subvol=@backups" "compress=zstd" "noatime"];
+    };
+    "@store" = {
+      mountpoint = "/data/store";
+      mountOptions = ["subvol=@store" "compress=zstd" "noatime"];
+    };
+  };
+  nasRaidContent = {
+    type = "btrfs";
+    extraArgs =
+      [
+        "-f"
+        "-L" "nas1"
+        "-d" "RAID0"
+        "-m" "RAID1"
+      ]
+      ++ (lib.splitString " " nasPartitions);
+    subvolumes = nasSubvolumes;
+  };
 in {
   disko.devices = {
     disk = {
@@ -114,6 +152,7 @@ in {
                 extraArgs = ["-n" "BOOT"];
                 format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = [ "umask=0077" ];
               };
             };
             swap = {
@@ -122,7 +161,7 @@ in {
               size = "32G";
               content = {
                 type = "swap";
-                extraArgs = ["-L swap"];
+                extraArgs = ["-L" "swap"];
                 # randomEncryption = true;
               };
             };
@@ -132,7 +171,7 @@ in {
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = ["-L root"];
+                extraArgs = ["-L" "root"];
                 subvolumes = {
                   "@rootfs" = {
                     mountpoint = "/";
@@ -161,145 +200,28 @@ in {
         };
       };
 
-      nas6 =
-        if (numberOfDisks < 7)
+      nas1 =
+        if (numberOfDisks < 2)
         then {}
         else {
           type = "disk";
-          device = "${nas.f}";
+          device = "${nas.a}";
           content = {
             type = "gpt";
             partitions = {
-              nas6 = {
-                label = "nas6";
-                device = "${nas.f1}";
+              nas1 = {
+                label = "nas1";
+                device = "${nas.a1}";
                 start = "64M";
                 size = "100%";
                 content =
-                  if numberOfDisks == 7
+                  if numberOfDisks == 2
                   then {
                     type = "btrfs";
-                    extraArgs = [
-                      "-f"
-                      "-L nas1"
-                      "-d RAID0"
-                      "-m RAID1"
-                      "${nasPartitions}"
-                    ];
-                    mountpoint = "/data";
-                    mountOptions = ["compress=zstd" "noatime"];
+                    extraArgs = ["-L" "nas1"];
+                    subvolumes = nasSubvolumes;
                   }
-                  else {
-                    type = "btrfs";
-                  };
-              };
-            };
-          };
-        };
-
-      nas5 =
-        if (numberOfDisks < 6)
-        then {}
-        else {
-          type = "disk";
-          device = "${nas.e}";
-          content = {
-            type = "gpt";
-            partitions = {
-              nas5 = {
-                label = "nas5";
-                device = "${nas.e1}";
-                start = "64M";
-                size = "100%";
-                content =
-                  if numberOfDisks == 6
-                  then {
-                    type = "btrfs";
-                    extraArgs = [
-                      "-f"
-                      "-L nas1"
-                      "-d RAID0"
-                      "-m RAID1"
-                      "${nasPartitions}"
-                    ];
-                    mountpoint = "/data";
-                    mountOptions = ["compress=zstd" "noatime"];
-                  }
-                  else {
-                    type = "btrfs";
-                  };
-              };
-            };
-          };
-        };
-
-      nas4 =
-        if (numberOfDisks < 5)
-        then {}
-        else {
-          type = "disk";
-          device = "${nas.d}";
-          content = {
-            type = "gpt";
-            partitions = {
-              nas4 = {
-                label = "nas4";
-                device = "${nas.d1}";
-                start = "64M";
-                size = "100%";
-                content =
-                  if numberOfDisks == 5
-                  then {
-                    type = "btrfs";
-                    extraArgs = [
-                      "-f"
-                      "-L nas1"
-                      "-d RAID0"
-                      "-m RAID1"
-                      "${nasPartitions}"
-                    ];
-                    mountpoint = "/data";
-                    mountOptions = ["compress=zstd" "noatime"];
-                  }
-                  else {
-                    type = "btrfs";
-                  };
-              };
-            };
-          };
-        };
-
-      nas3 =
-        if (numberOfDisks < 4)
-        then {}
-        else {
-          type = "disk";
-          device = "${nas.c}";
-          content = {
-            type = "gpt";
-            partitions = {
-              nas3 = {
-                label = "nas3";
-                device = "${nas.c1}";
-                start = "64M";
-                size = "100%";
-                content =
-                  if numberOfDisks == 4
-                  then {
-                    type = "btrfs";
-                    extraArgs = [
-                      "-f"
-                      "-L nas1"
-                      "-d RAID0"
-                      "-m RAID1"
-                      "${nasPartitions}"
-                    ];
-                    mountpoint = "/data";
-                    mountOptions = ["compress=zstd" "noatime"];
-                  }
-                  else {
-                    type = "btrfs";
-                  };
+                  else nasRaidContent;
               };
             };
           };
@@ -319,68 +241,87 @@ in {
                 device = "${nas.b1}";
                 start = "64M";
                 size = "100%";
-                content =
-                  if numberOfDisks == 3
-                  then {
-                    type = "btrfs";
-                    extraArgs = [
-                      "-f"
-                      "-L nas1"
-                      "-d RAID0"
-                      "-m RAID1"
-                      "${nasPartitions}"
-                    ];
-                    mountpoint = "/data";
-                    mountOptions = ["compress=zstd" "noatime"];
-                  }
-                  else {
-                    type = "btrfs";
-                  };
+                content = {type = "btrfs";};
               };
             };
           };
         };
 
-      nas1 =
-        if (numberOfDisks < 2)
+      nas3 =
+        if (numberOfDisks < 4)
         then {}
         else {
           type = "disk";
-          device = "${nas.a}";
+          device = "${nas.c}";
           content = {
             type = "gpt";
             partitions = {
-              nas1 = {
-                label = "nas1";
-                device = "${nas.a1}";
+              nas3 = {
+                label = "nas3";
+                device = "${nas.c1}";
                 start = "64M";
                 size = "100%";
-                content =
-                  if numberOfDisks == 2
-                  then {
-                    type = "btrfs";
-                    subvolumes = {
-                    "@data" = {
-                      mountpoint = "/data";
-                      mountOptions = ["subvol=@data" "compress=zstd" "noatime"];
-                    };
-                    "@media" = {
-                      mountpoint = "/data/media";
-                      mountOptions = ["subvol=@media" "compress=zstd" "noatime"];
-                    };
-                    "@documents" = {
-                      mountpoint = "/data/documents";
-                      mountOptions = ["subvol=@documents" "compress=zstd" "noatime"];
-                    };
-                    "@backups" = {
-                      mountpoint = "/data/backups";
-                      mountOptions = ["subvol=@backups" "compress=zstd" "noatime"];
-                    };
-                  };
-                  }
-                  else {
-                    type = "btrfs";
-                  };
+                content = {type = "btrfs";};
+              };
+            };
+          };
+        };
+
+      nas4 =
+        if (numberOfDisks < 5)
+        then {}
+        else {
+          type = "disk";
+          device = "${nas.d}";
+          content = {
+            type = "gpt";
+            partitions = {
+              nas4 = {
+                label = "nas4";
+                device = "${nas.d1}";
+                start = "64M";
+                size = "100%";
+                content = {type = "btrfs";};
+              };
+            };
+          };
+        };
+
+      nas5 =
+        if (numberOfDisks < 6)
+        then {}
+        else {
+          type = "disk";
+          device = "${nas.e}";
+          content = {
+            type = "gpt";
+            partitions = {
+              nas5 = {
+                label = "nas5";
+                device = "${nas.e1}";
+                start = "64M";
+                size = "100%";
+                content = {type = "btrfs";};
+              };
+            };
+          };
+        };
+
+      nas6 =
+        if (numberOfDisks < 7)
+        then {}
+        else {
+          type = "disk";
+          device = "${nas.f}";
+          content = {
+            type = "gpt";
+            partitions = {
+              nas6 = {
+                label = "nas6";
+                device = "${nas.f1}";
+                start = "64M";
+                size = "100%";
+                content = {type = "btrfs";};
               };
             };
           };
@@ -388,4 +329,3 @@ in {
     };
   };
 }
-

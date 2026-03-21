@@ -19,26 +19,25 @@ in {
     ../_common/cli-utils.nix # cli tool collection
     ../_common/dev-utils.nix # dev tool collection
     # ../_srv/computing.nix # computing tool collection
-    ../_srv/ollama.nix # local LLM services
+    # ../_srv/ollama.nix # local LLM services
     ../_common/tx-rx.nix # transmission / reception
     ../_srv/dashboards.nix # server dashboards (homepage-dashboard, glances, ...)
     # ../_srv/admin.nix # monitoring (cockpit, uptime-kuma, gotify, ...)
     # ../_srv/proxy.nix # server proxy services (traefik, crowdsec, keycloak, ...)
-    ../_srv/blocky.nix # DNS/Ad-blocking service (blocky, ...)
-    ../_srv/blocky-grafana.nix
+    # ../_srv/blocky.nix # DNS/Ad-blocking service (blocky, ...)
+    # ../_srv/blocky-grafana.nix
     # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
-    ../_srv/forgejo.nix # git forge service (forgejo)
-    ../_srv/cloud.nix # cloud service (filebrowser, opencloud, ...)
-    ../_srv/immich.nix # image hosting service
-    ../_srv/jellyfin.nix # media streaming service
+    # ../_srv/forgejo.nix # git forge service (forgejo)
+    # ../_srv/cloud.nix # cloud service (filebrowser, opencloud, ...)
+    # ../_srv/immich.nix # image hosting service
+    # ../_srv/jellyfin.nix # media streaming service
     # ../_srv/servarr.nix # servarr stack
     # ../_srv/home-assistant.nix # home assistant service
-    ../_srv/vikunja.nix # ToDo management service
-    ../_srv/mealie.nix # recipe service
+    # ../_srv/vikunja.nix # ToDo management service
+    # ../_srv/mealie.nix # recipe service
     ../../modules # Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd-zenpower
     inputs.hardware.nixosModules.common-gpu-amd
-    inputs.hardware.nixosModules.common-gpu-nvidia-sync
     inputs.hardware.nixosModules.common-pc-ssd
   ];
 
@@ -69,7 +68,7 @@ in {
   };
 
   # Hardware customization
-  nixpkgs.config.cudaSupport = true;
+  # nixpkgs.config.cudaSupport = true;
   # services.ollama.acceleration = "cuda";
 
   # Language customization (see ../../modules)
