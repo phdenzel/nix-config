@@ -8,7 +8,7 @@ build IMG:
 	nix build .#images.{{IMG}}
 
 iso-rebuild:
-    @echo "This command is currently not working... fix is WIP." && exit 1
+    # @echo "This command is currently not working... fix is WIP." && exit 1
     [ -d "result/iso" ] || just build iso
     mkdir -p tmp/iso
     bsdtar -C tmp/iso -xf ./result/iso/nixos-*.iso
