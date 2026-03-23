@@ -4,7 +4,6 @@
 {
   pkgs,
   self,
-  sopsAgeKeys,
   ...
 }: {
   imports = [
@@ -19,10 +18,6 @@
     {
       source = ./install-configuration.nix;
       target = "/local/etc/nixos/configuration.nix";
-    }
-    {
-      source = sopsAgeKeys;
-      target = "/local/root/.config/sops";
     }
     {
       source = self;
@@ -57,19 +52,6 @@
   # More open OpenSSH settings.
   systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
   services.openssh.settings.PermitRootLogin = pkgs.lib.mkForce "yes";
-
-  # Add secret keys
-  system.activationScripts.sops-keys = {
-    deps = [ "users" ];
-    text = ''
-      if [ -d /iso/local/root/.config/sops ]; then
-        mkdir -p /root/.config/sops/age
-        cp -r /iso/local/root/.config/sops/. /root/.config/sops/
-        chmod 700 /root/.config/sops
-        chmod 600 /root/.config/sops/age/keys.txt
-      fi
-    '';
-  };
 
   # Add this repository
   system.activationScripts.nix-config-repo = {
