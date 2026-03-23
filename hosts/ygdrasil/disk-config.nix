@@ -39,7 +39,7 @@
       then "${device}p3"
       else "${device}-part3";
   };
-  nas = rec {
+  nas = {
     a = builtins.elemAt disks 1;
     b =
       if (numberOfDisks > 2)
@@ -61,40 +61,16 @@
       if (numberOfDisks > 6)
       then builtins.elemAt disks 6
       else "";
-    a1 =
-      if (builtins.substring 0 9 a == "/dev/nvme")
-      then "${a}p1"
-      else "${a}1";
-    b1 =
-      if (builtins.substring 0 9 b == "/dev/nvme")
-      then "${b}p1"
-      else "${b}1";
-    c1 =
-      if (builtins.substring 0 9 c == "/dev/nvme")
-      then "${c}p1"
-      else "${c}1";
-    d1 =
-      if (builtins.substring 0 9 d == "/dev/nvme")
-      then "${d}p1"
-      else "${d}1";
-    e1 =
-      if (builtins.substring 0 9 e == "/dev/nvme")
-      then "${e}p1"
-      else "${e}1";
-    f1 =
-      if (builtins.substring 0 9 f == "/dev/nvme")
-      then "${f}p1"
-      else "${f}1";
   };
-  nasPartitions =
+  nasExtraDevices =
     {
       "1" = "";
       "2" = "";
-      "3" = "${nas.a1}";
-      "4" = "${nas.a1} ${nas.b1}";
-      "5" = "${nas.a1} ${nas.b1} ${nas.c1}";
-      "6" = "${nas.a1} ${nas.b1} ${nas.c1} ${nas.d1}";
-      "7" = "${nas.a1} ${nas.b1} ${nas.c1} ${nas.d1} ${nas.e1}";
+      "3" = "${nas.b}";
+      "4" = "${nas.b} ${nas.c}";
+      "5" = "${nas.b} ${nas.c} ${nas.d}";
+      "6" = "${nas.b} ${nas.c} ${nas.d} ${nas.e}";
+      "7" = "${nas.b} ${nas.c} ${nas.d} ${nas.e} ${nas.f}";
     }
       ."${builtins.toString numberOfDisks}";
   nasSubvolumes = {
@@ -121,6 +97,9 @@
   };
   nasRaidContent = {
     type = "btrfs";
+    # disko appends nas.a automatically; extra devices are listed here.
+    # mkfs.btrfs formats all devices in one call, so nas2-nas6 are NOT
+    # declared as separate disko disk entries.
     extraArgs =
       [
         "-f"
@@ -128,7 +107,7 @@
         "-d" "RAID0"
         "-m" "RAID1"
       ]
-      ++ (lib.splitString " " nasPartitions);
+      ++ (lib.splitString " " nasExtraDevices);
     subvolumes = nasSubvolumes;
   };
 in {
@@ -152,7 +131,7 @@ in {
                 extraArgs = ["-n" "BOOT"];
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = ["umask=0077"];
               };
             };
             swap = {
@@ -206,125 +185,14 @@ in {
         else {
           type = "disk";
           device = "${nas.a}";
-          content = {
-            type = "gpt";
-            partitions = {
-              nas1 = {
-                label = "nas1";
-                device = "${nas.a1}";
-                start = "64M";
-                size = "100%";
-                content =
-                  if numberOfDisks == 2
-                  then {
-                    type = "btrfs";
-                    extraArgs = ["-L" "nas1"];
-                    subvolumes = nasSubvolumes;
-                  }
-                  else nasRaidContent;
-              };
-            };
-          };
-        };
-
-      nas2 =
-        if (numberOfDisks < 3)
-        then {}
-        else {
-          type = "disk";
-          device = "${nas.b}";
-          content = {
-            type = "gpt";
-            partitions = {
-              nas2 = {
-                label = "nas2";
-                device = "${nas.b1}";
-                start = "64M";
-                size = "100%";
-                content = {type = "btrfs";};
-              };
-            };
-          };
-        };
-
-      nas3 =
-        if (numberOfDisks < 4)
-        then {}
-        else {
-          type = "disk";
-          device = "${nas.c}";
-          content = {
-            type = "gpt";
-            partitions = {
-              nas3 = {
-                label = "nas3";
-                device = "${nas.c1}";
-                start = "64M";
-                size = "100%";
-                content = {type = "btrfs";};
-              };
-            };
-          };
-        };
-
-      nas4 =
-        if (numberOfDisks < 5)
-        then {}
-        else {
-          type = "disk";
-          device = "${nas.d}";
-          content = {
-            type = "gpt";
-            partitions = {
-              nas4 = {
-                label = "nas4";
-                device = "${nas.d1}";
-                start = "64M";
-                size = "100%";
-                content = {type = "btrfs";};
-              };
-            };
-          };
-        };
-
-      nas5 =
-        if (numberOfDisks < 6)
-        then {}
-        else {
-          type = "disk";
-          device = "${nas.e}";
-          content = {
-            type = "gpt";
-            partitions = {
-              nas5 = {
-                label = "nas5";
-                device = "${nas.e1}";
-                start = "64M";
-                size = "100%";
-                content = {type = "btrfs";};
-              };
-            };
-          };
-        };
-
-      nas6 =
-        if (numberOfDisks < 7)
-        then {}
-        else {
-          type = "disk";
-          device = "${nas.f}";
-          content = {
-            type = "gpt";
-            partitions = {
-              nas6 = {
-                label = "nas6";
-                device = "${nas.f1}";
-                start = "64M";
-                size = "100%";
-                content = {type = "btrfs";};
-              };
-            };
-          };
+          content =
+            if numberOfDisks == 2
+            then {
+              type = "btrfs";
+              extraArgs = ["-f" "-L" "nas1"];
+              subvolumes = nasSubvolumes;
+            }
+            else nasRaidContent;
         };
     };
   };
