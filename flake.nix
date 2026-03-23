@@ -60,12 +60,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-age-keys = {
+      url = "path:/home/phdenzel/.config/sops";
+      flake = false;
+    };
+
     openconnect-sso = {
       # needed for zhaw-vpn
       url = "git+https://git@github.com/jcszymansk/openconnect-sso";
       inputs.nixpkgs.follows = "nixpkgs-openconnect-sso";
     };
-     nixpkgs-openconnect-sso.url = "github:nixos/nixpkgs/46397778ef1f73414b03ed553a3368f0e7e33c2f";
+    nixpkgs-openconnect-sso.url = "github:nixos/nixpkgs/46397778ef1f73414b03ed553a3368f0e7e33c2f";
 
     phd-wallpapers = {
       url = "git+ssh://git@github.com/phdenzel/wallpapers";
@@ -103,20 +108,26 @@
           config.allowUnfree = true;
         }
     );
-    nixosMachine = {name, system ? "x86_64-linux"}: {
+    nixosMachine = {
+      name,
+      system ? "x86_64-linux",
+      extraArgs ? {},
+    }: {
       "${name}" = lib.nixosSystem {
-        specialArgs = {inherit self inputs outputs;};
-        # system = "${system}";
+        specialArgs = {inherit self inputs outputs;} // extraArgs;
         inherit system;
         modules = [
           (./. + "/hosts/${name}")
         ];
       };
     };
-    nixosMachineWithHM = {name, system ? "x86_64-linux"}: {
+    nixosMachineWithHM = {
+      name,
+        system ? "x86_64-linux",
+        extraArgs ? {},
+    }: {
       "${name}" = lib.nixosSystem {
-        specialArgs = {inherit self inputs outputs;};
-        # system = "${system}";
+        specialArgs = {inherit self inputs outputs;} // extraArgs;
         inherit system;
         modules = [
           (./. + "/hosts/${name}")
@@ -130,7 +141,10 @@
         ];
       };
     };
-    hmMachineConf = {name, system ? "x86_64-linux"}: {
+    hmMachineConf = {
+      name,
+      system ? "x86_64-linux",
+    }: {
       "phdenzel@${name}" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor."${system}";
@@ -140,10 +154,13 @@
         ];
       };
     };
-    darwinMachineConf = {name, system ? "aarch64-darwin"}: {
+    darwinMachineConf = {
+      name,
+        system ? "aarch64-darwin",
+        extraArgs ? {},
+    }: {
       "${name}" = nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit self inputs outputs;};
-        # system = "${system}";
+        specialArgs = {inherit self inputs outputs;} // extraArgs;
         inherit system;
         modules = [
           (./. + "/hosts/${name}")
@@ -153,7 +170,7 @@
   in {
     inherit lib;
 
-    packages = (forEachSystem (pkgs: import ./pkgs {inherit pkgs;}));
+    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
     overlays = import ./overlays {inherit inputs outputs;};
 
     images = {
@@ -167,12 +184,21 @@
       // (nixosMachineWithHM {name = "fenrix";})
       // (nixosMachineWithHM {name = "ygdrasil";})
       // (nixosMachineWithHM {name = "idun";})
-      // (nixosMachine {name = "heimdall"; system = "aarch64-linux";})
-      // (nixosMachine {name = "rpi"; system = "aarch64-linux";})
-      // (nixosMachine {name = "iso";});
+      // (nixosMachine {
+        name = "heimdall";
+        system = "aarch64-linux";
+      })
+      // (nixosMachine {
+        name = "rpi";
+        system = "aarch64-linux";
+      })
+      // (nixosMachine {
+        name = "iso";
+        extraArgs = {sopsAgeKeys = inputs.sops-age-keys;};
+      });
 
     darwinConfigurations =
-      (darwinMachineConf {name = "asahi";});
+      darwinMachineConf {name = "asahi";};
 
     homeConfigurations =
       (hmMachineConf {name = "phinix";})
