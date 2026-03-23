@@ -3,91 +3,192 @@
 #+DATE: 2025-01-05 Sun
 #+OPTIONS: author:nil title:t date:nil timestamp:nil toc:nil num:nil \n:nil
 
-These instructions assume that ~just~ is installed on the machine.  If
-this is not the case, inspect the ~justfile~ and replace the commands
-correspondingly.
+NixOS flake configuration for all my machines.  These instructions
+assume that ~just~ is installed.  If not, inspect the ~justfile~ and
+run the underlying commands directly.
+
+** Machines
+
+| Host       | Role                  | Arch          |
+|------------+-----------------------+---------------|
+| ~phinix~   | Workstation           | x86_64-linux  |
+| ~sol~      | AMD AI NUC            | x86_64-linux  |
+| ~fenrix~   | Lenovo laptop         | x86_64-linux  |
+| ~ygdrasil~ | NAS server            | x86_64-linux  |
+| ~idun~     | VM (config dev)       | x86_64-linux  |
+| ~heimdall~ | Raspberry Pi          | aarch64-linux |
+
 
 ** Build images
 
-This flake also supports building custom ISO images.
-Use
 #+begin_src bash
   just build <my-image>
 #+end_src
-where ~<my-image>~ has to be replaced with the name of an implemented host.
-So far, the following images are implemented:
-- ~iso~: a minimal ISO image from which NixOS can be installed on x86_64 systems.
-- ~rpi~: a minimal NixOS image for Raspberry Pis' SD cards.
-A symlink ~./results/~ should appear, pointing to the built image.
 
-For cross-platform building make sure to have the appropriate system
-emulation enabled, e.g. with
+Available images:
+- ~iso~: minimal x86_64 installer image (contains this repository)
+- ~rpi~: minimal NixOS image for Raspberry Pi SD cards
+ 
+A symlink ~./result/~ will appear pointing to the built image.
+ 
+For cross-platform (e.g. Raspberry Pi) builds, enable system emulation on the build host:
 #+begin_src nix
-  boot.binfmt.emulatedSystems = ["aarch64-linux"]; # e.g. for Raspberry Pis
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 #+end_src
-
-Use the following to flash the images to an SD card (say at ~/dev/sda~)
+ 
+Flash to a USB stick:
 #+begin_src bash
-  just flash-sd /dev/sda
+  just flash /dev/sdX
 #+end_src
-or a USB stick
+ 
+Flash to an SD card:
 #+begin_src bash
-  just flash /dev/sda
+  just flash-sd /dev/sdX
 #+end_src
 
 
-** Install from ISO
+** Fresh install from ISO
+ 
+*** Overview
+ 
+The ISO contains no secret keys. All sensitive keys (AGE decryption
+key, SSH key registered with GitHub) must be copied onto the booted
+ISO session from a trusted machine before running the installer.
+ 
+The full flow is:
+ 
+1. Build and flash the ISO
+2. Boot the target machine from the USB
+3. From a trusted host, push keys onto the ISO session
+4. Run the installer (via SSH or directly on the machine)
 
-Once the ISO is flashed, boot into it on the machine where you want to install NixOS.
-The ~nix-config~ contains a few helpful commands that aid in the CLI-based installation.
-Thus, clone the repository with
+   
+**** Boot the ISO
+ 
+Boot the target machine from the flashed USB. The ISO starts an SSH
+server automatically. Root login is permitted and authorized keys from
+existing machines are already embedded.
+ 
+Find the machine's IP (with e.g. ~ip -c a~) and verify access:
+#+begin_src bash
+  ssh root@<target-ip>
+#+end_src
+
+
+**** Keys from a trusted host
+ 
+The following commands are run *from a trusted machine* (e.g. ~phinix~ or
+~sol~), not from inside the ISO session.
+ 
+Push the AGE decryption key so that sops-nix can decrypt
+~secrets.yaml~ during install:
+#+begin_src bash
+  just load-sops-keys <target-ip>
+#+end_src
+ 
+Push the SSH key registered with GitHub so that Nix can fetch private
+flake inputs (e.g. ~phd-wallpapers~) during install:
+#+begin_src bash
+  just load-ssh-keys <target-ip>
+#+end_src
+ 
+
+**** Run the installer
+ 
+SSH into the ISO session:
+#+begin_src bash
+  ssh root@<target-ip>
+#+end_src
+ 
+The repository should already be present at ~/home/nixos/nix-config~.
+If not, clone it:
 #+begin_src bash
   git clone https://github.com/phdenzel/nix-config.git
 #+end_src
-
-You can inspect the ~justfile~ for the commands necessary for a proper installation.
+ 
+Run the installer:
 #+begin_src bash
   cd nix-config
   nix-shell -p just
-  just iso-install <my-machine>
+  just install <machine>
 #+end_src
-where ~<my-machine>~ has to be replaced with the name of an implemented host. So far,
-- ~phinix~
-- ~sol~
-- ~fenrix~
-- ~ygdrasil~
-- ~heimdall~
-- ~idun~
-are implemented.
+ 
+This command will:
+1. Run ~disko~ to partition and format the disk (if not already done; caution: wipes all disks)
+2. Generate ~hardware-configuration.nix~
+3. Copy the repository and AGE keys into ~/mnt/root/~
+4. Run ~nixos-install~
 
 
-** Install on NixOS
-
-Log in to a NixOS installation as root and clone the repository once more:
+**** Register the new host with sops (post-install)
+ 
+After first boot on the newly installed machine, derive its AGE key
+from the host SSH key and add it to ~.sops.yaml~:
 #+begin_src bash
-  git clone https://github.com/phdenzel/nix-config.git
+  just host-age-key <machine>
+#+end_src
+ 
+Then re-encrypt all secrets files so the new host can decrypt them:
+#+begin_src bash
+  just update-secrets
+#+end_src
+ 
+Apply the configuration with the re-encrypted secrets:
+#+begin_src bash
+  just rbs <machine>
+#+end_src
+ 
+Without this step, any sops secret declared in the host configuration
+will fail to decrypt on the new machine.
+
+
+** Rebuild an existing NixOS installation
+ 
+Log in and pull the latest configuration:
+#+begin_src bash
   cd nix-config
+  git pull
 #+end_src
-
-Then, make sure you have copied an authorized AGE key onto the machine to
+ 
+Rebuild and switch:
 #+begin_src bash
-  ~/.config/sops/age/keys.txt
+  just rbs <machine>
 #+end_src
-
-To derive and register a new authorized key from the host SSH key
+ 
+Or equivalently:
 #+begin_src bash
-  just host-age-key
+  sudo nixos-rebuild switch --flake .#<machine>
 #+end_src
 
-Once all preparations are done, run
+
+** Secrets management
+ 
+Secrets are managed with [[https://github.com/Mic92/sops-nix][sops-nix]] using AGE encryption.
+ 
+Each host decrypts secrets using its own host SSH key
+(~/etc/ssh/ssh_host_ed25519_key~). The corresponding AGE public key
+for each host must be listed in ~.sops.yaml~ under ~hosts~, and all
+secrets files must be re-encrypted whenever hosts are added or
+removed.
+ 
+The personal AGE key lives at ~~/.config/sops/age/keys.txt~ and is the
+key used during development to edit secrets directly with ~sops~.
+ 
+To add a new secret key to a host configuration, declare it in the
+host's ~sops-host~ block:
+#+begin_src nix
+  sops-host = {
+    enable = true;
+    keys = [ "my-service/some-key" ];
+  };
+#+end_src
+ 
+Without this declaration,
+~config.sops.secrets."my-service/some-key".path~ will be an error at
+evaluation time even if the key exists in ~secrets.yaml~.
+ 
+To edit secrets interactively:
 #+begin_src bash
-  sudo nixos-rebuild switch --flake .#<my-machine>
+  sops hosts/secrets.yaml
+  sops home/phdenzel/secrets.yaml
 #+end_src
-where ~<my-machine>~ has to be replaced with the name of an implemented host.
-
-Alternatively, you can run the shorthand
-#+begin_src bash
-  just rbs <my-machine>
-#+end_src
-
-Modify and adapt the configuration further as needed.
