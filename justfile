@@ -43,7 +43,7 @@ send-ssh-keys TARGET_HOST KEYFILE="iso_id_ed25519":
 
 # Step 2 for fresh install:
 # Generate hardware configuration, optionally install flake dependecies, and install NixOS
-iso-install MACHINE:
+install MACHINE:
 	#!/usr/bin/env sh
 	[ -d "/mnt/boot" ] || just disko {{MACHINE}}
 	sudo nixos-generate-config --kernel latest --no-filesystems --root /mnt
@@ -51,6 +51,14 @@ iso-install MACHINE:
 	    sudo mkdir -p /mnt/root
 		sudo cp -r /home/nixos/nix-config /mnt/root/nix-config
 		sudo install -o root -g root -m 644 /mnt/etc/nixos/hardware-configuration.nix /mnt/root/nix-config/hosts/{{MACHINE}}/
+	fi
+	if [ -d "/root/.config/sops" ]; then
+        sudo mkdir -p /mnt/root/.config/sops/age
+        sudo cp -r /root/.config/sops/. /mnt/root/.config/sops/
+        sudo chmod 700 /mnt/root/.config/sops
+        sudo chmod 600 /mnt/root/.config/sops/age/keys.txt
+    fi
+	if [ -d "/home/nixos/nix-config" ]; then
 	    sudo nixos-install --flake /mnt/root/nix-config#{{MACHINE}}
 	else
 	    if [ -f "/iso/local/etc/nixos/configuration.nix" ]; then
