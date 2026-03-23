@@ -7,56 +7,56 @@ default:
 build IMG:
 	nix build .#images.{{IMG}}
 
-iso-rebuild:
-    # @echo "This command is currently not working... fix is WIP." && exit 1
-    [ -d "result/iso" ] || just build iso
-    mkdir -p tmp/iso
-    bsdtar -C tmp/iso -xf ./result/iso/nixos-*.iso
-    chmod 755 tmp/iso/local
-    mkdir tmp/iso/local/root && cp -r ~/.config/sops tmp/iso/local/root/
-    chmod 555 tmp/iso/local/root && chmod 555 tmp/iso/local
-    xorriso -as mkisofs -isohybrid-mbr tmp/iso/isolinux/isohdpfx.bin -c isolinux/boot.cat -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4 -boot-info-table -eltorito-alt-boot -e boot/efi.img -no-emul-boot -isohybrid-gpt-basdat -volid NIXOS-ISO -o tmp/nixos-25.05.custom.iso tmp/iso/
-
 flash DEVICE IMG=shell('ls ./result/iso/nixos-*.iso'):
-	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M
+	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M conv=fsync
 
 flash-sd DEVICE IMG=shell('ls ./result/sd-image/nixos-image-sd-card-*.img'):
-	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M
+	sudo dd if={{IMG}} of={{DEVICE}} status=progress bs=4M conv=fsync
 
 # Show install commands
-show-iso-cmds MACHINE="idun":
+help-install MACHINE="idun":
     @echo "just disko {{MACHINE}}"
-    @echo "just iso-config"
     @echo "just iso-install"
-
-# Show install commands (extensive info)
-show-iso-longcmds:
-    for s in "disko" "iso-config" "iso-install"; do just -s "$s"; done
 
 # Dry-run the disko configuration (formatting and mounting) for specified machine.
 test-disko MACHINE="idun":
     sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount --dry-run ./hosts/{{MACHINE}}/disk-config.nix
 
+# Step 1 for fresh install:
 # Run the disko configuration (formatting and mounting) for specified machine.
 disko MACHINE:
     sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount --yes-wipe-all-disks ./hosts/{{MACHINE}}/disk-config.nix
-
-# Install minimal configuration.nix to /mnt/etc/nixos
-iso-config:
-    [ -f "/iso/local/etc/nixos/configuration.nix" ] && sudo mkdir -p /mnt/etc/nixos && sudo cp /iso/local/etc/nixos/configuration.nix /mnt/etc/nixos/
-    [ -d "/home/nixos/nix-config" ] && sudo mkdir -p /mnt/root && sudo cp -r /home/nixos/nix-config /mnt/root/
-    [ -d "/iso" ] && sudo nixos-generate-config --kernel latest --root /mnt || sudo nixos-generate-config --kernel latest
 
 # Print a new hardware-configuration.nix file
 show-hardware-config:
     [ -d "/iso" ] && sudo nixos-generate-config --root /mnt --show-hardware-config || sudo nixos-generate-config --show-hardware-config
 
-# Install from iso
+# Step 2 for fresh install:
+# Generate hardware configuration, optionally install flake dependecies, and install NixOS
 iso-install MACHINE:
-    [ -d "/mnt/boot" ] || just disko {{MACHINE}}
-    [ -f "/mnt/etc/nixos/configuration.nix" ] || just iso-config
-    [ -f "/mnt/etc/nixos/hardware-configuration.nix" ] || just iso-config
-    [ -d "/iso" ] && sudo nixos-install
+	#!/usr/bin/env sh
+	[ -d "/mnt/boot" ] || just disko {{MACHINE}}
+	sudo nixos-generate-config --kernel latest --no-filesystems --root /mnt
+	if [ -d "/home/nixos/nix-config" ]; then
+	    sudo mkdir -p /mnt/root
+		sudo cp -r /home/nixos/nix-config /mnt/root/nix-config
+		sudo install -o root -g root -m 644 /mnt/etc/nixos/hardware-configuration.nix /mnt/root/nix-config/hosts/{{MACHINE}}/
+	fi
+	if [ -d "/root/.config/sops" ]; then
+	    sudo mkdir -p /mnt/root/.config/sops/age
+		sudo cp -r /root/.config/sops/. /mnt/root/.config/sops/
+		sudo chmod 700 /mnt/root/.config/sops
+		sudo chmod 600 /mnt/root/.config/sops/age/keys.txt
+	fi
+	if [ -d "/home/nixos/nix-config" ]; then
+	    sudo nixos-install --flake /mnt/root/nix-config#{{MACHINE}}
+	else
+	    if [ -f "/iso/local/etc/nixos/configuration.nix" ]; then
+		    sudo mkdir -p /mnt/etc/nixos
+			sudo cp /iso/local/etc/nixos/configuration.nix /mnt/etc/nixos/configuration.nix
+		fi
+		sudo nixos-install
+	fi
 
 # Append a host age key to the .sops.yaml file
 host-age-key HOST KEYFILE="/etc/ssh/ssh_host_ed25519_key.pub":
