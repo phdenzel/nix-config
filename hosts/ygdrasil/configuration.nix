@@ -77,9 +77,19 @@ in {
   intl.extraLocale = "de_CH";
 
   # Root configuration
-  sops-host.enable = true;
+  sops-host = {
+    enable = true;
+    keys = [
+      "homepage-dashboard/env"
+    ];
+    ownedKeys = [
+      "grafana/admin_password"
+    ];
+  };
+
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
+    # SSH root access (for now)
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLoBbnz9XBvuq7QIUT1cPpyn32PWJFEnH1tPJAidJvO phdenzel@phinix"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFyUOUvvJENjM7fNdGW/9ljjJnPEGHlt1pYFYRx2mZIW phdenzel@sol"
