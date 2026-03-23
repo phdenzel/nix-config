@@ -50,7 +50,8 @@ in {
     loader.grub.enable = true;
     loader.grub.efiSupport = true;
     loader.grub.devices = ["nodev"];
-    supportedFilesystems = ["nfs"];
+    supportedFilesystems = ["btrfs" "nfs"];
+    initrd.supportedFilesystems = ["btrfs"];
     # /tmp as tmpfs
     tmp = {
       useTmpfs = true;
