@@ -1,7 +1,12 @@
 # This is a minimal configuration for initial build onto an iso.
 # Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{pkgs, ...}: {
+{
+  pkgs,
+  self,
+  sopsAgeKeys,
+  ...
+}: {
   imports = [
     ../_common/nix.nix # default nix configuration
     ../_common/openssh.nix # openSSH configs
@@ -15,14 +20,19 @@
       source = ./install-configuration.nix;
       target = "/local/etc/nixos/configuration.nix";
     }
+    {
+      source = sopsAgeKeys;
+      target = "/local/root/.config/sops";
+    }
+    {
+      source = self;
+      target = "/local/home/nixos/nix-config";
+    }
   ];
-  system.userActivationScripts.nix-config-repository.text = ''
-     ${pkgs.git}/bin/git clone https://github.com/phdenzel/nix-config.git /local/home/nixos/nix-config
-  '';
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = pkgs.lib.mkForce ["btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs"];
+    supportedFilesystems = ["btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs"];
   };
 
   networking.hostName = "nixos-iso"; # Define your hostname.
@@ -30,6 +40,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   environment.systemPackages = with pkgs; [
+    just
     emacs
   ];
 
@@ -46,6 +57,31 @@
   # More open OpenSSH settings.
   systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
   services.openssh.settings.PermitRootLogin = pkgs.lib.mkForce "yes";
+
+  # Add secret keys
+  system.activationScripts.sops-keys = {
+    deps = [ "users" ];
+    text = ''
+      if [ -d /iso/local/root/.config/sops ]; then
+        mkdir -p /root/.config/sops/age
+        cp -r /iso/local/root/.config/sops/. /root/.config/sops/
+        chmod 700 /root/.config/sops
+        chmod 600 /root/.config/sops/age/keys.txt
+      fi
+    '';
+  };
+
+  # Add this repository
+  system.activationScripts.nix-config-repo = {
+    deps = [ "users" ];
+    text = ''
+      if [ ! -d /home/nixos/nix-config ]; then
+        cp -r /iso/local/home/nixos/nix-config /home/nixos/nix-config
+        chmod -R u+w /home/nixos/nix-config
+        chown -R nixos:users /home/nixos/nix-config
+      fi
+    '';
+  };
 
   # For more information, see `man configuration.nix` or
   # https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
