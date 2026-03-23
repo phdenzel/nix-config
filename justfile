@@ -31,6 +31,16 @@ disko MACHINE:
 show-hardware-config:
     [ -d "/iso" ] && sudo nixos-generate-config --root /mnt --show-hardware-config || sudo nixos-generate-config --show-hardware-config
 
+# Copy AGE keys to a booted ISO session
+send-age-keys TARGET_HOST:
+	rsync -ahv --mkpath ~/.config/sops/age root@{{TARGET_HOST}}:/root/.config/sops/
+	ssh root@{{TARGET_HOST}} "chmod 700 /root/.config/sops/age && chmod 600 /root/.config/sops/age/keys.txt"
+
+# Copy GitHub-registered SSH keys to a booted ISO session
+send-ssh-keys TARGET_HOST KEYFILE="iso_id_ed25519":
+	rsync -ahvL --mkpath ~/.ssh/{{KEYFILE}} ~/.ssh/{{KEYFILE}}.pub root@{{TARGET_HOST}}:/root/.ssh/
+	ssh root@{{TARGET_HOST}} "chmod 700 /root/.ssh && chmod 600 /root/.ssh/{{KEYFILE}} && chmod 644 /root/.ssh/{{KEYFILE}}.pub && ssh-keyscan github.com >> /root/.ssh/known_hosts && printf 'Host github.com\n  IdentityFile /root/.ssh/{{KEYFILE}}\n  IdentitiesOnly yes\n' > /root/.ssh/config && chmod 600 /root/.ssh/config"
+
 # Step 2 for fresh install:
 # Generate hardware configuration, optionally install flake dependecies, and install NixOS
 iso-install MACHINE:
