@@ -118,8 +118,8 @@
     };
     nixosMachineWithHM = {
       name,
-        system ? "x86_64-linux",
-        extraArgs ? {},
+      system ? "x86_64-linux",
+      extraArgs ? {},
     }: {
       "${name}" = lib.nixosSystem {
         specialArgs = {inherit self inputs outputs;} // extraArgs;
@@ -151,8 +151,8 @@
     };
     darwinMachineConf = {
       name,
-        system ? "aarch64-darwin",
-        extraArgs ? {},
+      system ? "aarch64-darwin",
+      extraArgs ? {},
     }: {
       "${name}" = nix-darwin.lib.darwinSystem {
         specialArgs = {inherit self inputs outputs;} // extraArgs;
@@ -187,10 +187,7 @@
         name = "rpi";
         system = "aarch64-linux";
       })
-      // (nixosMachine {
-        name = "iso";
-        extraArgs = {sopsAgeKeys = inputs.sops-age-keys;};
-      });
+      // (nixosMachine {name = "iso";});
 
     darwinConfigurations =
       darwinMachineConf {name = "asahi";};
