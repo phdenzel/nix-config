@@ -60,11 +60,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-age-keys = {
-      url = "path:/home/phdenzel/.config/sops";
-      flake = false;
-    };
-
     openconnect-sso = {
       # needed for zhaw-vpn
       url = "git+https://git@github.com/jcszymansk/openconnect-sso";

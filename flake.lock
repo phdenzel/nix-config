@@ -464,23 +464,9 @@
         "phd-ark-modeline": "phd-ark-modeline",
         "phd-ark-tabline": "phd-ark-tabline",
         "phd-wallpapers": "phd-wallpapers",
-        "sops-age-keys": "sops-age-keys",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "systems": "systems_4"
-      }
-    },
-    "sops-age-keys": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1740242546,
-        "narHash": "sha256-vzLP/SQWkzSD62F/tCiX923B4IYjNjNjzL8GFj4OJ0E=",
-        "path": "/home/phdenzel/.config/sops",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/phdenzel/.config/sops",
-        "type": "path"
       }
     },
     "sops-nix": {
