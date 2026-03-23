@@ -18,7 +18,7 @@ in {
     enable = true;
     user = "${userName}";
     host = "${hostName}";
-    sshKeys = ["id_ed25519" "gh_id_ed25519"];
+    sshKeys = ["id_ed25519" "gh_id_ed25519" "iso_id_ed25519"];
     gpgKeys = ["pwds"];
     genericKeys = [
       "syncthing/${userName}/${hostName}/password"
