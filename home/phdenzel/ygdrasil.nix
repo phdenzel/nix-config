@@ -23,8 +23,8 @@ in {
     gpgKeys = ["pwds"];
     genericKeys = [
       "syncthing/${userName}/${hostName}/password"
-      # "syncthing/${userName}/${hostName}/cert.pem"
-      # "syncthing/${userName}/${hostName}/key.pem"
+      "syncthing/${userName}/${hostName}/cert.pem"
+      "syncthing/${userName}/${hostName}/key.pem"
     ];
   };
 

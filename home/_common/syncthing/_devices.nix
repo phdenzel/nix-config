@@ -9,9 +9,9 @@
     "fenrix" = {
       id = "LAX3AZA-OADG4U7-SP3FWXD-YYBIKKS-DHNY3IF-6FIXGYU-VY6W2BI-O773RQD";
     };
-    # "ygdrasil" = {
-    #   id = "";
-    # };
+    "ygdrasil" = {
+      id = "NFNNIBG-BHGI7X7-OYPOVQX-JA2Q4BY-YS4SYOF-QUU2QZX-RQT4NC5-N2T4VQC";
+    };
     "asahi" = {
       id = "TEK3CC3-2JU5QE2-S55OP5E-PSCFF7K-IMLVPAA-ZBJWE25-4CTNUDB-J7IPIQI";
     };  
@@ -21,13 +21,13 @@
       "phinix"
       "fenrix"
       "sol"
-      #"ygdrasil"
+      "ygdrasil"
       "asahi"
     ];
     home = [
       "phinix"
       "sol"
-      #"ygdrasil"
+      "ygdrasil"
       "asahi"
     ];
     work = [
