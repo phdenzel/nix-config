@@ -127,6 +127,7 @@ in {
     lm_sensors
     udiskie
     usbutils
+    borgbackup
     # 
   ];
 
