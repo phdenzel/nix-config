@@ -83,13 +83,13 @@ The following commands are run *from a trusted machine* (e.g. ~phinix~ or
 Push the AGE decryption key so that sops-nix can decrypt
 ~secrets.yaml~ during install:
 #+begin_src bash
-  just load-sops-keys <target-ip>
+  just send-age-keys <target-ip>
 #+end_src
  
 Push the SSH key registered with GitHub so that Nix can fetch private
 flake inputs (e.g. ~phd-wallpapers~) during install:
 #+begin_src bash
-  just load-ssh-keys <target-ip>
+  just send-ssh-keys <target-ip>
 #+end_src
  
 
