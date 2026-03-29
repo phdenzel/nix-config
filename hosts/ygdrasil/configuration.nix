@@ -30,7 +30,7 @@ in {
     # ../_srv/forgejo.nix # git forge service (forgejo)
     # ../_srv/cloud.nix # cloud service (filebrowser, opencloud, ...)
     # ../_srv/immich.nix # image hosting service
-    # ../_srv/jellyfin.nix # media streaming service
+    ../_srv/jellyfin.nix # media streaming service
     # ../_srv/servarr.nix # servarr stack
     # ../_srv/home-assistant.nix # home assistant service
     # ../_srv/vikunja.nix # ToDo management service
