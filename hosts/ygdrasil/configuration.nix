@@ -70,14 +70,17 @@ in {
   # Media directories (set permissions, create if missing)
   systemd.tmpfiles.rules = [
     "d  /data/media/Videos    02750  phdenzel  jellyfin  -  -"
-    "Z  /data/media/Videos    0640   phdenzel  jellyfin  -  -"
     "d  /data/media/Books     02750  phdenzel  jellyfin  -  -"
-    "Z  /data/media/Books     0640   phdenzel  jellyfin  -  -"
     "d  /data/media/Pictures  02750  phdenzel  jellyfin  -  -"
-    "Z  /data/media/Pictures  0640   phdenzel  jellyfin  -  -"
     "d  /data/media/Music     02750  phdenzel  jellyfin  -  -"
-    "Z  /data/media/Music     0640   phdenzel  jellyfin  -  -"
   ];
+  system.activationScripts.mediaPermissions = ''
+    for dir in Videos Books Pictures Music; do
+      find /data/media/$dir -type d -exec chmod 02750 {} +
+      find /data/media/$dir -type f -exec chmod 0640 {} +
+      chown -R phdenzel:jellyfin /data/media/$dir
+    done
+  '';
 
   # Hardware customization
   # nixpkgs.config.cudaSupport = true;
