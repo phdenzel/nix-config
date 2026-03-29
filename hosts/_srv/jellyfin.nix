@@ -1,4 +1,4 @@
-{lib, ...}: {
+{pkgs, lib, ...}: {
   services.jellyfin = {
     enable = true;
     openFirewall = true;  # 8096, 8920
@@ -8,4 +8,8 @@
       device = "/dev/dri/renderD128";
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    libva-utils
+  ];
 }
