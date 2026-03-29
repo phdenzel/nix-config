@@ -67,6 +67,17 @@ in {
     interval = "weekly";
     fileSystems = ["/" "/data"];
   };
+  # Media directories (set permissions, create if missing)
+  systemd.tmpfiles.rules = [
+    "d  /data/media/Videos    02750  phdenzel  jellyfin  -  -"
+    "Z  /data/media/Videos    0640   phdenzel  jellyfin  -  -"
+    "d  /data/media/Books     02750  phdenzel  jellyfin  -  -"
+    "Z  /data/media/Books     0640   phdenzel  jellyfin  -  -"
+    "d  /data/media/Pictures  02750  phdenzel  jellyfin  -  -"
+    "Z  /data/media/Pictures  0640   phdenzel  jellyfin  -  -"
+    "d  /data/media/Music     02750  phdenzel  jellyfin  -  -"
+    "Z  /data/media/Music     0640   phdenzel  jellyfin  -  -"
+  ];
 
   # Hardware customization
   # nixpkgs.config.cudaSupport = true;
