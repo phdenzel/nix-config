@@ -72,13 +72,12 @@ in {
       ./_configs/gpg/key-pwds.nix
       ./_configs/gpg/gpg.nix
       ./_configs/gpg/agent.nix
-      # ../_common/syncthing/spec.nix
     ];
     programs.gpg.settings.default-key = lib.mkDefault "629FC7317EFB4935";
     services.syncthing = {
       passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
-      # key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
-      # cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
+      key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
+      cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
     };
     wayland.windowManager.hyprland.settings.monitor = [
       "DP-1, 2560x1440@60.0, 0x0, 2"
