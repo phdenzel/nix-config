@@ -7,6 +7,7 @@ keys:
       - &fenrix age1s7pkaz683sf8ms92adh2x4xvspmkfqjenkv06k5leyjly2qewyssnxkwfm
       - &heimdall age15et4zlq38fdwspnvfuglym3r5dvnaqhgp7ckryk25prnvtx9uqmqapc5rt
       - &sol age14azxpzvfle8ze00ndmdxvmw43a56y0fgy5rg9s9e22wxwxxwgsps4wwxfk
+      - &ygdrasil age146a2057ertnndpe3g7sjhejv5ccnt5d2qvc0kr7ewy5yqdqawglqspd8az
 creation_rules:
   - path_regex: hosts/secrets.ya?ml$
     key_groups:
@@ -17,6 +18,7 @@ creation_rules:
           - *fenrix
           - *heimdall
           - *sol
+          - *ygdrasil
   - path_regex: home/phdenzel/secrets.ya?ml$
     key_groups:
       - age:
@@ -26,3 +28,4 @@ creation_rules:
           - *fenrix
           - *heimdall
           - *sol
+          - *ygdrasil
