@@ -48,7 +48,7 @@ install MACHINE:
 	[ -d "/mnt/boot" ] || just disko {{MACHINE}}
 	sudo nixos-generate-config --kernel latest --no-filesystems --root /mnt
 	if [ -d "/home/nixos/nix-config" ]; then
-	    fsudo mkdir -p /mnt/root
+	    sudo mkdir -p /mnt/root
 		sudo cp -r /home/nixos/nix-config /mnt/root/nix-config
 		sudo install -o root -g root -m 644 /mnt/etc/nixos/hardware-configuration.nix /mnt/root/nix-config/hosts/{{MACHINE}}/
 	fi
