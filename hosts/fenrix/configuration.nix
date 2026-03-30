@@ -9,7 +9,7 @@
 in {
   imports = [
     ../_common # default nix (and sops-nix) configuration
-    ../_common/nfs.nix # NFS mounts
+    # ../_common/nfs.nix # NFS mounts
     ../_common/sddm.nix # display manager
     ../_common/hyprland.nix # window manager
     ../_common/kde.nix # desktop as fallback when window managers are bricked
@@ -110,6 +110,9 @@ in {
     openFirewall = true;
   };
 
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  
   # System-wide packages
   environment.defaultPackages = [];
   environment.systemPackages = with pkgs; [
