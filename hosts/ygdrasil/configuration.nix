@@ -34,7 +34,7 @@ in {
     # ../_srv/servarr.nix # servarr stack
     # ../_srv/home-assistant.nix # home assistant service
     # ../_srv/vikunja.nix # ToDo management service
-    # ../_srv/mealie.nix # recipe service
+    ../_srv/mealie.nix # recipe service
     ../../modules # Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd-zenpower
     inputs.hardware.nixosModules.common-gpu-amd
