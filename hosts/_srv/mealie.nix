@@ -11,4 +11,6 @@
       TZ = "Europe/Zurich";
     };
   };
+
+  networking.firewall.allowedTCPPorts = [ config.services.mealie.port ];
 }
