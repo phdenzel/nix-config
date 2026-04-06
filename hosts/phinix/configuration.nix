@@ -10,7 +10,7 @@
 in {
   imports = [
     ../_common # default nix (and sops-nix) configuration
-    ../_common/nfs.nix # NFS mounts
+    # ../_common/nfs.nix # NFS mounts
     ../_common/sddm.nix # display manager
     ../_common/hyprland.nix # window manager
     ../_common/kde.nix # desktop as fallback when window managers are bricked
@@ -34,16 +34,12 @@ in {
     ../_common/games.nix # Gaming utils
     ../_common/texlive.nix # full TeXLive package
     ../_common/vpn-zhaw.nix # VPN for work
+    ../_srv/glances.nix  # for homepage-dashboard
     # testing
-    ../_srv/dashboards.nix
-    # ../_srv/blocky.nix
-    # ../_srv/blocky-grafana.nix
-    # ../_srv/jellyfin.nix
     # ../_srv/cloud.nix
     # ../_srv/forgejo.nix
     # ../_srv/immich.nix
     # ../_srv/vikunja.nix
-    # ../_srv/mealie.nix
     
     ../../modules # Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd-pstate
