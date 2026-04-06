@@ -17,6 +17,7 @@ in {
     ../_common/emacs.nix # editor and god tool
     ../_common/cli-utils.nix # cli tool collection
     ../_srv/blocky.nix # DNS server
+    # ../_srv/block-grafana.nix
     ../_srv/glances.nix # for homepage-dashboard
     ../../modules/intl.nix # internationalization configs
     inputs.hardware.nixosModules.raspberry-pi-4
