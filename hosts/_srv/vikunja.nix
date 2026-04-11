@@ -1,18 +1,16 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   vikunja = config.services.vikunja.package;
-  mkProvisionUser = {
-    username,
-    email,
-    passwordSecret,
-  }: ''
+  vikunjaUsers = ["phdenzel" "ldenzel" "rdenzel"];
+  mkProvisionUser = username: ''
     ${vikunja}/bin/vikunja user create \
       --username ${username} \
-      --email ${email} \
-      --password "$(cat ${passwordSecret})"
+      --email "$(cat ${config.sops.secrets."vikunja/${username}/email".path})" \
+      --password "$(cat ${config.sops.secrets."vikunja/${username}/password".path})"
   '';
 
   provisionUsers = pkgs.writeShellScript "vikunja-provision-users" ''
@@ -24,24 +22,11 @@
       exit 0
     fi
 
-    ${mkProvisionUser {
-      username = "phdenzel";
-      email = config.sops.secrets."vikunja/phdenzel/email".path;
-      passwordSecret = config.sops.secrets."vikunja/phdenzel/password".path;
-    }}
-    ${mkProvisionUser {
-      username = "ldenzel";
-      email = config.sops.secrets."vikunja/ldenzel/email".path;
-      passwordSecret = config.sops.secrets."vikunja/ldenzel/password".path;
-    }}
-    ${mkProvisionUser {
-      username = "rdenzel";
-      email = config.sops.secrets."vikunja/rdenzel/email".path;
-      passwordSecret = config.sops.secrets."vikunja/rdenzel/password".path;
-    }}
+    ${lib.concatMapStrings mkProvisionUser vikunjaUsers}
 
     touch "$SENTINEL"
   '';
+
 in {
   services.vikunja = {
     enable = true;
@@ -71,11 +56,10 @@ in {
     };
   };
 
-  sops-host.keys = [
-    "vikunja/phdenzel"
-    "vikunja/ldenzel"
-    "vikunja/rdenzel"
-  ];
+  sops-host.keys = lib.concatMap (u: [
+    "vikunja/${u}/password"
+    "vikunja/${u}/email"
+  ]) vikunjaUsers;
 
   networking.firewall.allowedTCPPorts = [config.services.vikunja.port];
 }
