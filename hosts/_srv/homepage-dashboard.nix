@@ -145,6 +145,21 @@ in {
             };
           }
           {
+            Vikunja = {
+              icon = "vikunja.png";
+              description = "Fluffy to-do app";
+              href = "http://ygdrasil.home:3456";
+              siteMonitor = "http://ygdrasil.home:3456";
+              widget = {
+                version = 2;
+                type = "vikunja";
+                url = "http://ygdrasil.home:3456";
+                key = "tk_40f90030bc542340f95db1d4d02951d609d0ce77";
+                enableTaskList = true;
+              };
+            };
+          }
+          {
             Mealie = {
               icon = "mealie.png";
               description = "Recipe manager";
