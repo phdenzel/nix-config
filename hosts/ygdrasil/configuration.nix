@@ -21,7 +21,6 @@ in {
     # ../_srv/computing.nix # computing tool collection
     # ../_srv/ollama.nix # local LLM services
     ../_srv/dashboards.nix # server dashboards (homepage-dashboard, glances, ...)
-    ../_srv/glances.nix
     # ../_srv/admin.nix # monitoring (cockpit, uptime-kuma, gotify, ...)
     # ../_srv/proxy.nix # server proxy services (traefik, crowdsec, keycloak, ...)
     # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
@@ -32,7 +31,7 @@ in {
     # ../_srv/servarr.nix # servarr stack
     ../_srv/transmission.nix
     # ../_srv/home-assistant.nix # home assistant service
-    # ../_srv/vikunja.nix # ToDo management service
+    ../_srv/vikunja.nix # ToDo management service
     ../_srv/mealie.nix # recipe service
     ../../modules # Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd-zenpower
@@ -90,16 +89,7 @@ in {
   intl.extraLocale = "de_CH";
 
   # Root configuration
-  sops-host = {
-    enable = true;
-    keys = [
-      "homepage-dashboard/env"
-    ];
-    ownedKeys = [
-      "grafana/admin_password"
-    ];
-  };
-
+  sops-host.enable = true;
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
     # SSH root access (for now)
