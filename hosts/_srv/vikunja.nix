@@ -50,10 +50,7 @@ in {
     wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "oneshot";
-      DynamicUser = true;
-      User = "vikunja";
       WorkingDirectory = "/var/lib/vikunja";
-      StateDirectory = "vikunja";
       RemainAfterExit = true;
       ExecStart = provisionUsers;
     };
