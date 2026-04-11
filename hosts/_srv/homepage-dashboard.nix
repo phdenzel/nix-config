@@ -173,6 +173,7 @@ in {
             ygdrasil = {
               description = "NAS server";
               siteMonitor = "http://ygdrasil.home:61208";
+              href = "http://ygdrasil.home:61208";
               widget = {
                 version = 4;
                 type = "glances";
@@ -186,6 +187,7 @@ in {
             heimdall = {
               description = "DNS server";
               siteMonitor = "http://heimdall.home:61208";
+              href = "http://heimdall.home:61208";
               widget = {
                 version = 4;
                 type = "glances";
@@ -199,6 +201,7 @@ in {
             phinix = {
               description = "phdenzel's workstation";
               siteMonitor = "http://phinix.home:61208";
+              href = "http://phinix.home:61208";
               widget = {
                 version = 4;
                 type = "glances";
