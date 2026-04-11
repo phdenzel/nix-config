@@ -16,4 +16,6 @@
       };
     };
   };
+
+  sops-host.ownedKeys = ["grafana/admin_password"];
 }

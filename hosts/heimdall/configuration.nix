@@ -48,9 +48,7 @@ in {
   intl.extraLocale = "de_CH";
 
   # Root configuration
-  sops-host = {
-    enable = true;
-  };
+  sops-host.enable = true;
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
     # for remote builds

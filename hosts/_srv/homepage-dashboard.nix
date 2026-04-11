@@ -12,6 +12,9 @@ in {
       source = "${inputs.phd-wallpapers}/serenity_4k.png";
     };
   };
+
+  sops-host.keys = ["homepage-dashboard/env"];
+
   services.homepage-dashboard = {
     enable = true;
     environmentFiles = [config.sops.secrets."homepage-dashboard/env".path];

@@ -93,15 +93,7 @@ in {
   intl.extraLocale = "de_CH";
 
   # Root configuration
-  sops-host = {
-    enable = true;
-    keys = [
-      "homepage-dashboard/env"
-    ];
-    ownedKeys = [
-      "grafana/admin_password"
-    ];
-  };
+  sops-host.enable = true;
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
     # openssh.authorizedKeys.keys = [
