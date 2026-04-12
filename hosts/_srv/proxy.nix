@@ -19,6 +19,8 @@ in {
     staticConfigOptions = {
       entryPoints.web.address = ":80";
       api.dashboard = true; # traefik dashboard on port 8080 -> http://traefik.home
+      providers.file.filename = "/etc/traefik/dynamic.json";
+      providers.file.watch = true;
     };
 
     dynamicConfigOptions = {
@@ -29,7 +31,7 @@ in {
             service = "homepage-dashboard";
             entryPoints = ["web"];
           };
-          routers.traefik = {
+          traefik = {
             rule = "Host(`traefik.home`)";
             service = "api@internal";
             entryPoints = [ "web" ];
@@ -61,7 +63,7 @@ in {
           };
           glances-ygdrasil = mkGlancesRouter "ygdrasil";
           glances-heimdall = mkGlancesRouter "heimdall";
-          glances-phinix   = mkGlancesRouter "phinix";
+          glances-phinix = mkGlancesRouter "phinix";
         };
 
         services = {
