@@ -25,21 +25,14 @@ in {
       '';
     });
     listenPort = 8082;
-    openFirewall = true;
+    # openFirewall = true;
     allowedHosts =
       lib.strings.concatStringsSep ","
       [
         "localhost:8082"
         "127.0.0.1:8082"
-        "ygdrasil.home:8082"
-        "ygdrasil.home"
-        "192.168.178.42"
-        "heimdall.home:8082"
-        "heimdall.home"
-        "192.168.178.64"
-        "phinix.home:8082"
-        "phinix.home"
-        "192.168.178.156"
+        "${config.networking.hostName}.home:8082"
+        "${config.networking.hostName}.home"
       ];
     settings = {
       title = "Denzel's homepage dashboard";
@@ -112,15 +105,34 @@ in {
       {
         Services = [
           {
+            Traefik = {
+              icon = "traefik.png";
+              description = "Reverse proxy & load balancer";
+              href = "http://traefik.home";
+              siteMonitor = "http://traefik.home";
+              widget = {
+                type = "traefik";
+                url = "http://traefik.home";
+              };
+            };
+          }
+          {
+            Forgejo = {
+              description = "Git forge";
+              href = "http://forgejo.home";
+              siteMonitor = "http://forgejo.home";
+            };
+          }
+          {
             Jellyfin = {
               icon = "jellyfin.png";
               description = "Home media server";
-              href = "http://ygdrasil.home:8096";
-              siteMonitor = "http://ygdrasil.home:8096";
+              href = "http://jellyfin.home";
+              siteMonitor = "http://jellyfin.home";
               widget = {
                 version = 2;
                 type = "jellyfin";
-                url = "http://ygdrasil.home:8096";
+                url = "http://jellyfin.home";
                 key = "372c36f981ae465d9012aa2377371859";
                 enableBlocks = true;
                 enableNowPlaying = false;
@@ -134,11 +146,11 @@ in {
             Transmission = {
               icon = "transmission.png";
               description = "Torrent client";
-              href = "http://ygdrasil.home:9091";
-              siteMonitor = "http://ygdrasil.home:9091";
+              href = "http://transmission.home";
+              siteMonitor = "http://transmission.home";
               widget = {
                 type = "transmission";
-                url = "http://ygdrasil.home:9091";
+                url = "http://transmission.home";
                 username = "";
                 password = "{4599f89505bdfc3a8de0b3a58606c4df19d75587Q9st2FM5";
               };
@@ -148,12 +160,12 @@ in {
             Vikunja = {
               icon = "vikunja.png";
               description = "Fluffy to-do app";
-              href = "http://ygdrasil.home:3456";
-              siteMonitor = "http://ygdrasil.home:3456";
+              href = "http://vikunja.home";
+              siteMonitor = "http://vikunja.home";
               widget = {
                 version = 2;
                 type = "vikunja";
-                url = "http://ygdrasil.home:3456";
+                url = "http://vikunja.home";
                 key = "tk_40f90030bc542340f95db1d4d02951d609d0ce77";
                 enableTaskList = true;
               };
@@ -163,12 +175,12 @@ in {
             Mealie = {
               icon = "mealie.png";
               description = "Recipe manager";
-              href = "http://ygdrasil.home:9000";
-              siteMonitor = "http://ygdrasil.home:9000";
+              href = "http://mealie.home";
+              siteMonitor = "http://mealie.home";
               widget = {
                 version = 2;
                 type = "mealie";
-                url = "http://ygdrasil.home:9000";
+                url = "http://mealie.home";
                 key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb25nX3Rva2VuIjp0cnVlLCJpZCI6ImY4NWQ2YjcwLTY0NTgtNDU3MS04NjVlLTEyYmJjN2Y1NGUxZCIsIm5hbWUiOiJob21lcGFnZS1kYXNoYm9hcmQiLCJpbnRlZ3JhdGlvbl9pZCI6ImdlbmVyaWMiLCJleHAiOjE5MzMxNDIzOTB9.w3Qx8uhrG5iiRyda_F1KSKbLKLbWXx5N5vibI8ODFCM";
               };
             };
@@ -190,12 +202,12 @@ in {
           {
             ygdrasil = {
               description = "NAS server";
-              siteMonitor = "http://ygdrasil.home:61208";
-              href = "http://ygdrasil.home:61208";
+              siteMonitor = "http://glances.ygdrasil.home";
+              href = "http://glances.ygdrasil.home";
               widget = {
                 version = 4;
                 type = "glances";
-                url = "http://ygdrasil.home:61208";
+                url = "http://glances.ygdrasil.home";
                 metric = "info";
                 refreshInterval = 5000;
               };
@@ -204,12 +216,12 @@ in {
           {
             heimdall = {
               description = "DNS server";
-              siteMonitor = "http://heimdall.home:61208";
-              href = "http://heimdall.home:61208";
+              siteMonitor = "http://glances.heimdall.home";
+              href = "http://glances.heimdall.home";
               widget = {
                 version = 4;
                 type = "glances";
-                url = "http://heimdall.home:61208";
+                url = "http://glances.heimdall.home";
                 metric = "info";
                 refreshInterval = 5000;
               };
@@ -218,12 +230,12 @@ in {
           {
             phinix = {
               description = "phdenzel's workstation";
-              siteMonitor = "http://phinix.home:61208";
-              href = "http://phinix.home:61208";
+              siteMonitor = "http://glances.phinix.home";
+              href = "http://glances.phinix.home";
               widget = {
                 version = 4;
                 type = "glances";
-                url = "http://phinix.home:61208";
+                url = "http://glances.phinix.home";
                 metric = "info";
                 refreshInterval = 5000;
               };
