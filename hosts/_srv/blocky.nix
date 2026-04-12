@@ -39,13 +39,13 @@
           "fenrix.home" = "192.168.178.138,192.168.178.140";
           "asahi.home" = "192.168.178.138,192.168.178.139";
           # Services
-          "dashboard.home" = "192.168.178.42:8082";
-          "jellyfin.home" = "192.168.178.42:8096";
-          "transmission.home" = "192.168.178.42:9091";
-          "forgejo.home" = "192.168.178.42:3022";
-          "vikunja.home" = "192.168.178.42:3456";
-          "mealie.home" = "192.168.178.42:9000";
-          # "nextcloud.home" = "192.168.178.42";
+          "denzels.home" = "192.168.178.42";  # 8082
+          "jellyfin.home" = "192.168.178.42";  # 8096
+          "transmission.home" = "192.168.178.42";  # 9091
+          "forgejo.home" = "192.168.178.42";  # 3022
+          "vikunja.home" = "192.168.178.42";  # 3456
+          "mealie.home" = "192.168.178.42";  # 9000
+          # "opencloud.home" = "192.168.178.42";
           "homematic.home" = "192.168.178.41";
         };
       };
