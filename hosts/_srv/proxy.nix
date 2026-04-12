@@ -18,10 +18,7 @@ in {
 
     staticConfigOptions = {
       entryPoints.web.address = ":80";
-      api = {
-        dashboard = true; # traefik dashboard at http://ygdrasil.home:8080
-        insecure = true; # acceptable for LAN-only
-      };
+      api.dashboard = true; # traefik dashboard on port 8080 -> http://traefik.home
     };
 
     dynamicConfigOptions = {
@@ -31,6 +28,11 @@ in {
             rule = "Host(`denzels.home`)";
             service = "homepage-dashboard";
             entryPoints = ["web"];
+          };
+          routers.traefik = {
+            rule = "Host(`traefik.home`)";
+            service = "api@internal";
+            entryPoints = [ "web" ];
           };
           forgejo = {
             rule = "Host(`forgejo.home`)";
@@ -77,5 +79,5 @@ in {
     };
   };
 
-  networking.firewall.allowedTCPPorts = [80 8080]; # 8080 = Traefik dashboard
+  networking.firewall.allowedTCPPorts = [80];
 }
