@@ -69,6 +69,7 @@ in {
     enableIPv6 = false;
   };
   systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
 
   # Local networking
   services.avahi = {

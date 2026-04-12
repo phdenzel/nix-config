@@ -16,6 +16,14 @@ in {
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
     # example = addPatches prev.example [./example.diff];
+    glances = if final.stdenv.hostPlatform.isAarch64
+            then prev.glances.overrideAttrs (_: {
+              doCheck = false;
+              doInstallCheck = false;
+              nativeCheckInputs = [];
+              checkInputs = [];
+            })
+            else prev.glances;
   };
 
   # Alias inputs.nixpkgs-stable to pkgs.stable,
