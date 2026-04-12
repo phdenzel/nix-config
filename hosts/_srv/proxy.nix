@@ -67,7 +67,7 @@ in {
         };
 
         services = {
-          dashboard.loadBalancer.servers = [{url = "http://127.0.0.1:${toString config.services.homepage-dashboard.listenPort}";}];
+          homepage-dashboard.loadBalancer.servers = [{url = "http://127.0.0.1:${toString config.services.homepage-dashboard.listenPort}";}];
           forgejo.loadBalancer.servers = [{url = "http://127.0.0.1:${toString config.services.forgejo.settings.server.HTTP_PORT}";}];
           jellyfin.loadBalancer.servers = [{url = "http://127.0.0.1:8096";}];
           transmission.loadBalancer.servers = [{url = "http://127.0.0.1:${toString config.services.transmission.settings.rpc-port}";}];
