@@ -24,7 +24,7 @@ in {
     # ../_srv/admin.nix # monitoring (cockpit, uptime-kuma, gotify, ...)
     # ../_srv/proxy.nix # server proxy services (traefik, crowdsec, keycloak, ...)
     # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
-    # ../_srv/forgejo.nix # git forge service (forgejo)
+    ../_srv/forgejo.nix # git forge service (forgejo)
     # ../_srv/cloud.nix # cloud service (filebrowser, opencloud, ...)
     # ../_srv/immich.nix # image hosting service
     ../_srv/jellyfin.nix # media streaming service
@@ -65,12 +65,15 @@ in {
     interval = "weekly";
     fileSystems = ["/" "/data"];
   };
-  # Media directories (set permissions, create if missing)
+  # Store/media directories (set permissions, create if missing)
   systemd.tmpfiles.rules = [
-    "d  /data/media/Videos    02750  phdenzel  jellyfin  -  -"
-    "d  /data/media/Books     02750  phdenzel  jellyfin  -  -"
-    "d  /data/media/Pictures  02750  phdenzel  jellyfin  -  -"
-    "d  /data/media/Music     02750  phdenzel  jellyfin  -  -"
+    "d  /data/media/Videos        02750  phdenzel  jellyfin      -  -"
+    "d  /data/media/Books         02750  phdenzel  jellyfin      -  -"
+    "d  /data/media/Pictures      02750  phdenzel  jellyfin      -  -"
+    "d  /data/media/Music         02750  phdenzel  jellyfin      -  -"
+    "d  /data/store/transmission  02770  phdenzel  transmission  -  -"
+    "d  /data/store/forgejo       02770  phdenzel  forgejo       -  -"
+    # "d  /data/store/opencloud     02770  phdenzel  users         -  -"
   ];
   system.activationScripts.mediaPermissions = ''
     for dir in Videos Books Pictures Music; do

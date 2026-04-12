@@ -40,6 +40,7 @@ in {
       ++ ifTheyExist [
         "disk"
         "docker"
+        "forgejo"
         "git"
         "grafana"
         "input"
@@ -49,7 +50,6 @@ in {
         "libvirtd"
         "network"
         "networkmanager"
-        "nextcloud"
         "podman"
         "storage"
         "transmission"
