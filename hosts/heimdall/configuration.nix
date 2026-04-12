@@ -64,7 +64,7 @@ in {
   networking = {
     hostName = "${hostName}";
     hostId = "78e00dd5";
-    wireless.enable = false;
+    wireless.enable = lib.mkForce false;
     networkmanager.enable = true;
     enableIPv6 = false;
   };
