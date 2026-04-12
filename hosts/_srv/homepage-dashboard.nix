@@ -33,6 +33,7 @@ in {
         "127.0.0.1:8082"
         "${config.networking.hostName}.home:8082"
         "${config.networking.hostName}.home"
+        "denzels.home"
       ];
     settings = {
       title = "Denzel's homepage dashboard";
