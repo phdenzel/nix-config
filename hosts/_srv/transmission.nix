@@ -25,7 +25,7 @@ in {
         rpc-bind-address = "0.0.0.0";
         rpc-whitelist = "127.0.0.1,192.168.*.*";
         rpc-host-whitelist-enabled = true;
-        rpc-host-whitelist = "${hostName}.home,${hostName}.home:${toString rpcPort},${hostName}.local,${hostName}.local:${toString rpcPort},${hostName}";
+        rpc-host-whitelist = "transmission.home,${hostName}.home,${hostName}.home:${toString rpcPort},${hostName}.local,${hostName}.local:${toString rpcPort},${hostName}";
       };
     };
   };
