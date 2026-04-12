@@ -12,7 +12,7 @@ in {
     transmission = {
       enable = true;
       package = pkgs.transmission_4;
-      openRPCPort = true;
+      # openRPCPort = true;
       settings = {
         watch-dir-enabled = true;
         watch-dir = "${transmissionStore}/watchdir";

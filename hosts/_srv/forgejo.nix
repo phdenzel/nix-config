@@ -88,7 +88,7 @@ in {
     };
   };
 
-  networking.firewall.allowedTCPPorts = [cfg.settings.server.HTTP_PORT];
+  # networking.firewall.allowedTCPPorts = [cfg.settings.server.HTTP_PORT];
 
   systemd.tmpfiles.rules = [
     "d ${forgejoStore}/lfs   02750  ${cfg.user}  ${cfg.group}  - -"

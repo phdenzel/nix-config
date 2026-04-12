@@ -1,7 +1,7 @@
 {pkgs, lib, ...}: {
   services.jellyfin = {
     enable = true;
-    openFirewall = true;  # 8096, 8920
+    # openFirewall = true;  # 8096, 8920
     hardwareAcceleration = lib.mkDefault {
       enable = true;
       type = "vaapi";

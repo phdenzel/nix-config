@@ -27,5 +27,5 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [config.services.mealie.port];
+  # networking.firewall.allowedTCPPorts = [config.services.mealie.port];
 }

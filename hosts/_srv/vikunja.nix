@@ -61,5 +61,5 @@ in {
     "vikunja/${u}/email"
   ]) vikunjaUsers;
 
-  networking.firewall.allowedTCPPorts = [config.services.vikunja.port];
+  # networking.firewall.allowedTCPPorts = [config.services.vikunja.port];
 }
