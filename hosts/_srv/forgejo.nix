@@ -95,9 +95,9 @@ in {
   ];
 
   sops-host.keys =
-    lib.concatMap ({u, ...}: [
-      "forgejo/${u}/email"
-      "forgejo/${u}/password"
+    lib.concatMap ({username, ...}: [
+      "forgejo/${username}/email"
+      "forgejo/${username}/password"
     ])
     forgejoUsers
     ++ [
