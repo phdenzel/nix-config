@@ -24,7 +24,7 @@
     username,
     isAdmin,
   }: ''
-    ${cfg.package}/bin/forgejo admin user create \
+    ${pkgs.sudo}/bin/sudo -u ${cfg.user} ${cfg.package}/bin/forgejo admin user create \
       --username ${username} \
       --email "$(cat ${config.sops.secrets."forgejo/${username}/email".path})" \
       --password "$(cat ${config.sops.secrets."forgejo/${username}/password".path})" \
@@ -84,6 +84,7 @@ in {
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = provisionUsers;
+      supplementaryGroups = [];
     };
   };
 
