@@ -32,8 +32,18 @@ in {
         [
           "localhost"
           "127.0.0.1"
+          "syncthing.ygdrasil.home/rest/system/connections"
+          # "syncthing.ygdrasil.home/rest/system/status"
         ] ++ map (s: "${s}.home") [
-          "${config.networking.hostName}" "denzels" "traefik" "forgejo" "jellyfin" "transmission" "vikunja" "mealie"
+          "${config.networking.hostName}"
+          "denzels"
+          "traefik"
+          "syncthing.ygdrasil"
+          "forgejo"
+          "jellyfin"
+          "transmission"
+          "vikunja"
+          "mealie"
         ]
       );
     settings = {
@@ -120,6 +130,30 @@ in {
             };
           }
           {
+            Syncthing = {
+              icon = "syncthing.png";
+              description = "Device synchronization service";
+              href = mkProxyUrl "syncthing.ygdrasil";
+              siteMonitor = mkProxyUrl "syncthing.ygdrasil";
+              widget = {
+                type = "customapi";
+                url = "${mkProxyUrl "syncthing.ygdrasil"}/rest/system/connections";
+                # url = "${mkProxyUrl "syncthing.ygdrasil"}/rest/system/status";
+                headers = {
+                  X-API-Key = "{{HOMEPAGE_VAR_SYNCTHING_TOKEN}}";
+                };
+                mappings = [
+                  { field = "total.inBytesTotal"; label = "In"; format = "float"; scale = "0.000001"; suffix = " MB"; }
+                  { field = "total.outBytesTotal"; label = "Out"; format = "float"; scale = "0.000001"; suffix = " MB"; }
+                  { field = "total.at"; label = "Updated"; format = "relativeDate"; }
+                  # { field = "uptime"; label = "Uptime (h)"; format = "float"; scale = "0.000277778"; suffix = "h"; }
+                  # { field = "cpuPercent"; label = "CPU"; format = "float"; suffix = "%"; }
+                  # { field = "alloc"; label = "Memory"; format = "bytes"; }
+                ];
+              };
+            };
+          }
+          {
             Forgejo = {
               icon = "forgejo.png";
               description = "Git forge";
@@ -192,16 +226,6 @@ in {
                 url = mkProxyUrl "mealie";
                 key = "{{HOMEPAGE_VAR_MEALIE_TOKEN}}";
               };
-            };
-          }
-          {
-            Syncthing = {
-              icon = "syncthing.png";
-              description = "Device synchronization service";
-              href = "http://localhost:8384";
-              # widget = {
-              #   type = "strelaysrv";
-              # };
             };
           }
         ];
