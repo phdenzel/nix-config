@@ -35,7 +35,7 @@ in {
     ../_common/texlive.nix # full TeXLive package
     ../_common/vpn-zhaw.nix # VPN for work
     ../_srv/glances.nix  # for homepage-dashboard
-    ../srv_/traefik  # local reverse proxy
+    ../_srv/traefik  # local reverse proxy
     # testing
     # ../_srv/cloud.nix
     # ../_srv/forgejo.nix
