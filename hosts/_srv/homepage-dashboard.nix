@@ -6,7 +6,7 @@
   ...
 }: let
   background_image = "homepage-dashboard/assets/background.png";
-  host = "${config.networking.hostName}.home";
+  host = "127.0.0.1";
   mkUrl = port: "http://${host}:${toString port}";
   mkProxyUrl = service: "http://${service}.home";
 in {
