@@ -6,8 +6,6 @@
   ...
 }: let
   background_image = "homepage-dashboard/assets/background.png";
-  host = "127.0.0.1";
-  mkUrl = port: "http://${host}:${toString port}";
   mkProxyUrl = service: "http://${service}.home";
 in {
   environment.etc = {
@@ -30,14 +28,14 @@ in {
     listenPort = 8082;
     # openFirewall = true;
     allowedHosts =
-      lib.strings.concatStringsSep ","
-      [
-        "localhost:8082"
-        "127.0.0.1:8082"
-        "${config.networking.hostName}.home:8082"
-        "${config.networking.hostName}.home"
-        "denzels.home"
-      ];
+      lib.strings.concatStringsSep "," (
+        [
+          "localhost"
+          "127.0.0.1"
+        ] ++ map (s: "${s}.home") [
+          "${config.networking.hostName}" "denzels" "traefik" "forgejo" "jellyfin" "transmission" "vikunja" "mealie"
+        ]
+      );
     settings = {
       title = "Denzel's homepage dashboard";
       description = "Home dashboard listing hosts and services.";
@@ -117,7 +115,7 @@ in {
               siteMonitor = mkProxyUrl "traefik";
               widget = {
                 type = "traefik";
-                url = mkUrl 8080;
+                url = mkProxyUrl "traefik";
               };
             };
           }
@@ -129,8 +127,8 @@ in {
               siteMonitor = mkProxyUrl "forgejo";
               widget = {
                 type = "gitea";
-                url = mkUrl config.services.forgejo.settings.server.HTTP_PORT;
-                token = "{{HOMEPAGE_VAR_FORGEJO_TOKEN}}";
+                url = mkProxyUrl "forgejo";
+                key = "{{HOMEPAGE_VAR_FORGEJO_TOKEN}}";
               };
             };
           }
@@ -143,7 +141,7 @@ in {
               widget = {
                 version = 2;
                 type = "jellyfin";
-                url = mkUrl 8096;
+                url = mkProxyUrl "jellyfin";
                 key = "{{HOMEPAGE_VAR_JELLYFIN_TOKEN}}";
                 enableBlocks = true;
                 enableNowPlaying = false;
@@ -161,7 +159,7 @@ in {
               siteMonitor = mkProxyUrl "transmission";
               widget = {
                 type = "transmission";
-                url = mkUrl config.services.transmission.settings.rpc-port;
+                url = mkProxyUrl "transmission";
                 username = "";
                 password = "{{HOMEPAGE_VAR_TRANSMISSION_PASSWD}}";
               };
@@ -176,7 +174,7 @@ in {
               widget = {
                 version = 2;
                 type = "vikunja";
-                url = mkUrl config.services.vikunja.port;
+                url = mkProxyUrl "vikunja";
                 key = "{{HOMEPAGE_VAR_VIKUNJA_TOKEN}}";
                 enableTaskList = true;
               };
@@ -191,7 +189,7 @@ in {
               widget = {
                 version = 2;
                 type = "mealie";
-                url = mkUrl config.services.mealie.port;
+                url = mkProxyUrl "mealie";
                 key = "{{HOMEPAGE_VAR_MEALIE_TOKEN}}";
               };
             };
