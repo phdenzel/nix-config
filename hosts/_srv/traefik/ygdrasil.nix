@@ -67,6 +67,6 @@ in {
         name = attrs.hostname;
         value = mkService attrs;
       })
-      localServices);
+      (builtins.filter (attrs: attrs ? port) localServices));
   };
 }
