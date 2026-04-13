@@ -22,7 +22,10 @@ in {
     # ../_srv/ollama.nix # local LLM services
     ../_srv/dashboards.nix # server dashboards (homepage-dashboard, glances, ...)
     # ../_srv/admin.nix # monitoring (cockpit, uptime-kuma, gotify, ...)
-    ../_srv/proxy.nix # server proxy services (traefik, crowdsec, keycloak, ...)
+    ../_srv/traefik # server proxy services
+    ../_srv/traefik/ygdrasil.nix
+    # ../srv/crowdsec.nix # security services
+    # ../srv/keycloak.nix # security services 
     # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
     ../_srv/forgejo.nix # git forge service (forgejo)
     # ../_srv/cloud.nix # cloud service (filebrowser, opencloud, ...)

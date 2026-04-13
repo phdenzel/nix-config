@@ -19,6 +19,7 @@ in {
     ../_srv/blocky.nix # DNS server
     # ../_srv/block-grafana.nix
     ../_srv/glances.nix # for homepage-dashboard
+    ../_srv/traefik  # local reverse proxy
     ../../modules/intl.nix # internationalization configs
     inputs.hardware.nixosModules.raspberry-pi-4
   ];
