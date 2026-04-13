@@ -50,7 +50,8 @@ in {
     package = pkgs.forgejo;
     settings.server = {
       PROTOCOL = "http";
-      DOMAIN = "${config.networking.hostName}.home";
+      DOMAIN = "forgejo.home";
+      ROOT_URL = "http://forgejo.home/";
       HTTP_PORT = 3022;
       SSH_PORT = 22;
     };

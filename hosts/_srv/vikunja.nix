@@ -32,7 +32,7 @@ in {
     enable = true;
     port = 3456;
     frontendScheme = "http";
-    frontendHostname = "${config.networking.hostName}.home";
+    frontendHostname = "vikunja.home";
     database.type = "sqlite";
     settings = {
       service = {
