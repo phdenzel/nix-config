@@ -50,6 +50,7 @@ in {
         "libvirtd"
         "network"
         "networkmanager"
+        "opencloud"
         "podman"
         "storage"
         "transmission"

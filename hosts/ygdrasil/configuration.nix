@@ -28,7 +28,7 @@ in {
     # ../srv/keycloak.nix # security services 
     # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
     ../_srv/forgejo.nix # git forge service (forgejo)
-    # ../_srv/cloud.nix # cloud service (filebrowser, opencloud, ...)
+    ../_srv/opencloud.nix # cloud service
     # ../_srv/immich.nix # image hosting service
     ../_srv/jellyfin.nix # media streaming service
     # ../_srv/servarr.nix # servarr stack
@@ -76,7 +76,7 @@ in {
     "d  /data/media/Music         02750  phdenzel  jellyfin      -  -"
     "d  /data/store/transmission  02770  phdenzel  transmission  -  -"
     "d  /data/store/forgejo       02770  phdenzel  forgejo       -  -"
-    # "d  /data/store/opencloud     02770  phdenzel  users         -  -"
+    "d  /data/store/opencloud     02775  phdenzel  opencloud     -  -"
   ];
   system.activationScripts.mediaPermissions = ''
     for dir in Videos Books Pictures Music; do

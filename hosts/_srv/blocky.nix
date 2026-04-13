@@ -46,7 +46,7 @@
           "forgejo.home" = "192.168.178.42";  # 3022
           "vikunja.home" = "192.168.178.42";  # 3456
           "mealie.home" = "192.168.178.42";  # 9000
-          # "opencloud.home" = "192.168.178.42";
+          "opencloud.home" = "192.168.178.42";
           "homematic.home" = "192.168.178.41";
         };
       };

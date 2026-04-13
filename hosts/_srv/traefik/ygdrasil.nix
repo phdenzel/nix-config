@@ -15,6 +15,10 @@
       port = config.services.homepage-dashboard.listenPort;
     }
     {
+      hostname = "opencloud";
+      port = config.services.opencloud.port;
+    }
+    {
       hostname = "forgejo";
       port = config.services.forgejo.settings.server.HTTP_PORT;
     }
