@@ -36,12 +36,6 @@ in {
     ../_common/vpn-zhaw.nix # VPN for work
     ../_srv/glances.nix  # for homepage-dashboard
     ../_srv/traefik  # local reverse proxy
-    # testing
-    # ../_srv/cloud.nix
-    # ../_srv/forgejo.nix
-    # ../_srv/immich.nix
-    # ../_srv/vikunja.nix
-    
     ../../modules # Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd-pstate
     inputs.hardware.nixosModules.common-gpu-amd
@@ -106,7 +100,6 @@ in {
   networking = {
     hostName = "${hostName}";
     hostId = "27b636ba";
-    # wireless.enable = true;  # wireless via wpa_supplicant.
     networkmanager.enable = true;
     enableIPv6 = false;
   };
