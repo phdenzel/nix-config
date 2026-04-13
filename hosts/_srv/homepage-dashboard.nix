@@ -119,9 +119,14 @@ in {
           }
           {
             Forgejo = {
+              icon = "forgejo.png";
               description = "Git forge";
               href = "http://forgejo.home";
               siteMonitor = "http://forgejo.home";
+              widget = {
+                type = "gitea";
+                token = "{{HOMEPAGE_VAR_FORGEJO_TOKEN}}";
+              };
             };
           }
           {
@@ -134,7 +139,7 @@ in {
                 version = 2;
                 type = "jellyfin";
                 url = "http://jellyfin.home";
-                key = "372c36f981ae465d9012aa2377371859";
+                key = "{{HOMEPAGE_VAR_JELLYFIN_TOKEN}}";
                 enableBlocks = true;
                 enableNowPlaying = false;
                 enableUser = true;
@@ -153,7 +158,7 @@ in {
                 type = "transmission";
                 url = "http://transmission.home";
                 username = "";
-                password = "{4599f89505bdfc3a8de0b3a58606c4df19d75587Q9st2FM5";
+                password = "{{HOMEPAGE_VAR_TRANSMISSION_PASSWD}}";
               };
             };
           }
@@ -167,7 +172,7 @@ in {
                 version = 2;
                 type = "vikunja";
                 url = "http://vikunja.home";
-                key = "tk_40f90030bc542340f95db1d4d02951d609d0ce77";
+                key = "{{HOMEPAGE_VAR_VIKUNJA_TOKEN}}";
                 enableTaskList = true;
               };
             };
@@ -182,7 +187,7 @@ in {
                 version = 2;
                 type = "mealie";
                 url = "http://mealie.home";
-                key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb25nX3Rva2VuIjp0cnVlLCJpZCI6ImY4NWQ2YjcwLTY0NTgtNDU3MS04NjVlLTEyYmJjN2Y1NGUxZCIsIm5hbWUiOiJob21lcGFnZS1kYXNoYm9hcmQiLCJpbnRlZ3JhdGlvbl9pZCI6ImdlbmVyaWMiLCJleHAiOjE5MzMxNDIzOTB9.w3Qx8uhrG5iiRyda_F1KSKbLKLbWXx5N5vibI8ODFCM";
+                key = "{{HOMEPAGE_VAR_MEALIE_TOKEN}}";
               };
             };
           }
