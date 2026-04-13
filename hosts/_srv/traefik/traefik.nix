@@ -6,7 +6,7 @@
     enable = true;
     staticConfigOptions = {
       entryPoints.web.address = ":80";
-      api.dashboard = true;
+      api.dashboard = true; # on port 8080
     };
     dynamicConfigOptions.http = {
       routers.hostTraefik = {

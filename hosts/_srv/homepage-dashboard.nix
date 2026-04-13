@@ -6,6 +6,9 @@
   ...
 }: let
   background_image = "homepage-dashboard/assets/background.png";
+  host = "${config.networking.hostName}.home";
+  mkUrl = port: "http://${host}:${toString port}";
+  mkProxyUrl = service: "http://${service}.home";
 in {
   environment.etc = {
     "${background_image}" = {
@@ -96,7 +99,8 @@ in {
           units = "metric";
         };
       }
-      { search = {
+      {
+        search = {
           provider = "duckduckgo";
           target = "_blank";
         };
@@ -109,11 +113,11 @@ in {
             Traefik = {
               icon = "traefik.png";
               description = "Reverse proxy & load balancer";
-              href = "http://traefik.home";
-              siteMonitor = "http://traefik.home";
+              href = mkProxyUrl "traefik";
+              siteMonitor = mkProxyUrl "traefik";
               widget = {
                 type = "traefik";
-                url = "http://traefik.home";
+                url = mkUrl 8080;
               };
             };
           }
@@ -121,10 +125,11 @@ in {
             Forgejo = {
               icon = "forgejo.png";
               description = "Git forge";
-              href = "http://forgejo.home";
-              siteMonitor = "http://forgejo.home";
+              href = mkProxyUrl "forgejo";
+              siteMonitor = mkProxyUrl "forgejo";
               widget = {
                 type = "gitea";
+                url = mkUrl config.services.forgejo.settings.server.HTTP_PORT;
                 token = "{{HOMEPAGE_VAR_FORGEJO_TOKEN}}";
               };
             };
@@ -133,12 +138,12 @@ in {
             Jellyfin = {
               icon = "jellyfin.png";
               description = "Home media server";
-              href = "http://jellyfin.home";
-              siteMonitor = "http://jellyfin.home";
+              href = mkProxyUrl "jellyfin";
+              siteMonitor = mkProxyUrl "jellyfin";
               widget = {
                 version = 2;
                 type = "jellyfin";
-                url = "http://jellyfin.home";
+                url = mkUrl 8096;
                 key = "{{HOMEPAGE_VAR_JELLYFIN_TOKEN}}";
                 enableBlocks = true;
                 enableNowPlaying = false;
@@ -152,11 +157,11 @@ in {
             Transmission = {
               icon = "transmission.png";
               description = "Torrent client";
-              href = "http://transmission.home";
-              siteMonitor = "http://transmission.home";
+              href = mkProxyUrl "transmission";
+              siteMonitor = mkProxyUrl "transmission";
               widget = {
                 type = "transmission";
-                url = "http://transmission.home";
+                url = mkUrl config.services.transmission.settings.rpc-port;
                 username = "";
                 password = "{{HOMEPAGE_VAR_TRANSMISSION_PASSWD}}";
               };
@@ -166,12 +171,12 @@ in {
             Vikunja = {
               icon = "vikunja.png";
               description = "Fluffy to-do app";
-              href = "http://vikunja.home";
-              siteMonitor = "http://vikunja.home";
+              href = mkProxyUrl "vikunja";
+              siteMonitor = mkProxyUrl "vikunja";
               widget = {
                 version = 2;
                 type = "vikunja";
-                url = "http://vikunja.home";
+                url = mkUrl config.services.vikunja.port;
                 key = "{{HOMEPAGE_VAR_VIKUNJA_TOKEN}}";
                 enableTaskList = true;
               };
@@ -181,12 +186,12 @@ in {
             Mealie = {
               icon = "mealie.png";
               description = "Recipe manager";
-              href = "http://mealie.home";
-              siteMonitor = "http://mealie.home";
+              href = mkProxyUrl "mealie";
+              siteMonitor = mkProxyUrl "mealie";
               widget = {
                 version = 2;
                 type = "mealie";
-                url = "http://mealie.home";
+                url = mkUrl config.services.mealie.port;
                 key = "{{HOMEPAGE_VAR_MEALIE_TOKEN}}";
               };
             };
@@ -208,12 +213,12 @@ in {
           {
             ygdrasil = {
               description = "NAS server";
-              siteMonitor = "http://glances.ygdrasil.home";
-              href = "http://glances.ygdrasil.home";
+              siteMonitor = mkProxyUrl "glances.ygdrasil";
+              href = mkProxyUrl "glances.ygdrasil";
               widget = {
                 version = 4;
                 type = "glances";
-                url = "http://glances.ygdrasil.home";
+                url = mkProxyUrl "glances.ygdrasil";
                 metric = "info";
                 refreshInterval = 5000;
               };
@@ -222,12 +227,12 @@ in {
           {
             heimdall = {
               description = "DNS server";
-              siteMonitor = "http://glances.heimdall.home";
-              href = "http://glances.heimdall.home";
+              siteMonitor = mkProxyUrl "glances.heimdall";
+              href = mkProxyUrl "glances.heimdall";
               widget = {
                 version = 4;
                 type = "glances";
-                url = "http://glances.heimdall.home";
+                url = mkProxyUrl "glances.heimdall";
                 metric = "info";
                 refreshInterval = 5000;
               };
@@ -236,12 +241,12 @@ in {
           {
             phinix = {
               description = "phdenzel's workstation";
-              siteMonitor = "http://glances.phinix.home";
-              href = "http://glances.phinix.home";
+              siteMonitor = mkProxyUrl "glances.phinix";
+              href = mkProxyUrl "glances.phinix";
               widget = {
                 version = 4;
                 type = "glances";
-                url = "http://glances.phinix.home";
+                url = mkProxyUrl "glances.phinix";
                 metric = "info";
                 refreshInterval = 5000;
               };
