@@ -58,13 +58,13 @@
 in {
   services.traefik.dynamicConfigOptions.http = {
     routers = listToAttrs (map (attrs: {
-        name = attrs.hostname;
+        name = attrs.service or attrs.hostname;
         value = mkRouter attrs;
       })
       localServices);
 
     services = listToAttrs (map (attrs: {
-        name = attrs.hostname;
+        name = attrs.service or attrs.hostname;
         value = mkService attrs;
       })
       (builtins.filter (attrs: attrs ? port) localServices));
