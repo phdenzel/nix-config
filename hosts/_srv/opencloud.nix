@@ -7,16 +7,18 @@
     {name = "Shared"; path = "/data/documents";}
     {name = "Backups"; path = "/data/backups";}
   ];
-  # phdenzel is provisioned as admin via OC_ADMIN_USER_ID + INITIAL_ADMIN_PASSWORD
+  # phdenzel is provisioned as admin
+  adminRoleId = "71881883-c3aa-4921-abd9-f03a71f3c0e6";
   opencloudUsers = [
-    {username = "ldenzel"; isAdmin = false;}
-    {username = "rdenzel"; isAdmin = false;}
+    {username = "phdenzel";}
+    {username = "ldenzel";}
+    {username = "rdenzel";}
   ];
-  mkProvisionUser = {username, isAdmin}: ''
+  mkProvisionUser = {username}: ''
     USER_PASS=$(cat ${config.sops.secrets."opencloud/${username}/password".path})
     USER_EMAIL=$(cat ${config.sops.secrets."opencloud/${username}/email".path})
-    ${pkgs.curl}/bin/curl -sf \
-      -H "Authorization: Bearer $TOKEN" \
+    HTTP_CODE=$(${pkgs.curl}/bin/curl -s -o /tmp/oc-provision-${username}.json -w "%{http_code}" \
+      -u "admin:$ADMIN_PASS" \
       -X POST "$BASE_URL/graph/v1.0/users" \
       -H "Content-Type: application/json" \
       -d "{
@@ -24,8 +26,8 @@
         \"displayName\": \"${username}\",
         \"mail\": \"$USER_EMAIL\",
         \"passwordProfile\": {\"password\": \"$USER_PASS\"}
-      }" \
-      || echo "Warning: failed to create user ${username} (may already exist)"
+      }")
+    echo "Provision ${username}: HTTP $HTTP_CODE - $(cat /tmp/oc-provision-${username}.json)"
   '';
   provisionUsers = pkgs.writeShellScript "opencloud-provision-users" ''
     set -euo pipefail
@@ -36,7 +38,7 @@
       exit 0
     fi
 
-    ADMIN_PASS=$(cat ${config.sops.secrets."opencloud/phdenzel/password".path})
+    ADMIN_PASS=$(cat ${config.sops.secrets."opencloud/admin/password".path})
     BASE_URL="http://127.0.0.1:${toString cfg.port}"
 
     # Wait for OpenCloud to be ready
@@ -46,37 +48,25 @@
       sleep 5
     done
 
-    # Obtain an OIDC access token via the resource owner password grant.
-    # The client_id below is the well-known public desktop client shipped with OpenCloud.
-    # If token acquisition fails, verify the /konnect/v1/token endpoint and client_id
-    # against the running version's IDP configuration.
-    TOKEN=$(${pkgs.curl}/bin/curl -sf \
-      "$BASE_URL/konnect/v1/token" \
-      -d "grant_type=password" \
-      -d "client_id=xdXOt13JKxym1B1QcEncf2XDkLAexMBFwiT9j6EfhhHFJhs2KM9jbjTmf8JBXE69" \
-      -d "username=phdenzel" \
-      -d "password=$ADMIN_PASS" \
-      -d "scope=openid profile email" \
-      | ${pkgs.jq}/bin/jq -r '.access_token')
+    # Wait for IDM/IDP to finish initializing.
+    sleep 5
 
     ${lib.concatMapStrings mkProvisionUser opencloudUsers}
 
     touch "$SENTINEL"
   '';
-  
 in {
   services.opencloud = {
     enable = true;
     port = 9200;
     address = "127.0.0.1";
-    url = "http://opencloud.home";
+    url = "https://opencloud.home";
     environment = {
       # no need for TLS with traefik reverse proxy
       PROXY_TLS = "false";
       # no TLS for internal calls
+      PROXY_ENABLE_BASIC_AUTH = "true";
       OC_INSECURE = "true";
-      # admin account
-      OC_ADMIN_USER_ID = "phdenzel";
       # storage as standard POSIX file tree
       STORAGE_USERS_DRIVER = "posix";
       # file tree root
@@ -96,30 +86,26 @@ in {
     environmentFile = config.sops.secrets."opencloud/env".path;
   };
 
-  # bind-mount extra roots as subdirectories
-  fileSystems = lib.listToAttrs (map (r: {
-    name = "${cloudData}/${r.name}";
-    value = {
-      device = r.path;
-      fsType = "none";
-      options = ["bind" "nofail"];
-    };
-  }) extraRoots);
+  systemd.services.opencloud.serviceConfig.ReadWritePaths = [
+    cloudData
+  ];
 
   systemd.services.opencloud-provision = {
     description = "Provision initial OpenCloud users";
-    after = ["opencloud.service"];
-    wants = ["opencloud.service"];
+    after = ["opencloud-init-config.service"];
+    wants = ["opencloud-init-config.service"];
     wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = provisionUsers;
+      TimeoutStartSec = "infinity";
     };
   };
 
   sops-host.keys = [
     "opencloud/env"  # INITIAL_ADMIN_PASSWORD
+    "opencloud/admin/password"
     "opencloud/phdenzel/email"
     "opencloud/phdenzel/password"
     "opencloud/ldenzel/email"

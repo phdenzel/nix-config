@@ -17,6 +17,8 @@
     {
       hostname = "opencloud";
       port = config.services.opencloud.port;
+      entryPoints = ["websecure"];
+      tls = true;
     }
     {
       hostname = "forgejo";
@@ -54,8 +56,8 @@
   mkRouter = attrs: {
     rule = "Host(`${attrs.hostname}.home`)";
     service = attrs.service or attrs.hostname;
-    entryPoints = ["web"];
-  };
+    entryPoints = attrs.entryPoints or ["web"];
+  } // lib.optionalAttrs (attrs.tls or false) {tls = {};};
   mkService = attrs: {
     loadBalancer.servers = [{url = "http://${attrs.ip or "127.0.0.1"}:${toString attrs.port}";}];
   };
