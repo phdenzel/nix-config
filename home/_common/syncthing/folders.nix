@@ -9,11 +9,11 @@ in {
         "${name}" = {
           enable = mkDefault true;
           path = "~/${name}";
-          devices = devices.all;
+          devices = devices.common;
           ignorePerms = false;
         };
       })
-      syncs.all
+      syncs.common
     ) //
     attrsets.mergeAttrsList (
       lists.map (name: {

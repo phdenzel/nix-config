@@ -1,5 +1,5 @@
 {
-  all = [
+  common = [
     "Sync"
     "cai-seminar-doc"
     "chuchichaestli"

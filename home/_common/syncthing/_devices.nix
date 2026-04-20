@@ -17,7 +17,7 @@
     };  
   };
   groups = {
-    all = [
+    common = [
       "phinix"
       "fenrix"
       "sol"
