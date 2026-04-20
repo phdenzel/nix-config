@@ -54,6 +54,7 @@
           h5py
           tqdm
           astropy
+          healpy
           pillow
           matplotlib
           seaborn
