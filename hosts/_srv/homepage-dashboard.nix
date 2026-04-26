@@ -317,7 +317,7 @@ in {
             sol = {
               description = "phdenzel's NUC";
               icon = "glances.png";
-              href = mkProxyUrl "glances.phinix";
+              href = mkProxyUrl "glances.sol";
               siteMonitor = mkProxyUrl "glances.sol";
               widget = {
                 version = 4;
