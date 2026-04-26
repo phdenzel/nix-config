@@ -3,9 +3,11 @@
   cloudData = "/data/store/opencloud";  # PosixFS root
   # only single filesystem roots possible so bind-mount others
   extraRoots = [
-    {name = "Media"; path = "/data/media";}
-    {name = "Shared"; path = "/data/documents";}
-    {name = "Backups"; path = "/data/backups";}
+    # the uuid unfortunately has to be provisioned by opencloud manually first
+    # when installing, regenerate the uuids within opencloud, then adjust the configuration
+    {name = "Media"; path = "/data/media"; uuid = "83e3c7f4-ca2a-415e-bda4-556d8360295b";}
+    {name = "Shared"; path = "/data/documents"; uuid = "92fb3411-2edb-4663-a115-01949abcb581";}
+    {name = "Backups"; path = "/data/backups"; uuid = "23cc9dfe-6379-4783-82fa-17534f0ac835";}
   ];
   # phdenzel is provisioned as admin
   adminRoleId = "71881883-c3aa-4921-abd9-f03a71f3c0e6";
@@ -72,7 +74,7 @@ in {
       # file tree root
       STORAGE_USERS_POSIX_ROOT = cloudData;
       # saver if multiple services access filesystem
-      STORAGE_USERS_POSIX_WATCH_TYPE = "watchfolder";
+      STORAGE_USERS_POSIX_WATCH_FS = "true";
       # nats jetstream key-value store instead of default in-memory
       STORAGE_USERS_ID_CACHE_STORE = "nats-js-kv";
       # address of the nats jetstream instance
@@ -86,9 +88,35 @@ in {
     environmentFile = config.sops.secrets."opencloud/env".path;
   };
 
-  systemd.services.opencloud.serviceConfig.ReadWritePaths = [
-    cloudData
-  ];
+  systemd.services.opencloud = {
+    path = [ pkgs.inotify-tools ];
+    serviceConfig.ReadWritePaths = [
+      cloudData
+    ] ++ builtins.map (r: r.path) extraRoots;
+  };
+  users.users.opencloud.extraGroups = [ "media" "users" "storage" ];
+
+  systemd.tmpfiles.rules = [
+    "d ${cloudData}            02775  phdenzel    ${cfg.user}  - -"
+    "d ${cloudData}/projects   02775  ${cfg.user} ${cfg.user}  - -"
+    "d /data/documents         02775  phdenzel    media  - -"
+    "d /data/backups           02770  phdenzel    media  - -"
+  ] ++ builtins.map (r:
+    "d ${cloudData}/projects/${if r.uuid != "" then r.uuid else r.name}/${r.name}  02775  ${cfg.user}  ${cfg.user}  - -"
+  ) extraRoots;
+
+  # system.activationScripts.docPermissions = ''
+  #   find /data/documents -type d -exec chmod 02770 {} +
+  # '';
+
+  fileSystems = lib.listToAttrs (builtins.map (r: {
+    name = "${cloudData}/projects/${if r.uuid != "" then r.uuid else r.name}/${r.name}";
+    value = {
+      device = r.path;
+      fsType = "none";
+      options = [ "bind" "nofail" "x-systemd.after=systemd-tmpfiles-setup.service" ];
+    };
+  }) extraRoots);
 
   systemd.services.opencloud-provision = {
     description = "Provision initial OpenCloud users";

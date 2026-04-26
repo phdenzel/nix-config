@@ -69,21 +69,30 @@ in {
     fileSystems = ["/" "/data"];
   };
   # Store/media directories (set permissions, create if missing)
+  users.groups.media = {};
+  
   systemd.tmpfiles.rules = [
-    "d  /data/media/Videos        02750  phdenzel  jellyfin      -  -"
-    "d  /data/media/Books         02750  phdenzel  jellyfin      -  -"
-    "d  /data/media/Pictures      02750  phdenzel  jellyfin      -  -"
-    "d  /data/media/Music         02750  phdenzel  jellyfin      -  -"
+    "d  /data/media               02775  root      media         -  -"
+    "d  /data/media/Videos        02770  phdenzel  media         -  -"
+    "d  /data/media/Books         02770  phdenzel  media         -  -"
+    "d  /data/media/Music         02770  phdenzel  media         -  -"
+    "d  /data/media/Pictures      02770  phdenzel  media         -  -"
     "d  /data/store/transmission  02770  phdenzel  transmission  -  -"
     "d  /data/store/forgejo       02770  phdenzel  forgejo       -  -"
     "d  /data/store/opencloud     02775  phdenzel  opencloud     -  -"
+    # "d  /data/store/immich        02775  phdenzel  immich        -  -"
   ];
   system.activationScripts.mediaPermissions = ''
-    for dir in Videos Books Pictures Music; do
-      find /data/media/$dir -type d -exec chmod 02750 {} +
-      find /data/media/$dir -type f -exec chmod 0640 {} +
-      chown -R phdenzel:jellyfin /data/media/$dir
-    done
+    for dir in Videos Books Music; do
+      find /data/media/$dir -type d -exec chmod 02770 {} +
+      find /data/media/$dir -type f -exec chmod 0660 {} +
+      chown -R phdenzel:media /data/media/$dir
+    done;
+    # for dir in Pictures; do
+    #   find /data/media/$dir -type d -exec chmod 02770 {} +
+    #   find /data/media/$dir -type f -exec chmod 0660 {} +
+    #   chown -R phdenzel:media /data/media/$dir
+    # done;
   '';
 
   # Hardware customization

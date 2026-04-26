@@ -48,6 +48,7 @@ in {
         "jupyter"
         "kvm"
         "libvirtd"
+        "media"
         "network"
         "networkmanager"
         "opencloud"
