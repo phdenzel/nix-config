@@ -7,6 +7,7 @@
 }: let
   background_image = "homepage-dashboard/assets/background.png";
   mkProxyUrl = service: "http://${service}.home";
+  mkProxyUrlHttps = service: "https://${service}.home";
 in {
   environment.etc = {
     "${background_image}" = {
@@ -32,6 +33,7 @@ in {
         [
           "localhost"
           "127.0.0.1"
+          "127.0.0.1:9200"
           "syncthing.ygdrasil.home/rest/system/connections"
           # "syncthing.ygdrasil.home/rest/system/status"
         ] ++ map (s: "${s}.home") [
@@ -39,6 +41,7 @@ in {
           "denzels"
           "traefik"
           "syncthing.ygdrasil"
+          "opencloud"
           "forgejo"
           "jellyfin"
           "transmission"
@@ -154,6 +157,39 @@ in {
             };
           }
           {
+            Opencloud = {
+              icon = "sh-opencloud.png";
+              description = "Private cloud service";
+              href = mkProxyUrlHttps "opencloud";
+              siteMonitor = mkProxyUrlHttps "opencloud";
+              widget = {
+                type = "customapi";
+                url = "${mkProxyUrlHttps "opencloud"}/graph/v1.0/drives?$filter=driveType+eq+'project'&$orderby=name+asc";
+                allowInsecure = true;
+                headers = {
+                  Authorization = "Basic {{HOMEPAGE_VAR_OPENCLOUD_TOKEN}}";
+                };
+                mappings = [
+                  {
+                    field = { value = { "0" = { quota = "used"; }; }; };
+                    label = "Backups";
+                    format = "bytes";
+                  }
+                  {
+                    field = { value = { "1" = { quota = "used"; }; }; };
+                    label = "Media";
+                    format = "bytes";
+                  }
+                  {
+                    field = { value = { "2" = { quota = "used"; }; }; };
+                    label = "Shared";
+                    format = "bytes";
+                  }
+                ];
+              };
+            };
+          }
+          {
             Forgejo = {
               icon = "forgejo.png";
               description = "Git forge";
@@ -235,8 +271,9 @@ in {
           {
             ygdrasil = {
               description = "NAS server";
-              siteMonitor = mkProxyUrl "glances.ygdrasil";
+              icon = "glances.png";
               href = mkProxyUrl "glances.ygdrasil";
+              siteMonitor = mkProxyUrl "glances.ygdrasil";
               widget = {
                 version = 4;
                 type = "glances";
@@ -249,8 +286,9 @@ in {
           {
             heimdall = {
               description = "DNS server";
-              siteMonitor = mkProxyUrl "glances.heimdall";
+              icon = "glances.png";
               href = mkProxyUrl "glances.heimdall";
+              siteMonitor = mkProxyUrl "glances.heimdall";
               widget = {
                 version = 4;
                 type = "glances";
@@ -263,12 +301,28 @@ in {
           {
             phinix = {
               description = "phdenzel's workstation";
-              siteMonitor = mkProxyUrl "glances.phinix";
+              icon = "glances.png";
               href = mkProxyUrl "glances.phinix";
+              siteMonitor = mkProxyUrl "glances.phinix";
               widget = {
                 version = 4;
                 type = "glances";
                 url = mkProxyUrl "glances.phinix";
+                metric = "info";
+                refreshInterval = 5000;
+              };
+            };
+          }
+          {
+            sol = {
+              description = "phdenzel's NUC";
+              icon = "glances.png";
+              href = mkProxyUrl "glances.phinix";
+              siteMonitor = mkProxyUrl "glances.sol";
+              widget = {
+                version = 4;
+                type = "glances";
+                url = mkProxyUrl "glances.sol";
                 metric = "info";
                 refreshInterval = 5000;
               };
