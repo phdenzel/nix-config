@@ -23,6 +23,7 @@
     gnumake
     gnuplot
     hdf5
+    nodejs
     perf
     pkg-config
     podman
