@@ -1,6 +1,7 @@
 # NixOS configuration file for phinix
 {
   pkgs,
+  lib,
   config,
   inputs,
   ...
@@ -9,7 +10,7 @@
 in {
   imports = [
     ../_common # default nix (and sops-nix) configuration
-    ../_common/nfs.nix # NFS mounts
+    # ../_common/nfs.nix # NFS mounts
     ../_common/sddm.nix # display manager
     ../_common/hyprland.nix # window manager
     ../_common/kde.nix # desktop as fallback when window managers are bricked
@@ -23,7 +24,8 @@ in {
     ../_common/cli-utils.nix # cli tool collection
     ../_common/dev-utils.nix # dev tool collection
     ../_common/computing.nix # computing tool collection
-    # ../_common/ollama.nix # local LLM services
+    ../_common/ollama.nix # local LLM services
+    ../_common/ai.nix # miscellaneous AI tools
     ../_common/graphical.nix # graphical applications
     # ../_common/ghostfolio.nix # wealth management tool
     ../_common/comm.nix # communication apps
@@ -32,6 +34,8 @@ in {
     ../_common/games.nix # Gaming utils
     ../_common/texlive.nix # full TeXLive package
     ../_common/vpn-zhaw.nix # VPN for work
+    ../_srv/glances.nix  # for homepage-dashboard
+    ../_srv/traefik  # local reverse proxy
     ../../modules # Internationalization configs
     inputs.hardware.nixosModules.common-cpu-amd-zenpower
     inputs.hardware.nixosModules.common-gpu-amd
@@ -73,7 +77,7 @@ in {
 
   # Hardware customization
   nixpkgs.config.rocmSupport = true;
-  services.ollama.acceleration = "rocm";
+  services.ollama.package = lib.mkForce pkgs.ollama-rocm;
   # systemd.tmpfiles.rules = with pkgs;
   #   mkDefault [
   #     "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"
@@ -84,15 +88,7 @@ in {
   intl.extraLocale = "de_CH";
 
   # Root configuration
-  sops-host = {
-    enable = true;
-    # keys = [
-    #   "homepage-dashboard/env"
-    # ];
-    # ownedKeys = [
-    #   "grafana/admin_password"
-    # ];
-  };
+  sops-host.enable = true;
   users.users.root = {
     hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
     # openssh.authorizedKeys.keys = [
@@ -104,7 +100,6 @@ in {
   networking = {
     hostName = "${hostName}";
     hostId = "10db7abc";
-    # wireless.enable = true;  # wireless via wpa_supplicant.
     networkmanager.enable = true;
     enableIPv6 = false;
   };
@@ -135,7 +130,7 @@ in {
     exfatprogs
     # fancontrol-gui
     gparted
-    jabref
+    stable.jabref
     lact
     libva-utils
     lm_sensors
