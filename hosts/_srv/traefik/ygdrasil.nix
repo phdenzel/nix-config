@@ -45,12 +45,33 @@
       service = "glances-heimdall";
       ip = "192.168.178.64";
       port = 80;
+      healthCheck = {
+        path = "/api/3/all";
+        interval = "10s";
+        timeout = "3s";
+      };
     }
     {
       hostname = "glances.phinix";
       service = "glances-phinix";
       ip = "192.168.178.156";
       port = 80;
+      healthCheck = {
+        path = "/api/3/all";
+        interval = "10s";
+        timeout = "3s";
+      };
+    }
+    {
+      hostname = "glances.sol";
+      service = "glances-sol";
+      ip = "192.168.178.188";
+      port = 80;
+      healthCheck = {
+        path = "/api/3/all";
+        interval = "10s";
+        timeout = "3s";
+      };
     }
   ];
   mkRouter = attrs: {
@@ -59,7 +80,11 @@
     entryPoints = attrs.entryPoints or ["web"];
   } // lib.optionalAttrs (attrs.tls or false) {tls = {};};
   mkService = attrs: {
-    loadBalancer.servers = [{url = "http://${attrs.ip or "127.0.0.1"}:${toString attrs.port}";}];
+    loadBalancer = {
+      servers = [{url = "http://${attrs.ip or "127.0.0.1"}:${toString attrs.port}";}];
+    } // lib.optionalAttrs (attrs ? healthCheck) {
+      healthCheck = attrs.healthCheck;
+    };
   };
 in {
   services.traefik.dynamicConfigOptions.http = {
