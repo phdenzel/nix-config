@@ -16,6 +16,12 @@
               aidermacs-backend 'vterm)
       '';
     };
+    claude-code-ide = {
+      enable = true;
+      config = ''
+        (claude-code-ide-emacs-tools-setup)
+      '';
+    };
     ellama = {
       enable = true;
       init = ''

@@ -193,6 +193,9 @@
       aidermacs.bind = {
         "C-c a" = "aidermacs-transient-menu";
       };
+      claude-code-ide.bind = {
+        "C-c c" = "claude-code-ide-menu";
+      };
     };
   };
 }

@@ -1,4 +1,15 @@
 {pkgs, ...}: let
+  claudeCodeIde = epkgs:
+    epkgs.trivialBuild {
+      pname = "claude-code-ide";
+      version = "0.2.7";
+      src = pkgs.fetchFromGitHub {
+        owner = "manzaltu";
+        repo = "claude-code-ide.el";
+        rev = "56db02ee386d009ddb8b1482310f1f9beeefb810";
+        hash = "sha256-qH1QnG5G+0UiH/v0KaS7oSpQZY+BkUMZvrjbx6kyFhg=";
+      };
+    };
   packages = epkgs:
     with epkgs; [
       # Elisp packages
@@ -91,6 +102,7 @@
       copilot # GitHub copilot
       ellama # Ollama self-hosted LLMs
       aidermacs # aider interface
+      (claudeCodeIde epkgs) # claude-code IDE integration
 
       # Mail
       himalaya # himalaya frontend
