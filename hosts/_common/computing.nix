@@ -17,6 +17,9 @@
       ]);
     jupyterhub.port = 8000;
     jupyterhub.kernels = let
+      oskarpy = pkgs.oskarpy.override {
+        python3Packages = pkgs.python313Packages;
+      };
       chuchichaestli = pkgs.python313Packages.buildPythonPackage rec {
         pname = "chuchichaestli";
         version = "0.2.16";
@@ -63,6 +66,7 @@
           hydra-core
           diffusers
           chuchichaestli
+          oskarpy
         ]));
       in {
         displayName = "Python3 for ML";

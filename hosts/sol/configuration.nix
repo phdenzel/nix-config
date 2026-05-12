@@ -4,6 +4,7 @@
   lib,
   config,
   inputs,
+  outputs,
   ...
 }: let
   hostName = "sol";
@@ -139,6 +140,7 @@ in {
     podman-desktop
     polychromatic
     razergenie
+    oskar-full
     rocmPackages.rocm-smi
     rocmPackages.rocminfo
     stable.rgp
