@@ -165,6 +165,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "fromYaml": {
       "flake": false,
       "locked": {
@@ -373,6 +391,28 @@
         "url": "https://git@github.com/jcszymansk/openconnect-sso"
       }
     },
+    "oskar": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "ska-sdp-func": "ska-sdp-func"
+      },
+      "locked": {
+        "lastModified": 1778485401,
+        "narHash": "sha256-l8eqeRVZ9lCFwth/jYDuEodKss2dqzvf202lM1qiHW8=",
+        "owner": "phdenzel",
+        "repo": "oskar",
+        "rev": "c83a90f54554d17ef5b35478e5a6ca5095b21cc9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "phdenzel",
+        "repo": "oskar",
+        "type": "github"
+      }
+    },
     "phd-ark-modeline": {
       "flake": false,
       "locked": {
@@ -461,12 +501,38 @@
         "nixpkgs-openconnect-sso": "nixpkgs-openconnect-sso",
         "nixpkgs-stable": "nixpkgs-stable",
         "openconnect-sso": "openconnect-sso",
+        "oskar": "oskar",
         "phd-ark-modeline": "phd-ark-modeline",
         "phd-ark-tabline": "phd-ark-tabline",
         "phd-wallpapers": "phd-wallpapers",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "systems": "systems_4"
+        "systems": "systems_5"
+      }
+    },
+    "ska-sdp-func": {
+      "inputs": {
+        "flake-utils": [
+          "oskar",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "oskar",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778321834,
+        "narHash": "sha256-I9gfz8BJLj9DHzTSOxXtsGQm3M4HSwCNW4wFY0SkqQo=",
+        "owner": "phdenzel",
+        "repo": "ska-sdp-func",
+        "rev": "264b683db525c10bdfd7d23834ae99e9822e6ac5",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "phdenzel",
+        "repo": "ska-sdp-func",
+        "type": "gitlab"
       }
     },
     "sops-nix": {
@@ -502,7 +568,7 @@
           "nixpkgs"
         ],
         "nur": "nur",
-        "systems": "systems_3",
+        "systems": "systems_4",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
@@ -568,6 +634,21 @@
       }
     },
     "systems_4": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_5": {
       "locked": {
         "lastModified": 1735898645,
         "narHash": "sha256-W9jgw8NS67HoeI6HXfgEw9x4cI8WPJpxzJMftUwgpeQ=",

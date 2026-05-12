@@ -79,6 +79,12 @@
       url = "git+https://git@github.com/phdenzel/phd-ark-tabline";
       flake = false;
     };
+
+    oskar = {
+      url = "github:phdenzel/oskar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = {

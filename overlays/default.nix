@@ -12,18 +12,22 @@ in {
   # Add custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs {pkgs = final;};
 
+  oskar = import ./oskar.nix {inherit inputs;};
+
   # Change package versions, add patches, set compilation flags, etc.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
     # example = addPatches prev.example [./example.diff];
-    glances = if final.stdenv.hostPlatform.isAarch64
-            then prev.glances.overrideAttrs (_: {
-              doCheck = false;
-              doInstallCheck = false;
-              nativeCheckInputs = [];
-              checkInputs = [];
-            })
-            else prev.glances;
+    glances =
+      if final.stdenv.hostPlatform.isAarch64
+      then
+        prev.glances.overrideAttrs (_: {
+          doCheck = false;
+          doInstallCheck = false;
+          nativeCheckInputs = [];
+          checkInputs = [];
+        })
+      else prev.glances;
   };
 
   # Alias inputs.nixpkgs-stable to pkgs.stable,
