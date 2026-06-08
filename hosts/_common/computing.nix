@@ -67,6 +67,7 @@
           diffusers
           chuchichaestli
           oskarpy
+          ska-ost-array-config
         ]));
       in {
         displayName = "Python3 for ML";

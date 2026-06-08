@@ -13,6 +13,7 @@ in {
   additions = final: _prev: import ../pkgs {pkgs = final;};
 
   oskar = import ./oskar.nix {inherit inputs;};
+  ska-ost-array-config = import ./ska-ost-array-config.nix {inherit inputs;};
 
   # Change package versions, add patches, set compilation flags, etc.
   # https://nixos.wiki/wiki/Overlays
