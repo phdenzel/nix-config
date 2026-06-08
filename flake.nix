@@ -81,7 +81,11 @@
     };
 
     oskar = {
-      url = "github:phdenzel/oskar";
+      url = "gitlab:phdenzel/oskar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ska-ost-array-config = {
+      url = "gitlab:phdenzel/ska-ost-array-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
