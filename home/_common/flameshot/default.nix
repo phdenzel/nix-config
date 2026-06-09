@@ -7,6 +7,7 @@
         disabledTrayIcon = false;
         showStartupLaunchMessage = false;
         showDesktopNotification = true;
+        useGrimAdapter = true;
       };
     };
   };
