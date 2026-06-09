@@ -77,7 +77,10 @@ in {
     ];
     programs.gpg.settings.default-key = lib.mkDefault "629FC7317EFB4935";
     services.syncthing = {
-      passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
+      guiCredentials = {
+        username = "${userName}";
+        passwordFile = "${config.sops.secrets."syncthing/${userName}/${hostName}/password".path}";
+      };
       key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
       cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
     };
