@@ -286,17 +286,19 @@ in {
       };
 
       "hyprland/workspaces" = {
-        active-only = false;
-        all-outputs = true;
-        format = "{}";
-        format-icons = {
-          urgent = "";
-          active = "";
-          default = "";
-        };
+        active-only = true;
+        # all-outputs = true;
+        format = "{id}";
+        # format-icons = {
+        #   urgent = "";
+        #   active = "";
+        #   default = "";
+        # };
         persistent-workspaces = {
-          "*" = 5;
+          "*" = 3;
         };
+        on-scroll-up = "hyprctl dispatch 'hl.dsp.focus({workspace = \"+1\"})'";
+        on-scroll-down = "hyprctl dispatch 'hl.dsp.focus({workspace = \"-1\"})'";
       };
 
       "idle_inhibitor" = {
