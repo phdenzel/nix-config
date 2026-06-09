@@ -4,53 +4,8 @@
   ...
 }:
 with config.colorScheme.palette; {
-  wayland.windowManager.hyprland = {
-    extraConfig = ''
-      device {
-        name = razer-razer-pro-click-v2-vertical-edition
-        sensitivity = 0.1
-        scroll_method = on_button_down
-      }
-
-      device {
-        name = syna800e:00-06cb:ce67-mouse
-        sensitivity = 0.8
-      }
-
-      device {
-        name = syna800e:00-06cb:ce67-touchpad
-        sensitivity = 0.8
-      }
-
-      device {
-        name = tpps/2-elan-trackpoint
-        sensitivity = 0.4
-      }
-
-      device {
-        name = apple-inc.-magic-trackpad
-        sensitivity = 0.8
-      }
-
-      gestures {
-        gesture = 3, horizontal, workspace
-        gesture = 4, horizontal, workspace
-        gesture = 3, down, close
-        gesture = 4, down, close
-        gesture = 3, up, scale: 1.5, fullscreen
-        gesture = 4, up, scale: 1.5, fullscreen
-        gesture = 3, pinchin, scale: 1.5, move
-        gesture = 4, pinchin, scale: 1.5, move
-        gesture = 3, pinchout, scale: 1.5, float
-        gesture = 4, pinchout, scale: 1.5, float
-        workspace_swipe_distance = 500
-        workspace_swipe_invert = false
-        workspace_swipe_min_speed_to_force = 5
-        workspace_swipe_forever = true
-        workspace_swipe_use_r = true
-      }
-    '';
-    settings = {
+  wayland.windowManager.hyprland.settings = {
+    config = {
       general = {
         border_size = 3;
         gaps_out = 12;
@@ -58,6 +13,7 @@ with config.colorScheme.palette; {
         "col.inactive_border" = lib.mkDefault "rgba(${mantle}AA)";
         resize_on_border = true;
         extend_border_grab_area = 12;
+        layout = "dwindle";
       };
 
       decoration = {
@@ -81,17 +37,6 @@ with config.colorScheme.palette; {
 
       animations = {
         enabled = true;
-        bezier = [
-          "easeOutCirc, 0.05, 0.9, 0.1, 1.05"
-        ];
-        animation = [
-          "border, 1, 6, default"
-          "borderangle, 1, 4, default"
-          "fade, 1, 4, default"
-          "windows, 1, 4, easeOutCirc"
-          "windowsOut, 1, 4, default, popin 80%"
-          "workspaces, 1, 4, default, slide"
-        ];
       };
 
       input = {
@@ -105,7 +50,7 @@ with config.colorScheme.palette; {
         touchpad = {
           disable_while_typing = false;
           clickfinger_behavior = true;
-          tap-to-click = false;
+          tap_to_click = false;
         };
         tablet = {
           output = "current";
@@ -122,8 +67,11 @@ with config.colorScheme.palette; {
       };
 
       dwindle = {
-        pseudotile = true; # master switch for pseudotiling
-        preserve_split = true; # you probably want this
+        preserve_split = true;
+      };
+
+      scrolling = {
+        explicit_column_widths = "0.333, 0.5, 1.0";
       };
 
       xwayland.force_zero_scaling = true;
@@ -131,7 +79,98 @@ with config.colorScheme.palette; {
         no_update_news = true;
         no_donation_nag = true;
       };
+
+      gestures = {
+        workspace_swipe_distance = 500;
+        workspace_swipe_invert = false;
+        workspace_swipe_min_speed_to_force = 5;
+        workspace_swipe_forever = true;
+        workspace_swipe_use_r = true;
+      };
       #debug.disable_logs = true;
     };
+
+    device = [
+      {
+        name = "razer-razer-pro-click-v2-vertical-edition";
+        sensitivity = 0.1;
+        scroll_method = "on_button_down";
+      }
+      {
+        name = "syna800e:00-06cb:ce67-mouse";
+        sensitivity = 0.8;
+      }
+      {
+        name = "syna800e:00-06cb:ce67-touchpad";
+        sensitivity = 0.8;
+      }
+      {
+        name = "tpps/2-elan-trackpoint";
+        sensitivity = 0.4;
+      }
+      {
+        name = "apple-inc.-magic-trackpad";
+        sensitivity = 0.8;
+      }
+    ];
+
+    gesture = [
+      {
+        fingers = 3;
+        direction = "horizontal";
+        action = "workspace";
+      }
+      {
+        fingers = 4;
+        direction = "horizontal";
+        action = "workspace";
+      }
+      {
+        fingers = 3;
+        direction = "down";
+        action = "close";
+      }
+      {
+        fingers = 4;
+        direction = "down";
+        action = "close";
+      }
+      {
+        fingers = 3;
+        direction = "up";
+        scale = 1.5;
+        action = "fullscreen";
+      }
+      {
+        fingers = 4;
+        direction = "up";
+        scale = 1.5;
+        action = "fullscreen";
+      }
+      {
+        fingers = 3;
+        direction = "pinchin";
+        scale = 1.5;
+        action = "move";
+      }
+      {
+        fingers = 4;
+        direction = "pinchin";
+        scale = 1.5;
+        action = "move";
+      }
+      {
+        fingers = 3;
+        direction = "pinchout";
+        scale = 1.5;
+        action = "float";
+      }
+      {
+        fingers = 4;
+        direction = "pinchout";
+        scale = 1.5;
+        action = "float";
+      }
+    ];
   };
 }

@@ -2,6 +2,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "lua";
   };
 
   home.sessionVariables = {
@@ -20,6 +21,7 @@
     ../wlogout
     ./env.nix
     ./exec-once.nix
+    ./animations.nix
     ./settings.nix
     ./rules.nix
     ./binds.nix

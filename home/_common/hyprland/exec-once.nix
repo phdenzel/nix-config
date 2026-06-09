@@ -1,13 +1,17 @@
-{...}: {
+{lib, ...}: {
   wayland.windowManager.hyprland.settings = {
-    exec-once = [
-      "uwsm finalize"
-      "pypr --debug /tmp/pypr.log"
-      "waybar"
-      "hyprsunset"
-      "udiskie"
-      "lact daemon"
-      # "licht -d"
-    ];
+    on = {
+      _args = [
+        "hyprland.start"
+        (lib.generators.mkLuaInline ''function()
+          hl.exec_cmd("uwsm finalize")
+          hl.exec_cmd("pypr --debug /tmp/pypr.log")
+          hl.exec_cmd("waybar")
+          hl.exec_cmd("hyprsunset")
+          hl.exec_cmd("udiskie")
+          hl.exec_cmd("lact daemon")
+        end'')
+      ];
+    };
   };
 }

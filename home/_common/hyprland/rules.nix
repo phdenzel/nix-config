@@ -1,23 +1,45 @@
 {...}: {
   wayland.windowManager.hyprland.settings = {
-    windowrule = [
-      "stay_focused on, match:class (pinentry-)(.*)"
+    window_rule = [
+      {
+        match = { class = "pinentry-.*"; };
+        stay_focused = true;
+      }
       # Idle inhibitors
-      "idle_inhibit focus, match:fullscreen true"
-      "idle_inhibit focus, match:class (mpv|.+exe)$"
-      # Firefox's PiP floating window
-      "float on, match:title ^(Picture-in-Picture)$"
-      "pin on, match:title ^(Picture-in-Picture)$"
-
+      {
+        match = { fullscreen = true; };
+        idle_inhibit = "focus";
+      }
+      {
+        match = { class = "(mpv|.+exe)$"; };
+        idle_inhibit = "focus";
+      }
+      # Firefox PiP floating window
+      {
+        match = { title = "^Picture-in-Picture$"; };
+        float = true;
+        pin = true;
+      }
       # Floats
-      "float on, match:title ^(File Operation Progress)$"
-
+      {
+        match = { title = "^File Operation Progress$"; };
+        float = true;
+      }
       # Scratchpads
-      "float on, match:title ^(scratchpad.*)$"
-      "float on, match:class ^(org.pulseaudio.pavucontrol)$"
+      {
+        match = { title = "^scratchpad.*$"; };
+        float = true;
+      }
+      {
+        match = { class = "^org.pulseaudio.pavucontrol$"; };
+        float = true;
+      }
     ];
-    layerrule = [
-      "blur on, match:namespace wlogout"
+    layer_rule = [
+      {
+        match = { namespace = "wlogout"; };
+        blur = true;
+      }
     ];
   };
 }
