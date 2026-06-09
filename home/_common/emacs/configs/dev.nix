@@ -64,6 +64,12 @@
     lsp-nix = {
       enable = true;
       after = ["lsp-mode"];
+      config = ''
+        (with-eval-after-load 'lsp-nix
+          (lsp-register-custom-settings
+           '(("nil.nix.flake.autoEvalInputs" nil t)
+             ("nil.nix.flake.nixpkgsInputName" "nixpkgs" nil))))
+      '';
       custom = {lsp-nix-nil-formatter = "[\"alejandra\"]";};
     };
     lsp-tex = {
@@ -189,6 +195,10 @@
     nix-mode = {
       enable = true;
       mode = [''"\\.nix\\'"''];
+    };
+    lua-mode = {
+      enable = true;
+      mode = [''"\\.lua\\'"''];
     };
     just-mode.enable = true;
     dockerfile-mode.enable = true;

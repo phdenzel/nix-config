@@ -12,6 +12,21 @@
       init = ''
         (projectile-mode +1)
       '';
+      config = ''
+        (dolist (project (reverse '("~/nix-config/"
+                           "~/org"
+                           "~/zettelkasten/"
+                           "~/phdenzel.github.io/"
+                           "~/slides/"
+                           "~/Documents/letters/"
+                           "~/Documents/PhDCV/"
+                           "~/Documents/papers/"
+                           "~/lens-forge"
+                           "~/chuchichaestli/"
+                           "~/skais-mapper/"
+                           "~/skais-model/")))
+          (projectile-add-known-project project))
+      '';
       custom = {
         projectile-completion-system = "'ivy";
         projectile-indexing-method = "'alien";
@@ -47,10 +62,4 @@
     };
   };
 
-  home.file = {
-    # Projectile bookmarks
-    ".emacs.d/projectile-bookmarks.eld".text = ''
-      ("~/nix-config/" "~/org" "~/zettelkasten/" "~/phdenzel.github.io/" "~/slides/" "~/Documents/letters/" "~/Documents/PhDCV/" "~/lens-forge" "~/chuchichaestli/" "~/skais-mapper/" "~/skais-model/")
-    '';
-  };
 }

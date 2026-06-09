@@ -62,6 +62,7 @@
       rust-mode # rust support
       cuda-mode # cuda support
       nix-mode # nix support
+      lua-mode # lua support
       just-mode # just support
       dockerfile-mode # Dockerfile support
       docker-compose-mode # docker compose support
@@ -150,6 +151,7 @@ in {
     hunspellDicts.en-us
     hunspellDicts.en-gb-ize
     jansson
+    lua-language-server
     nil
     nuspell
     texlab
