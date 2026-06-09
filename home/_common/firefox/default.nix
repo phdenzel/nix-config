@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   imports = [./profile.nix];
 
   programs.browserpass = {
@@ -8,6 +8,7 @@
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     languagePacks = ["en-US" "en-GB" "de"];
   };
 }

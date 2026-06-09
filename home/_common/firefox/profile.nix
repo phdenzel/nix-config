@@ -7,9 +7,9 @@
 
   home.file = {
     # arxiv logo for search engine
-    ".mozilla/assets/logo/arxiv.png".source = ../../../assets/mozilla/arxiv.png;
+    "${config.xdg.configHome}/mozilla/assets/logo/arxiv.png".source = ../../../assets/mozilla/arxiv.png;
     # default simple tabs groups: restore backup after install to restore groups
-    ".mozilla/assets/stg_default.json".source = ../../../assets/mozilla/stg_default.json;
+    "${config.xdg.configHome}/mozilla/assets/stg_default.json".source = ../../../assets/mozilla/stg_default.json;
   };
 
   programs.firefox = {
@@ -86,7 +86,7 @@
                 ];
               }
             ];
-            icon = "${config.home.homeDirectory}/.mozilla/assets/logo/arxiv.png";
+            icon = "${config.xdg.configHome}/mozilla/assets/logo/arxiv.png";
             definedAliases = ["@a" "@arxiv"];
           };
           "bing".metaData.hidden = true;
@@ -182,7 +182,7 @@
           }
           {url = "https://phdenzel.github.io";}
           {url = "http://jellyfin.home/";}
-          {url = "http://nextcloud.home/";}
+          {url = "http://opencloud.home/";}
           {
             url = "http://localhost:9091/";
             label = "tx";
