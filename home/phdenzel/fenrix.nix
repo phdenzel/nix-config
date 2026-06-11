@@ -86,9 +86,12 @@ in {
       enable = true;
       deactivatedFolders = ["Music" "Pictures"];
     };
-    wayland.windowManager.hyprland.settings.monitor = [
-      "eDP-1, 1920x1080@60.0, 0x0, 1"
-    ];
+    wayland.windowManager.hyprland.settings.monitor = {
+      output = "eDP-1";
+      mode = "1920x1080@60.0";
+      position = "0x0";
+      scale = 1;
+    };
     stylix = {
       image = inputs.phd-wallpapers + "/gate_4k.png";
       imageScalingMode = "fill";

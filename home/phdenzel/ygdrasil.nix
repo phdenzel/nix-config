@@ -84,9 +84,12 @@ in {
       key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
       cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
     };
-    wayland.windowManager.hyprland.settings.monitor = [
-      "DP-1, 2560x1440@60.0, 0x0, 2"
-    ];
+    wayland.windowManager.hyprland.settings.monitor = {
+      output = "DP-1";
+      mode = "2560x1440@60.0";
+      position = "0x0";
+      scale = 2;
+    };
     stylix = {
       image = inputs.phd-wallpapers + "/serenity_4k.png";
       imageScalingMode = "fill";

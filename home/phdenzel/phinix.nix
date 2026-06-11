@@ -77,9 +77,12 @@ in {
       key = "${config.sops.secrets."syncthing/${userName}/${hostName}/key.pem".path}";
       cert = "${config.sops.secrets."syncthing/${userName}/${hostName}/cert.pem".path}";
     };
-    wayland.windowManager.hyprland.settings.monitor = [
-      "DP-3, 7680x2160@120.0, 0x0, 2"
-    ];
+    wayland.windowManager.hyprland.settings.monitor = {
+      output = "DP-3";
+      mode = "7680x2160@120.0";
+      position = "0x0";
+      scale = 2;
+    };
     stylix = {
       image = inputs.phd-wallpapers + "/ethereal_4k.png";
       imageScalingMode = "fill";
