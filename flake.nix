@@ -62,10 +62,9 @@
 
     openconnect-sso = {
       # needed for zhaw-vpn
-      url = "git+https://git@github.com/jcszymansk/openconnect-sso";
-      inputs.nixpkgs.follows = "nixpkgs-openconnect-sso";
+      url = "git+https://github.com/phdenzel/openconnect-sso";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-openconnect-sso.url = "github:nixos/nixpkgs/46397778ef1f73414b03ed553a3368f0e7e33c2f";
 
     phd-wallpapers = {
       url = "git+ssh://git@github.com/phdenzel/wallpapers";
