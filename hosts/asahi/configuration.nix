@@ -5,6 +5,7 @@
   self,
   ...
 }: let
+  primaryUser = "phdenzel";
   hostName = "asahi";
   hostPlatform = "aarch64-darwin";
 in {
@@ -12,6 +13,7 @@ in {
 
   imports = [
     ../_common/darwin.nix
+    ../_common/emacs.nix
   ];
 
 #  boot = {
@@ -91,7 +93,7 @@ in {
 
   # System-wide packages
   environment.systemPackages = with pkgs; [
-    emacs
+    emacs-macport
     firefox
     ghostty-bin
     gimp2
@@ -101,31 +103,20 @@ in {
     # zoom-us
   ];
 
-# System-wide programs
+  # System-wide programs
   programs = {
     zsh.enable = true;
   };
 
-#   # System-wide services
-#   services = {
-#     blueman.enable = true;
-#     gnome.gnome-keyring.enable = true;
-#     gvfs.enable = true;
-#     # fprintd.enable = true;
-#     fwupd.enable = true;
-#     playerctld.enable = true;
-#     printing.enable = true;
-#     printing.cups-pdf.enable = true;
-#     printing.drivers = with pkgs; [
-#       hplip
-#     ];
-#     udisks2.enable = true;
-#   };
+  # System-wide services
+  # services = {
+  # };
 
   security = {
     pam.services.sudo_local.touchIdAuth = true;
   };
 
+  system.primaryUser = primaryUser;
   system.configurationRevision = self.rev or self.dirtyRev or null;
   system.stateVersion = 6;
 }
