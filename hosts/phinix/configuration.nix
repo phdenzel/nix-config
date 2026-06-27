@@ -23,7 +23,7 @@ in {
     ../_common/emacs.nix # editor and god tool
     ../_common/cli-utils.nix # cli tool collection
     ../_common/dev-utils.nix # dev tool collection
-    ../_common/computing.nix # computing tool collection
+    ../_common/jupyterhub.nix # computing tool collection
     ../_common/ollama.nix # local LLM services
     ../_common/ai.nix # miscellaneous AI tools
     ../_common/graphical.nix # graphical applications

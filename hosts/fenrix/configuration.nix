@@ -22,7 +22,7 @@ in {
     ../_common/emacs.nix # editor and god tool
     ../_common/cli-utils.nix # cli tool collection
     ../_common/dev-utils.nix # dev tool collection
-    ../_common/computing.nix # computing tool collection
+    ../_common/jupyterhub.nix # computing tool collection
     ../_common/containerization.nix # podman and oci stuff
     ../_common/graphical.nix # graphical applications
     ../_common/comm.nix # communication apps
