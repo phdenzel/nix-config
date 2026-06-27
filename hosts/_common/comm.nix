@@ -4,12 +4,19 @@
   ...
 }:
 with lib; {
-  environment.systemPackages = with pkgs; [
-    karere
-    signal-desktop
-    slack
-    teams-for-linux
-    webex
-    zoom-us
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      signal-desktop
+      slack
+      zoom-us
+    ]
+    ++ optionals stdenv.isLinux [
+      karere # whatsApp client alternative
+      teams-for-linux
+      webex # Linux-only (darwin: homebrew cask in hosts/_common/darwin.nix)
+    ]
+    ++ optionals stdenv.isDarwin [
+      whatsapp-for-mac
+      teams
+    ];
 }
