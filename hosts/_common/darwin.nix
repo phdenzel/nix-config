@@ -1,10 +1,15 @@
-# Common configuration for all hosts
+# Common configuration for all darwin hosts
 {
   pkgs,
   lib,
+  inputs,
   ...
-}: 
-{
+}: {
+  imports = [
+    inputs.sops-nix.darwinModules.sops
+    ./sops.nix
+  ];
+
   nix = {
     settings = {
       experimental-features = "nix-command flakes";

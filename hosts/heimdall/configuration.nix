@@ -9,6 +9,7 @@
   hostName = "heimdall";
 in {
   imports = [
+    inputs.sops-nix.nixosModules.sops # sops backend (not pulled in via ../_common)
     ../_common/nix.nix # default nix configuration
     ../_common/sops.nix # host secrets
     ../_common/security.nix # security configs

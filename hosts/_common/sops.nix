@@ -1,16 +1,13 @@
 {
   config,
   lib,
-  inputs,
   ...
 }:
 with lib; let
   cfg = config.sops-host;
   hostName = "${config.networking.hostName}";
 in {
-  imports = [
-    inputs.sops-nix.nixosModules.sops
-  ];
+  # Requires import sops-nix.nixosModules.sops or sops-nix.darwinModules.sops
 
   options.sops-host = {
     enable = mkEnableOption "Enable sops-nix secrets extraction for host.";

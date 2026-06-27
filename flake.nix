@@ -122,6 +122,7 @@
         inherit system;
         modules = [
           (./. + "/hosts/${name}")
+          {nixpkgs.hostPlatform = lib.mkDefault system;}
         ];
       };
     };
