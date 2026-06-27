@@ -176,6 +176,7 @@ in {
   
   # Hardware
   hardware = {
+    bluetooth.enable = true;
     openrazer.enable = true;
     openrazer.batteryNotifier.enable = true;
     # fancontrol.enable = true;
