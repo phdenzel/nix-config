@@ -5,6 +5,7 @@ keys:
       - &idun age1m7y642t548ct35yq4ucspvelclx4efx06se7djff4huk33sved0qvjsrex
       - &phinix age17m4k0g7xn6ek7szh2vg6pdc4vwvvxwfr4zzg36rwhxjfelx6ec7q2v368g
       - &fenrix age1s7pkaz683sf8ms92adh2x4xvspmkfqjenkv06k5leyjly2qewyssnxkwfm
+      - &asahi age1vfgpzt952hal8a2f0d30ec3sn7cl5lwx8vpt9hk3vqpcmyuvhutq7tgptq
       - &heimdall age15et4zlq38fdwspnvfuglym3r5dvnaqhgp7ckryk25prnvtx9uqmqapc5rt
       - &sol age14azxpzvfle8ze00ndmdxvmw43a56y0fgy5rg9s9e22wxwxxwgsps4wwxfk
       - &ygdrasil age146a2057ertnndpe3g7sjhejv5ccnt5d2qvc0kr7ewy5yqdqawglqspd8az
@@ -16,6 +17,7 @@ creation_rules:
           - *idun
           - *phinix
           - *fenrix
+          - *asahi
           - *heimdall
           - *sol
           - *ygdrasil
@@ -26,6 +28,7 @@ creation_rules:
           - *idun
           - *phinix
           - *fenrix
+          - *asahi
           - *heimdall
           - *sol
           - *ygdrasil
