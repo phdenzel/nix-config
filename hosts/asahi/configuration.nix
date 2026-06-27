@@ -91,17 +91,20 @@ in {
 
   # System-wide packages
   environment.systemPackages = with pkgs; [
+    emacs
+    firefox
+    ghostty-bin
+    gimp2
+    slack
     vim
+    winbox4
+    # zoom-us
   ];
 
-  # System-wide programs
-  programs.zsh.enable = true;
-#   programs = {
-#     firefox.enable = true;
-#     thunderbird.enable = true;
-#     winbox.enable = true;
-#     winbox.package = pkgs.winbox4;
-#   };
+# System-wide programs
+  programs = {
+    zsh.enable = true;
+  };
 
 #   # System-wide services
 #   services = {

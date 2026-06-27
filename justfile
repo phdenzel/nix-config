@@ -89,6 +89,9 @@ repiz:
 # Rebuild switch shorthand
 rbs MACHINE:
     sudo nixos-rebuild switch --show-trace --flake .#{{MACHINE}}
+# Rebuild switch shorthand for darwin
+dbs MACHINE:
+	sudo darwin-rebuild switch --flake .#{{MACHINE}}
 
 rep:
 	sudo nix-store --repair --verify --check-contents
