@@ -18,6 +18,10 @@ in {
     ../_common/emacs.nix # editor and god tool
     ../_common/cli-utils.nix # cli tool collection
     ../_common/dev-utils.nix # dev tool collection
+    ../_common/dev-linux.nix # linux-only dev tools
+    ../_common/cuda.nix # NVIDIA CUDA toolkit
+    ../_common/rocm.nix # AMD ROCm runtime
+    ../_common/nix-ld.nix # loader for non-Nix binaries
     ../_common/ai.nix # miscellaneous AI tools
     # ../_srv/computing.nix # computing tool collection
     # ../_srv/ollama.nix # local LLM services

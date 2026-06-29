@@ -7,10 +7,6 @@ with lib; {
   environment.systemPackages = with pkgs; [
     podman
     podman-compose
+    podman-desktop
   ];
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-  };
-  
 }

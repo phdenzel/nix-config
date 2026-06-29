@@ -18,6 +18,10 @@ in {
     ../_common/graphical.nix # Graphical applications
     ../_common/cli-utils.nix # CLI tool collection
     ../_common/dev-utils.nix # Dev tool collection
+    ../_common/dev-linux.nix # linux-only dev tools
+    ../_common/cuda.nix # NVIDIA CUDA toolkit
+    ../_common/rocm.nix # AMD ROCm runtime
+    ../_common/nix-ld.nix # loader for non-Nix binaries
     # ../_common/jupyterhub.nix # Computing/AI tool collection
     ../_common/emacs.nix # Editor and god tool
     # ../_common/fonts.nix # Font packages

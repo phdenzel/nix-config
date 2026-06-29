@@ -4,5 +4,6 @@
     texinfo
     ghostscript
     graphviz
+    pandoc
   ];
 }

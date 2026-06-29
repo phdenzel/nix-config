@@ -1,3 +1,5 @@
+# Cross-platform dev tool collection.
+# Linux-only extras live in: dev-linux.nix
 {
   pkgs,
   ...
@@ -12,22 +14,13 @@
     cargo-show-asm
     clang-tools
     cmake
-    cudaPackages.cudatoolkit
-    cudaPackages.cuda_cudart
-    cudaPackages.cuda_nvcc
-    cudaPackages.cuda_cccl
-    cudaPackages.cudnn
-    gdb
     gcc
     gfortran
     gnumake
     gnuplot
     hdf5
     nodejs
-    perf
     pkg-config
-    podman
-    podman-compose
     (python313.withPackages (p: with p; [
       pip
       virtualenv
@@ -38,38 +31,7 @@
       rope
       ruff
     ]))
-    rocmPackages.clr
     rustup
     uv
   ];
-  programs = {
-    java.enable = true;
-    java.binfmt = true;
-  };
-
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      acl
-      bzip2
-      curl
-      dbus
-      freetype
-      libgcc
-      libgccjit
-      libGL
-      libssh
-      libuuid
-      libxml2
-      openblas
-      lapack
-      openssl
-      stdenv.cc.cc
-      util-linux
-      xz
-      zlib
-      zstd
-    ];
-  };
-  
 }
