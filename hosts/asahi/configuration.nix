@@ -13,100 +13,70 @@ in {
 
   imports = [
     ../_common/darwin.nix
-    ../_common/emacs.nix
+    ../_common/fonts.nix # font packages
+    ../_common/emacs.nix # editor and god tool
+    ../_common/ai.nix # miscellaneous AI tools
+    ../_common/cli-utils.nix # cli tool collection
+    ../_common/crypt-utils.nix # cryptographic tool collection
+    ../_common/containerization.nix # podman and oci utils
+    ../_common/comm.nix # communication apps
+    ../_common/dev-utils.nix # dev tool collection
+    ../_common/openssh.nix # openSSH configs
+    ../_common/jupyterlab-darwin.nix # jupyterlab env + launchd daemon
+    ../_common/texlive.nix # full TeXLive package
+    ../_common/homebrew.nix # darwin-only packages not found in nixpkgs
   ];
 
-#  boot = {
-#    # Kernel
-#    kernelPackages = pkgs.linuxPackages_latest;
-#    kernelParams = ["mem_sleep_default=deep"];
-#    # Bootloader
-#    #loader.systemd-boot.enable = true;
-#    #loader.systemd-boot.editor = false;
-#    loader.efi.canTouchEfiVariables = true;
-#    loader.grub.enable = true;
-#    loader.grub.efiSupport = true;
-#    loader.grub.devices = ["nodev"];
-#    supportedFilesystems = ["nfs"];
-#    # /tmp as tmpfs
-#    tmp = {
-#      useTmpfs = false;
-#      tmpfsSize = "5%";
-#      cleanOnBoot = (!config.boot.tmp.useTmpfs);
-#    };
-#    # Boot screen
-#    # plymouth.enable = mkDefault true;
-#  };
+  power = {
+    sleep = {
+      allowSleepByPowerButton = true;
+      computer = 10; # minutes
+      display = 15; # minutes
+      harddisk = 10; # minutes
+    };
+  };
 
-#  # Suspend settings
-#  powerManagement.enable = true;
-#  services.power-profiles-daemon.enable = true;
-#  systemd.sleep.extraConfig = ''
-#    HibernateDelaySec=30m
-#    SuspendState=mem
-#  '';
-#  services.logind = {
-#    settings.Login = {
-#      HandleLidSwitch = "suspend-then-hibernate";
-#      HandlePowerKey = "hibernate";
-#      HandlePowerKeyLongPress = "poweroff";
-#    };
-#  };
+  # Root configuration
+  sops-host.enable = true;
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLoBbnz9XBvuq7QIUT1cPpyn32PWJFEnH1tPJAidJvO phdenzel@phinix"
+  ];
 
-#  # File system configuration
-#  services.btrfs.autoScrub = {
-#    enable = true;
-#    interval = "weekly";
-#    fileSystems = ["/"];
-#  };
 
-#  # Language customization (see ../../modules)
-#  intl.defaultLocale = "en_US";
-#  intl.extraLocale = "de_CH";
-
-#  # Root configuration
-#  sops-host.enable = true;
-#  users.users.root = {
-#    hashedPasswordFile = config.sops.secrets."passwd/${hostName}".path;
-#    openssh.authorizedKeys.keys = [
-#      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLoBbnz9XBvuq7QIUT1cPpyn32PWJFEnH1tPJAidJvO phdenzel@phinix"
-#    ];
-#  };
-
-#   # Networking
-#   networking = {
-#     hostName = "${hostName}";
-#     hostId = "42b816d1";
-#     wireless.enable = false;  # wireless via wpa_supplicant.
-#     networkmanager.enable = true;
-#     enableIPv6 = false;
-#   };
-#   systemd.services.NetworkManager-wait-online.enable = false;
-
-#   # Local networking
-#   services.avahi = {
-#     enable = true;
-#     domainName = "local";
-#     nssmdns4 = true;
-#     openFirewall = true;
-#   };
+  # Networking
+  networking = {
+    computerName = "${hostName}";
+    hostName = "${hostName}";
+    localHostName = "${hostName}";
+    wakeOnLan.enable = true;
+  };
 
   # System-wide packages
   environment.systemPackages = with pkgs; [
+    easytag
     emacs-macport
+    exiftool
     firefox
     ghostty-bin
     gimp2
-    slack
+    # handbrake # broken
+    imagemagick
+    inkscape
+    mkvtoolnix
+    pass
+    passExtensions.pass-otp
+    pinentry_mac
+    pizauth
+    syncthing-macos
     vim
+    vlc-bin
     winbox4
-    # zoom-us
+    wget
   ];
 
   # System-wide programs
-  programs = {
-    zsh.enable = true;
-  };
+  # programs = {
+  # };
 
   # System-wide services
   # services = {
