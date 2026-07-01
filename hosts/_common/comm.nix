@@ -17,6 +17,5 @@ with lib; {
     ]
     ++ optionals stdenv.isDarwin [
       whatsapp-for-mac
-      teams
     ];
 }

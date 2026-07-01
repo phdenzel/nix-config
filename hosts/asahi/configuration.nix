@@ -63,8 +63,6 @@ in {
     imagemagick
     inkscape
     mkvtoolnix
-    pass
-    passExtensions.pass-otp
     pinentry_mac
     pizauth
     syncthing-macos

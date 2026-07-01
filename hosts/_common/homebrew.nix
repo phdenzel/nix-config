@@ -4,6 +4,6 @@
 {...}: {
   homebrew = {
     enable = true;
-    casks = ["alfred" "webex"];
+    casks = ["alfred" "microsoft-teams" "webex"];
   };
 }
