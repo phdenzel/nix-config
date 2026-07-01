@@ -1,6 +1,16 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.ghostty = {
     enable = true;
+    # nixpkgs ghostty is Linux-only; on darwin use ghostty-bin (installed via
+    # systemPackages) and let HM only manage config (package = null).
+    package =
+      if pkgs.stdenv.hostPlatform.isDarwin
+      then pkgs.ghostty-bin
+      else pkgs.ghostty;
     settings = {
       theme = "${config.colorScheme.slug}";
       cursor-style = "block";

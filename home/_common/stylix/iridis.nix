@@ -1,4 +1,12 @@
-{config, ...}: {
+# Color palette `phd-ark-iridis`. `colorScheme` is cross-platform.
+# The stylix integration is linux-only.
+{
+  config,
+  lib,
+  system ? "x86_64-linux",
+  ...
+}:
+{
   imports = [
     ../../../modules/colors.nix
   ];
@@ -63,6 +71,8 @@
       lilac256 = "099";
     };
   };
+}
+// lib.optionalAttrs (lib.hasSuffix "linux" system) {
   stylix = {
     base16Scheme = {
       name = "phd-ark-iridis";

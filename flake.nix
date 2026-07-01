@@ -118,7 +118,7 @@
       extraArgs ? {},
     }: {
       "${name}" = lib.nixosSystem {
-        specialArgs = {inherit self inputs outputs;} // extraArgs;
+        specialArgs = {inherit self inputs outputs system;} // extraArgs;
         inherit system;
         modules = [
           (./. + "/hosts/${name}")
@@ -132,13 +132,13 @@
       extraArgs ? {},
     }: {
       "${name}" = lib.nixosSystem {
-        specialArgs = {inherit self inputs outputs;} // extraArgs;
+        specialArgs = {inherit self inputs outputs system;} // extraArgs;
         inherit system;
         modules = [
           (./. + "/hosts/${name}")
           home-manager.nixosModules.home-manager
           {
-            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.extraSpecialArgs = {inherit inputs system;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.phdenzel = import ./home/phdenzel;
@@ -151,7 +151,7 @@
       system ? "x86_64-linux",
     }: {
       "phdenzel@${name}" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {inherit inputs outputs system;};
         pkgs = pkgsFor."${system}";
         modules = [
           (./. + "/home/phdenzel/${name}.nix")
@@ -165,7 +165,7 @@
       extraArgs ? {},
     }: {
       "${name}" = nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit self inputs outputs;} // extraArgs;
+        specialArgs = {inherit self inputs outputs system;} // extraArgs;
         inherit system;
         modules = [
           (./. + "/hosts/${name}")

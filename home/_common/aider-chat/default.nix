@@ -1,11 +1,21 @@
 {pkgs, ...}: {
   programs.aider-chat = {
     enable = true;
-    package = pkgs.aider-chat-full.overrideAttrs (prev: {
-      postInstall = (prev.postInstall or "") + ''
-          wrapProgram $out/bin/aider --set OLLAMA_API_BASE http://127.0.0.1:11434
-      '';
-    });
+    # aider-chat-full pulls in python3.13-dlinfo, which is marked broken
+    # on aarch64-darwins
+    package =
+      (
+        if pkgs.stdenv.hostPlatform.isDarwin
+        then pkgs.aider-chat
+        else pkgs.aider-chat-full
+      )
+      .overrideAttrs (prev: {
+        postInstall =
+          (prev.postInstall or "")
+          + ''
+            wrapProgram $out/bin/aider --set OLLAMA_API_BASE http://127.0.0.1:11434
+          '';
+      });
     settings = {
       model = "ollama_chat/deepseek-r1:14b";
       editor-model = "ollama_chat/devstral-small-2:24b-instruct-2512-q4_K_M";
