@@ -54,7 +54,6 @@ in {
   # System-wide packages
   environment.systemPackages = with pkgs; [
     easytag
-    emacs-macport
     exiftool
     firefox
     ghostty-bin
@@ -79,6 +78,11 @@ in {
   # System-wide services
   # services = {
   # };
+
+  # The Emacs daemon is provided by home-manager (running the configured
+  # programs.emacs.finalPackage), so disable the plain system-level daemon
+  # from hosts/_common/emacs.nix to avoid a second, unconfigured daemon.
+  services.emacs.enable = false;
 
   security = {
     pam.services.sudo_local.touchIdAuth = true;

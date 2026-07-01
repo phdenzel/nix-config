@@ -107,7 +107,6 @@
 
       # Mail
       himalaya # himalaya frontend
-      mu4e # emails
 
       # Style packages
       #highlight-parentheses # rather use rainbow-delimiters
@@ -120,6 +119,12 @@
       all-the-icons-nerd-fonts # nerd-font bridge
       treemacs-all-the-icons # icon plugin for treemacs
       dashboard # dashboard for startup
+    ]
+    # mu4e pulls in `mu`, which byte-compiles its lisp against the default
+    # `pkgs.emacs` (the NeXTstep build, broken on aarch64-darwin). Mail is
+    # Linux-only anyway, so keep it off darwin.
+    ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+      mu4e # emails
     ];
 in {
   programs.emacs.extraPackages = packages;

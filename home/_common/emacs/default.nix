@@ -1,15 +1,25 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-pgtk;
+    package =
+      if pkgs.stdenv.isDarwin
+      then pkgs.emacs-macport
+      else pkgs.emacs-pgtk;
   };
-  services.emacs = {
-    enable = true;
-    client.enable = true;
-    defaultEditor = true;
-    socketActivation.enable = true;
-    startWithUserSession = "graphical";
-  };
+  services.emacs =
+    {
+      enable = true;
+      client.enable = true;
+      defaultEditor = true;
+    }
+    // lib.optionalAttrs pkgs.stdenv.isLinux {
+      socketActivation.enable = true;
+      startWithUserSession = "graphical";
+    };
 
   imports = [
     ./epkgs.nix

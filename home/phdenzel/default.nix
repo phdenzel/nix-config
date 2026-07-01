@@ -26,6 +26,7 @@
       # ../_common/dconf
       ../_common/dircolors
       # ../_common/editorconfig
+      ../_common/emacs # TODO mailing
       ../_common/eza
       ../_common/fastfetch
       ../_common/firefox
@@ -51,7 +52,6 @@
     # Linux-only home modules
     ++ lib.optionals (lib.hasSuffix "linux" system) [
       ./_configs/mail
-      ../_common/emacs # TODO mailing
       ../_common/gnome
       ../_common/gtk
       ../_common/hyprland
