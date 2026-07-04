@@ -17,7 +17,10 @@
     kde.enable = true;
     kitty.enable = true;
     mpv.enable = true;
-    qt.enable = true;
+    qt = {
+      enable = true;
+      platform = "qtct"; # only enabled platform on HM
+    };
     starship.enable = false;
     swaync.enable = true;
     tmux.enable = true;
