@@ -3,6 +3,20 @@
   security = {
     polkit.enable = true;
     acme.acceptTerms = true;
+
+    # Allow the sessionless `fwupd-refresh` system user (used by
+    # fwupd-refresh.service/timer) to refresh LVFS metadata without an
+    # interactive auth prompt. Since fwupd 2.1 the action was renamed to
+    # `refresh-remote` and defaults to allow_inactive=no, so the timer fails
+    # with "Failed to obtain auth" unless we grant it explicitly.
+    polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if (action.id == "org.freedesktop.fwupd.refresh-remote" &&
+            subject.user == "fwupd-refresh") {
+          return polkit.Result.YES;
+        }
+      });
+    '';
   };
 
   # System hardening (iterative benchmarking with lynis)
