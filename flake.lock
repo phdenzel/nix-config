@@ -817,6 +817,7 @@
         ]
       },
       "locked": {
+        "lastModified": 1780815201,
         "narHash": "sha256-E96oa4xIRqk4iUFA9yOGFU059uqqbpi7ZxCjRRjdp9Q=",
         "type": "tarball",
         "url": "https://gitlab.com/phdenzel/ska-low-tmdata/-/archive/9d626cbf7cd0142e0cf09e00a892b382e26b9f50/ska-low-tmdata-9d626cbf7cd0142e0cf09e00a892b382e26b9f50.tar.gz"
@@ -836,11 +837,11 @@
         "ska-sdp-func-python": "ska-sdp-func-python"
       },
       "locked": {
-        "lastModified": 1780938742,
-        "narHash": "sha256-UJ0M40dfndn4aFoO5yjKuOry1jWTfyRam0frBes03e4=",
+        "lastModified": 1782580450,
+        "narHash": "sha256-9uHfFMpwkEmTuNxoIHL5q3BTvzriZeV65SuVsrSExDE=",
         "owner": "phdenzel",
         "repo": "ska-ost-array-config",
-        "rev": "a0398b2e602ee7268b6a6cf10cb2851acb5cdca0",
+        "rev": "afbaaf86cf190017e2c9055c73c19d31548f51ad",
         "type": "gitlab"
       },
       "original": {
