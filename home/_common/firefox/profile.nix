@@ -1,8 +1,36 @@
 {
   pkgs,
   config,
+  inputs,
+  system,
   ...
-}: {
+}: let
+  inherit (inputs.firefox-addons.lib.${system}) buildFirefoxXpiAddon;
+  # Addons not (yet) packaged in rycee/nur-expressions firefox-addons
+  markdown-viewer = buildFirefoxXpiAddon {
+    pname = "markdown-viewer";
+    version = "5.2.2";
+    addonId = "markdown-viewer@outofindex.com";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4186249/markdown_viewer_chrome-5.2.2.xpi";
+    sha256 = "b1f328c3067897858054b9c7260d0f6c43579873412e580337c81c6659f4d2fc";
+    meta = {
+      homepage = "https://addons.mozilla.org/firefox/addon/markdown-viewer-chrome/";
+      description = "Markdown Viewer / browser extension";
+      license = pkgs.lib.licenses.mit;
+    };
+  };
+  transmitter = buildFirefoxXpiAddon {
+    pname = "transmitter-for-transmission";
+    version = "1.2.0";
+    addonId = "transmitter@unrelenting.technology";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4227956/transmitter_for_transmission-1.2.0.xpi";
+    sha256 = "dc66d1979498c8ac49d08aa1ee74c89655f19116917040a5e46c5981c149f9a4";
+    meta = {
+      homepage = "https://addons.mozilla.org/firefox/addon/transmitter-for-transmission/";
+      description = "Remote control for the Transmission BitTorrent client";
+    };
+  };
+in {
   imports = [./betterfox.nix];
 
   home.file = {
@@ -17,12 +45,16 @@
       id = 0;
       isDefault = true;
 
-      extensions.packages = with pkgs.inputs.firefox-addons; [
+      extensions.packages = (with pkgs.inputs.firefox-addons; [
         browserpass
         darkreader
+        proton-pass
         simple-tab-groups
         ublock-origin
         xbrowsersync
+      ]) ++ [
+        markdown-viewer
+        transmitter
       ];
       settings."extensions.autoDisableScopes" = 0; # auto enable addons
       settings."extensions.enabledScopes" = 15; # auto enable addons
@@ -150,14 +182,14 @@
           placements = {  
             TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
             # TabsToolbar = ["firefox-view-button" "tabbrowser-tabs" "new-tab-button" "alltabs-button"];
-            nav-bar = ["back-button" "forward-button" "stop-reload-button" "urlbar-container" "save-to-pocket-button" "home-button" "downloads-button" "unified-extensions-button" "fxa-toolbar-menu-button" "reset-pbm-toolbar-button" "ublock0_raymondhill_net-browser-action" "addon_darkreader_org-browser-action" "browserpass_maximbaz_com-browser-action" "simple-tab-groups_drive4ik-browser-action"];
+            nav-bar = ["back-button" "forward-button" "stop-reload-button" "urlbar-container" "save-to-pocket-button" "home-button" "downloads-button" "unified-extensions-button" "fxa-toolbar-menu-button" "reset-pbm-toolbar-button" "ublock0_raymondhill_net-browser-action" "addon_darkreader_org-browser-action" "browserpass_maximbaz_com-browser-action" "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action" "simple-tab-groups_drive4ik-browser-action"];
             toolbar-menubar = ["menubar-items"];
             PersonalToolbar = ["personal-bookmarks"];
             unified-extensions-area = ["_019b606a-6f61-4d01-af2a-cea528f606da_-browser-action"];
             widget-overflow-fixed-list = [];
             vertical-tabs = [];
           };
-          seen = ["reset-pbm-toolbar-button" "browserpass_maximbaz_com-browser-action" "addon_darkreader_org-browser-action" "simple-tab-groups_drive4ik-browser-action" "ublock0_raymondhill_net-browser-action" "_019b606a-6f61-4d01-af2a-cea528f606da_-browser-action" "developer-button"];
+          seen = ["reset-pbm-toolbar-button" "browserpass_maximbaz_com-browser-action" "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action" "addon_darkreader_org-browser-action" "simple-tab-groups_drive4ik-browser-action" "ublock0_raymondhill_net-browser-action" "_019b606a-6f61-4d01-af2a-cea528f606da_-browser-action" "developer-button"];
         };
 
         # Behaviour
