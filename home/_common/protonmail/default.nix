@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./bridge.nix
-    ./pass-agent.nix
   ];
 
   home.packages =
