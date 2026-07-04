@@ -34,6 +34,7 @@
       # ../_common/gh
       ../_common/ghostty
       ../_common/git
+      ../_common/protonmail
       # ../_common/imv
       # ../_common/matplotlib
       # ../_common/ncmpcpp # mpd
