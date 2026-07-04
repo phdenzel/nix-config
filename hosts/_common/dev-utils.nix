@@ -31,7 +31,17 @@
       rope
       ruff
     ]))
-    rustup
+    # Declarative Rust nightly toolchain via fenix (see overlays/default.nix).
+    # Replaces rustup, whose downloaded binaries broke after GC removed the
+    # glibc store path they were patched against.
+    (fenix.complete.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
+    fenix.rust-analyzer
     uv
   ];
 }
