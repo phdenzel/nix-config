@@ -49,7 +49,54 @@ in {
   accounts.email = {
     maildirBasePath = "Mail";
     accounts = {
-      # proton = rec {};
+      proton = rec {
+        flavor = "plain";
+        realName = "${realname}";
+        address = "${username}@protonmail.com";
+        userName = "${address}";
+        # ProtonMail Bridge runs a local IMAP/SMTP gateway that authenticates
+        # with a bridge-generated password (not the account password).
+        # Store that password once via: pass insert mail/${username}@protonmail-bridge
+        #
+        # The Bridge serves a self-signed cert (CN=127.0.0.1, SAN 127.0.0.1,
+        # Proton AG) over STARTTLS, regenerated per host, so it is trusted
+        # manually rather than committed. Just Get Messages / send a mail and
+        # accept the in-context cert pop-up, once for IMAP 1143 and once for
+        # SMTP 1025 (each port stores its own override in the TB profile).
+        # Redo on any new host, or whenever the Bridge regenerates its cert.
+        passwordCommand = "${lib.getExe pkgs.pass} mail/${username}@protonmail-bridge";
+        signature = {
+          showSignature = "append";
+          delimiter = "   ";
+          text = "${casualSignature}";
+        };
+        folders = {
+          inbox = "INBOX";
+          sent = "Sent";
+          drafts = "Drafts";
+          trash = "Trash";
+        };
+        imap = {
+          host = "127.0.0.1";
+          port = 1143;
+          tls.enable = true;
+          tls.useStartTls = true;
+        };
+        smtp = {
+          host = "127.0.0.1";
+          port = lib.mkForce 1025;
+          tls.enable = true;
+          tls.useStartTls = true;
+        };
+        thunderbird = {
+          enable = true;
+          settings = id: {
+            "mail.identity.id_${id}.reply_on_top" = 1;
+            "mail.identity.id_${id}.sig_bottom" = false;
+          };
+        };
+      };
+
       gmail = rec {
         primary = true;
         flavor = "gmail.com";
