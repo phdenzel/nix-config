@@ -22,6 +22,7 @@ with lib; {
       mermaid-cli
       p7zip
       perl
+      rar
       ripgrep
       rsync
       starship
@@ -30,6 +31,7 @@ with lib; {
       tealdeer
       timer
       tree
+      unrar
       unzip
       xdg-utils
       yazi
