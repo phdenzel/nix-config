@@ -1,6 +1,5 @@
 {
   inputs,
-  config,
   ...
 }: {
   # emacs packages as (pinned) read-only git clones in nix-store registry
@@ -140,8 +139,8 @@
       "local/btrsnap" = {
         checkout = "git clone git@github.com:phdenzel/btrsnap.git";
       };
-      "local/cscs-sshservice-cli" = {
-        checkout = "git clone git@github.com:phdenzel/cscs-sshservice-cli.git";
+      "local/cscs-key" = {
+        checkout = "git clone git@github.com:phdenzel/cscs-key.git";
       };
       "local/hatch-bump" = {
         checkout = "git clone git@github.com:phdenzel/hatch-bump.git";

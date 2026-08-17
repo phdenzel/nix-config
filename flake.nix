@@ -93,6 +93,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    cscs-key = {
+      url = "github:phdenzel/cscs-key/feature/nix-pkg";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = {

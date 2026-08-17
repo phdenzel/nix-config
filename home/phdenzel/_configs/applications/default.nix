@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./cscs-keygen.nix
+    ./cscs-key.nix
     ./pyverto.nix
   ];
 }
