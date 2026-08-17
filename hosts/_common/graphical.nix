@@ -16,6 +16,7 @@ with lib; {
     kdePackages.okular
     pdfarranger
     zathura
+    zmk-studio
   ];
 
   programs = {

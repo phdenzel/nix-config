@@ -16,6 +16,7 @@
     cmake
     gcc
     gfortran
+    git-filter-repo
     gnumake
     gnuplot
     hdf5

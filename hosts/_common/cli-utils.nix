@@ -17,6 +17,7 @@ with lib; {
       gzip
       just
       jq
+      keymap-drawer
       libarchive
       libisoburn
       mermaid-cli
