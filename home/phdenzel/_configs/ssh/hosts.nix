@@ -145,11 +145,12 @@
       AddKeysToAgent = "yes";
     };
 
-    # Research clusters
+    # Research clusters (CSCS) — auth via `cscs-key sign` certificate
     "ela" = {
       HostName = "ela.cscs.ch";
       User = "pdenzel";
       IdentityFile = "~/.ssh/cscs-key";
+      CertificateFile = "~/.ssh/cscs-key-cert.pub";
       Compression = false;
       ForwardAgent = true;
       AddKeysToAgent = "yes";
@@ -159,6 +160,7 @@
       HostName = "daint.alps.cscs.ch";
       User = "pdenzel";
       IdentityFile = "~/.ssh/cscs-key";
+      CertificateFile = "~/.ssh/cscs-key-cert.pub";
       ProxyJump = "ela";
       AddKeysToAgent = "yes";
       IdentitiesOnly = true;
@@ -167,6 +169,7 @@
       HostName = "eiger.alps.cscs.ch";
       User = "pdenzel";
       IdentityFile = "~/.ssh/cscs-key";
+      CertificateFile = "~/.ssh/cscs-key-cert.pub";
       ProxyJump = "ela";
       AddKeysToAgent = "yes";
       IdentitiesOnly = true;
