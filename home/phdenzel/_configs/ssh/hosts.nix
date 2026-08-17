@@ -149,15 +149,16 @@
     "ela" = {
       HostName = "ela.cscs.ch";
       User = "pdenzel";
-      IdentityFile = "~/.ssh/cscs_signed_key";
+      IdentityFile = "~/.ssh/cscs-key";
       Compression = false;
       ForwardAgent = true;
       AddKeysToAgent = "yes";
+      IdentitiesOnly = true;
     };
     "daint" = {
       HostName = "daint.alps.cscs.ch";
       User = "pdenzel";
-      IdentityFile = "~/.ssh/cscs_signed_key";
+      IdentityFile = "~/.ssh/cscs-key";
       ProxyJump = "ela";
       AddKeysToAgent = "yes";
       IdentitiesOnly = true;
@@ -165,7 +166,7 @@
     "eiger" = {
       HostName = "eiger.alps.cscs.ch";
       User = "pdenzel";
-      IdentityFile = "~/.ssh/cscs_signed_key";
+      IdentityFile = "~/.ssh/cscs-key";
       ProxyJump = "ela";
       AddKeysToAgent = "yes";
       IdentitiesOnly = true;
