@@ -11,7 +11,7 @@ with lib; {
     imagemagick
     inkscape
     imv
-    libreoffice-fresh
+    libreoffice-stable
     mpv
     kdePackages.okular
     pdfarranger

@@ -4,7 +4,7 @@
     cudaPackages.cudatoolkit
     cudaPackages.cuda_cudart
     cudaPackages.cuda_nvcc
-    cudaPackages.cuda_cccl
+    cudaPackages.cccl
     cudaPackages.cudnn
   ];
 }

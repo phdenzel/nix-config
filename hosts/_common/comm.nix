@@ -10,12 +10,12 @@ with lib; {
       slack
       zoom-us
     ]
-    ++ optionals stdenv.isLinux [
+    ++ optionals stdenv.hostPlatform.isLinux [
       karere # whatsApp client alternative
       teams-for-linux
       webex # Linux-only (darwin: homebrew cask in hosts/_common/homebrew.nix)
     ]
-    ++ optionals stdenv.isDarwin [
+    ++ optionals stdenv.hostPlatform.isDarwin [
       whatsapp-for-mac
     ];
 }

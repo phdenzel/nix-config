@@ -16,6 +16,10 @@
       };
       serif.name = "Noto Serif";
       sansSerif.name = "Noto Sans";
+      emoji = {
+        name = "Noto Color Emoji";
+        package = pkgs.noto-fonts-color-emoji;
+      };
       sizes = {
         applications = 10;
         desktop = 10;

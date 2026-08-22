@@ -19,7 +19,7 @@ in {
   home.packages = [package];
 
   # Linux desktops: autostart the GUI.
-  systemd.user.services = lib.mkIf pkgs.stdenv.isLinux {
+  systemd.user.services = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     protonmail-bridge = {
       Unit = {
         Description = "ProtonMail Bridge";
@@ -37,7 +37,7 @@ in {
   };
 
   # macOS: no GUI build available, so run the headless bridge as a background agent.
-  launchd.agents.protonmail-bridge = lib.mkIf pkgs.stdenv.isDarwin {
+  launchd.agents.protonmail-bridge = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     enable = true;
     config = {
       ProgramArguments = cmd;

@@ -7,6 +7,7 @@
     firefox = {
       enable = true;
       firefoxGnomeTheme.enable = false;
+      fonts.enable = true;
       profileNames = [ "${config.home.username}" ];
     };
     ghostty.enable = true;

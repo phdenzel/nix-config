@@ -9,7 +9,7 @@ with lib; {
   ];
   # technically not a CLI tool
   services.emacs =
-    if pkgs.stdenv.isDarwin
+    if pkgs.stdenv.hostPlatform.isDarwin
     then {
       # nix-darwin only defines: enable, package, additionalPath, exec
       enable = mkDefault true;

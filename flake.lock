@@ -1,76 +1,5 @@
 {
   "nodes": {
-    "aocommon": {
-      "inputs": {
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs"
-        ],
-        "nixpkgs-24-05": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs-24-05"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780434539,
-        "narHash": "sha256-VTJC7nvqvOV4pyj1UGiUrMBgufDIUMFEn9mKGFgz8uk=",
-        "ref": "refs/heads/master",
-        "rev": "fa5ed5f6633640c8e7601abeab57312ad406246a",
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/aocommon.git"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/aocommon.git"
-      }
-    },
-    "aoflagger": {
-      "inputs": {
-        "aocommon": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "aocommon"
-        ],
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs"
-        ],
-        "nixpkgs-24-05": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs-24-05"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780435173,
-        "narHash": "sha256-YiQrFw9d5sVxKGOYis8+SPO8E56szh0FVEig842++7A=",
-        "ref": "refs/heads/master",
-        "rev": "ec39a5a26fd559bbb508d4e1d3f5bf6c56e540f2",
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/aoflagger.git"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/aoflagger.git"
-      }
-    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -162,22 +91,6 @@
         "type": "github"
       }
     },
-    "cudawrappers": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1777471604,
-        "narHash": "sha256-efg69FXCufYi4NA2AtTsK+6hl+0LHZWhvIgRzSx2e/4=",
-        "owner": "nlesc-recruit",
-        "repo": "cudawrappers",
-        "rev": "f7ce9f963e5b0daf2372a1d286a874f42a96cd81",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nlesc-recruit",
-        "repo": "cudawrappers",
-        "type": "github"
-      }
-    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -185,128 +98,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1780894562,
-        "narHash": "sha256-c3430xwxwhHipl3jigUGMMBfpaMylDqytW/kdmB3ZGs=",
+        "lastModified": 1781152676,
+        "narHash": "sha256-RxWs5ND31KzTG7wvMM+PMfUjyNpmIEr999lqNARaM5o=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "24fed06cac83bcc44ac8efbb57cab1a82fa0bedc",
+        "rev": "ff8702b4de27f72b4c78573dfb89ec74e36abdf1",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "disko",
         "type": "github"
-      }
-    },
-    "dp3": {
-      "inputs": {
-        "aocommon": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "aocommon"
-        ],
-        "aoflagger": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "aoflagger"
-        ],
-        "everybeam": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "everybeam"
-        ],
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "flake-utils"
-        ],
-        "idg": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "idg"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs"
-        ],
-        "nixpkgs-24-05": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs-24-05"
-        ],
-        "schaapcommon": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "schaapcommon"
-        ],
-        "ska-sdp-func": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "ska-sdp-func"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780578781,
-        "narHash": "sha256-qa6iB6ucrE49Ox2BZorl8FNznHV+k0oakTOJBcH9fQo=",
-        "ref": "refs/heads/master",
-        "rev": "04581c52e0be5f9436931dc1149438a35bf68acb",
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/dp3.git"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/dp3.git"
-      }
-    },
-    "everybeam": {
-      "inputs": {
-        "aocommon": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "aocommon"
-        ],
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs"
-        ],
-        "nixpkgs-24-05": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs-24-05"
-        ],
-        "schaapcommon": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "schaapcommon"
-        ],
-        "ska-sdp-func": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "ska-sdp-func"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780491854,
-        "narHash": "sha256-OuLiPRP5ZdyHDJS5h0bLrV0w2CiBaWlD4wPCbqyIxKI=",
-        "ref": "refs/heads/master",
-        "rev": "462424211dcbcb7222f068afcc5c7fe3362ef597",
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/everybeam.git"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/everybeam.git"
       }
     },
     "fenix": {
@@ -339,11 +141,11 @@
         "rust-analyzer-src": "rust-analyzer-src_2"
       },
       "locked": {
-        "lastModified": 1782900513,
-        "narHash": "sha256-GHrsl1+ysDFgmDQtQSqWS7TiYD2Q58VlwLvnf1+crJM=",
+        "lastModified": 1787381277,
+        "narHash": "sha256-ZTCk8w6UKzlWSJiFtQTy+HahC79d/p5kh97prdRkkHE=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "16810aa8f4ad89ca480b1513774e8b6f485fe368",
+        "rev": "eacb66f3a1e40cc5ac88ef588ed6bc9bbff1c79c",
         "type": "github"
       },
       "original": {
@@ -360,11 +162,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1780977789,
-        "narHash": "sha256-UFJfQlvInbsVaTK5XC2lafdqWlwiNP5LuQFYfDKq6Dc=",
+        "lastModified": 1787371635,
+        "narHash": "sha256-XYr6JheHNq1RzstTbzB2AOlxLZXTzkMmcg9wWw8fWW0=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "0b627f105ea3baa2fa10308a6a67a8f8cbbb3e2a",
+        "rev": "ef61395bd142cf7f3d7fda48a75b5662006c18da",
         "type": "gitlab"
       },
       "original": {
@@ -377,11 +179,11 @@
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1779670703,
-        "narHash": "sha256-UdfMivNMwCCqQsYDg5pSz8X2IOaOrIZLIIy+Bg3CO2o=",
+        "lastModified": 1783570805,
+        "narHash": "sha256-ptl5aRlCv9/uRSv2u8Hq8UFVFeZ6Q/bT049bpqNgc3w=",
         "owner": "rafaelmardojai",
         "repo": "firefox-gnome-theme",
-        "rev": "942159e73e40bf785816f7f1f5feed9ef3d7c8f9",
+        "rev": "5602ed62d638142c1ab31dccd01dfbfb28841225",
         "type": "github"
       },
       "original": {
@@ -398,11 +200,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778716662,
-        "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
+        "lastModified": 1782949081,
+        "narHash": "sha256-vp6Y/Grm98ESt6ceOkWiHWyZRDV3J1RID4w+6NWK9yA=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
+        "rev": "17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e",
         "type": "github"
       },
       "original": {
@@ -462,24 +264,6 @@
         "type": "github"
       }
     },
-    "flake-utils_4": {
-      "inputs": {
-        "systems": "systems_3"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "fromYaml": {
       "flake": false,
       "locked": {
@@ -499,18 +283,20 @@
     "gnome-shell": {
       "flake": false,
       "locked": {
-        "lastModified": 1767737596,
-        "narHash": "sha256-eFujfIUQDgWnSJBablOuG+32hCai192yRdrNHTv0a+s=",
+        "host": "gitlab.gnome.org",
+        "lastModified": 1776175984,
+        "narHash": "sha256-RJFlFW8GiMei6oqUGrMkGEvVqOH8U7Q8abc1yK4VKD8=",
         "owner": "GNOME",
         "repo": "gnome-shell",
-        "rev": "ef02db02bf0ff342734d525b5767814770d85b49",
-        "type": "github"
+        "rev": "e0fdc4c13250e9a9b8ea9594c83925274f4a5dca",
+        "type": "gitlab"
       },
       "original": {
+        "host": "gitlab.gnome.org",
         "owner": "GNOME",
+        "ref": "50.1",
         "repo": "gnome-shell",
-        "rev": "ef02db02bf0ff342734d525b5767814770d85b49",
-        "type": "github"
+        "type": "gitlab"
       }
     },
     "hardware": {
@@ -518,11 +304,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1780310866,
-        "narHash": "sha256-fPBRVf6A5xlACYcOI59shGrjURuvwu0lRsDoSCEXt/I=",
+        "lastModified": 1787144466,
+        "narHash": "sha256-HHfv2/HkNSKbbSyU9iD/g8lbP6r4tl33sSw1W4rXCk0=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "4ed851c979641e28597a05086332d75cdc9e395f",
+        "rev": "0471accf8d0a8210b31d947497d179ecc99e0021",
         "type": "github"
       },
       "original": {
@@ -538,56 +324,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1780943742,
-        "narHash": "sha256-01bTMR9ZPG+uxPaZBeOwagg5uxIaFYs2/3YIrOX+bCA=",
+        "lastModified": 1787379775,
+        "narHash": "sha256-XL2qfqmocfsvuEGyomZg4nOZfkuSe8vZtrOX99I+b6I=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "df39142474950e42d5fc3bf2fef9d6c62abbe8d7",
+        "rev": "ec1a8fdf74ed3f276148ee106299a2ba0e65d51f",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
-      }
-    },
-    "idg": {
-      "inputs": {
-        "aocommon": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "aocommon"
-        ],
-        "cudawrappers": "cudawrappers",
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs"
-        ],
-        "nixpkgs-24-05": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs-24-05"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780481049,
-        "narHash": "sha256-zc/iMwA8+zgkHdJ9S2VpcNK7F+GeG6QK2gu9N/5B/00=",
-        "ref": "refs/heads/master",
-        "rev": "c6d8ada1a8de2315d0d1e8e4dea58655c9351408",
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-sdp-func-idg.git"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-sdp-func-idg.git"
       }
     },
     "nix-darwin": {
@@ -597,11 +344,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780795403,
-        "narHash": "sha256-AkWx4Zt9pQbD/f82Z8N57+d0HGLN/rV3gdMKJTpBPKs=",
+        "lastModified": 1786845137,
+        "narHash": "sha256-oQFip+v0luP8NIxJzmiW4Wu8bILsbFWom5l0zonl8hQ=",
         "owner": "nix-darwin",
         "repo": "nix-darwin",
-        "rev": "6a771120d607dcccb279a27d227650e324815c35",
+        "rev": "4cff07de74b50e64bdd68cd4e722ab5b6b35ee48",
         "type": "github"
       },
       "original": {
@@ -624,29 +371,13 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
-    "nixpkgs-24-05": {
-      "locked": {
-        "lastModified": 1735563628,
-        "narHash": "sha256-OnSAY7XDSx7CtDoqNh8jwVwh4xNL/2HaJxGjryLWzX8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b134951a4c9f3c995fd7be05f3243f8ecd65d798",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-24.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1780902259,
-        "narHash": "sha256-q8yYEC5f1mFlQO9RGna4LTc9QrcvWunX6FYp83munkQ=",
+        "lastModified": 1787204541,
+        "narHash": "sha256-OURZPknrTjQrlNyxPdqzyqmU/81Wes1CUP/Ft1Rv/YI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "bd0ff2d3eac24699c3664d5966b9ef36f388e2ca",
+        "rev": "5880666fd9eb563038431edb35c2d0aa595884e6",
         "type": "github"
       },
       "original": {
@@ -658,11 +389,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1780749050,
-        "narHash": "sha256-3av0pIjlOWQ6rDbNOmpUSvbNnJkGORQKKjb4LtCZsIY=",
+        "lastModified": 1787360063,
+        "narHash": "sha256-dt4WdcvsA8/RCe+VZZwqU0X+XMM3wBbGCWA0/sFWzGo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+        "rev": "2c423e03bbafcff28bfadc6781a4a8257f205cb5",
         "type": "github"
       },
       "original": {
@@ -684,11 +415,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780281641,
-        "narHash": "sha256-M/+hUKoKbHXpV0xGVfELbN1Ds1aoe3pL5p5/t46YhVo=",
+        "lastModified": 1785549842,
+        "narHash": "sha256-DCwBZmGsySF7oKGTRgEv2HvpxVXkHT+38VhTM76k0B4=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "30f9ae2f04174de63ba8bcf3580ca90843b28a01",
+        "rev": "a9f987b57594e845e3e5cdd423b9a70846d70308",
         "type": "github"
       },
       "original": {
@@ -788,49 +519,6 @@
         "url": "ssh://git@github.com/phdenzel/wallpapers"
       }
     },
-    "radler": {
-      "inputs": {
-        "aocommon": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "aocommon"
-        ],
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs"
-        ],
-        "nixpkgs-24-05": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs-24-05"
-        ],
-        "schaapcommon": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "schaapcommon"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780485028,
-        "narHash": "sha256-iBPKNzPkdHHZlWuoKa4Zn4juQHKgPvHeUnMD3hhe3wo=",
-        "ref": "refs/heads/main",
-        "rev": "0926dc61d5d29d29f8c9e94e605fe7e7086bb0e5",
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-sdp-func-radler.git"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-sdp-func-radler.git"
-      }
-    },
     "root": {
       "inputs": {
         "cscs-key": "cscs-key",
@@ -847,10 +535,9 @@
         "phd-ark-modeline": "phd-ark-modeline",
         "phd-ark-tabline": "phd-ark-tabline",
         "phd-wallpapers": "phd-wallpapers",
-        "ska-ost-array-config": "ska-ost-array-config",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "systems": "systems_5"
+        "systems": "systems_4"
       }
     },
     "rust-analyzer-src": {
@@ -873,11 +560,11 @@
     "rust-analyzer-src_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1782864348,
-        "narHash": "sha256-NVYhLbaefeIUftPlo3kS6qr0xd8eFJRodEiaHrvFKR4=",
+        "lastModified": 1787308443,
+        "narHash": "sha256-Ou4Up06Sr6pm+Q3nKm0zZdqajHXM9sCSRNrOhE3Fm7g=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "0d381ca097a8e0375a19387874d952c0a230ac4f",
+        "rev": "d2e55da49132fa70a13dfbdc99122432b02cf464",
         "type": "github"
       },
       "original": {
@@ -885,149 +572,6 @@
         "ref": "nightly",
         "repo": "rust-analyzer",
         "type": "github"
-      }
-    },
-    "schaapcommon": {
-      "inputs": {
-        "aocommon": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "aocommon"
-        ],
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs"
-        ],
-        "nixpkgs-24-05": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs-24-05"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780480939,
-        "narHash": "sha256-912nmecZsoWeWAHXAR9F2ZBFD5NiI0vUHUc5nvZrMzQ=",
-        "ref": "refs/heads/master",
-        "rev": "506a3aae61a824c4faa82d4c675f074754e32fa7",
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/schaapcommon.git"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/schaapcommon.git"
-      }
-    },
-    "ska-low-tmdata": {
-      "inputs": {
-        "flake-utils": [
-          "ska-ost-array-config",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780815201,
-        "narHash": "sha256-E96oa4xIRqk4iUFA9yOGFU059uqqbpi7ZxCjRRjdp9Q=",
-        "type": "tarball",
-        "url": "https://gitlab.com/phdenzel/ska-low-tmdata/-/archive/9d626cbf7cd0142e0cf09e00a892b382e26b9f50/ska-low-tmdata-9d626cbf7cd0142e0cf09e00a892b382e26b9f50.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://gitlab.com/phdenzel/ska-low-tmdata/-/archive/9d626cbf7cd0142e0cf09e00a892b382e26b9f50/ska-low-tmdata-9d626cbf7cd0142e0cf09e00a892b382e26b9f50.tar.gz"
-      }
-    },
-    "ska-ost-array-config": {
-      "inputs": {
-        "flake-utils": "flake-utils_4",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "ska-low-tmdata": "ska-low-tmdata",
-        "ska-sdp-func-python": "ska-sdp-func-python"
-      },
-      "locked": {
-        "lastModified": 1782580450,
-        "narHash": "sha256-9uHfFMpwkEmTuNxoIHL5q3BTvzriZeV65SuVsrSExDE=",
-        "owner": "phdenzel",
-        "repo": "ska-ost-array-config",
-        "rev": "afbaaf86cf190017e2c9055c73c19d31548f51ad",
-        "type": "gitlab"
-      },
-      "original": {
-        "owner": "phdenzel",
-        "repo": "ska-ost-array-config",
-        "type": "gitlab"
-      }
-    },
-    "ska-schemas": {
-      "inputs": {
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "ska-sdp-datamodels",
-          "ska-telmodel",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "ska-sdp-datamodels",
-          "ska-telmodel",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780562927,
-        "narHash": "sha256-fu06UO/VpYM62x+SdGysNHcrX8YZf5rGPmys0jUv/r0=",
-        "ref": "refs/heads/main",
-        "rev": "41c7aac5f6dca5b7d0833ae6dd028402086233f2",
-        "revCount": 2965,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-schemas.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-schemas.git"
-      }
-    },
-    "ska-sdp-datamodels": {
-      "inputs": {
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs"
-        ],
-        "ska-telmodel": "ska-telmodel"
-      },
-      "locked": {
-        "lastModified": 1780580481,
-        "narHash": "sha256-/Yf/1pN0BlTdVpjcCAX24TOJQY+mSQQCQnZYGnhYeQ8=",
-        "ref": "refs/heads/main",
-        "rev": "24eaa655417451bc5cc562c58a32e37a8a116de3",
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-sdp-datamodels.git"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-sdp-datamodels.git"
       }
     },
     "ska-sdp-func": {
@@ -1055,138 +599,6 @@
         "url": "https://gitlab.com/phdenzel/ska-sdp-func.git"
       }
     },
-    "ska-sdp-func-python": {
-      "inputs": {
-        "aocommon": "aocommon",
-        "aoflagger": "aoflagger",
-        "dp3": "dp3",
-        "everybeam": "everybeam",
-        "flake-utils": [
-          "ska-ost-array-config",
-          "flake-utils"
-        ],
-        "idg": "idg",
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "nixpkgs"
-        ],
-        "nixpkgs-24-05": "nixpkgs-24-05",
-        "radler": "radler",
-        "schaapcommon": "schaapcommon",
-        "ska-sdp-datamodels": "ska-sdp-datamodels",
-        "ska-sdp-func": "ska-sdp-func_2"
-      },
-      "locked": {
-        "lastModified": 1780749758,
-        "narHash": "sha256-BSeWNw0/xTyhEYydaKSeWOqcAhTraEi5BWeBRqpSux4=",
-        "ref": "refs/heads/main",
-        "rev": "28702cdf29bc92145aa340c66cbf3d7545aeb828",
-        "revCount": 671,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-sdp-func-python.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-sdp-func-python.git"
-      }
-    },
-    "ska-sdp-func_2": {
-      "inputs": {
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780651410,
-        "narHash": "sha256-ZNHrBf6YbVUm9Y599qbalieFP5MZR2C8P8XvU8GKuw0=",
-        "ref": "refs/heads/main",
-        "rev": "2acfd7732072da5c8aba2dd1835ed57faec85973",
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-sdp-func.git"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-sdp-func.git"
-      }
-    },
-    "ska-telmodel": {
-      "inputs": {
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "ska-sdp-datamodels",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "ska-sdp-datamodels",
-          "nixpkgs"
-        ],
-        "ska-schemas": "ska-schemas",
-        "ska-telmodel-client": "ska-telmodel-client"
-      },
-      "locked": {
-        "lastModified": 1780580374,
-        "narHash": "sha256-3QajIemqAOnQ/Ma11CY6cCmPU+PlPD5b8QXQlHMu6og=",
-        "ref": "refs/heads/master",
-        "rev": "8fed108c32bc27b74426d6d4a84be0130bb34e20",
-        "revCount": 2758,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-telmodel.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-telmodel.git"
-      }
-    },
-    "ska-telmodel-client": {
-      "inputs": {
-        "flake-utils": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "ska-sdp-datamodels",
-          "ska-telmodel",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "ska-sdp-datamodels",
-          "ska-telmodel",
-          "nixpkgs"
-        ],
-        "ska-schemas": [
-          "ska-ost-array-config",
-          "ska-sdp-func-python",
-          "ska-sdp-datamodels",
-          "ska-telmodel",
-          "ska-schemas"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780580177,
-        "narHash": "sha256-4S1V3Nw1XVlhPJqQViFmCu9MD42KWtylPupWm6Qu/vY=",
-        "ref": "refs/heads/main",
-        "rev": "b14582c344b19f33c926066c547145327a0795d0",
-        "revCount": 2639,
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-telmodel-client.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://gitlab.com/phdenzel/ska-telmodel-client.git"
-      }
-    },
     "sops-nix": {
       "inputs": {
         "nixpkgs": [
@@ -1194,11 +606,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780547341,
-        "narHash": "sha256-Gq8KNx5A7hBB3uGJaj6eQfLDIz5YdLu92gqBcvHvoUo=",
+        "lastModified": 1786629091,
+        "narHash": "sha256-gkig4nPi1CWc4Z50GBsjE4ygSE7hMpl/TwID2an2Cck=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "9ed65852b6257fbeae4355bc24ecfea307ca759a",
+        "rev": "a8627b21b9107c5711c96b84f32a9a4b3d45295f",
         "type": "github"
       },
       "original": {
@@ -1220,18 +632,18 @@
           "nixpkgs"
         ],
         "nur": "nur",
-        "systems": "systems_4",
+        "systems": "systems_3",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
         "tinted-tmux": "tinted-tmux",
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1780701809,
-        "narHash": "sha256-u7AUNs6U6eD1os4+ghbr1gH4QjPWzOdKvpeM+E+XRKM=",
+        "lastModified": 1787175104,
+        "narHash": "sha256-tzNjlb0loxeWlipvxSNAUUihloeTZoyGFhEen87yM9k=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "3a02d9f73608641b28e08b26acb0b0b47c05f14b",
+        "rev": "a9e5a76a1b75b137f266e4f445e1eaba82e9783e",
         "type": "github"
       },
       "original": {
@@ -1272,35 +684,21 @@
     },
     "systems_3": {
       "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "lastModified": 1774449309,
+        "narHash": "sha256-brhZ8DmuGtzkCYHJg4HEd602amKm89Y9ytsFZ5uWD1w=",
         "owner": "nix-systems",
         "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "rev": "c29398b59d2048c4ab79345812849c9bd15e9150",
         "type": "github"
       },
       "original": {
         "owner": "nix-systems",
+        "ref": "future-26.11",
         "repo": "default",
         "type": "github"
       }
     },
     "systems_4": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_5": {
       "locked": {
         "lastModified": 1735898645,
         "narHash": "sha256-W9jgw8NS67HoeI6HXfgEw9x4cI8WPJpxzJMftUwgpeQ=",
@@ -1335,11 +733,11 @@
     "tinted-schemes": {
       "flake": false,
       "locked": {
-        "lastModified": 1777806186,
-        "narHash": "sha256-PDF0/wObw4nIsSBeXVYLsloXOiphXCgIdsrNcVXguKs=",
+        "lastModified": 1785153830,
+        "narHash": "sha256-fNdfCTeCXU3tZG3TMincd+u68qBHQgCr2Ljr/M1mWP0=",
         "owner": "tinted-theming",
         "repo": "schemes",
-        "rev": "0c94645546f4f3ddac77a1a5fce54eb95bf50795",
+        "rev": "9bd28ed313560db3c5b605c63bc4e309e78e3fc8",
         "type": "github"
       },
       "original": {
@@ -1351,11 +749,11 @@
     "tinted-tmux": {
       "flake": false,
       "locked": {
-        "lastModified": 1778379944,
-        "narHash": "sha256-wPDFzMGSlARlw0Sfsn48Q2+jPSfk6N0Ng6BC/d+7Q24=",
+        "lastModified": 1785031658,
+        "narHash": "sha256-mZp9O2LjzdMzlqQF3l3fjqsuPBzXy+1qTfBEUGjTlpk=",
         "owner": "tinted-theming",
         "repo": "tinted-tmux",
-        "rev": "fe0203a198690e71a5ff11e08812a4673de3678d",
+        "rev": "5d2c67f61ea7af36f16865ab6d541cdba41dc257",
         "type": "github"
       },
       "original": {
@@ -1367,11 +765,11 @@
     "tinted-zed": {
       "flake": false,
       "locked": {
-        "lastModified": 1778378178,
-        "narHash": "sha256-OXPXRIQgGwV77HjYRryOHguh4ALX96jkg+tseLkGgHA=",
+        "lastModified": 1785030526,
+        "narHash": "sha256-klZf8UviewRkxuu74Bhbq6tqy7oxebQC7UVRWbbtQxU=",
         "owner": "tinted-theming",
         "repo": "base16-zed",
-        "rev": "9cd816033ff969415b190722cddf134e78a5665f",
+        "rev": "16f5a8adf4a6b1310d0a61ab172de963e8f76a02",
         "type": "github"
       },
       "original": {

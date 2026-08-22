@@ -45,12 +45,12 @@ with lib; {
       zsh-history-substring-search
       zsh-syntax-highlighting
     ]
-    ++ optionals stdenv.isLinux [
+    ++ optionals stdenv.hostPlatform.isLinux [
       # Linux-only packages
       psmisc
       strace
     ]
-    ++ optionals stdenv.isDarwin [
+    ++ optionals stdenv.hostPlatform.isDarwin [
       # macOS alternatives
       pstree
     ];

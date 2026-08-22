@@ -37,10 +37,7 @@ in {
 
   programs.himalaya = {
     enable = true;
-    package = pkgs.himalaya.override {
-      buildNoDefaultFeatures = true;
-      buildFeatures = ["imap" "maildir" "smtp" "wizard" "oauth2" "keyring"];
-    };
+    package = pkgs.himalaya;
     settings = {
       downloads-dir = "${config.home.homeDirectory}/Downloads";
     };

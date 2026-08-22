@@ -123,7 +123,7 @@
     # mu4e pulls in `mu`, which byte-compiles its lisp against the default
     # `pkgs.emacs` (the NeXTstep build, broken on aarch64-darwin). Mail is
     # Linux-only anyway, so keep it off darwin.
-    ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+    ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       mu4e # emails
     ];
 in {

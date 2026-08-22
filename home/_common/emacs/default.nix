@@ -6,7 +6,7 @@
   programs.emacs = {
     enable = true;
     package =
-      if pkgs.stdenv.isDarwin
+      if pkgs.stdenv.hostPlatform.isDarwin
       then pkgs.emacs-macport
       else pkgs.emacs-pgtk;
   };
@@ -16,7 +16,7 @@
       client.enable = true;
       defaultEditor = true;
     }
-    // lib.optionalAttrs pkgs.stdenv.isLinux {
+    // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
       socketActivation.enable = true;
       startWithUserSession = "graphical";
     };
