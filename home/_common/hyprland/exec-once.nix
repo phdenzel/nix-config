@@ -10,6 +10,7 @@
           hl.exec_cmd("hyprsunset")
           hl.exec_cmd("udiskie")
           hl.exec_cmd("lact daemon")
+          hl.exec_cmd("nm-applet")
         end'')
       ];
     };

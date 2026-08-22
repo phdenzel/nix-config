@@ -19,7 +19,7 @@ with lib; {
   stylix.targets = {
     console.enable = true;
     grub.enable = true;
-    gtk.enable = false;
+    gtk.enable = true;
     qt.enable = true;
   };
 }

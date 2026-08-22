@@ -7,8 +7,8 @@
     [
       dejavu_fonts
       fira-sans
-      hubot-sans
-      mona-sans
+      # hubot-sans
+      # mona-sans
       noto-fonts
       open-sans
       roboto
