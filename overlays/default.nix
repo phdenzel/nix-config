@@ -23,16 +23,33 @@ in {
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
     # example = addPatches prev.example [./example.diff];
-    glances =
+    glances = prev.glances.overrideAttrs (oldAttrs:
       if final.stdenv.hostPlatform.isAarch64
-      then
-        prev.glances.overrideAttrs (_: {
-          doCheck = false;
-          doInstallCheck = false;
-          nativeCheckInputs = [];
-          checkInputs = [];
+      then {
+        doCheck = false;
+        doInstallCheck = false;
+        nativeCheckInputs = [];
+        checkInputs = [];
+      }
+      else {
+        # The RESTful tests boot a glances web server on localhost:61235 and
+        # poll it; the server never comes up in the Nix sandbox, so every
+        # request dies with ECONNREFUSED.
+        disabledTestPaths = (oldAttrs.disabledTestPaths or []) ++ ["tests/test_restful.py"];
+      });
+
+    # Python package fixes (applied to every interpreter's package set).
+    pythonPackagesExtensions =
+      (prev.pythonPackagesExtensions or [])
+      ++ [
+        (pyFinal: pyPrev: {
+          # aider-chat-full with rocmSupport cause re-build
+          spacy = pyPrev.spacy.overrideAttrs (_: {
+            doCheck = false;
+            doInstallCheck = false;
+          });
         })
-      else prev.glances;
+      ];
   };
 
   # Alias inputs.nixpkgs-stable to pkgs.stable,
