@@ -80,6 +80,13 @@ in {
     fileSystems = ["/" "/scratch"];
   };
 
+  # Build parallelism: 32 cores, but ROCm/CUDA-enabled rebuilds are memory
+  # hogs (~2-4 GiB per linker job), so cap the total at 4 jobs x 8 threads.
+  nix.settings = {
+    max-jobs = 4;
+    cores = 8;
+  };
+
   # Hardware customization
   nixpkgs.config.rocmSupport = true;
   services.ollama.package = lib.mkForce pkgs.ollama-rocm;

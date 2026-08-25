@@ -86,6 +86,14 @@ spiz:
 repiz:
 	age --decrypt -i ~/.config/sops/age/keys.txt -o - ~/.config/pizauth.age | pizauth restore
 
+# Show what a rebuild would build locally / fetch, without building anything
+rbd MACHINE:
+    nixos-rebuild dry-build --flake .#{{MACHINE}}
+
+# Build the system closure without activating it (safe to interrupt/retry)
+rbb MACHINE:
+    nixos-rebuild build --flake .#{{MACHINE}}
+
 # Rebuild switch shorthand
 rbs MACHINE:
     sudo nixos-rebuild switch --show-trace --flake .#{{MACHINE}}

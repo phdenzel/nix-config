@@ -15,6 +15,16 @@ in {
       auto-optimise-store = lib.mkDefault true;
       download-buffer-size = 524288000;
 
+      # Build off /tmp: with boot.tmp.useTmpfs the build tree lives in RAM,
+      # so a big rebuild competes with the compilers for memory. This must not
+      # sit under a world-writable parent (/var/tmp is 1777) -- Nix rejects
+      # that outright. Nix's own build dir is on the same btrfs subvolume as
+      # the store, so finished builds are renamed in, not copied.
+      build-dir = "/nix/var/nix/builds";
+      # Conservative defaults; override per host (see hosts/sol).
+      max-jobs = lib.mkDefault 4;
+      cores = lib.mkDefault 4;
+
       # binary caches
       substituters = [
         "https://cache.nixos.org"
@@ -39,6 +49,27 @@ in {
 
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  };
+
+  # Cage the builders: builds are forked from nix-daemon, so a limit on its
+  # cgroup makes a runaway build get OOM-killed instead of freezing the box.
+  systemd.services.nix-daemon.serviceConfig = {
+    MemoryHigh = lib.mkDefault "75%";
+    MemoryMax = lib.mkDefault "95%";
+  };
+
+  # Last-resort safety net: systemd-oomd only manages user slices, and the
+  # kernel OOM killer arrives long after the desktop has stopped responding.
+  services.earlyoom = {
+    enable = lib.mkDefault true;
+    freeMemThreshold = 5;
+    freeSwapThreshold = 10;
+    extraArgs = [
+      "--avoid"
+      "^(Hyprland|sddm|systemd|dbus-daemon|sshd|nix-daemon)$"
+      "--prefer"
+      "^(cc1|cc1plus|ld|ld\\.lld|lld|rustc|nvcc|hipcc|clang|clang\\+\\+|ninja)$"
+    ];
   };
 
   hardware.enableRedistributableFirmware = true;
