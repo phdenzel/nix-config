@@ -339,11 +339,11 @@
         "rust-analyzer-src": "rust-analyzer-src_2"
       },
       "locked": {
-        "lastModified": 1787640924,
-        "narHash": "sha256-5RH0X19vDtLjygX3vKEz9DcmCJ3iwnkMAg9ZNfvp31U=",
+        "lastModified": 1788006742,
+        "narHash": "sha256-V65dNU5TPx5c/DBdJ2G8rgczvLxB5ROm/ie8CS6WV3w=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "7e9f5c4746d2d4973e393317c4557f614f1398b8",
+        "rev": "e0f7f5109090e4ebc9f3c969b961966cd7a61013",
         "type": "github"
       },
       "original": {
@@ -360,11 +360,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1787630552,
-        "narHash": "sha256-w3LGSHkHWKRH5K4A8plRWaFbaSWfdZAIxv32kO2mpOg=",
+        "lastModified": 1788062878,
+        "narHash": "sha256-rcVVm6aHB0uUy0W4IE/Pbs8E7YVONklftB2v3vUqsd0=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "25227969423d7ef599f70e16364ac550a0f713cd",
+        "rev": "b1ad358290dcf751d364b80f50bb706e30327f7b",
         "type": "gitlab"
       },
       "original": {
@@ -520,11 +520,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1787144466,
-        "narHash": "sha256-HHfv2/HkNSKbbSyU9iD/g8lbP6r4tl33sSw1W4rXCk0=",
+        "lastModified": 1788044418,
+        "narHash": "sha256-cmOd3iGoE140M2GidgQMQbyxHZ4dT7C0QZq2+CrXQyA=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "0471accf8d0a8210b31d947497d179ecc99e0021",
+        "rev": "dc3f0cfde2050172abf6c3cdb684f735c15a57c5",
         "type": "github"
       },
       "original": {
@@ -540,11 +540,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787540599,
-        "narHash": "sha256-MHwk52ty3NsLhq9a1IbIfBJZlCUJIdiUYFo52JLK9hY=",
+        "lastModified": 1787797243,
+        "narHash": "sha256-8+Q7NOB7RPajRjA4pbCDLzqH+MTjnG9x6LUPLfL2joA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "03f4cd46bc1dd4f3a96da778d2ce9f7ce39dd450",
+        "rev": "99c9ec63390f1d8c14d95d9e8b17cc29cfbd4e11",
         "type": "github"
       },
       "original": {
@@ -644,11 +644,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1787525875,
-        "narHash": "sha256-sKbMlkDCBVmAjUVT94LwhVtET/YEMtZaFdn5UduWxz8=",
+        "lastModified": 1787962033,
+        "narHash": "sha256-u6z9VTZA4Kf3RkHQo9sQI7NI4Ei/uiU9vrMqOiwWP1Y=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a3b98866eecd08edac6e61a3081e69540a35020f",
+        "rev": "c5c4a43b0e8056328ec4529f735cabdb8f1942bb",
         "type": "github"
       },
       "original": {
@@ -660,11 +660,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1787498568,
-        "narHash": "sha256-9i/VTdusq/+NM/tz+J1Re+ojkMB8MBf0QshnYfzHz30=",
+        "lastModified": 1787900134,
+        "narHash": "sha256-VYXO0XZlgj06dxJZRhrD3WoSsvq/c7+/Akyoa22pefw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "56c02bc00adcf003215cc4bd996d6efaf4cff188",
+        "rev": "83199d0d373dd3ac2b9a1996b1d0263f76ab7a4c",
         "type": "github"
       },
       "original": {
@@ -875,11 +875,11 @@
     "rust-analyzer-src_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1787593942,
-        "narHash": "sha256-dfVjama1vSef6Ajc0xyfv8Fi3sA+stx5yGbOu4IZIXw=",
+        "lastModified": 1787909076,
+        "narHash": "sha256-dGGOmzu3v7Sd9AZjvmPXqw2oXxepu7DDcQ0X+oW+a28=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "69d0e262cc12e4cac32a23b127c1537c71ad9beb",
+        "rev": "af4111f0bf85d9d66f4161b007b0081860e0a21c",
         "type": "github"
       },
       "original": {
@@ -939,14 +939,14 @@
         ]
       },
       "locked": {
-        "lastModified": 1780815201,
-        "narHash": "sha256-E96oa4xIRqk4iUFA9yOGFU059uqqbpi7ZxCjRRjdp9Q=",
+        "lastModified": 1787663206,
+        "narHash": "sha256-+x1y2nmuZMB1YreLYvNWaeDhdFAeJwz2R/rPSVvcoMQ=",
         "type": "tarball",
-        "url": "https://gitlab.com/phdenzel/ska-low-tmdata/-/archive/9d626cbf7cd0142e0cf09e00a892b382e26b9f50/ska-low-tmdata-9d626cbf7cd0142e0cf09e00a892b382e26b9f50.tar.gz"
+        "url": "https://gitlab.com/phdenzel/ska-low-tmdata/-/archive/b7c381002842a4ba34a12df13596b49fdfbd8d0b/ska-low-tmdata-b7c381002842a4ba34a12df13596b49fdfbd8d0b.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://gitlab.com/phdenzel/ska-low-tmdata/-/archive/9d626cbf7cd0142e0cf09e00a892b382e26b9f50/ska-low-tmdata-9d626cbf7cd0142e0cf09e00a892b382e26b9f50.tar.gz"
+        "url": "https://gitlab.com/phdenzel/ska-low-tmdata/-/archive/b7c381002842a4ba34a12df13596b49fdfbd8d0b/ska-low-tmdata-b7c381002842a4ba34a12df13596b49fdfbd8d0b.tar.gz"
       }
     },
     "ska-ost-array-config": {
@@ -959,11 +959,11 @@
         "ska-sdp-func-python": "ska-sdp-func-python"
       },
       "locked": {
-        "lastModified": 1787640953,
-        "narHash": "sha256-XZ0RBLXjM8eYx9qT8V/7SHmt/JMAce/qAeJEfnBJbeE=",
+        "lastModified": 1787664979,
+        "narHash": "sha256-qpTJ8MxgGJlNVoJvn4nvVude/6zRPuTY4eq8A0R35N0=",
         "owner": "phdenzel",
         "repo": "ska-ost-array-config",
-        "rev": "21d4eb67405b33d7e445240f74282125c522bbb0",
+        "rev": "97775d007276c3542407c9569a5c705871910a81",
         "type": "gitlab"
       },
       "original": {
@@ -990,11 +990,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780562927,
-        "narHash": "sha256-fu06UO/VpYM62x+SdGysNHcrX8YZf5rGPmys0jUv/r0=",
+        "lastModified": 1787662019,
+        "narHash": "sha256-itMXQOxQ+FwUcnM7LO2R4IzFTkN41ovO1LXXMyaZxgQ=",
         "ref": "refs/heads/main",
-        "rev": "41c7aac5f6dca5b7d0833ae6dd028402086233f2",
-        "revCount": 2965,
+        "rev": "bfe97e1dfb729d859381f9e04705c33ce4cda09b",
+        "revCount": 2966,
         "type": "git",
         "url": "https://gitlab.com/phdenzel/ska-schemas.git"
       },
@@ -1018,10 +1018,10 @@
         "ska-telmodel": "ska-telmodel"
       },
       "locked": {
-        "lastModified": 1780580481,
-        "narHash": "sha256-/Yf/1pN0BlTdVpjcCAX24TOJQY+mSQQCQnZYGnhYeQ8=",
+        "lastModified": 1787664941,
+        "narHash": "sha256-611GR7jKgq1Q75U2mOGIbZpmY1DAuBVaRQZKum429P4=",
         "ref": "refs/heads/main",
-        "rev": "24eaa655417451bc5cc562c58a32e37a8a116de3",
+        "rev": "bfe3b31d0e595d9e18d6528751505019a22071d9",
         "shallow": true,
         "type": "git",
         "url": "https://gitlab.com/phdenzel/ska-sdp-datamodels.git"
@@ -1079,11 +1079,11 @@
         "ska-sdp-func": "ska-sdp-func_2"
       },
       "locked": {
-        "lastModified": 1780749758,
-        "narHash": "sha256-BSeWNw0/xTyhEYydaKSeWOqcAhTraEi5BWeBRqpSux4=",
+        "lastModified": 1787664953,
+        "narHash": "sha256-joFTTsGZyt6RSSqA/45IKPwCeeJ2SnObiIa3Jl1ccK4=",
         "ref": "refs/heads/main",
-        "rev": "28702cdf29bc92145aa340c66cbf3d7545aeb828",
-        "revCount": 671,
+        "rev": "08743802e345bc2efcfc5ceab33aa096954289fa",
+        "revCount": 679,
         "type": "git",
         "url": "https://gitlab.com/phdenzel/ska-sdp-func-python.git"
       },
@@ -1106,10 +1106,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1780651410,
-        "narHash": "sha256-ZNHrBf6YbVUm9Y599qbalieFP5MZR2C8P8XvU8GKuw0=",
+        "lastModified": 1787663194,
+        "narHash": "sha256-zxvL72jot5jwUZO3epszIoUaQmV3dgqp4qAkYs6eIUo=",
         "ref": "refs/heads/main",
-        "rev": "2acfd7732072da5c8aba2dd1835ed57faec85973",
+        "rev": "dd4ceda827d7beba93cd936c214165bf4cca27d1",
         "shallow": true,
         "type": "git",
         "url": "https://gitlab.com/phdenzel/ska-sdp-func.git"
@@ -1138,11 +1138,11 @@
         "ska-telmodel-client": "ska-telmodel-client"
       },
       "locked": {
-        "lastModified": 1780580374,
-        "narHash": "sha256-3QajIemqAOnQ/Ma11CY6cCmPU+PlPD5b8QXQlHMu6og=",
+        "lastModified": 1787664932,
+        "narHash": "sha256-IR8Q8RFrHLE623XN93yBxzqSy0ffUuPm/rfyUrmqPzY=",
         "ref": "refs/heads/master",
-        "rev": "8fed108c32bc27b74426d6d4a84be0130bb34e20",
-        "revCount": 2758,
+        "rev": "57fdc51ea19f122f028adb3bafbaa039b944823e",
+        "revCount": 2760,
         "type": "git",
         "url": "https://gitlab.com/phdenzel/ska-telmodel.git"
       },
@@ -1176,11 +1176,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780580177,
-        "narHash": "sha256-4S1V3Nw1XVlhPJqQViFmCu9MD42KWtylPupWm6Qu/vY=",
+        "lastModified": 1787662030,
+        "narHash": "sha256-N+iPgSu7ArtuWOr70CoXDpBoxUMhSmH7/4v7U7niBdY=",
         "ref": "refs/heads/main",
-        "rev": "b14582c344b19f33c926066c547145327a0795d0",
-        "revCount": 2639,
+        "rev": "4f2b4f1f554de05a171292dbf24f285e5ae86be1",
+        "revCount": 2640,
         "type": "git",
         "url": "https://gitlab.com/phdenzel/ska-telmodel-client.git"
       },
@@ -1229,11 +1229,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1787175104,
-        "narHash": "sha256-tzNjlb0loxeWlipvxSNAUUihloeTZoyGFhEen87yM9k=",
+        "lastModified": 1787771653,
+        "narHash": "sha256-DkkJSBOXWV/mja5Vy8az5g1KpZlsbUwlmH0BsQhowaQ=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "a9e5a76a1b75b137f266e4f445e1eaba82e9783e",
+        "rev": "5e3809851f486e7fc7e84b40f174c74b60ecc784",
         "type": "github"
       },
       "original": {
