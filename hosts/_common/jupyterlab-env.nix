@@ -10,6 +10,7 @@ pkgs.python313.withPackages (p:
     numpy
     scipy
     pandas
+    scikit-learn
     matplotlib
     seaborn
     plotly
