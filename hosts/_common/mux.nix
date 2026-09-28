@@ -5,7 +5,7 @@
     flac2all
     stable.handbrake
     stable.kdePackages.kdenlive
-    # makemkv  # broken links
+    makemkv  # broken links
     mkvtoolnix
   ];
 }
