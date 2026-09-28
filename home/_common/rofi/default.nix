@@ -24,7 +24,7 @@ in {
       display-calc = " Calc";
       sidebar-mode = true;
       calc-command = "echo -n '{result}' | wl-copy";
-      location = "center";
+      location = 0;
     };
     theme = let # will be symlinked to ~/.local/share/rofi/themes/custom.rasi
       inherit (config.lib.formats.rasi) mkLiteral;
