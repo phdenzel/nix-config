@@ -9,7 +9,7 @@ in {
     enable = true;
     package = pkgs.rofi;
     plugins = with pkgs; [rofi-file-browser rofi-calc rofi-emoji];
-    extraConfig = {
+    settings = {
       modi = "drun,run,window,filebrowser,emoji,calc";
       show-icons = true;
       terminal = "ghostty";
@@ -24,8 +24,8 @@ in {
       display-calc = " Calc";
       sidebar-mode = true;
       calc-command = "echo -n '{result}' | wl-copy";
+      location = "center";
     };
-    location = "center";
     theme = let # will be symlinked to ~/.local/share/rofi/themes/custom.rasi
       inherit (config.lib.formats.rasi) mkLiteral;
       backgroundColor = mkLiteral "@bgColor";
