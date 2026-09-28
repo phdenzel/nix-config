@@ -89,6 +89,8 @@ in {
 
   # Hardware customization
   nixpkgs.config.rocmSupport = true;
+  # Radeon 8060S (Strix Halo)
+  nixpkgs.config.rocmTargets = ["gfx1151"];
   services.ollama.package = lib.mkForce pkgs.ollama-rocm;
   # systemd.tmpfiles.rules = with pkgs;
   #   mkDefault [

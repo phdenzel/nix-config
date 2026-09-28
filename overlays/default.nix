@@ -39,17 +39,13 @@ in {
       });
 
     # Python package fixes (applied to every interpreter's package set).
-    pythonPackagesExtensions =
-      (prev.pythonPackagesExtensions or [])
-      ++ [
-        (pyFinal: pyPrev: {
-          # aider-chat-full with rocmSupport cause re-build
-          spacy = pyPrev.spacy.overrideAttrs (_: {
-            doCheck = false;
-            doInstallCheck = false;
-          });
-        })
-      ];
+    # pythonPackagesExtensions =
+    #   (prev.pythonPackagesExtensions or [])
+    #   ++ [
+    #     (pyFinal: pyPrev: {
+    #       
+    #     })
+    #   ];
   };
 
   # Alias inputs.nixpkgs-stable to pkgs.stable,

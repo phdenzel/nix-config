@@ -1,4 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  mlEnv = import ./jupyterlab-env.nix {
+    inherit pkgs inputs;
+    ml = true;
+  };
+in {
   services = {
     jupyterhub.enable = true;
     jupyterhub.extraConfig = ''
@@ -16,71 +25,19 @@
         jupyterlab
       ]);
     jupyterhub.port = 8000;
-    jupyterhub.kernels = let
-      oskarpy = pkgs.oskarpy.override {
-        python3Packages = pkgs.python313Packages;
-      };
-      chuchichaestli = pkgs.python313Packages.buildPythonPackage rec {
-        pname = "chuchichaestli";
-        version = "0.2.16";
-        pyproject = true;
-        build-system = with pkgs.python313Packages; [hatchling];
-        propagatedBuildInputs = with pkgs.python313Packages; [
-          numpy
-          h5py
-          torch
-          torchvision
-        ];
-        src = pkgs.fetchPypi {
-          inherit pname version;
-          # dist = "py3";
-          # python = "py3";
-          sha256 = "sha256-7OGv0545CtpAkBw1V2dPrcJRgXqo7jGSbC4un3SIgIE=";
-        };
-        doCheck = false;
-        meta = {
-          description = "Where you find all the state-of-the-art cooking utensils (salt, pepper, gradient descent...  the usual).";
-          license = pkgs.lib.licenses.gpl3Plus;
-        };
-      };
-    in {
-      python3 = let
-        env = (pkgs.python313.withPackages (p: with p; [
-          ipykernel
-          pip
-          numpy
-          scipy
-          pandas
-          torch
-          torchvision
-          torchinfo
-          h5py
-          tqdm
-          astropy
-          astropy-healpix
-          pillow
-          matplotlib
-          seaborn
-          plotly
-          gitpython
-          hydra-core
-          diffusers
-          chuchichaestli
-          oskarpy
-          ska-ost-array-config
-        ]));
-      in {
+    jupyterhub.kernels = {
+      python3 = {
         displayName = "Python3 for ML";
         argv = [
-          "${env.interpreter}"
+          "${mlEnv.interpreter}"
           "-m"
           "ipykernel_launcher"
           "-f"
           "{connection_file}"
         ];
         language = "python";
-        logo32 = "${env}/${env.sitePackages}/ipykernel/resources/logo-32x32.png";
-        logo64 = "${env}/${env.sitePackages}/ipykernel/resources/logo-64x64.png";
+        logo32 = "${mlEnv}/${mlEnv.sitePackages}/ipykernel/resources/logo-32x32.png";
+        logo64 = "${mlEnv}/${mlEnv.sitePackages}/ipykernel/resources/logo-64x64.png";
       };
     };
   };

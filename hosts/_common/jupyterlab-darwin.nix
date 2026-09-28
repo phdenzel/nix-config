@@ -1,10 +1,11 @@
 # JupyterLab environment + always-on launchd agent. Import on darwin hosts only.
 {
   pkgs,
+  inputs,
   config,
   ...
 }: let
-  jlabEnv = import ./jupyterlab-env.nix pkgs;
+  jlabEnv = import ./jupyterlab-env.nix {inherit pkgs inputs;};
   port = "8000";
   userName = "phdenzel";
   homeDir = "/Users/${userName}";

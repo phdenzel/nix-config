@@ -1,10 +1,11 @@
 # JupyterLab environment + always-on systemd user service. Import on NixOS only.
 {
   pkgs,
+  inputs,
   lib,
   ...
 }: let
-  jlabEnv = import ./jupyterlab-env.nix pkgs;
+  jlabEnv = import ./jupyterlab-env.nix {inherit pkgs inputs;};
   port = "8000";
 
   # Password source for the login page.
