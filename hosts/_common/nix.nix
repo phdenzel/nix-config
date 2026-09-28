@@ -48,7 +48,7 @@ in {
     optimise.automatic = true;
 
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    settings.nix-path = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
   # Cage the builders: builds are forked from nix-daemon, so a limit on its
