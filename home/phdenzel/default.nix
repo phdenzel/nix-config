@@ -16,7 +16,7 @@
       ./_configs/pypirc
 
       # Program configs
-      ../_common/aider-chat
+      # ../_common/aider-chat
       ../_common/alacritty
       ../_common/bash
       ../_common/bat

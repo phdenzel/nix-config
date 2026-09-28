@@ -65,7 +65,6 @@
       lua-mode # lua support
       just-mode # just support
       dockerfile-mode # Dockerfile support
-      docker-compose-mode # docker compose support
       web-mode # html support
       js2-mode # javascript support
       scss-mode # scss support
@@ -102,7 +101,6 @@
       jsonrpc # needed for copilot
       copilot # GitHub copilot
       ellama # Ollama self-hosted LLMs
-      aidermacs # aider interface
       (claudeCodeIde epkgs) # claude-code IDE integration
 
       # Mail

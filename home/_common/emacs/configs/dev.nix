@@ -202,7 +202,6 @@
     };
     just-mode.enable = true;
     dockerfile-mode.enable = true;
-    docker-compose-mode.enable = true;
     web-mode = {
       enable = true;
       mode = [
