@@ -7,7 +7,7 @@
       package = lib.mkDefault pkgs.kdePackages.breeze-gtk;
     };
     iconTheme = {
-      name = lib.mkDefault "Breeze-Dark";
+      name = lib.mkDefault "breeze-dark";
       package = lib.mkDefault pkgs.kdePackages.breeze-icons;
     };
   };

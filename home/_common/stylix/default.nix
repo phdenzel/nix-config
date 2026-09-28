@@ -29,9 +29,9 @@
 
     icons = {
       enable = true;
-      dark = "Breeze Dark";
-      light = "Breeze";
-      package = pkgs.kdePackages.breeze;
+      dark = "breeze-dark";
+      light = "breeze";
+      package = pkgs.kdePackages.breeze-icons;
     };
   };
 }
