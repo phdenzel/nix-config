@@ -2,13 +2,20 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  emacsPackage =
+    if pkgs.stdenv.hostPlatform.isDarwin
+    then pkgs.emacs-macport
+    else pkgs.emacs-pgtk;
+in {
   programs.emacs = {
     enable = true;
-    package =
-      if pkgs.stdenv.hostPlatform.isDarwin
-      then pkgs.emacs-macport
-      else pkgs.emacs-pgtk;
+    package = emacsPackage;
+    # Emacs mis-parses archive names ending in `-<digits>' (bug#77143, bug#80744).
+    # nixpkgs-unstable dropped the elpa2nix workaround for it; stable still has it.
+    overrides = _efinal: _eprev: {
+      comment-dwim-2 = (pkgs.stable.emacsPackagesFor emacsPackage).comment-dwim-2;
+    };
   };
   services.emacs =
     {
