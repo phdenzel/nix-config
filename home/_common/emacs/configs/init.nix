@@ -663,11 +663,13 @@ in {
 
     home.file = {
       ".emacs.d/early-init.el".text = ''
+        ;;; early-init.el --- Emacs early init via Home Manager -*- lexical-binding: t; -*-
         (require 'hm-early-init)
         (provide 'early-init)
       '';
 
       ".emacs.d/init.el".text = ''
+        ;;; init.el --- Emacs init via Home Manager -*- lexical-binding: t; -*-
         (require 'hm-init)
         (provide 'init)
       '';
