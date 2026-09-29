@@ -20,6 +20,7 @@ in {
     user = "${userName}";
     host = "${hostName}";
     usersRoot = "/Users";
+    sshKeys = ["id_ed25519" "gh_id_ed25519" "dgx_id_ed25519" "ghzhaw_id_ed25519" "iso_id_ed25519"];
     gpgKeys = ["pwds"];
   };
 
