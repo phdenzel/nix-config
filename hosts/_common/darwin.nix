@@ -1,5 +1,6 @@
 # Common configuration for all darwin hosts
 {
+  config,
   pkgs,
   lib,
   inputs,
@@ -32,4 +33,10 @@
     };
     overlays = builtins.attrValues outputs.overlays;
   };
+
+  # nix-darwin's vim module still passes the deprecated `vam` to vim-full.customize
+  programs.vim.package = lib.mkIf config.programs.vim.enable (lib.mkForce (pkgs.vim-full.customize {
+    name = "vim";
+    vimrcConfig.customRC = config.environment.etc."vimrc".text;
+  }));
 }
