@@ -18,6 +18,11 @@
       ;; load newer compiled files
       (setq load-prefer-newer t)
 
+      ;; dlopen of .eln files is slow on macOS; byte-code loads ~3x faster there
+      (when (eq system-type 'darwin)
+        (setq load-no-native t
+              native-comp-jit-compilation nil))
+
       ;; Disabling some UI elements during early-init.
       (setq default-frame-alist
             '((vertical-scroll-bars . nil)
