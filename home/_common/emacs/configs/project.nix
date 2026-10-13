@@ -7,6 +7,16 @@
       enable = true;
       after = ["magit"];
     };
+    diff-hl = {
+      enable = true;
+      config = ''
+        (global-diff-hl-mode)
+        (diff-hl-flydiff-mode)
+        (add-hook 'dired-mode-hook #'diff-hl-dired-mode)
+        (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+        (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
+      '';
+    };
     projectile = {
       enable = true;
       init = ''

@@ -40,6 +40,7 @@
       # Project managment packages
       magit # git magick
       forge # git forges for magit
+      diff-hl # highlight uncommitted changes in the fringe
       projectile # project management
       counsel-projectile # counsel support for projectile
       treemacs # tree layout file explorer
