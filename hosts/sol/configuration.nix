@@ -122,16 +122,18 @@ in {
   # Local networking
   services.avahi = {
     enable = true;
-    domainName = "local";
     nssmdns4 = true;
     openFirewall = true;
-    publish = {
-      enable = true;
-      addresses = true;
-      domain = true;
-      hinfo = true;
-      userServices = true;
-      workstation = true;
+    settings = {
+      server.domain-name = "local";
+      publish = {
+        disable-publishing = false;
+        disable-user-service-publishing = false;
+        publish-addresses = true;
+        publish-domain = true;
+        publish-hinfo = true;
+        publish-workstation = true;
+      };
     };
   };
 

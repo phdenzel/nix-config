@@ -113,9 +113,9 @@ in {
   # Local networking
   services.avahi = {
     enable = true;
-    domainName = "local";
     nssmdns4 = true;
     openFirewall = true;
+    settings.server.domain-name = "local";
   };
 
   # Bluetooth
