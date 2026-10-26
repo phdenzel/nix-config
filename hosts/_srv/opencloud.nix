@@ -60,6 +60,7 @@
 in {
   services.opencloud = {
     enable = true;
+    package = pkgs.opencloud;
     port = 9200;
     address = "127.0.0.1";
     url = "https://opencloud.home";
