@@ -53,7 +53,6 @@ in {
   networking = {
     hostName = "${hostName}";
     # hostId = "27b636ba";
-    wireless.enable = false;
     networkmanager.enable = true;
     enableIPv6 = false;
   };
