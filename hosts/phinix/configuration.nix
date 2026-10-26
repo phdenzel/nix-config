@@ -82,6 +82,7 @@ in {
   # Hardware customization
   nixpkgs.config.rocmSupport = true;
   services.ollama.package = lib.mkForce pkgs.ollama-rocm;
+  services.comfyui.dataDir = "/raid/data/comfyUI";
   # systemd.tmpfiles.rules = with pkgs;
   #   mkDefault [
   #     "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"

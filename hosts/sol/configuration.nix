@@ -93,6 +93,7 @@ in {
   # Radeon 8060S (Strix Halo)
   nixpkgs.config.rocmTargets = ["gfx1151"];
   services.ollama.package = lib.mkForce pkgs.ollama-rocm;
+  services.comfyui.dataDir = "/scratch/data/comfyUI";
   # systemd.tmpfiles.rules = with pkgs;
   #   mkDefault [
   #     "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"

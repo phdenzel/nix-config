@@ -37,6 +37,7 @@ in {
         "wheel"
       ]
       ++ ifTheyExist [
+        "comfyui"
         "disk"
         "docker"
         "git"
