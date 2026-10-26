@@ -4,6 +4,8 @@
 {...}: {
   homebrew = {
     enable = true;
+    # Cask definitions come from the live API, so Homebrew itself must keep up with them
+    onActivation.autoUpdate = true;
     casks = ["alfred" "claude" "comfy" "gimp" "microsoft-teams" "webex"];
   };
 }
