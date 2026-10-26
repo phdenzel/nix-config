@@ -114,11 +114,13 @@ in {
         };
         imap = {
           host = "imap.${flavor}";
+          authentication = "plain";
           port = 993;
           tls.enable = true;
         };
         smtp = {
           host = "smtp.${flavor}";
+          authentication = "plain";
           tls.enable = true;
         };
         mu.enable = true;
@@ -130,7 +132,6 @@ in {
           enable = true;
           settings = {
             message.send.save-copy = true;
-            sync.enable = true;
           };
         };
         thunderbird = {
@@ -161,11 +162,13 @@ in {
         };
         imap = {
           host = "mail.infomaniak.com";
+          authentication = "plain";
           port = 993;
           tls.enable = true;
         };
         smtp = {
           host = "mail.infomaniak.com";
+          authentication = "plain";
           port = lib.mkForce 465;
           tls.enable = true;
         };
@@ -177,7 +180,6 @@ in {
           enable = true;
           settings = {
             message.send.save-copy = true;
-            sync.enable = true;
           };
         };
         thunderbird = {
@@ -208,11 +210,13 @@ in {
         };
         imap = {
           host = "imap.hispeed.ch";
+          authentication = "plain";
           port = 993;
           tls.enable = true;
         };
         smtp = {
           host = "smtp.hispeed.ch";
+          authentication = "plain";
           port = lib.mkForce 465;
           tls.enable = true;
         };
@@ -225,7 +229,6 @@ in {
           enable = true;
           settings = {
             message.send.save-copy = true;
-            sync.enable = true;
           };
         };
         thunderbird = {
@@ -256,11 +259,13 @@ in {
         };
         imap = {
           host = "imap.mail.me.com";
+          authentication = "plain";
           port = 993;
           tls.enable = true;
         };
         smtp = {
           host = "smtp.mail.me.com";
+          authentication = "plain";
           port = lib.mkForce 465;
           tls.enable = true;
         };
@@ -272,7 +277,6 @@ in {
           enable = true;
           settings = {
             message.send.save-copy = true;
-            sync.enable = true;
           };
         };
         thunderbird = {
@@ -303,12 +307,14 @@ in {
         };
         imap = {
           host = "${flavor}";
+          authentication = "xoauth2";
           port = 993;
           tls.enable = true;
           tls.useStartTls = false;
         };
         smtp = {
           host = "smtp.office365.com";
+          authentication = "xoauth2";
           tls.enable = true;
           tls.useStartTls = true;
         };
@@ -322,29 +328,6 @@ in {
           enable = true;
           settings = {
             message.send.save-copy = true;
-            sync.enable = true;
-            backend.auth = {
-              type = "oauth2";
-              method = "xoauth2";
-              client-id = "9e5f94bc-e8a4-4e73-b8be-63364c29d753";
-              access-token.cmd = "pizauth show ms";
-              refresh-toke.cmd = "pizauth refresh ms";
-              auth-url = "https://login.microsoftonline.com/7800fe5b-373f-499a-8767-f183879091cd/oauth2/v2.0/authorize";
-              token-url = "https://login.microsoftonline.com/7800fe5b-373f-499a-8767-f183879091cd/oauth2/v2.0/token";
-              pkce = true;
-              scopes = ["https://graph.microsoft.com/IMAP.AccessAsUser.All" "https://graph.microsoft.com/SMTP.Send"];
-            };            
-            message.send.backend.auth = {
-              type = "oauth2";
-              method = "xoauth2";
-              client-id = "9e5f94bc-e8a4-4e73-b8be-63364c29d753";
-              access-token.cmd = "pizauth show ms";
-              refresh-toke.cmd = "pizauth refresh ms";
-              auth-url = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize";
-              token-url = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-              pkce = true;
-              scopes = ["https://outlook.office.com/IMAP.AccessAsUser.All" "https://outlook.office.com/SMTP.Send"];
-            };
           };
         };
         thunderbird = {
@@ -377,11 +360,13 @@ in {
         };
         imap = {
           host = "${flavor}";
+          authentication = "xoauth2";
           port = 993;
           tls.enable = true;
         };
         smtp = {
           host = "smtp.office365.com";
+          authentication = "xoauth2";
           tls.enable = true;
           tls.useStartTls = true;
         };
@@ -394,35 +379,6 @@ in {
           enable = true;
           settings = {
             message.send.save-copy = true;
-            sync.enable = true;
-            backend.auth = {
-              type = "oauth2";
-              method = "xoauth2";
-              client-id = "9e5f94bc-e8a4-4e73-b8be-63364c29d753";
-              access-token.cmd = "pizauth show zhaw";
-              refresh-toke.cmd = "pizauth refresh zhaw";
-              # client-secret.keyring = "outlook-oauth2-client-secret";
-              # access-token.keyring = "outlook-oauth2-access-token";
-              # refresh-token.keyring = "outlook-oauth2-refresh-token";
-              auth-url = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize";
-              token-url = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-              pkce = true;
-              scopes = ["https://outlook.office.com/IMAP.AccessAsUser.All" "https://outlook.office.com/SMTP.Send"];
-            };
-            message.send.backend.auth = {
-              type = "oauth2";
-              method = "xoauth2";
-              client-id = "9e5f94bc-e8a4-4e73-b8be-63364c29d753";
-              access-token.cmd = "pizauth show zhaw";
-              refresh-toke.cmd = "pizauth refresh zhaw";
-              # client-secret.keyring = "outlook-oauth2-client-secret";
-              # access-token.keyring = "outlook-oauth2-access-token";
-              # refresh-token.keyring = "outlook-oauth2-refresh-token";
-              auth-url = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize";
-              token-url = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-              pkce = true;
-              scopes = ["https://outlook.office.com/IMAP.AccessAsUser.All" "https://outlook.office.com/SMTP.Send"];
-            };
           };
         };
         thunderbird = {
