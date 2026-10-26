@@ -16,8 +16,8 @@ in {
 
   systemd.services.comfyui.serviceConfig = {
     UMask = "0007";
-    StateDirectoryMode = lib.mkForce "2770";
+    StateDirectoryMode = lib.mkForce "0770";
   };
 
-  systemd.tmpfiles.settings."10-comfyui".${cfg.dataDir}.d.mode = lib.mkIf (cfg.dataDir != "/var/lib/comfyui") (lib.mkForce "2770");
+  systemd.tmpfiles.settings."10-comfyui".${cfg.dataDir}.d.mode = lib.mkIf (cfg.dataDir != "/var/lib/comfyui") (lib.mkForce "0770");
 }
