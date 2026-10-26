@@ -57,7 +57,6 @@ in {
     exiftool
     firefox
     ghostty-bin
-    gimp2
     # handbrake # broken
     imagemagick
     inkscape
