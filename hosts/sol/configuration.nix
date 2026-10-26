@@ -94,6 +94,8 @@ in {
   nixpkgs.config.rocmTargets = ["gfx1151"];
   services.ollama.package = lib.mkForce pkgs.ollama-rocm;
   services.comfyui.dataDir = "/scratch/data/comfyUI";
+  # ComfyUI's pytorch attention produces garbled images on gfx1151 (ROCm 7.2, torch 2.14)
+  services.comfyui.extraArgs = ["--use-split-cross-attention"];
   # systemd.tmpfiles.rules = with pkgs;
   #   mkDefault [
   #     "L+    /opt/rocm/hip   -    -    -     -    ${rocmPackages.clr}"
