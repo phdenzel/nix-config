@@ -71,6 +71,7 @@ in
     (with p; [
       jupyterlab
       ipykernel
+      ipywidgets
       pip
       numpy
       scipy
@@ -81,6 +82,7 @@ in
       plotly
       h5py
       tqdm
+      datasets
       astropy
       gitpython
       torch
