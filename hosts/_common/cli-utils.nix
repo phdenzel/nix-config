@@ -23,7 +23,6 @@ with lib; {
       mermaid-cli
       p7zip
       perl
-      rar
       ripgrep
       rsync
       starship
@@ -45,6 +44,7 @@ with lib; {
       zsh-history-substring-search
       zsh-syntax-highlighting
     ]
+    ++ optional (lib.meta.availableOn stdenv.hostPlatform rar) rar
     ++ optionals stdenv.hostPlatform.isLinux [
       # Linux-only packages
       psmisc
