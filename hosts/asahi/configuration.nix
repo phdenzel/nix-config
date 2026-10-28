@@ -53,6 +53,8 @@ in {
 
   # System-wide packages
   environment.systemPackages = with pkgs; [
+    comfy-cli
+    comfy-mcp
     easytag
     exiftool
     firefox
