@@ -38,6 +38,13 @@ in {
         disabledTestPaths = (oldAttrs.disabledTestPaths or []) ++ ["tests/test_restful.py"];
       });
 
+    # update/extract/cluster-only/label re-exec `sys.executable -m graphify` to pin
+    # PYTHONHASHSEED; the bare interpreter lacks the wrapper's site-packages, so
+    # pre-setting the seed skips the re-exec.
+    graphify = prev.graphify.overridePythonAttrs (oldAttrs: {
+      makeWrapperArgs = (oldAttrs.makeWrapperArgs or []) ++ ["--set-default" "PYTHONHASHSEED" "0"];
+    });
+
     # Python package fixes (applied to every interpreter's package set).
     # pythonPackagesExtensions =
     #   (prev.pythonPackagesExtensions or [])
