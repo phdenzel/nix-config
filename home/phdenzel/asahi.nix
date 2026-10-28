@@ -41,6 +41,9 @@ in {
         ./_configs/gpg/key-pwds.nix
       ];
       programs.gpg.settings.default-key = lib.mkDefault "629FC7317EFB4935";
+      # Spotlight and Alfred don't index symlinked apps, so copy them instead
+      targets.darwin.linkApps.enable = false;
+      targets.darwin.copyApps.enable = true;
     };
   };
 }
