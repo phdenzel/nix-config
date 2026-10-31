@@ -1,34 +1,40 @@
 {pkgs, config, lib, ...}: let
   lock = "${pkgs.systemd}/bin/loginctl lock-session";
+  dpms = action: "hyprctl dispatch 'hl.dsp.dpms({ action = \"${action}\" })'";
 in {
   services.hypridle = {
     enable = true;
     settings = {
       general = {
         lock_cmd = "pgrep hyprlock || ${lib.getExe config.programs.hyprlock.package}";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        after_sleep_cmd = dpms "on";
         before_sleep_cmd = "loginctl lock-session";
       };
 
       listener = [
         {
-          timeout = 720;
+          timeout = 300;
+          on-timeout = "pidof hyprlock && ${dpms "off"}";
+          on-resume = dpms "on";
+        }
+        {
+          timeout = 480;
           on-timeout = "hyprctl hyprsunset gamma 30";
           on-resume = "hyprctl hyprsunset gamma 100";
         }
         {
-          timeout = 900;
+          timeout = 600;
           on-timeout = lock;
         }
         {
-          timeout = 1080;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          timeout = 900;
+          on-timeout = dpms "off";
+          on-resume = dpms "on";
         }
-        # {
-        #   timeout = 5400;
-        #   on-timeout = "systemctl suspend";
-        # }
+        {
+          timeout = 1800;
+          on-timeout = "systemctl suspend";
+        }
       ];
     };
   };

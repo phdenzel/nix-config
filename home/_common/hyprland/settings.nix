@@ -63,6 +63,8 @@ with config.colorScheme.palette; {
         vrr = 1;
         disable_autoreload = true;
         allow_session_lock_restore = true;
+        key_press_enables_dpms = true;
+        mouse_move_enables_dpms = true;
         force_default_wallpaper = 0;
       };
 
