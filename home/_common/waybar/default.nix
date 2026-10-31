@@ -197,14 +197,21 @@ in {
 
       "custom/lock" = {
         format = "";
-        on-click = "loginctl lock-session";
+        on-click = "session-action lock";
         tooltip = true;
         tooltip-format = "Lock current session";
       };
 
+      "custom/suspend" = {
+        format = "󰤄";
+        on-click = "session-action suspend";
+        tooltip = true;
+        tooltip-format = "Suspend machine";
+      };
+
       "custom/logout" = {
         format = "󰍃";
-        on-click = "hyprctl dispatch exit";
+        on-click = "session-action logout";
         tooltip = true;
         tooltip-format = "Logout of current session";
       };
@@ -240,14 +247,14 @@ in {
 
       "custom/reboot" = {
         format = "";
-        on-click = "systemctl reboot";
+        on-click = "session-action reboot";
         tooltip = true;
         tooltip-format = "Reboot machine";
       };
 
       "custom/turnoff" = {
         format = "";
-        on-click = "systemctl poweroff";
+        on-click = "session-action poweroff";
         tooltip = true;
         tooltip-format = "Shut down machine";
       };
@@ -274,6 +281,7 @@ in {
         modules = [
           "custom/nixos"
           "custom/lock"
+          "custom/suspend"
           "custom/logout"
           "custom/reboot"
           "custom/turnoff"
@@ -429,14 +437,14 @@ in {
           padding: 0px 25px 0px 10px;
       }
 
-      #custom-lock, #custom-logout, #custom-reboot, #custom-turnoff {
+      #custom-lock, #custom-suspend, #custom-logout, #custom-reboot, #custom-turnoff {
           background: #${bgColor};
           font-size: 18px;
           margin: 0px;
           padding: 0px 8px;
       }
 
-      #custom-nixos:hover, #custom-lock:hover, #custom-logout:hover, #custom-reboot:hover, #custom-turnoff:hover {
+      #custom-nixos:hover, #custom-lock:hover, #custom-suspend:hover, #custom-logout:hover, #custom-reboot:hover, #custom-turnoff:hover {
           background: alpha(#${fgHColor},.8);
           color: #${bgColor};
           opacity: 0.7;

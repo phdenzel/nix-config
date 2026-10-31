@@ -1,4 +1,34 @@
-{config, ...}: let
+{pkgs, config, ...}: let
+  sessionAction = pkgs.writeShellApplication {
+    name = "session-action";
+    runtimeInputs = with pkgs; [systemd libnotify];
+    text = ''
+      action="''${1:-}"
+      run() {
+        local out
+        if ! out="$("$@" 2>&1)"; then
+          printf '%s failed: %s\n' "$action" "$out" | systemd-cat -t session-action -p err
+          notify-send -u critical "Session action failed: $action" "$out"
+          exit 1
+        fi
+        printf '%s\n' "$action" | systemd-cat -t session-action
+      }
+      case "$action" in
+        lock) run loginctl lock-session ;;
+        logout) run systemd-run --user --collect --quiet "$(command -v uwsm)" stop ;;
+        suspend)
+          hyprctl dispatch 'hl.dsp.dpms({ action = "off" })' >/dev/null || :
+          run systemctl suspend
+          ;;
+        reboot) run systemctl reboot ;;
+        poweroff) run systemctl poweroff ;;
+        *)
+          echo "usage: session-action lock|logout|suspend|reboot|poweroff" >&2
+          exit 2
+          ;;
+      esac
+    '';
+  };
   palette = config.colorScheme.palette;
   bgColor = palette.crust;
   bgHColor = palette.overlay1;
@@ -7,37 +37,39 @@
   hoverBorderR = "80";
   hoverMargin = "-80";
 in {
+  home.packages = [sessionAction];
+
   # call wlogout with flag -b 6
   programs.wlogout = {
     enable = true;
     layout = [
       {
         label = "lock";
-        action = "hyprlock";
+        action = "session-action lock";
         text = "Lock";
         keybind = "l";
       }
       {
         label = "logout";
-        action = "uwsm stop";
+        action = "session-action logout";
         text = "Logout";
-        keybind = "u";
+        keybind = "e";
       }
       {
         label = "suspend";
-        action = "systemctl suspend";
+        action = "session-action suspend";
         text = "Suspend";
         keybind = "u";
       }
       {
         label = "shutdown";
-        action = "systemctl poweroff";
+        action = "session-action poweroff";
         text = "Shutdown";
         keybind = "s";
       }
       {
         label = "reboot";
-        action = "systemctl reboot";
+        action = "session-action reboot";
         text = "Reboot";
         keybind = "r";
       }
