@@ -13,6 +13,7 @@ in {
     # ../_common/nfs.nix # NFS mounts
     ../_common/sddm.nix # display manager
     ../_common/hyprland.nix # window manager
+    ../_common/usb-wakeup.nix # wake from suspend via USB keyboard
     ../_common/kde.nix # desktop as fallback when window managers are bricked
     # ../_common/gnome.nix
     ../_common/fonts.nix # font packages
