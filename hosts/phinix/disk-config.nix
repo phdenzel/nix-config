@@ -4,26 +4,26 @@
 # 2) "scratch" btrfs volume where miscellaneous games, containers, and VMs are stored (subvol @scratch, @games, @virt)
 # 3-6) "raid1" volume (btrfs raid with data as raid0 and metadata as raid1 profile) where datasets are stored
 # Devices in phinix:
-# - nixos:   nvme0n1 (/dev/disk/by-id/nvme-CT4000T700SSD3_2341E87F4711)
-# - scratch: nvme5n1 (/dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_23322S800994)
-# - raid1:   nvme1n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135359K -> /dev/disk/by-id/eui.0025384141430d8c)
-# - raid1:   nvme2n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNU0X405324H -> /dev/disk/by-id/eui.0025384441a17c56)
-# - raid1:   nvme3n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135355N -> /dev/disk/by-id/eui.0025384141430d88)
-# - raid1:   nvme4n1 (/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135331M -> /dev/disk/by-id/eui.0025384141430d07)
+# - nixos:   /dev/disk/by-id/nvme-CT4000T700SSD3_2341E87F4711
+# - scratch: /dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_23322S800994
+# - raid1:   /dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135359K
+# - raid1:   /dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNU0X405324H
+# - raid1:   /dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135355N
+# - raid1:   /dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135331M
 {...}: let
   disks = [
-    "/dev/nvme0n1"
-    "/dev/nvme5n1"
-    "/dev/nvme1n1"
-    "/dev/nvme2n1"
-    "/dev/nvme3n1"
-    "/dev/nvme4n1"
+    "/dev/disk/by-id/nvme-CT4000T700SSD3_2341E87F4711"
+    "/dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_23322S800994"
+    "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135359K"
+    "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNU0X405324H"
+    "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135355N"
+    "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7DPNJ0X135331M"
   ];
   numberOfDisks =
     if (builtins.length disks > 6)
     then throw "Error. For this scheme a maximum of 6 disks can be passed to disko."
     else builtins.length disks;
-  nvme = rec {
+  nvme = {
     a = builtins.elemAt disks 0;
     b =
       if (numberOfDisks > 1)
@@ -45,47 +45,16 @@
       if (numberOfDisks > 5)
       then builtins.elemAt disks 5
       else "";
-    a1 =
-      if (builtins.substring 0 9 a == "/dev/nvme")
-      then "${a}p1"
-      else "${a}-part1";
-    a2 =
-      if (builtins.substring 0 9 a == "/dev/nvme")
-      then "${a}p2"
-      else "${a}-part2";
-    a3 =
-      if (builtins.substring 0 9 a == "/dev/nvme")
-      then "${a}p3"
-      else "${a}-part3";
-    b1 =
-      if (builtins.substring 0 9 b == "/dev/nvme")
-      then "${b}p1"
-      else "${b}-part1";
-    c1 =
-      if (builtins.substring 0 9 c == "/dev/nvme")
-      then "${c}p1"
-      else "${c}-part1";
-    d1 =
-      if (builtins.substring 0 9 d == "/dev/nvme")
-      then "${d}p1"
-      else "${d}-part1";
-    e1 =
-      if (builtins.substring 0 9 e == "/dev/nvme")
-      then "${e}p1"
-      else "${e}-part1";
-    f1 =
-      if (builtins.substring 0 9 f == "/dev/nvme")
-      then "${f}p1"
-      else "${f}-part1";
   };
+  raidMember = n: "/dev/disk/by-partlabel/raid1p${toString n}";
   raidPartitions =
     {
       "1" = ""; # not enough disks for raid setup
       "2" = ""; # not enough disks for raid setup
       "3" = ""; # not enough disks for raid setup
-      "4" = "${nvme.c1}"; # ${nvme.d1} is the disk where the raid is initialized
-      "5" = "${nvme.c1} ${nvme.d1}"; # ${nvme.e1} is the disk where the raid is initialized
-      "6" = "${nvme.c1} ${nvme.d1} ${nvme.e1}"; # ${nvme.f1} is the disk where the raid is initialized
+      "4" = "${raidMember 1}"; # raid1p2 is the partition where the raid is initialized
+      "5" = "${raidMember 1} ${raidMember 2}"; # raid1p3 is the partition where the raid is initialized
+      "6" = "${raidMember 1} ${raidMember 2} ${raidMember 3}"; # raid1p4 is the partition where the raid is initialized
     }
     ."${builtins.toString numberOfDisks}";
 in {
@@ -100,7 +69,6 @@ in {
             ESP = {
               priority = 1;
               label = "EFI";
-              device = "${nvme.a1}";
               type = "EF00";
               start = "64M"; # A small mod8 offset, just because...
               end = "1G";
@@ -113,7 +81,6 @@ in {
             };
             swap = {
               label = "swap";
-              device = "${nvme.a2}";
               size = "32G";
               content = {
                 type = "swap";
@@ -123,7 +90,6 @@ in {
             };
             root = {
               label = "root";
-              device = "${nvme.a3}";
               size = "100%";
               content = {
                 type = "btrfs";
@@ -167,7 +133,6 @@ in {
             partitions = {
               scratch = {
                 label = "scratch";
-                device = "${nvme.b1}";
                 start = "64M";
                 size = "100%";
                 content = {
@@ -204,7 +169,6 @@ in {
             partitions = {
               raid1p4 = {
                 label = "raid1p4";
-                device = "${nvme.f1}";
                 start = "64M";
                 size = "100%";
                 content =
@@ -240,7 +204,6 @@ in {
             partitions = {
               raid1p3 = {
                 label = "raid1p3";
-                device = "${nvme.e1}";
                 start = "64M";
                 size = "100%";
                 content =
@@ -276,7 +239,6 @@ in {
             partitions = {
               raid1p2 = {
                 label = "raid1p2";
-                device = "${nvme.d1}";
                 start = "64M";
                 size = "100%";
                 content =
@@ -312,7 +274,6 @@ in {
             partitions = {
               raid1p1 = {
                 label = "raid1p1";
-                device = "${nvme.c1}";
                 start = "64M";
                 size = "100%";
                 content =

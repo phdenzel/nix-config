@@ -3,39 +3,23 @@
 # 1) "nixos" volume with an ESP, swap, and a btrfs partition (subvol @, @home, @nix, @var, @snapshots)
 # 2) "scratch" btrfs volume where miscellaneous games, containers, and VMs are stored (subvol @scratch, @games, @virt)
 # Devices in sol:
-# - nixos:    nvme0n1 (/dev/disk/by-id/)
-# - scratch:  nvme1n1 (/dev/disk/by-id/)
+# - nixos:    /dev/disk/by-id/nvme-WD_BLACK_SN850X_8000GB_25177P4A3G07
+# - scratch:  /dev/disk/by-id/nvme-WD_BLACK_SN850X_8000GB_25177P4A4210
 {...}: let
   disks = [
-    "/dev/nvme0n1"
-    "/dev/nvme1n1"
+    "/dev/disk/by-id/nvme-WD_BLACK_SN850X_8000GB_25177P4A3G07"
+    "/dev/disk/by-id/nvme-WD_BLACK_SN850X_8000GB_25177P4A4210"
   ];
   numberOfDisks =
     if (builtins.length disks > 2)
     then throw "Error. For this scheme a maximum of 2 disks can be passed to disko."
     else builtins.length disks;
-  nvme = rec {
+  nvme = {
     a = builtins.elemAt disks 0;
     b =
       if (numberOfDisks > 1)
       then builtins.elemAt disks 1
       else "";
-    a1 =
-      if (builtins.substring 0 9 a == "/dev/nvme")
-      then "${a}p1"
-      else "${a}1";
-    a2 =
-      if (builtins.substring 0 9 a == "/dev/nvme")
-      then "${a}p2"
-      else "${a}2";
-    a3 =
-      if (builtins.substring 0 9 a == "/dev/nvme")
-      then "${a}p3"
-      else "${a}3";
-    b1 =
-      if (builtins.substring 0 9 b == "/dev/nvme")
-      then "${b}p1"
-      else "${b}1";
   };
 in {
   disko.devices = {
@@ -49,7 +33,6 @@ in {
             ESP = {
               priority = 1;
               label = "EFI";
-              device = "${nvme.a1}";
               type = "EF00";
               start = "64M"; # A small mod8 offset, just because...
               end = "1G";
@@ -62,7 +45,6 @@ in {
             };
             swap = {
               label = "swap";
-              device = "${nvme.a2}";
               size = "32G";
               content = {
                 type = "swap";
@@ -73,7 +55,6 @@ in {
             };
             root = {
               label = "root";
-              device = "${nvme.a3}";
               size = "100%";
               content = {
                 type = "btrfs";
@@ -117,7 +98,6 @@ in {
             partitions = {
               scratch = {
                 label = "scratch";
-                device = "${nvme.b1}";
                 start = "64M";
                 size = "100%";
                 content = {
