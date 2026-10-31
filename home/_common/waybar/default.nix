@@ -387,6 +387,7 @@ in {
         format-icons = ["<span color='#${palette.white}'></span>" "<span color='#${palette.sand}'></span>" "<span color='#${palette.sand}'></span>" "<span color='#${palette.pink}'></span>"];
         format-muted = "";
         on-click = "pypr toggle volmgr";
+        on-click-right = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
       };
 
       "wlr/taskbar" = {
