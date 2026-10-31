@@ -42,7 +42,8 @@ in {
     description = "Sync EC APU power mode with power-profiles-daemon";
     after = ["power-profiles-daemon.service" "systemd-modules-load.service"];
     requires = ["power-profiles-daemon.service"];
-    wantedBy = ["multi-user.target"];
+    partOf = ["power-profiles-daemon.service"];
+    wantedBy = ["power-profiles-daemon.service"];
     unitConfig.ConditionPathExists = "/sys/class/ec_su_axb35/apu/power_mode";
     serviceConfig = {
       ExecStart = "${powerModeSync}/bin/ec-su-axb35-power-mode-sync";
