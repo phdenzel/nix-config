@@ -4,6 +4,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.services.comfyui;
@@ -12,7 +13,11 @@ in {
     enable = true;
     port = 8188;
     listen = ["127.0.0.1"] ++ lib.optional config.networking.enableIPv6 "::1";
+    extraPackages = ps: [ps.comfyui-manager];
+    extraArgs = ["--enable-manager"];
   };
+
+  systemd.services.comfyui.path = [pkgs.git];
 
   systemd.services.comfyui.serviceConfig = {
     UMask = "0007";
