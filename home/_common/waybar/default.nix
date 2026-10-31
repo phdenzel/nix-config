@@ -142,7 +142,7 @@ in {
         '';
         return-type = "json";
         on-click = "hyprctl hyprsunset gamma 60";
-        on-click-middle = "pkill hyprsunset; hyprctl dispatch exec 'hyprsunset'";
+        on-click-middle = "hyprctl hyprsunset gamma 80";
         on-click-right = "hyprctl hyprsunset gamma 100";
         on-scroll-up = "hyprctl hyprsunset gamma +1";
         on-scroll-down = "hyprctl hyprsunset gamma -1";
@@ -171,7 +171,7 @@ in {
         '';
         return-type = "json";
         on-click = "hyprctl hyprsunset temperature 3500";
-        on-click-middle = "pkill hyprsunset; hyprctl dispatch exec 'hyprsunset'";
+        on-click-middle = "hyprctl hyprsunset temperature 4500";
         on-click-right = "hyprctl hyprsunset temperature 6000";
         on-scroll-up = "hyprctl hyprsunset temperature +100";
         on-scroll-down = "hyprctl hyprsunset temperature -100";
