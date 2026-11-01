@@ -168,6 +168,7 @@ in {
     accelerationDevices = null;  # null gives access to all devices
     settings = {
       newVersionCheck.enabled = false;
+      machineLearning.enabled = false;
       server.externalDomain = "http://immich.home";
       storageTemplate = {
         enabled = true;
