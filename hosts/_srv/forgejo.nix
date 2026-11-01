@@ -85,7 +85,6 @@ in {
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = provisionUsers;
-      supplementaryGroups = [];
     };
   };
 
