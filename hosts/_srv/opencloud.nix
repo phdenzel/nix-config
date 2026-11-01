@@ -8,6 +8,7 @@
     {name = "Media"; path = "/data/media"; uuid = "83e3c7f4-ca2a-415e-bda4-556d8360295b";}
     {name = "Shared"; path = "/data/documents"; uuid = "92fb3411-2edb-4663-a115-01949abcb581";}
     {name = "Backups"; path = "/data/backups"; uuid = "23cc9dfe-6379-4783-82fa-17534f0ac835";}
+    {name = "Private"; path = "/data/private"; uuid = "8462a8a9-7a89-4e54-8258-af6693b11d57";}
   ];
   # phdenzel is provisioned as admin
   adminRoleId = "71881883-c3aa-4921-abd9-f03a71f3c0e6";

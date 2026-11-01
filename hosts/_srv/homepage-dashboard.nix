@@ -181,7 +181,7 @@ in {
                     format = "bytes";
                   }
                   {
-                    field = { value = { "2" = { quota = "used"; }; }; };
+                    field = { value = { "3" = { quota = "used"; }; }; };
                     label = "Shared";
                     format = "bytes";
                   }
