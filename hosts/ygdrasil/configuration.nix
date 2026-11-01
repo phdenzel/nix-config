@@ -75,7 +75,10 @@ in {
   };
   # Store/media directories (set permissions, create if missing)
   users.groups.media = {};
-  
+  users.groups.private = {};
+  users.users.jellyfin.extraGroups = ["private"];
+  users.users.opencloud.extraGroups = ["private"];
+
   systemd.tmpfiles.rules = [
     "d  /data/media               02775  root      media         -  -"
     "d  /data/media/Videos        02770  phdenzel  media         -  -"
@@ -85,6 +88,8 @@ in {
     "d  /data/store/transmission  02770  phdenzel  transmission  -  -"
     "d  /data/store/forgejo       02770  phdenzel  forgejo       -  -"
     "d  /data/store/opencloud     02775  phdenzel  opencloud     -  -"
+    "d  /data/private             02770  phdenzel  private       -  -"
+    "d  /data/private/Videos      02770  phdenzel  private       -  -"
     # "d  /data/store/immich        02775  phdenzel  immich        -  -"
   ];
   system.activationScripts.mediaPermissions = ''
@@ -99,6 +104,16 @@ in {
     #   chown -R phdenzel:media /data/media/$dir
     # done;
   '';
+  system.activationScripts.privatePermissions = {
+    deps = ["users" "groups"];
+    text = ''
+      if [ -d /data/private ]; then
+        find /data/private -type d -exec chmod 02770 {} +
+        find /data/private -type f -exec chmod 0660 {} +
+        chown -R phdenzel:private /data/private
+      fi
+    '';
+  };
 
   # Hardware customization
   # nixpkgs.config.cudaSupport = true;

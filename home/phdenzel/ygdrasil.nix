@@ -54,6 +54,7 @@ in {
         "networkmanager"
         "opencloud"
         "podman"
+        "private"
         "storage"
         "transmission"
       ];
