@@ -111,8 +111,8 @@
     library_assets() {
       local cursor="" page
       while :; do
-        page=$(post /search/metadata "$(jq -n --arg lib "$1" --arg prefix "$2" --arg cursor "$cursor" \
-          '{filter: {libraryId: {eq: $lib}, originalPath: {startsWith: $prefix}}, size: 1000}
+        page=$(post /search/metadata "$(jq -n --arg lib "$1" --arg cursor "$cursor" \
+          '{filter: {libraryId: {eq: $lib}}, size: 1000}
             + (if $cursor == "" then {} else {cursor: $cursor} end)')")
         jq -r '.assets.items[] | [.originalPath, .id] | @tsv' <<< "$page"
         cursor=$(jq -r '.assets.nextCursor // ""' <<< "$page")
@@ -120,20 +120,20 @@
       done
     }
     provision_albums() {
-      local lib=$1 root=$2 manifest=$2/events.tsv assets expected found album name id
+      local lib=$1 root=$2 manifest=$2/events.tsv assets expected found album name id entries
+      entries='($assets | split("\n") | map(select(. != "") | split("\t") | {key: .[0], value: .[1]}) | from_entries) as $ids
+        | [inputs | split("\t") | {event: .[1], id: $ids[if .[0] | startswith("/") then .[0] else $root + .[0] end]} | select(.id != null)]'
       assets=$(mktemp)
       expected=$(wc -l < "$manifest")
       for i in $(seq 1 60); do
-        library_assets "$lib" "$root/" > "$assets"
-        found=$(wc -l < "$assets")
+        library_assets "$lib" > "$assets"
+        found=$(jq -Rn --rawfile assets "$assets" --arg root "$root/" "$entries | length" "$manifest")
         [ "$found" -ge "$expected" ] && break
         echo "Waiting for library scan of $root... ($found/$expected, $i/60)"
         sleep 10
       done
-      jq -c -Rn --rawfile assets "$assets" --arg root "$root/" '
-        ($assets | split("\n") | map(select(. != "") | split("\t") | {key: .[0], value: .[1]}) | from_entries) as $ids
-        | [inputs | split("\t") | {event: .[1], id: $ids[$root + .[0]]} | select(.id != null)]
-        | group_by(.event) | .[] | {albumName: .[0].event, assetIds: map(.id)}' "$manifest" \
+      jq -c -Rn --rawfile assets "$assets" --arg root "$root/" "$entries
+        | group_by(.event) | .[] | {albumName: .[0].event, assetIds: map(.id)}" "$manifest" \
       | while IFS= read -r album; do
           name=$(jq -r .albumName <<< "$album")
           id=$(get /albums | jq -r --arg name "$name" '.[] | select(.albumName == $name) | .id' | head -n 1)
