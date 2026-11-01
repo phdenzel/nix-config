@@ -34,7 +34,7 @@ in {
     # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
     ../_srv/forgejo.nix # git forge service (forgejo)
     ../_srv/opencloud.nix # cloud service
-    # ../_srv/immich.nix # image hosting service
+    ../_srv/immich.nix # image hosting service
     ../_srv/jellyfin.nix # media streaming service
     # ../_srv/servarr.nix # servarr stack
     ../_srv/transmission.nix
@@ -90,13 +90,12 @@ in {
     "d  /data/store/opencloud     02775  phdenzel  opencloud     -  -"
     "d  /data/private             02770  phdenzel  private       -  -"
     "d  /data/private/Videos      02770  phdenzel  private       -  -"
-    # "d  /data/store/immich        02775  phdenzel  immich        -  -"
   ];
   systemd.services.media-permissions = {
     description = "Set ownership and permissions under /data/media";
     wantedBy = ["multi-user.target"];
     after = ["systemd-tmpfiles-setup.service"];
-    before = ["opencloud.service" "jellyfin.service"];
+    before = ["opencloud.service" "jellyfin.service" "immich-server.service"];
     unitConfig.RequiresMountsFor = ["/data/media"];
     serviceConfig.Type = "oneshot";
     script = ''

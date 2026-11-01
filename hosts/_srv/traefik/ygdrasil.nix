@@ -29,6 +29,10 @@
       port = 8096;
     }
     {
+      hostname = "immich";
+      port = config.services.immich.port;
+    }
+    {
       hostname = "transmission";
       port = config.services.transmission.settings.rpc-port;
     }
