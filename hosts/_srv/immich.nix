@@ -16,26 +16,44 @@
   userPaths = username: [
     "/data/media/Pictures/${username}"
   ];
+  iPhoneDir = "from-iPhone";
+  iPhonePath = username: "/data/media/Pictures/${username}/${iPhoneDir}";
+  albumManifests = [
+    {username = "phdenzel"; root = "/data/media/Pictures/phdenzel/iPhone-archive";}
+    {username = "phdenzel"; root = "/data/media/Pictures/phdenzel/GoPro";}
+    {username = "phdenzel"; root = "/data/media/Pictures/phdenzel/from-android";}
+    {username = "phdenzel"; root = "/data/media/Pictures/phdenzel/misc";}
+  ];
   secret = username: key: config.sops.secrets."immich/${username}/${key}".path;
   mkCredentials = username: "credentials ${secret username "email"} ${secret username "password"} ${username}";
+  mkLogin = username: "login ${secret username "email"} ${secret username "password"}";
   mkProvisionUser = {username, ...}: ''
     EMAIL=$(cat ${secret username "email"} | tr '[:upper:]' '[:lower:]')
     ID_${username}=$(get /admin/users | jq -r --arg email "$EMAIL" '.[] | select(.email == $email) | .id')
     if [ -z "$ID_${username}" ]; then
       ID_${username}=$(post /admin/users "$(${mkCredentials username} | jq '. + {shouldChangePassword: false}')" | jq -r .id)
     fi
+    put "/admin/users/$ID_${username}" '{"storageLabel": "${username}"}' > /dev/null
     echo "Provision user ${username}: $ID_${username}"
   '';
   mkProvisionLibrary = {username, ...}: ''
     LIB_ID=$(get /libraries | jq -r --arg owner "$ID_${username}" '.[] | select(.name == "${username}" and .ownerId == $owner) | .id')
     if [ -z "$LIB_ID" ]; then
-      LIB_ID=$(post /libraries "$(jq -n \
-        --arg owner "$ID_${username}" \
-        --argjson paths '${builtins.toJSON (userPaths username ++ sharedPaths)}' \
-        '{ownerId: $owner, name: "${username}", importPaths: $paths, exclusionPatterns: []}')" | jq -r .id)
+      LIB_ID=$(post /libraries "$(jq -n --arg owner "$ID_${username}" '{ownerId: $owner, name: "${username}"}')" | jq -r .id)
     fi
+    put "/libraries/$LIB_ID" "$(jq -n \
+      --argjson paths '${builtins.toJSON (userPaths username ++ sharedPaths)}' \
+      --argjson exclusions '${builtins.toJSON ["**/${iPhoneDir}/**"]}' \
+      '{importPaths: $paths, exclusionPatterns: $exclusions}')" > /dev/null
     post "/libraries/$LIB_ID/scan" "{}" > /dev/null
+    ${lib.optionalString (lib.any (m: m.username == username) albumManifests) "LIB_${username}=$LIB_ID"}
     echo "Provision library ${username}: $LIB_ID"
+  '';
+  mkProvisionAlbums = {username, root}: ''
+    if [ -f "${root}/events.tsv" ]; then
+      TOKEN=$(${mkLogin username})
+      provision_albums "$LIB_${username}" "${root}"
+    fi
   '';
   provisionUsers = pkgs.writeShellScript "immich-provision-users" ''
     set -euo pipefail
@@ -55,6 +73,11 @@
         --arg name "$3" \
         '{email: $email, password: $password, name: $name}'
     }
+    login() {
+      curl -s --fail-with-body -X POST "$BASE_URL/auth/login" \
+        -H "Content-Type: application/json" \
+        -d "$(credentials "$1" "$2" "" | jq 'del(.name)')" | jq -r .accessToken
+    }
 
     # Wait for Immich to be ready
     for i in $(seq 1 30); do
@@ -68,9 +91,7 @@
         -H "Content-Type: application/json" \
         -d "$(${mkCredentials adminUser.username})" > /dev/null
     fi
-    TOKEN=$(curl -s --fail-with-body -X POST "$BASE_URL/auth/login" \
-      -H "Content-Type: application/json" \
-      -d "$(${mkCredentials adminUser.username} | jq 'del(.name)')" | jq -r .accessToken)
+    TOKEN=$(${mkLogin adminUser.username})
 
     get() {
       curl -s --fail-with-body "$BASE_URL$1" -H "Authorization: Bearer $TOKEN"
@@ -81,9 +102,55 @@
         -H "Content-Type: application/json" \
         -d "$2"
     }
+    put() {
+      curl -s --fail-with-body -X PUT "$BASE_URL$1" \
+        -H "Authorization: Bearer $TOKEN" \
+        -H "Content-Type: application/json" \
+        -d "$2"
+    }
+    library_assets() {
+      local cursor="" page
+      while :; do
+        page=$(post /search/metadata "$(jq -n --arg lib "$1" --arg prefix "$2" --arg cursor "$cursor" \
+          '{filter: {libraryId: {eq: $lib}, originalPath: {startsWith: $prefix}}, size: 1000}
+            + (if $cursor == "" then {} else {cursor: $cursor} end)')")
+        jq -r '.assets.items[] | [.originalPath, .id] | @tsv' <<< "$page"
+        cursor=$(jq -r '.assets.nextCursor // ""' <<< "$page")
+        [ -n "$cursor" ] || break
+      done
+    }
+    provision_albums() {
+      local lib=$1 root=$2 manifest=$2/events.tsv assets expected found album name id
+      assets=$(mktemp)
+      expected=$(wc -l < "$manifest")
+      for i in $(seq 1 60); do
+        library_assets "$lib" "$root/" > "$assets"
+        found=$(wc -l < "$assets")
+        [ "$found" -ge "$expected" ] && break
+        echo "Waiting for library scan of $root... ($found/$expected, $i/60)"
+        sleep 10
+      done
+      jq -c -Rn --rawfile assets "$assets" --arg root "$root/" '
+        ($assets | split("\n") | map(select(. != "") | split("\t") | {key: .[0], value: .[1]}) | from_entries) as $ids
+        | [inputs | split("\t") | {event: .[1], id: $ids[$root + .[0]]} | select(.id != null)]
+        | group_by(.event) | .[] | {albumName: .[0].event, assetIds: map(.id)}' "$manifest" \
+      | while IFS= read -r album; do
+          name=$(jq -r .albumName <<< "$album")
+          id=$(get /albums | jq -r --arg name "$name" '.[] | select(.albumName == $name) | .id' | head -n 1)
+          if [ -z "$id" ]; then
+            post /albums "$album" > /dev/null
+          else
+            put "/albums/$id/assets" "$(jq '{ids: .assetIds}' <<< "$album")" > /dev/null
+          fi
+          echo "Provision album $name: $(jq '.assetIds | length' <<< "$album") assets"
+        done
+      echo "Albums from $manifest: $found of $expected files indexed"
+      rm -f "$assets"
+    }
 
     ${lib.concatMapStrings mkProvisionUser immichUsers}
     ${lib.concatMapStrings mkProvisionLibrary immichUsers}
+    ${lib.concatMapStrings mkProvisionAlbums albumManifests}
 
     touch "$SENTINEL"
   '';
@@ -102,6 +169,11 @@ in {
     settings = {
       newVersionCheck.enabled = false;
       server.externalDomain = "http://immich.home";
+      storageTemplate = {
+        enabled = true;
+        hashVerificationEnabled = true;
+        template = "{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}";
+      };
     };
     database = {
       enable = true;
@@ -120,8 +192,15 @@ in {
     "d  ${immichStore}                       0755   root      root      -  -"
     "d  ${cfg.mediaLocation}                 0700   immich    immich    -  -"
     "d  ${immichStore}/dump                  0750   postgres  postgres  -  -"
-  ] ++ map (path: "d  ${path}  02770  phdenzel  media  -  -")
-    (sharedPaths ++ lib.concatMap (u: userPaths u.username) immichUsers);
+    "d  ${cfg.mediaLocation}/library         0700   immich    immich    -  -"
+  ] ++ map (u: "d  ${cfg.mediaLocation}/library/${u.username}  0700  immich  immich  -  -") immichUsers
+  ++ map (path: "d  ${path}  02770  phdenzel  media  -  -")
+    (sharedPaths ++ lib.concatMap (u: userPaths u.username ++ [(iPhonePath u.username)]) immichUsers);
+
+  systemd.services.immich-server.serviceConfig = {
+    BindPaths = map (u: "${iPhonePath u.username}:${cfg.mediaLocation}/library/${u.username}") immichUsers;
+    UMask = lib.mkForce "0007";
+  };
 
   systemd.services.immich-provision = {
     description = "Provision initial Immich users and external libraries";
@@ -133,6 +212,7 @@ in {
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = provisionUsers;
+      TimeoutStartSec = "infinity";
     };
   };
 
