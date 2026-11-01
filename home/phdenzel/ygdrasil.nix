@@ -30,6 +30,7 @@ in {
 
   users.users.${userName} = {
     isNormalUser = true;
+    linger = true;
     shell = pkgs.zsh;
     extraGroups =
       [
