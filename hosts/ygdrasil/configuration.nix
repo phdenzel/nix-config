@@ -151,6 +151,7 @@ in {
     # hostId = "";
     # wireless.enable = true;  # wireless via wpa_supplicant.
     networkmanager.enable = true;
+    networkmanager.unmanaged = ["interface-name:enp7s0f*"];
     enableIPv6 = false;
   };
   systemd.network.wait-online.enable = false;
