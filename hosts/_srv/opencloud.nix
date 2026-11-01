@@ -89,6 +89,28 @@ in {
     environmentFile = config.sops.secrets."opencloud/env".path;
   };
 
+  systemd.services.opencloud-sharing-service-account = {
+    description = "Add the sharing service account to the OpenCloud config";
+    after = ["opencloud-init-config.service"];
+    before = ["opencloud.service"];
+    requiredBy = ["opencloud.service"];
+    path = [ pkgs.yq-go ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      config=/etc/opencloud/opencloud.yaml
+      [ -e "$config" ] || exit 0
+      if [ -z "$(yq '.sharing.service_account.service_account_id // ""' "$config")" ] \
+        && [ -n "$(yq '.graph.service_account.service_account_id // ""' "$config")" ]; then
+        yq -i '.sharing.service_account = .graph.service_account' "$config"
+        chown ${cfg.user}:${cfg.group} "$config"
+        chmod 600 "$config"
+      fi
+    '';
+  };
+
   systemd.services.opencloud = {
     path = [ pkgs.inotify-tools ];
     serviceConfig.ReadWritePaths = [
