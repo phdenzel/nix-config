@@ -96,14 +96,14 @@ in {
     description = "Set ownership and permissions under /data/media";
     wantedBy = ["multi-user.target"];
     after = ["systemd-tmpfiles-setup.service"];
-    before = ["opencloud.service"];
+    before = ["opencloud.service" "jellyfin.service"];
     unitConfig.RequiresMountsFor = ["/data/media"];
     serviceConfig.Type = "oneshot";
     script = ''
       for dir in Videos Books Music Pictures; do
-        find /data/media/$dir -type d -exec chmod 02770 {} +
-        find /data/media/$dir -type f -exec chmod 0660 {} +
-        chown -R phdenzel:media /data/media/$dir
+        find /data/media/$dir \( ! -user phdenzel -o ! -group media \) -exec chown -h phdenzel:media {} +
+        find /data/media/$dir -type d ! -perm 02770 -exec chmod 02770 {} +
+        find /data/media/$dir -type f ! -perm 0660 -exec chmod 0660 {} +
       done;
     '';
   };
@@ -111,14 +111,14 @@ in {
     description = "Set ownership and permissions under /data/backups";
     wantedBy = ["multi-user.target"];
     after = ["systemd-tmpfiles-setup.service"];
-    before = ["opencloud.service"];
+    before = ["opencloud.service" "jellyfin.service"];
     unitConfig.RequiresMountsFor = ["/data/backups"];
     serviceConfig.Type = "oneshot";
     script = ''
       for dir in /data/backups/*/; do
-        find "$dir" -type d -exec chmod 02770 {} +
-        find "$dir" -type f -exec chmod 0660 {} +
-        chown -R phdenzel:media "$dir"
+        find "$dir" \( ! -user phdenzel -o ! -group media \) -exec chown -h phdenzel:media {} +
+        find "$dir" -type d ! -perm 02770 -exec chmod 02770 {} +
+        find "$dir" -type f ! -perm 0660 -exec chmod 0660 {} +
       done;
     '';
   };
@@ -126,13 +126,13 @@ in {
     description = "Set ownership and permissions under /data/private";
     wantedBy = ["multi-user.target"];
     after = ["systemd-tmpfiles-setup.service"];
-    before = ["opencloud.service"];
+    before = ["opencloud.service" "jellyfin.service"];
     unitConfig.RequiresMountsFor = ["/data/private"];
     serviceConfig.Type = "oneshot";
     script = ''
-      find /data/private -type d -exec chmod 02770 {} +
-      find /data/private -type f -exec chmod 0660 {} +
-      chown -R phdenzel:private /data/private
+      find /data/private \( ! -user phdenzel -o ! -group private \) -exec chown -h phdenzel:private {} +
+      find /data/private -type d ! -perm 02770 -exec chmod 02770 {} +
+      find /data/private -type f ! -perm 0660 -exec chmod 0660 {} +
     '';
   };
 
