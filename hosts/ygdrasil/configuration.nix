@@ -92,26 +92,35 @@ in {
     "d  /data/private/Videos      02770  phdenzel  private       -  -"
     # "d  /data/store/immich        02775  phdenzel  immich        -  -"
   ];
-  system.activationScripts.mediaPermissions = ''
-    for dir in Videos Books Music; do
-      find /data/media/$dir -type d -exec chmod 02770 {} +
-      find /data/media/$dir -type f -exec chmod 0660 {} +
-      chown -R phdenzel:media /data/media/$dir
-    done;
-    # for dir in Pictures; do
-    #   find /data/media/$dir -type d -exec chmod 02770 {} +
-    #   find /data/media/$dir -type f -exec chmod 0660 {} +
-    #   chown -R phdenzel:media /data/media/$dir
-    # done;
-  '';
-  system.activationScripts.privatePermissions = {
-    deps = ["users" "groups"];
-    text = ''
-      if [ -d /data/private ]; then
-        find /data/private -type d -exec chmod 02770 {} +
-        find /data/private -type f -exec chmod 0660 {} +
-        chown -R phdenzel:private /data/private
-      fi
+  systemd.services.media-permissions = {
+    description = "Set ownership and permissions under /data/media";
+    wantedBy = ["multi-user.target"];
+    after = ["systemd-tmpfiles-setup.service"];
+    unitConfig.RequiresMountsFor = ["/data/media"];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      for dir in Videos Books Music; do
+        find /data/media/$dir -type d -exec chmod 02770 {} +
+        find /data/media/$dir -type f -exec chmod 0660 {} +
+        chown -R phdenzel:media /data/media/$dir
+      done;
+      # for dir in Pictures; do
+      #   find /data/media/$dir -type d -exec chmod 02770 {} +
+      #   find /data/media/$dir -type f -exec chmod 0660 {} +
+      #   chown -R phdenzel:media /data/media/$dir
+      # done;
+    '';
+  };
+  systemd.services.private-permissions = {
+    description = "Set ownership and permissions under /data/private";
+    wantedBy = ["multi-user.target"];
+    after = ["systemd-tmpfiles-setup.service"];
+    unitConfig.RequiresMountsFor = ["/data/private"];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      find /data/private -type d -exec chmod 02770 {} +
+      find /data/private -type f -exec chmod 0660 {} +
+      chown -R phdenzel:private /data/private
     '';
   };
 
