@@ -9,6 +9,7 @@ with lib; {
     [
       bat
       coreutils-full
+      dnsutils
       dust
       eza
       fzf
