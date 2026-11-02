@@ -39,4 +39,7 @@
     name = "vim";
     vimrcConfig.customRC = config.environment.etc."vimrc".text;
   }));
+
+  # nixpkgs' claude-code wrapper defaults to the system CA store only, which fails OAuth on macOS
+  environment.variables.CLAUDE_CODE_CERT_STORE = "bundled,system";
 }
