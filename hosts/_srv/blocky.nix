@@ -14,7 +14,7 @@
         init.strategy = "fast"; # "blocking";
         groups.default = [
           "tcp-tls:dns.digitale-gesellschaft.ch:853"
-          "tcp-tls:fdns1.dismail.de:853"
+          "tcp-tls:fdns2.dismail.de:853"
           "tcp-tls:dns3.digitalcourage.de:853"
           "9.9.9.9"
           "1.1.1.1"
@@ -22,6 +22,13 @@
         strategy = "parallel_best";
         timeout = "2s";
       };
+      bootstrapDns = [
+        {
+          upstream = "tcp-tls:dns.digitale-gesellschaft.ch:853";
+          ips = ["185.95.218.42" "185.95.218.43"];
+        }
+        "tcp+udp:9.9.9.9"
+      ];
       connectIPVersion = "v4"; # v4
       customDNS = {
         rewrite = {
@@ -144,7 +151,7 @@
             attempts = 5;
           };
           concurrency = 4;
-          strategy = "failOnError";
+          strategy = "fast";
           maxErrorsPerSource = 8;
         };
       };
