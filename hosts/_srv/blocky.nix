@@ -1,4 +1,8 @@
-{...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   networking.firewall.allowedTCPPorts = [53];
   networking.firewall.allowedUDPPorts = [53];
   services.blocky = {
@@ -88,7 +92,7 @@
             # contains errors: "https://blocklistproject.github.io/Lists/porn.txt"
           ];
           malware = [
-            "https://urlhaus.abuse.ch/downloads/hostfile"
+            "https://urlhaus-api.abuse.ch/v2/files/exports/${config.sops.placeholder."urlhaus/auth_key"}/hostfile.txt"
             # contains errors: "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt"
             "https://v.firebog.net/hosts/Prigent-Crypto.txt"
             "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Risk/hosts"
@@ -176,5 +180,15 @@
         path = "/metrics";
       };
     };
+  };
+
+  sops-host.keys = ["urlhaus/auth_key"];
+  sops.templates."blocky.yaml" = {
+    content = builtins.toJSON config.services.blocky.settings;
+    restartUnits = ["blocky.service"];
+  };
+  systemd.services.blocky.serviceConfig = {
+    LoadCredential = "config.yaml:${config.sops.templates."blocky.yaml".path}";
+    ExecStart = lib.mkForce "${lib.getExe config.services.blocky.package} --config %d/config.yaml";
   };
 }
