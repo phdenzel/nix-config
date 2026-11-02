@@ -18,6 +18,7 @@ in {
     ../_common/emacs.nix # editor and god tool
     ../_common/cli-utils.nix # cli tool collection
     ../_srv/blocky.nix # DNS server
+    ../_srv/dns-failover.nix # floating DNS IP (keepalived)
     # ../_srv/block-grafana.nix
     ../_srv/glances.nix # for homepage-dashboard
     ../_srv/traefik  # local reverse proxy

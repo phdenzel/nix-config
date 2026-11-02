@@ -42,6 +42,7 @@
         mapping = {
           # Machines
           "fritzbox.home" = "192.168.178.1";
+          "dns.home" = "192.168.178.16";
           "heimdall.home" = "192.168.178.64";
           "ygdrasil.home" = "192.168.178.42";
           "phinix.home" = "192.168.178.156";

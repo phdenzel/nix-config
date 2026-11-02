@@ -29,6 +29,8 @@ in {
     # ../_srv/admin.nix # monitoring (cockpit, uptime-kuma, gotify, ...)
     ../_srv/traefik # server proxy services
     ../_srv/traefik/ygdrasil.nix
+    ../_srv/blocky.nix # DNS server (secondary)
+    ../_srv/dns-failover.nix # floating DNS IP (keepalived)
     # ../srv/crowdsec.nix # security services
     # ../srv/keycloak.nix # security services 
     # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
