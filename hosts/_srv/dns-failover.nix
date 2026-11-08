@@ -30,7 +30,7 @@ in {
     enableScriptSecurity = true;
     vrrpScripts.blocky = {
       script = "${checkBlocky}";
-      interval = 2;
+      interval = 5;
       fall = 2;
       rise = 2;
     };
