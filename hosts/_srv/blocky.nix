@@ -139,7 +139,13 @@
             
           ];
         };
-        # allowlists = {};
+        allowlists = {
+          ads = [
+            ''
+              fcm.googleapis.com
+            ''
+          ];
+        };
         clientGroupsBlock = {
           default = ["ads" "malware" "trackers" "special"];
         };
