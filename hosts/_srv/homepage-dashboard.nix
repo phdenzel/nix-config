@@ -45,6 +45,7 @@ in {
           "forgejo"
           "jellyfin"
           "transmission"
+          "immich"
           "vikunja"
           "mealie"
         ]
@@ -232,6 +233,20 @@ in {
                 url = mkProxyUrl "transmission";
                 username = "";
                 password = "{{HOMEPAGE_VAR_TRANSMISSION_PASSWD}}";
+              };
+            };
+          }
+          {
+            Immich = {
+              icon = "immich.png";
+              description = "Photo & video library";
+              href = mkProxyUrl "immich";
+              siteMonitor = mkProxyUrl "immich";
+              widget = {
+                version = 2;
+                type = "immich";
+                url = mkProxyUrl "immich";
+                key = "{{HOMEPAGE_VAR_IMMICH_TOKEN}}";
               };
             };
           }
