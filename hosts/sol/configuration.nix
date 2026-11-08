@@ -11,7 +11,8 @@
 in {
   imports = [
     ../_common # default nix (and sops-nix) configuration
-    # ../_common/nfs.nix # NFS mounts
+    ../_common/nfs.nix # NFS mounts
+    ../_common/smb.nix # SMB mounts (private, backups)
     ../_common/sddm.nix # display manager
     ../_common/hyprland.nix # window manager
     ../_common/usb-wakeup.nix # wake from suspend via USB keyboard
