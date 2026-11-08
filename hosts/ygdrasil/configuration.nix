@@ -31,6 +31,8 @@ in {
     ../_srv/traefik/ygdrasil.nix
     ../_srv/blocky.nix # DNS server (secondary)
     ../_srv/dns-failover.nix # floating DNS IP (keepalived)
+    ../_srv/nfs.nix # NFS shares
+    ../_srv/smb.nix # SMB shares
     # ../srv/crowdsec.nix # security services
     # ../srv/keycloak.nix # security services 
     # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
