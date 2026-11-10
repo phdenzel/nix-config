@@ -19,6 +19,7 @@
     git-filter-repo
     gnumake
     gnuplot
+    graphify
     hdf5
     nodejs
     pkg-config

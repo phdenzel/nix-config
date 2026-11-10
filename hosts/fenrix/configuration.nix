@@ -35,7 +35,6 @@ in {
     ../_common/tx-rx.nix # transmission / reception
     ../_common/texlive.nix # full TeXLive package
     ../_common/vpn-zhaw.nix # VPN for work
-    ../_common/ai.nix # miscellaneous AI tools
     ../_srv/glances.nix  # for homepage-dashboard
     ../_srv/traefik  # local reverse proxy
     ../../modules # Internationalization configs

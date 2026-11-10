@@ -23,6 +23,7 @@
       ../_common/brave
       ../_common/btop
       # ../_common/bun
+      ../_common/claude-code
       # ../_common/dconf
       ../_common/dircolors
       # ../_common/editorconfig
@@ -34,6 +35,8 @@
       # ../_common/gh
       ../_common/ghostty
       ../_common/git
+      ../_common/herdr
+      ../_common/pi-coding-agent
       ../_common/protonmail
       # ../_common/imv
       # ../_common/matplotlib

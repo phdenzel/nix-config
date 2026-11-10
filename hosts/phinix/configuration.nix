@@ -31,7 +31,6 @@ in {
     ../_common/nix-ld.nix # loader for non-Nix binaries
     ../_common/jupyterhub.nix # computing tool collection
     ../_common/ollama.nix # local LLM services
-    ../_common/ai.nix # miscellaneous AI tools
     ../_common/comfyui.nix # comfyUI image generation tool
     ../_common/graphical.nix # graphical applications
     # ../_common/ghostfolio.nix # wealth management tool

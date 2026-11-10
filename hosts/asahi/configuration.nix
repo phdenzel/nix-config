@@ -15,7 +15,6 @@ in {
     ../_common/darwin.nix
     ../_common/fonts.nix # font packages
     ../_common/emacs.nix # editor and god tool
-    ../_common/ai.nix # miscellaneous AI tools
     ../_common/cli-utils.nix # cli tool collection
     ../_common/crypt-utils.nix # cryptographic tool collection
     ../_common/containerization.nix # podman and oci utils

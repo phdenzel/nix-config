@@ -22,7 +22,6 @@ in {
     ../_common/cuda.nix # NVIDIA CUDA toolkit
     ../_common/rocm.nix # AMD ROCm runtime
     ../_common/nix-ld.nix # loader for non-Nix binaries
-    ../_common/ai.nix # miscellaneous AI tools
     # ../_srv/computing.nix # computing tool collection
     # ../_srv/ollama.nix # local LLM services
     ../_srv/dashboards.nix # server dashboards (homepage-dashboard, glances, ...)
