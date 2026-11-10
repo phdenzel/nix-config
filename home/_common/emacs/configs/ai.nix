@@ -23,44 +23,44 @@
                 (make-llm-ollama
                 ;; this model should be pulled to use it
                 ;; value should be the same as you print in terminal during pull
-                :chat-model "deepseek-r1:14b"
-                :embedding-model "nomic-embed-text"
+                :chat-model "gemma4:12b"
+                :embedding-model "embeddinggemma-2:740m"
                 :default-chat-non-standard-params '(("num_ctx" . 8192))))
         (setopt ellama-summarization-provider
                 (make-llm-ollama
-                :chat-model "deepseek-r1:14b"
-                :embedding-model "nomic-embed-text"
+                :chat-model "gemma4:12b"
+                :embedding-model "embeddinggemma-2:740m"
                 :default-chat-non-standard-params '(("num_ctx" . 32768))))
         (setopt ellama-coding-provider
                 (make-llm-ollama
-                :chat-model "devstral-small-2:24b-instruct-2512-q4_K_M"
-                :embedding-model "nomic-embed-text"
+                :chat-model "qwen3.6:35b-a3b-coding"
+                :embedding-model "embeddinggemma-2:740m"
                 :default-chat-non-standard-params '(("num_ctx" . 32768))))
         (setopt ellama-providers
-               '(("deepseek" . (make-llm-ollama
-                           :chat-model "deepseek-r1:14b"
-                           :embedding-model "deepseek-r1:14b"))
-                 ("gpt-oss" . (make-llm-ollama
-                            :chat-model "gpt-oss:20b"
-                            :embedding-model "gpt-oss:20b"))
-                 ("gemma3" . (make-llm-ollama
-                            :chat-model "gemma3:27b-it-q4_K_M"
-                            :embedding-model "gemma3:27b-it-q4_K_M"))))
+               '(("qwen3.6-coding" . (make-llm-ollama
+                           :chat-model "qwen3.6:35b-a3b-coding"
+                           :embedding-model "embeddinggemma-2:740m"))
+                 ("qwen3.8" . (make-llm-ollama
+                            :chat-model "qwen3.8:27b-q8_0"
+                            :embedding-model "embeddinggemma-2:740m"))
+                 ("gemma4" . (make-llm-ollama
+                            :chat-model "gemma4:12b"
+                            :embedding-model "embeddinggemma-2:740m"))))
         (setopt ellama-naming-provider
                (make-llm-ollama
-               :chat-model "llama3.2:3b"
-               :embedding-model "nomic-embed-text"
+               :chat-model "gemma4:12b"
+               :embedding-model "embeddinggemma-2:740m"
                :default-chat-non-standard-params '(("stop" . ("\n")))))
         (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
         ;; Translation llm provider
         (setopt ellama-translation-provider
                (make-llm-ollama
-               :chat-model "deepseek-r1:14b"
-               :embedding-model "nomic-embed-text"
+               :chat-model "gemma4:12b"
+               :embedding-model "embeddinggemma-2:740m"
                :default-chat-non-standard-params '(("num_ctx" . 32768))))
         (setopt ellama-extraction-provider (make-llm-ollama
-            :chat-model "qwen2.5-coder:32b-instruct"
-            :embedding-model "nomic-embed-text"
+            :chat-model "qwen3.6:35b-a3b-coding"
+            :embedding-model "embeddinggemma-2:740m"
             :default-chat-non-standard-params
             '(("num_ctx" . 32768))))
         ;; customize display buffer behaviour
