@@ -22,6 +22,7 @@ in {
     ../_common/dev-utils.nix # dev tool collection
     ../_common/openssh.nix # openSSH configs
     ../_common/jupyterlab-darwin.nix # jupyterlab env + launchd daemon
+    ../_common/ollama-darwin.nix # local LLM server + open-webui launchd daemons
     ../_common/texlive.nix # full TeXLive package
     ../_common/homebrew.nix # darwin-only packages not found in nixpkgs
   ];
