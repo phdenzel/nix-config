@@ -77,6 +77,7 @@ in
       scipy
       pandas
       scikit-learn
+      mlxtend
       matplotlib
       seaborn
       plotly
