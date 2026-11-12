@@ -40,6 +40,7 @@ in {
         ./_configs/gpg/gpg.nix
         ./_configs/gpg/key-pwds.nix
       ];
+      ollama-models.light = true;
       programs.gpg.settings.default-key = lib.mkDefault "629FC7317EFB4935";
       # Spotlight and Alfred don't index symlinked apps, so copy them instead
       targets.darwin.linkApps.enable = false;
