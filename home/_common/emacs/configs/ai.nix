@@ -1,4 +1,27 @@
-{...}: {
+{config, ...}: let
+  light = config.ollama-models.light;
+  # Coding and extraction share one model so only one stays loaded
+  codingModel =
+    if light
+    then "qwen3.5:9b-q8_0"
+    else "qwen3.6:35b-a3b-coding";
+  extractionModel = codingModel;
+  extraProviders =
+    if light
+    then ''
+      ("qwen3.5-coding-light" . (make-llm-ollama
+                  :chat-model "qwen3.5:9b-q8_0"
+                  :embedding-model "embeddinggemma-2:740m"))
+    ''
+    else ''
+      ("qwen3.6-coding" . (make-llm-ollama
+                  :chat-model "qwen3.6:35b-a3b-coding"
+                  :embedding-model "embeddinggemma-2:740m"))
+      ("qwen3.8" . (make-llm-ollama
+                  :chat-model "qwen3.8:27b-q8_0"
+                  :embedding-model "embeddinggemma-2:740m"))
+    '';
+in {
   programs.emacs.init.usePackage = {
     copilot = {
       enable = true;
@@ -33,16 +56,11 @@
                 :default-chat-non-standard-params '(("num_ctx" . 32768))))
         (setopt ellama-coding-provider
                 (make-llm-ollama
-                :chat-model "qwen3.6:35b-a3b-coding"
+                :chat-model "${codingModel}"
                 :embedding-model "embeddinggemma-2:740m"
                 :default-chat-non-standard-params '(("num_ctx" . 32768))))
         (setopt ellama-providers
-               '(("qwen3.6-coding" . (make-llm-ollama
-                           :chat-model "qwen3.6:35b-a3b-coding"
-                           :embedding-model "embeddinggemma-2:740m"))
-                 ("qwen3.8" . (make-llm-ollama
-                            :chat-model "qwen3.8:27b-q8_0"
-                            :embedding-model "embeddinggemma-2:740m"))
+               '(${extraProviders}
                  ("gemma4" . (make-llm-ollama
                             :chat-model "gemma4:12b"
                             :embedding-model "embeddinggemma-2:740m"))))
@@ -59,7 +77,7 @@
                :embedding-model "embeddinggemma-2:740m"
                :default-chat-non-standard-params '(("num_ctx" . 32768))))
         (setopt ellama-extraction-provider (make-llm-ollama
-            :chat-model "qwen3.6:35b-a3b-coding"
+            :chat-model "${extractionModel}"
             :embedding-model "embeddinggemma-2:740m"
             :default-chat-non-standard-params
             '(("num_ctx" . 32768))))

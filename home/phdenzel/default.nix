@@ -35,6 +35,7 @@
       ../_common/ghostty
       ../_common/git
       ../_common/herdr
+      ../_common/ollama-models
       ../_common/pi-coding-agent
       ../_common/protonmail
       # ../_common/imv
