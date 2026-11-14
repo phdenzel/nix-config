@@ -42,11 +42,13 @@ in {
     supportedFilesystems.zfs = lib.mkForce false;
     # /tmp as tmpfs
     tmp = {
-      useTmpfs = false;
+      useTmpfs = true;
       tmpfsSize = "50%";
       cleanOnBoot = (!config.boot.tmp.useTmpfs);
     };
   };
+  fileSystems."/".options = ["noatime"];
+  zramSwap.enable = true;
 
   # Language customization (see ../../modules)
   intl.defaultLocale = "en_US";
@@ -105,6 +107,10 @@ in {
   # System-wide services
   services = {
     udisks2.enable = true;
+    journald.settings.Journal = {
+      Storage = "volatile";
+      RuntimeMaxUse = "128M";
+    };
   };
 
   system.stateVersion = "25.05";
