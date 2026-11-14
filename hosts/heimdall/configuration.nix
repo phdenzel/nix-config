@@ -22,6 +22,8 @@ in {
     # ../_srv/block-grafana.nix
     ../_srv/glances.nix # for homepage-dashboard
     ../_srv/traefik  # local reverse proxy
+    ../_srv/headscale.nix # VPN coordination server (headscale)
+    ../_srv/tailscale.nix # VPN subnet router (tailscale)
     ../../modules/intl.nix # internationalization configs
     inputs.hardware.nixosModules.raspberry-pi-4
   ];

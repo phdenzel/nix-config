@@ -60,6 +60,7 @@
           "mealie.home" = "192.168.178.42";  # 9000
           "opencloud.home" = "192.168.178.42";
           "immich.home" = "192.168.178.42";  # 2283
+          "headscale.denzels.ch" = "192.168.178.64";
           "homematic.home" = "192.168.178.41";
         };
       };

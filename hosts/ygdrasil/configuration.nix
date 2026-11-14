@@ -34,7 +34,7 @@ in {
     ../_srv/smb.nix # SMB shares
     # ../srv/crowdsec.nix # security services
     # ../srv/keycloak.nix # security services 
-    # ../_srv/vpn.nix # VPN services (wireguard, tailscale, ...)
+    ../_srv/tailscale.nix # VPN subnet router (tailscale)
     ../_srv/forgejo.nix # git forge service (forgejo)
     ../_srv/opencloud.nix # cloud service
     ../_srv/immich.nix # image hosting service
