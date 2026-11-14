@@ -13,5 +13,6 @@ in {
     extraUpFlags = ["--login-server=https://headscale.denzels.ch"] ++ flags;
     extraSetFlags = flags;
   };
+  systemd.services.tailscaled-set.wantedBy = ["multi-user.target"];
   sops-host.keys = lib.mkIf (!config.services.headscale.enable) ["tailscale/authkey"];
 }
